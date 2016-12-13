@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/imgUserChild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:focusable="false"
+        android:src="@drawable/child_image" />
+
+    <LinearLayout
+        android:id="@+id/layoutNameNetwork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/imgUserChild"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtChildName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="ChildName"
+            android:textColor="@color/black_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtdobprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:maxLines="3"
+            android:text="Date of Birth"
+            android:textColor="@color/font_color"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txtschoolprofilechild"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:text="School"
+            android:textColor="@color/font_color"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txtSibling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="Connections:"
+            android:textColor="@color/font_color"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:id="@+id/layoutconnbtnprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+
+            <Button
+                android:id="@+id/btn_networkconnectionitemprofile"
+                android:layout_width="wrap_content"
+                android:layout_height="30dip"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rectangular_btn_bluecolornetwork"
+                android:focusable="false"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="Network"
+                android:textColor="@color/font_blue_color"
+                android:textSize="14sp"
+                 android:textStyle="bold"
+                 />
+
+            <TextView
+                android:id="@+id/textViewnotification_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="38dp"
+                android:background="@drawable/profilecircle"
+                android:focusable="false"
+                android:paddingBottom="1dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="1dp"
+                android:text="0"
+                android:textColor="@color/font_white_color"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/emptyImage"
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="2dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</RelativeLayout>

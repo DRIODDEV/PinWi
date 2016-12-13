@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pinwi</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- signup -->
+    <string name="signup_text">Create Account</string>
+    <string name="signupWith_text">Sign up with</string>
+
+    <!-- Login Activity -->
+
+    <string name="about_text">About Us</string>
+    <string name="help_text">Help</string>
+    <string name="manage_map_text">Map and Manage what Drives your Child\'s Interests.</string>
+    <string name="login_text">Login</string>
+    <string name="signin_text">Sign in with</string>
+    <string name="facebook_text">Facebook</string>
+    <string name="googleplus_text">Google +</string>
+    <string name="forgotpassword_text">Forgot password?</string>
+    <string name="forgotpassword_text1">Forgot Password</string>
+    <string name="forgotpassword_emailheader">Enter your registered email id and click Continue.</string>
+    <string name="forgotpassword_codetext1">Verify your Code.</string>
+    <string name="forgotpassword_codetext2">Enter the code below and click Continue to update your password.</string>
+    <string name="forgotpassword_updateText">Update Password</string>
+    <string name="newsignup_text">New user?Sign Up.</string>
+    <string name="login_in_text">Login in with</string>
+    <string name="keeplogin_text">Keep me logged in.</string>
+
+    <!-- ParentRegistrationActivity -->
+    <string name="parent_header_text">Parent Profile SetUp</string>
+    <string name="continue_text">Continue</string>
+    <string name="save_text">Save</string>
+    <string name="father_text">Father</string>
+    <string name="mother_text">Mother</string>
+    <string name="male_text">Male</string>
+    <string name="female_text">Female</string>
+    <string name="guardian_text">Guardian</string>
+
+    <!-- LocationActivity -->
+    <string name="location_header_text">Location Setup</string>
+    <string name="neighbourhood_text">Select Neighbourhood</string>
+
+    <!-- ConfirmationActivity -->
+    <string name="confirmation_header_text">Confirm Profile</string>
+    <string name="confirmation_text">You are almost done. For security reasons we would like you to confirm your details. Select how you would like to receive the confirmation code:</string>
+    <string name="receive_confirmation_text">Receive Confirmation Through:</string>
+    <string name="agree_text">I agree with</string>
+    <string name="condition_text">Terms &amp; Conditions</string>
+    <string name="sms_text">SMS</string>
+    <string name="email_text">Email </string>
+    <string name="send_text">Send</string>
+    <string name="congrates_text">Congratulations!</string>
+    <string name="successful_text">Your profile has been confirmed. You may now continue setting it up.</string>
+    <string name="successfulchild_text">Complete your \n child \'s(childer \'s) profile to complete \n signUp process </string>
+
+    <!-- <string name="terms_condition_text">Terms and conditions</string> -->
+    <string name="passcode_enter_passcode">Enter Passcode</string>
+    <string name="passcode_parent_text">Passcode</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="done_text">Done</string>
+    <string name="submit_text">Submit</string>
+
+    <!-- ChildRegistrationActivity -->
+    <string name="child_header_text">Child Profile Setup</string>
+    <string name="boy_text">Boy</string>
+    <string name="girl_text">Girl</string>
+    <string name="addchild_text">Save &amp; Add Another Child Profile</string>
+
+    <!-- AllyRegistrationActivity -->
+    <string name="ally_header_text">Add Ally</string>
+    <string name="addally_text">Add Another Ally</string>
+    <string name="addallysetting_text">Add New Ally</string>
+    <string name="later_text">I\'ll do this Later</string>
+    <string name="camera_text">Set Profile Pic</string>
+    <string name="save_continue_text">Save &amp; Continue</string>
+
+    <!-- GetStartedActivity -->
+    <string name="welcome_text">Welcome</string>
+    <string name="started_text">A smart parenting app to help you map what drives your child\'s interest while managing their life better on-the-go. It\’s easy, intuitive and insightful. You can stay now up-to-date with your child\'s ever evolving interests with our Interest Mapping Reports and ensure you make smarter more interest focused choices.</string>
+    <string name="getStarted_button">Get Started</string>
+
+    <!-- AccessProfileActivity -->
+    <string name="access_header_text">Access your Profile</string>
+
+    <!-- PasswordUnlockActivity -->
+    <string name="passcode_text">Enter your passcode</string>
+    <string name="forgotPasscodetext">forgot your passcode?</string>
+
+    <!-- ParentProfileInformationActivity -->
+    <string name="notification_text">Notifications</string>
+    <string name="schedule_text">Scheduler</string>
+    <string name="network_text">Network</string>
+    <string name="insight_text">Insights</string>
+    <string name="whattodo_text">What to do</string>
+    <string name="what_you_like_text">What would you like to view?</string>
+
+    <!-- ChildActivities -->
+    <string name="child_activityheader_text">Activities</string>
+    <string name="school_activity_text">School Activities</string>
+    <string name="subject_calender_text">Subject Calender</string>
+    <string name="afterschool_activity_text">After School</string>
+
+    <!-- CalendarActivity -->
+    <string name="calendar_text">CALENDAR</string>
+    <string name="afterschool_text">AFTER SCHOOL</string>
+    <string name="school_text">AT SCHOOL</string>
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="sunday">SUN</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>About Us</item>
+        <!-- <item>FAQ</item> -->
+        <item>Tutorial</item>
+        <item>Invite Friend</item>
+        <item>Contact Us</item>
+        <item>Settings</item>
+        <!-- <item>Add on App</item> -->
+        <item>Logout</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+
+
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/home_drawer</item>
+        <item>@drawable/about_us</item>
+        <!-- <item>@drawable/support</item> -->
+        <item>@drawable/tutorial</item>
+        <item>@drawable/invite_friend</item>
+        <item>@drawable/contact_us</item>
+        <item>@drawable/setting</item>
+        <!-- <item>@drawable/add_on</item> -->
+        <item>@drawable/logout</item>
+    </array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <!-- Setting for child and ally -->
+    <string name="child_update_text">Child Profile</string>
+    <string name="addchildlist_text">Add Another Child\'s Profile</string>
+    <string name="ally_update_text">Ally</string>
+    <string name="saveAlly_text">Save</string>
+
+    <!-- for subject -->
+
+    <string name="sunday_text">S</string>
+    <string name="monday_text">M</string>
+    <string name="tuesday_text">T</string>
+    <string name="wednesday_text">W</string>
+    <string name="thursday_text">T</string>
+    <string name="friday_text">F</string>
+    <string name="saturday_text">S</string>
+    <string name="examdate_text">Exam Date</string>
+    <string name="note_text">NOTE</string>
+    <string name="pick_text">Pick a Seller</string>
+    <string name="reset_text">Enter code to reset Password</string>
+    <string name="code_reset_text">Enter code</string>
+    <string name="aboutUs_text">hello, vjvnjkkjsgjnjdsjkfheufjkefuwefjhfejhuejehjdubdbjvdjfejkfsfjsjjkjefwkrggggggggggggggggrehjwyyyaguyfejfewwguywegfugeugedhgbfgfyuejffbjfufyrgfergfuyjfgurfjvjvnjkkjsgjnjdsjkfheufjkefuwefjhfejhuejehjdubdbjvdjfejkfsfjsjjkjefwkrggggggggggggggggrehjwyyyaguyfejfewwguywegfugeugedhgbfgfyuejffbjfufyrgfergfuyjfgurfj</string>
+    <string name="terms_conditions_text">View Terms And Conditions</string>
+    <string name="version_text">Version 1.0</string>
+    <string name="copyright_text">\u00a9 2015 All Rights Reserved.</string>
+    <string name="add_activity_text">Add Activity</string>
+
+    <!-- ByCatID -->
+
+    <string name="cannotfind_activity_text">Can\'t find Activity?</string>
+    <string name="createcustom_activity_text">Create custom</string>
+    <string name="comingsoon_text_network">You will soon be able to connect with others parents in your community.</string>
+    <string name="comingsoon_text_network1">Stay Tuned!!</string>
+    <string name="comingsoon_text_whattodo">You will soon be able to view recommended activities for your children based on their interest reports and network activities.</string>
+    <string name="comingsoon_text_whattodo1">Isn\'t that swell!</string>
+    <string name="startDate_text">Start Date</string>
+    <string name="startTime_text">Start Time</string>
+    <string name="endDate_text">End Date</string>
+    <string name="endTime_text">End Time</string>
+    <string name="dayofWeek_text">Days of Week</string>
+    <string name="reminder_text">Reminder</string>
+    <string name="markPrivate_text">Mark Private</string>
+    <string name="markSpecial_text">Mark Special</string>
+    <string name="addnotifyally_text">Add New Ally Notification</string>
+    <string name="informAlly1_text">Inform Ally</string>
+    <string name="informAlly2_text">Inform Ally2</string>
+    <string name="speical_date_text">Special Date</string>
+    <string name="set_date_text">Set Date</string>
+    <string name="set_time_text">Set Time</string>
+    <string name="set_pick_text">Pick</string>
+    <string name="set_drop_text">Drop</string>
+    <string name="special_instrution_text">Special Instructions</string>
+    <string name="custom_text">Custom</string>
+    <string name="inform_allyText">Inform Ally</string>
+    <string name="scheduleonTap_text">Tap to Schedule an Activity</string>
+    <string name="atschool_text">AT SCHOOL</string>
+    <string name="delete_text">Delete</string>
+    <string name="atsubjectschool_text">At School</string>
+    <string name="weekDay_text">WEEKDAYS</string>
+    <string name="weekEnd_text">WEEKEND</string>
+    <string name="allDay_text">ALL DAYS</string>
+    <string name="heading1_text">Heading 1</string>
+    <string name="heading2_text">Heading 2</string>
+    <string name="about_heading1_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 
+survived not only five centuries.</string>
+    <string name="about_heading2_text">It is a long established fact that a reader will be distractd by the readable content of a page when looking 
+at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, 
+content here\', making it look like readable English. </string>
+    <!-- <string name="app_id">1012558875423383</string> -->
+    <string name="app_id">337832826587872</string>
+    <string name="namesBadges"><![CDATA[<p>&#8226; Insights are driven by the data received from you and your children.<br /><br />&#8226; Data Quality Badge is a ranking that indicates the quality of the data based on consistency and frequency of the activity rating data received from children.<br /><br />&#8226; The higher the data quality badge, the more realistic and reliable the Insights will be.<br /><br />&#8226; Add more activities and Encourage your children to rate regularly to improve the report rank.</p>]]></string>
+    <string name="namesInterestDrivers"><![CDATA[<p>&#8226; Interest Drivers are the factors that stimulate children when they do various activities.<br /><br />&#8226; Children are stimulated (or not) by these factors across different levels of delight.<br /><br />&#8226; In this section of Insights, you can view Interest Drivers that exhilarate your child, those that amuse them and those they find unexciting.<br /><br />&#8226; You can also view Interest Drivers that are non-influencing or those your child has never explored.</p>]]></string>
+    <string name="namesDelightTrends"><![CDATA[<p>&#8226; Delight Trends reflect a list of top 10 activities based on their activity rating over a period of 30 days.<br /><br />&#8226; Know how consistently (or not) this activity makes your child happy.</p>]]></string>
+    <string name="namesPointsSummary"><![CDATA[<p>&#8226; Children earn PiNWi points everyday when they rate activities.<br /><br />&#8226; Points are awarded to keep children interested in the rating process.<br /><br />&#8226; These points can be used in future to get gifts and games.<br /><br />&#8226; encourage authenticity of rating data, we encourage rating everyday.<br /><br />&#8226; However, rating can be done for up to 7 days in the past.<br /><br />&#8226; Points will be lost for days the activities were not rated.</p>]]></string>
+    <string name="namesInterestPattern">
+<![CDATA[<p>&#8226; Interest Patterns throw insight into a child’s interest framework analyzed over a defined period of time.<br /><br />
+        &#8226; Interest Patterns indicate Interest Drivers that define children’s interest independent of their age and the activities they do.<br /><br />
+        &#8226; In this section, know Interest Drivers that are Long Held, New Found or are busy playing See-Saw with your child.</p>]]>
+    </string>
+    <string name="saveNotifytext"> Save &amp; Notify</string>
+
+    <!-- Network -->
+    <string name="connectionheadertext">Connections</string>
+    <string name="requestheadertext">Request</string>
+    <string name="discoverheadertext">Discover</string>
+    <string name="noparentconnection">You have no parent connection in your network.</string>
+
+    <!-- What To Do -->
+    <string name="recommendedheadertext">Recommended</string>
+    <string name="networkheadertext">Network</string>
+    <string name="exploreheadertext">Explore</string>
+    <string name="defaulttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
+    <string name="home_text">Home</string>
+    <string name="Rs">\u20B9</string>
+
+    <string-array name="guidestepdetails">
+        <item>Hi! Start by adding all subjects your child \n does at school.</item>
+        <item>Next, add all after-school activities your \n child is enrolled in</item>
+        <item> Include free time &amp; leisure activities as well like Board Games or Online Games. This is important!</item>
+        <item>Set all school holidays and other planned \n holidays so we know the off days. </item>
+        <item>Use the calendar to keep tab on all \n schedules</item>
+        <item>Most importantly, make your children rate all these activities every evening using their login.</item>
+        <item>You’re good to go! </item>
+    </string-array>
+
+    
+     <string name="txtTitleWhyamIdoingthis">Why am I doing this?</string>
+    <string name="headingWhyamIdoingthis">We thought you might ask \n yourself this.</string>
+    <string name="detailWhyamIdoingthis">When you schedule activities your children \n do and your children 
+        rate them everyday, we \n gather meaningful data. We use this data to \n give you reliable, 
+        realistic and real-time \n insights that can help you stay focused on your child’s interests. 
+        Remember interests evolve with time and exposure. So keep the activities updated and the ratings consistent.\n\n</string>
+    <string name="btnWhyamIdoingthis">Thanks I got it</string>
+
+
+</resources>

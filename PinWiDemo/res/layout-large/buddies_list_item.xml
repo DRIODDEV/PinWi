@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_background"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.hatchtact.pinwi.child.HexagonImageView
+                android:id="@+id/child_buddies"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/camera_icon"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/buddies_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="22dp"
+                android:layout_toLeftOf="@+id/tick_buddies"
+                android:layout_toRightOf="@+id/child_buddies"
+                android:singleLine="true"
+                android:text="Rachna Khanna"
+                android:textColor="@color/black_color"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/tick_buddies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/accept_i" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:alpha=".7"
+            android:background="@color/gray" />
+
+        <RelativeLayout
+            android:id="@+id/layout_buddies_connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" >
+
+            <ImageView
+                android:id="@+id/child_buddies_small_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/buddies_i" />
+
+            <TextView
+                android:id="@+id/txt_child_buddies_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/child_buddies_small_image"
+                android:text="47"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/arrow_i" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.hatchtact.pinwi.child.HexagonImageView
+        android:id="@+id/child_buddies_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/camera_icon" />
+
+</RelativeLayout>

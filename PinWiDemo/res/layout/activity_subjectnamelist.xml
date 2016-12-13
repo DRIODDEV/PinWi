@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <TextView
+        android:id="@+id/schoolActivity_text"
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dip"
+        android:background="@color/gray"
+        android:text="@string/school_activity_text"
+        android:textColor="@color/black_color" 
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:paddingLeft="15dip"/>
+    
+    <include 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/schoolActivity_text"
+         android:layout_marginLeft="15dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="15dip"
+        layout="@layout/search_edit"
+        android:id="@+id/editSchoolLayout"/>
+
+    <ListView
+        android:id="@+id/containallname_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+		android:layout_below="@id/editSchoolLayout"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="10dip"
+        >
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <include
+        android:id="@+id/layout_relationShipCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="25dip"
+        layout="@layout/header_scheduler" />
+
+    <ListView
+        android:id="@+id/list_dataSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/layout_relationShipCall"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="5dip" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/layout_addschoolActivityByTab"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_below="@id/layout_relationShipCall"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/addschoolTab_Image"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:paddingLeft="15dip"
+            android:src="@drawable/add_new" />
+
+        <TextView
+            android:id="@+id/addschoolTab_text"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical"
+            android:text="@string/scheduleonTap_text"
+            android:textColor="@color/font_blue_color"
+            android:textSize="18sp" />
+    </LinearLayout>
+    
+    <ImageView
+        android:id="@+id/image_infotnSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/image_addbtnSchool"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dip"
+        android:layout_marginRight="13dip"
+        android:src="@drawable/info_guide" />
+
+    <ImageView
+        android:id="@+id/image_addbtnSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dip"
+        android:layout_marginRight="20dip"
+        android:src="@drawable/add_btn" />
+
+</RelativeLayout>

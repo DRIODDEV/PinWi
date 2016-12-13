@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/layout_Network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/text_connectionheader"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".93"
+            android:background="@drawable/rectangular_btnrelation_selection"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:text="@string/recommendedheadertext"
+            android:textColor="@color/font_white_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_requestheader"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.07"
+            android:background="@drawable/rectangular_btnrelation"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:text="@string/networkheadertext"
+            android:textColor="@color/btnrelationselection_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_discoverheader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rectangular_btnrelation"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:text="@string/exploreheadertext"
+            android:textColor="@color/btnrelationselection_color"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

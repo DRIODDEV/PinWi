@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layoutemojione"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="3dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp" >
+
+                <ImageView
+                    android:id="@+id/emojilayoutimageone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4" />
+
+                <TextView
+                    android:id="@+id/txtemojione"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="2dp"
+                    android:text=""
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewemojione"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layoutemojitwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="3dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp" >
+
+                <ImageView
+                    android:id="@+id/emojilayoutimagetwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4" />
+
+                <TextView
+                    android:id="@+id/txtemojitwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="2dp"
+                    android:text=""
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewemojitwo"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layoutemojithree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="3dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp" >
+
+                <ImageView
+                    android:id="@+id/emojilayoutimagethree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4" />
+
+                <TextView
+                    android:id="@+id/txtemojithree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="2dp"
+                    android:text=""
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewemojithree"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layoutemojifour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="3dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp" >
+
+                <ImageView
+                    android:id="@+id/emojilayoutimagefour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4" />
+
+                <TextView
+                    android:id="@+id/txtemojifour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="2dp"
+                    android:text=""
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewemojifour"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layoutemojifive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="3dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp" >
+
+                <ImageView
+                    android:id="@+id/emojilayoutimagefive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4" />
+
+                <TextView
+                    android:id="@+id/txtemojifive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="2dp"
+                    android:text=""
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewemojifive"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

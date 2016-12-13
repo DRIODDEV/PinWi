@@ -1,0 +1,34 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+    -->
+
+    <dimen name="activity_horizontal_margin">128dp</dimen>
+    <dimen name="drivercircledimensions">48dp</dimen>
+    <dimen name="margintop">19dp</dimen>
+    <dimen name="marginleft">38dp</dimen>
+    <dimen name="access_margintop">45dp</dimen>
+    <dimen name="image_dimen">128dp</dimen>
+    <dimen name="textLarge">25sp</dimen>
+    <dimen name="textNormal">22sp</dimen>
+    <dimen name="textSmall">18sp</dimen>
+    <dimen name="textBig">20sp</dimen>
+    <dimen name="textSmallTwo">17sp</dimen>
+    <dimen name="textxLarge">24sp</dimen>
+    <dimen name="first_day_margin">10dp</dimen>
+    <dimen name="day_margin">24dp</dimen>
+    <dimen name="text_height_width">50dp</dimen>
+    <dimen name="min_cell_height">70dp</dimen>
+    <dimen name="min_cell_width">70dp</dimen>
+    <dimen name="marginbottomchildmaindahboard">32dp</dimen>
+    <dimen name="marginleftchildmaindashboard">38dp</dimen>
+    <dimen name="textSizechildmaindashboard">18dp</dimen>
+    <dimen name="templateText">35sp</dimen>
+    <dimen name="selectionButtonText">35sp</dimen>
+    <dimen name="titleTextGuide">20sp</dimen>
+    <dimen name="normalTextGuide">18sp</dimen>
+    <dimen name="whydetailtext">16sp</dimen>
+
+</resources>

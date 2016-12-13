@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/access_profile_top"
+        android:layout_width="match_parent"
+        android:layout_height="15dip"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/access_profile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/access_profile_top"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="15dip"
+        android:src="@drawable/child_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+       
+       
+        android:layout_marginTop="15dip"
+        android:layout_toRightOf="@id/access_profile_image"
+        android:orientation="vertical"
+        android:weightSum="2" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/name_parentchild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:text="Title"
+                android:textColor="@color/font_white_color"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/next_parentImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                 android:gravity="center"
+                android:paddingLeft="10dp"
+                  android:paddingRight="13dp"
+                android:src="@drawable/parent_next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/access_bottom_layer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="5dip"
+            android:visibility="visible" >
+
+            <ImageView
+                android:id="@+id/earnedcoin_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:src="@drawable/earned_star" />
+
+            <TextView
+                android:id="@+id/earned_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dip"
+                android:layout_toRightOf="@id/earnedcoin_image"
+                android:gravity="center"
+                android:textColor="@color/font_white_color" />
+
+            <ImageView
+                android:id="@+id/pendingcoin_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_toRightOf="@id/earned_Text"
+                android:src="@drawable/pending_star" />
+
+            <TextView
+                android:id="@+id/pending_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dip"
+                android:layout_toRightOf="@id/pendingcoin_image"
+                android:gravity="center"
+                android:textColor="@color/font_white_color" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

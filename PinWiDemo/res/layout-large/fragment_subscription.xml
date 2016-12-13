@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/layoutYearly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                layout="@layout/item_card_subscription" />
+
+            <include
+                android:id="@+id/layoutQuarterly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                layout="@layout/item_card_subscription" />
+
+            <TextView
+                android:id="@+id/tvtxtone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dip"
+                android:paddingTop="5dp"
+                android:text="Turn off auto renew from your playstore settings"
+                android:textColor="@color/dark_gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvtxttwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dip"
+                android:text="Payment Policy"
+                android:textColor="@color/font_blue_color"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imgBenifits"
+                android:scaleType="matrix"
+                android:background="#398EC8"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/subimage" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

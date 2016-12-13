@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dip"
+    android:background="@android:color/transparent"
+    android:id="@+id/item_child_pending_points_done_mainlayout" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/item_child_pending_points_done_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thu, 13 June" />
+
+        <ImageView
+            android:id="@+id/item_child_pending_points_done_image"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:src="@drawable/earned_points_past" 
+            android:padding="10dip"/>
+    </LinearLayout>
+
+</RelativeLayout>

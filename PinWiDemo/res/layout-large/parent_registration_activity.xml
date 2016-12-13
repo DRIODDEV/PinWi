@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <Button
+        android:id="@+id/button_continueParent"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rectangular_btn"
+        android:text="@string/continue_text"
+        android:textColor="@color/black_color"
+        android:textSize="22sp" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_continueParent"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="15dip" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/layout_ParentProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dip"
+                android:layout_marginRight="15dip"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <TextView
+                    android:id="@+id/text_ProfileText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.4"
+                    android:text="@string/camera_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+
+                <ImageView
+                    android:id="@+id/image_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1.6"
+                    android:src="@drawable/camera_icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ParentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_ParentProfile"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="5dip"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <EditText
+                    android:id="@+id/text_Firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:drawableRight="@drawable/asterisk"
+                    android:hint="First Name"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/text_Lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:drawableRight="@drawable/asterisk"
+                    android:hint="Last Name"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/text_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_ParentName"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="8dip"
+                android:drawableRight="@drawable/asterisk"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/text_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_email"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="8dip"
+                android:drawableRight="@drawable/asterisk"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:id="@+id/layoutLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radiogroup_male_female"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:orientation="vertical" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/text_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dip"
+                    android:drawableRight="@drawable/asterisk"
+                    android:focusable="false"
+                    android:hint="Country"
+                    android:inputType="textCapSentences"
+                    android:textSize="22sp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/text_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dip"
+                    android:drawableRight="@drawable/asterisk"
+                    android:focusable="true"
+                    android:hint="City"
+                    android:inputType="textCapSentences"
+                    android:textSize="22sp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/text_street"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dip"
+                    android:drawableRight="@drawable/asterisk"
+                    android:focusable="true"
+                    android:hint="Street/Locality"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/headingOptional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutLocation"
+                android:layout_marginTop="5dp"
+                android:background="@color/gray"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dip"
+                android:paddingRight="15dip"
+                android:paddingTop="5dp"
+                android:text="OPTIONAL"
+                android:textColor="@color/black_color"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:id="@+id/layout_DOB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/headingOptional"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/text_DOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dip"
+                    android:focusable="false"
+                    android:hint="DOB"
+                    android:singleLine="true"
+                    android:textSize="22sp" />
+
+                <ImageView
+                    android:id="@+id/image_calender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <RadioGroup
+                android:id="@+id/radiogroup_relationShip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_phoneNumber"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="15dip"
+                android:orientation="horizontal"
+                android:weightSum="3" >
+
+                <RadioButton
+                    android:id="@+id/text_Father"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/father_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/text_mother"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/mother_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/text_guardian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/guardian_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="18sp" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radiogroup_male_female"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/radiogroup_relationShip"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="15dip"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="3" >
+
+                <RadioButton
+                    android:id="@+id/text_male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/male_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/text_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/female_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/text_invi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/guardian_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="18sp"
+                    android:visibility="invisible" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/layout_phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_password"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <EditText
+                    android:id="@+id/text_phoneCodeParent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:digits="0123456789"
+                    android:gravity="center"
+                    android:hint="+91"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/text_phoneParent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:digits="0123456789"
+                    android:drawableRight="@drawable/asterisk"
+                    android:gravity="center"
+                    android:hint="Phone"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_switch_passcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_DOB"
+                android:padding="10dp" >
+
+                <Switch
+                    android:id="@+id/passcode_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dip" />
+
+                <TextView
+                    android:id="@+id/text_passcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dip"
+                    android:text="@string/passcode_parent_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_Pass_AutoLock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_switch_passcode"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="2" >
+
+                <EditText
+                    android:id="@+id/text_passcodeParent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:digits="0123456789"
+                    android:focusable="false"
+                    android:hint="Passcode"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    android:singleLine="true"
+                    android:textSize="22sp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/text_AutoLockTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:focusable="true"
+                    android:hint="AutoLockTime"
+                    android:inputType="number"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

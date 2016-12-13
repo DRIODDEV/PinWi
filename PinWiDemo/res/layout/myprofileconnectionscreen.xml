@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <TextView
+        android:id="@+id/childNameprofileconn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dip"
+        android:background="@color/light_gray"
+        android:gravity="center_vertical"
+         android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="Child name"
+        android:textColor="@color/black_color"
+        android:textSize="18sp"
+        android:paddingLeft="15dip"/>
+
+    <TextView
+        android:id="@+id/totalconnections"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/childNameprofileconn"
+        android:text=""
+         android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@color/gray"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" 
+        android:paddingLeft="15dip"
+        android:gravity="center_vertical"/>
+    
+    
+     <include 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/totalconnections"
+         android:layout_marginLeft="15dip"
+        android:layout_marginTop="10dip"
+       
+        android:visibility="gone"
+        android:layout_marginRight="15dip"
+        layout="@layout/search_edit"
+        android:id="@+id/editSchoolLayout"/>
+
+    <ListView
+        android:id="@+id/listconnprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/editSchoolLayout"
+        android:visibility="visible"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="0dip" >
+    </ListView>
+    
+     <LinearLayout
+        android:id="@+id/layout_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/noconnectionimage"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:paddingLeft="15dip"
+            android:src="@drawable/whattododefault" />
+
+        <TextView
+            android:id="@+id/noconnectiontext"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_marginLeft="5dip"
+            android:gravity="center"
+           
+            android:textColor="@color/font_color"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="PasscodeKeyboardButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/btngreen_color</item>
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_width">50dip</item>
+        <item name="android:layout_height">50dip</item>
+        <item name="android:minHeight">20dp</item>
+    </style>
+
+    <style name="PasscodeInputItemStyle">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:layout_width">10dip</item>
+        <item name="android:layout_height">10dip</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="popupStyle" parent="android:Theme.Dialog">
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:background">#FF000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+     <style name="Theme.CustomTranslucent" parent="android:style/Theme.Translucent">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item>
+        <item name="android:background">@android:color/transparent</item>
+ </style>  
+
+</resources>

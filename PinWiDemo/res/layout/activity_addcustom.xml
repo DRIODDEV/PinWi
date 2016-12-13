@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <TextView
+        android:id="@+id/addcustom_text"
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+        android:background="@color/gray"
+        android:gravity="center_vertical"
+        android:text="@string/custom_text"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" 
+        android:paddingLeft="15dip"/>
+
+    <EditText
+        android:id="@+id/activityName_text"
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/addcustom_text"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="10dip"
+        android:singleLine="true"
+        android:gravity="center_vertical"
+        android:hint="Name Of Activity"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" 
+        android:background="@color/transparent"/>
+
+    <View
+        android:id="@+id/line_belowactivityName"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+         android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_below="@id/activityName_text"
+        android:background="@color/gray" />
+
+    <AutoCompleteTextView
+        android:id="@+id/categoryName_text"
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/line_belowactivityName"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:gravity="center_vertical"
+        android:hint="Category"
+        android:focusable="false"
+        android:textColor="@color/black_color"
+        android:textSize="18sp"
+        android:background="@color/transparent" />
+
+    <View
+        android:id="@+id/line_belowcategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+         android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_below="@id/categoryName_text"
+        android:background="@color/gray" />
+
+    <AutoCompleteTextView
+        android:id="@+id/subcategoryName_text"
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/line_belowcategoryName"
+         android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:gravity="center_vertical"
+        android:hint="Sub Category"
+        android:focusable="false"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" 
+        android:background="@color/transparent" />
+
+    <View
+        android:id="@+id/line_belowsubcategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_below="@id/subcategoryName_text"
+        android:background="@color/gray" />
+
+    <Button
+        android:id="@+id/submit_custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+       	android:layout_below="@id/line_belowsubcategoryName"
+       android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:gravity="center"
+        android:layout_marginTop="30dip"
+        android:text="@string/submit_text"
+        android:textColor="@color/font_blue_color"
+        android:background="@drawable/rectangular_btnrelation"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

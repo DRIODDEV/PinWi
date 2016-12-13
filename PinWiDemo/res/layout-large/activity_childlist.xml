@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <LinearLayout
+        android:id="@+id/layout_addnewChild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_bluebackground"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/addchild_Image"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingLeft="10dip"
+            android:gravity="center_vertical"
+            android:src="@drawable/add_new" />
+
+        <TextView
+            android:id="@+id/addchild_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dip"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:gravity="center_vertical"
+            android:text="@string/addchildlist_text"
+            android:textColor="@color/font_blue_color"
+            android:textSize="@dimen/textBig" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/updatechild_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dip"
+        android:background="@color/gray"
+        android:padding="10dip"
+        android:text="@string/child_update_text"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/textLarge" />
+
+    <ListView
+        android:id="@+id/containallchildname_list"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/layout_addnewChild"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/updatechild_text"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip" >
+    </ListView>
+
+</RelativeLayout>

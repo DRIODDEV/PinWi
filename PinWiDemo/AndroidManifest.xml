@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hatchtact.pinwi"
+    android:versionCode="24"
+    android:versionName="1.2" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+    <!-- VERY IMPORTANT! Don't forget this permission, or in-app billing won't work. -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera" >
+    </uses-feature>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- Required to show current location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <!-- Required for GCM -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <permission
+        android:name="com.hatchtact.pinwi.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.hatchtact.pinwi.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Requires OpenGL ES version 2 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name=".PinWiApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.hatchtact.pinwi.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="com.hatchtact.pinwi.calendar.CalendarProvider"
+            android:authorities="com.hatchtact.pinwi.calendar.calendarprovider" />
+
+        <activity
+            android:name="com.hatchtact.pinwi.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.ParentRegistrationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.LocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ConfirmationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ChildRegistrationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.AllyRegistrationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.GetStartedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.AccessProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.PasswordUnLockActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.PasswordUnLockActivityChild"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.AddPasscordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ParentProfileInformationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.TabChildActivities"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.NotificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.NetworkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.WhatToDoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.InsightsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ActivityAboutUS"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ActivitySupport"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ActivityTutorial"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.TutorialPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildSetStarRatingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildStarEarnedPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildDashboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildMainDashboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildPendingPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildBuddiesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildBuddiesDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildBuddiesListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildWishListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildWishListDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildAlertActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.postcard.ChildPostcardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.postcard.ChildPostcardDetailingTextActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.postcard.ChildPostcardDetailingImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.postcard.ChildPostcardDetailingAudioActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.playwall.ChildPlayWallActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.playwall.ChildEmoticonDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.playwall.ChildPlayWallDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.child.ChildTutorialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.ActivityInvite"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.TakePicture"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.hatchtact.pinwi.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ChildListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.AllyListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.fragment.network.ZoomScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ApptTutorialActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.hatchtact.pinwi.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.ForgotPasswordActivityForCode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.ExitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hatchtact.pinwi.UpdatePasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <receiver android:name="com.hatchtact.pinwi.utility.FutureNotificationAlarmForMe" />
+
+        <!-- Goolge API Key Signed Key -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCMqNfXZ0oTDCKrH8qeMXUk1WB2MZUctLU" />
+
+        <!-- Goolge API Key Debug Key -->
+        <!--
+            <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBOYCkIcS7WkC0ER_Wxi6VHzbSbjcOILFM" />
+        -->
+
+
+        <!-- GCM -->
+        <receiver
+            android:name="com.hatchtact.pinwi.gcm.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.hatchtact.pinwi" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.hatchtact.pinwi.gcm.GCMNotificationIntentService" />
+        <!-- GCM -->
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1012558875423383"
+            android:exported="true" />
+
+        <service
+            android:name="com.hatchtact.pinwi.OnClearFromService"
+            android:stopWithTask="false" />
+         <activity
+            android:name="com.hatchtact.pinwi.GuideSlideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CustomTranslucent" />
+         <activity
+            android:name="com.hatchtact.pinwi.WhyAmIDoingThisActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" 
+             />
+    </application>
+
+</manifest>

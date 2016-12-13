@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/child_bg" >
+
+    <include
+        android:id="@+id/child_dashboard_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/header_child_dashboard" />
+
+    
+
+    <include
+        android:id="@+id/wishlistLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/data_load_progress"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/child_dashboard_header"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        layout="@layout/childrenlist"
+        android:clickable="false"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/layout_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/noconnectionimage"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:src="@drawable/not_found" />
+
+        <TextView
+            android:id="@+id/noconnectiontext"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="5dip"
+            android:gravity="center"
+            android:text="@string/noparentconnection"
+            android:textColor="@color/font_color"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/data_load_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:progressDrawable="@drawable/progress_bar"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layout_bottomlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/footer_three_i"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="1" >
+
+        <RelativeLayout
+            android:id="@+id/layout_alphabetical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/child_alphabetical_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/alphabetical_i" />
+
+            <TextView
+                android:id="@+id/text_alphabetical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/child_alphabetical_imageview"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="ALPHABETICAL"
+                android:textColor="@color/font_white_color"
+                android:textSize="@dimen/textSizechildmaindashboard" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_buddies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/child_buddies_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/buddies_i_big" />
+
+            <TextView
+                android:id="@+id/text_buddies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/child_buddies_imageview"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="BUDDIES"
+                android:textColor="@color/font_white_color"
+                android:textSize="@dimen/textSizechildmaindashboard" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/child_search_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/search_i" />
+
+            <TextView
+                android:id="@+id/text_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/child_search_imageview"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="SEARCH"
+                android:textColor="@color/font_white_color"
+                android:textSize="@dimen/textSizechildmaindashboard" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

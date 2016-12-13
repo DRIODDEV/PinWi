@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/selectedDate_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="5dip"
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textLarge" />
+
+            <TextView
+                android:id="@+id/schoolCalender_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selectedDate_text"
+                android:layout_marginTop="2dip"
+                android:background="@color/gray"
+                android:gravity="center_vertical"
+                  android:paddingTop="5dip"
+                android:paddingBottom="5dip"
+                android:paddingLeft="15dip"
+                android:text="@string/atschool_text"
+                android:textColor="@color/gray_calender"
+                android:textSize="@dimen/textBig" />
+
+            <LinearLayout
+                android:id="@+id/layout_schoolCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/schoolCalender_text"
+                android:layout_marginTop="5dip"
+                android:orientation="vertical"
+                android:paddingLeft="10dip" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_addschoolActivityByCalender"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:layout_below="@id/layout_schoolCalendar"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/addschoolCalendar_Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dip"
+                    android:paddingLeft="15dip"
+                    android:src="@drawable/add_new" />
+
+                <TextView
+                    android:id="@+id/addschoolCalendar_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dip"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/scheduleonTap_text"
+                    android:textColor="@color/font_blue_color"
+                    android:textSize="@dimen/textLarge" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/afterSchoolCalendar_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_addschoolActivityByCalender"
+                android:background="@color/gray"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dip"
+                android:paddingTop="5dip"
+                android:paddingBottom="5dip"
+                android:text="@string/afterschool_text"
+                android:textColor="@color/gray_calender"
+                android:textSize="@dimen/textBig" />
+
+            <LinearLayout
+                android:id="@+id/layout_afterschoolCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/afterSchoolCalendar_text"
+                android:layout_marginTop="5dip"
+                android:orientation="vertical"
+                android:paddingLeft="10dip" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_afteraddschoolActivityByCalender"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:layout_below="@id/layout_afterschoolCalendar"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/addafterSchoolCalendar_Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dip"
+                    android:paddingLeft="15dip"
+                    android:src="@drawable/add_new" />
+
+                <TextView
+                    android:id="@+id/addafterSchoolCalendar_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dip"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:text="@string/scheduleonTap_text"
+                    android:textColor="@color/font_blue_color"
+                    android:textSize="@dimen/textLarge" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/image_addbtnCaendarTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dip"
+        android:layout_marginRight="20dip"
+        android:src="@drawable/add_btn" />
+
+</RelativeLayout>

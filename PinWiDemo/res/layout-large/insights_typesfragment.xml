@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:id="@+id/mainscroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/linearlayouttypesinsight1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/texttypesinsightdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:paddingRight="10dp"
+                android:text="Report as on 24 May,2015"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textBig" />
+
+            <RelativeLayout
+                android:id="@+id/layoutOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/gray" >
+
+                <TextView
+                    android:id="@+id/texttypesinsightqualitybadge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="Quality Badge"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+
+                <ImageView
+                    android:id="@+id/imageQualityBadgeInstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:src="@drawable/infoinsight" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayouttypesinsightbadge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dip"
+                android:orientation="horizontal"
+                android:padding="3dip" >
+
+                <ImageView
+                    android:id="@+id/imagetypesinsightbadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/texttypesinsightbadge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left|center_vertical"
+                    android:text="No Data"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textBig"
+                    android:textStyle="normal" >
+                </TextView>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/gray" >
+
+                <TextView
+                    android:id="@+id/textinsightinterestdrivers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/gray"
+                    android:gravity="left"
+                    android:paddingLeft="10dp"
+                    android:text="Interest Drivers"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+
+                <ImageView
+                    android:id="@+id/imageinsightInterestDriversInstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:src="@drawable/infoinsight" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutinsightinterestdrivers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutInterestPattern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@color/gray" >
+
+                <TextView
+                    android:id="@+id/textinsightinterestpattern"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/gray"
+                    android:gravity="left"
+                    android:paddingLeft="10dp"
+                    android:text="Interest Pattern"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+
+                <ImageView
+                    android:id="@+id/imageinsightInterestPatternInstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:src="@drawable/infoinsight" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutinsightinterestpattern"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@color/gray" >
+
+                <TextView
+                    android:id="@+id/textinsightdelighttrends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/gray"
+                    android:gravity="left"
+                    android:paddingLeft="10dp"
+                    android:text="Delight Trends"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+
+                <ImageView
+                    android:id="@+id/imageinsightdelightTrendsInstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:src="@drawable/infoinsight" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutinsightdelighttrends"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textmoreactivitiesinsightdelighttrends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_toLeftOf="@+id/imgLock"
+                    android:text="More Activities"
+                    android:textColor="#1385C2" />
+
+                <ImageView
+                    android:id="@+id/imgLock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/lock_i2"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutFour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/gray" >
+
+                <TextView
+                    android:id="@+id/textinsightpointssummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/gray"
+                    android:gravity="left"
+                    android:paddingLeft="10dp"
+                    android:text="Points Summary"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+
+                <ImageView
+                    android:id="@+id/imageinsightPointsSummaryInstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="1dp"
+                    android:src="@drawable/infoinsight" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutinsightpointssummary"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutinsightsubscribe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#1385C2"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/textinsightmoreinsight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Interested in More Insights ?"
+                    android:textColor="@color/font_white_color"
+                    android:textSize="@dimen/textBig" />
+
+                <Button
+                    android:id="@+id/buttoninsightsubscribe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rectangular_btn"
+                    android:text="Subscribe Now" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

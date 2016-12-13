@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayoutScheduler"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <include
+        android:id="@+id/layout_relationShipCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       
+       
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="25dip"
+        layout="@layout/header_scheduler" />
+
+    <FrameLayout
+        android:id="@+id/frameScheduler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/txtEnterHoliday"
+        android:layout_below="@id/layout_relationShipCall"
+        android:layout_marginTop="20dip" >
+
+        <com.hatchtact.pinwi.calendar.ExtendedCalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+     <ImageView
+        android:id="@+id/image_infotnSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/image_addbtn"
+        android:layout_alignParentRight="true"
+        
+        android:src="@drawable/info_guide" />
+     
+    <ImageView
+        android:id="@+id/image_addbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dip"
+        android:layout_marginRight="20dip"
+        android:src="@drawable/add_btn" />
+
+    <TextView
+        android:id="@+id/txtEnterHoliday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:paddingTop="15dip"
+        android:paddingBottom="15dip"
+        android:text="Set School Holidays"
+        android:textSize="@dimen/textNormal"
+        android:textColor="@color/font_blue_color" />
+
+</RelativeLayout>
