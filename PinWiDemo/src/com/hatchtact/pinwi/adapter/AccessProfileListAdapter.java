@@ -11,7 +11,6 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,7 @@ import android.widget.TextView;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.SplashActivity;
 import com.hatchtact.pinwi.classmodel.AccessProfile;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 
@@ -118,7 +118,7 @@ public class AccessProfileListAdapter extends ArrayAdapter<AccessProfile>{
 		{
 			holder.access_bottom_layer.setVisibility(View.VISIBLE);
 
-			if(list_accessProfile.get(position).getProfileImage()!=null && list_accessProfile.get(position).getProfileImage().trim().length()>100)
+			/*if(list_accessProfile.get(position).getProfileImage()!=null && list_accessProfile.get(position).getProfileImage().trim().length()>100)
 			{
 				byte[] imageByte=Base64.decode(list_accessProfile.get(position).getProfileImage(), 0);
 
@@ -126,6 +126,24 @@ public class AccessProfileListAdapter extends ArrayAdapter<AccessProfile>{
 				{
 					holder.accessParentProfileImage.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length)));	
 				}
+			}*/
+			if(list_accessProfile.get(position).getProfileImage()!=null && list_accessProfile.get(position).getProfileImage().trim().length()>10)
+			{
+				String imagePath=AppUtils.PATHACCESSPROFILEIMAGES+list_accessProfile.get(position).getProfileID()+".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+				Bitmap imageProfile=null;
+				try {
+					imageProfile = new AppUtils(context).getImagefromSDCard(imagePath);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				  if(imageProfile!=null)
+				  {
+						holder.accessParentProfileImage.setImageBitmap(getRoundedRectBitmap(imageProfile));	
+ 
+				  }
+			
 			}
 			else
 			{

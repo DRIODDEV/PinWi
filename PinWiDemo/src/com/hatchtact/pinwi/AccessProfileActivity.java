@@ -43,7 +43,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.adapter.AccessProfileListAdapter;
 import com.hatchtact.pinwi.adapter.NavDrawerListAdapterMenu;
-import com.hatchtact.pinwi.adapter.ScreenSlidePagerAdapter;
 import com.hatchtact.pinwi.child.ChildTutorialActivity;
 import com.hatchtact.pinwi.child.SoundEffect;
 import com.hatchtact.pinwi.classmodel.AccessProfile;
@@ -57,7 +56,9 @@ import com.hatchtact.pinwi.classmodel.PassCode;
 import com.hatchtact.pinwi.classmodel.PassCodeList;
 import com.hatchtact.pinwi.classmodel.RequestAddOnVersionModel;
 import com.hatchtact.pinwi.classmodel.SubjectActivities;
+import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.sync.ServiceMethod;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
@@ -104,94 +105,53 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	private String txtDummyData="Access your profile to schedule activities, view insights, see what to do and network. ";
 	private View layout_parentcard;
 
-
-
-
+	private DataSource source;//initializing  database 
+	private AppUtils appUtils;
+	private final int BACKGROUNDSYNCFLAG=1;
+	private final int FIRSTTIMESYNCFLAG=2;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		// TODO Auto-generated method stub
-
 		//screenName="Access your Profile";
-
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.accessprofile_activity);
-		StaticVariables.statusChild=0;
-		setInstance(this);
+		initializeData();//initialize access profile data
+		clickListeners();//click events
+		getParentProfileData();	//get parent data for the logged in parent
 
-		sharePreferenceClass=new SharePreferenceClass(AccessProfileActivity.this);
-		listView=(ListView) findViewById(R.id.containall_list);
-		imgUser=(ImageView) findViewById(R.id.imgUser);
-		imgLock=(ImageView) findViewById(R.id.imgLock);
-		txtParentName=(TextView) findViewById(R.id.txtParentName);;
-		txtChildrenName=(TextView) findViewById(R.id.txtChildrenName);
-		childAccessheading=(TextView) findViewById(R.id.childAccessheading);
-		layoutaccessprofile=(RelativeLayout) findViewById(R.id.layoutaccessprofile);
-		layoutimgLock=(RelativeLayout) findViewById(R.id.layoutimgLock);
-		typeface=new TypeFace(this);
-		typeface.setTypefaceRegular(txtParentName);
-		typeface.setTypefaceLight(txtChildrenName);
-		typeface.setTypefaceLight(childAccessheading);
-		layout_parentcard=(View) findViewById(R.id.layout_parentcard);
-		listView.setEnabled(false);
-		listView.setFocusable(false);
-		listView.setClickable(false);
-		layoutimgLock.setFocusable(true);
-		layoutimgLock.setClickable(true);
-		layout_parentcard.setVisibility(View.GONE);
-		childAccessheading.setVisibility(View.GONE);
-		layoutaccessprofile.setVisibility(View.GONE);
-		layoutimgLock.setVisibility(View.GONE);
+		// load slide menu items
+		initializeNavigationDrawerItems();//initialize navigation drawer items
+		initializeActionBar();//initialization of action bar and drawer items
 
-
-		imgLock.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				layoutaccessprofile.setAlpha(1);
-				imgLock.setVisibility(View.GONE);
-				layoutimgLock.setVisibility(View.GONE);
-				if(accessProfileListAdapter!=null)
-					accessProfileListAdapter.notifyDataSetChanged();
-
-				listView.setEnabled(true);
-				listView.setFocusable(true);
-				listView.setClickable(true);
-				listView.invalidate();
-				layoutimgLock.setFocusable(false);
-				layoutimgLock.setClickable(false);
-			}
-		});
-
-		/*sharePreferenceClass.setCalenderTutorial(false);
-		sharePreferenceClass.setAtSchoolTutorial(false);
-		sharePreferenceClass.setafterschoolTutorial(false);
-		sharePreferenceClass.setHowPinWiWorks(false);
-		sharePreferenceClass.setInsightsTutorial(false);*/
-
-
-		if(!sharePreferenceClass.gethowPinWiWorks())
-		{/*
-			sharePreferenceClass.setHowPinWiWorks(true);
-			ScreenSlidePagerAdapter.NUM_PAGES=4;
-
-			Intent tutorial=new Intent(AccessProfileActivity.this, TutorialPageActivity.class);
-			startActivity(tutorial);
-			StaticVariables.currentTutorialValue=StaticVariables.howPiNWiWorksTutorial;
-		 */}
-
-
+		checkIfDataExistInDatabase();//checking if database contains value for access profile data
+	}
+	/**
+	 * 
+	 */
+	private void checkIfDataExistInDatabase() {
+		source.open();		
+		ArrayList<AccessProfile> listAccess=source.getAccessProfileList();
+		if(listAccess!=null &&listAccess.size()>0)
+		{
+			accessProfileList.setAccessProfileList(listAccess);
+			StaticVariables.childInfo.clear();
+			setDataForAccessProfile(FIRSTTIMESYNCFLAG);
+			new GetAccessProfile(parentId,false).execute();//get access profile data from server
+		}
+		else
+		{
+			new GetAccessProfile(parentId,true).execute();//get access profile data from server
+		}
+		source.close();
+	}
+	/**
+	 * 
+	 */
+	private void getParentProfileData() {
 		bitmapHeader = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.header_bg), SplashActivity.ScreenWidth, BitmapFactory.decodeResource(getResources(), R.drawable.header_bg).getHeight(), false);
-
-		accessProfileList=new AccessProfileList();
-		checkNetwork=new CheckNetwork();
-		showMessage=new ShowMessages(AccessProfileActivity.this);
-		serviceMethod=new ServiceMethod();
-		gsonRegistration=new GsonBuilder().create();
 
 		parentCompleteInformation = gsonRegistration.fromJson(sharePreferenceClass.getParentProfile(), ParentProfile.class);
 		parentId=parentCompleteInformation.getParentID();
@@ -214,63 +174,34 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		{
 			StaticVariables.forPasscode=true;
 		}
+	}
+	/**
+	 * 
+	 */
+	private void clickListeners() {
+		imgLock.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				layoutaccessprofile.setAlpha(1);
+				imgLock.setVisibility(View.GONE);
+				layoutimgLock.setVisibility(View.GONE);
+				if(accessProfileListAdapter!=null)
+					accessProfileListAdapter.notifyDataSetChanged();
 
-		if(soundEffectTransition==null)
-		{
-			soundEffectTransition = new SoundEffect(AccessProfileActivity.this, R.raw.pageflip);
-		}
-
-		requestaddonVersion=new RequestAddOnVersionModel();
-		// load slide menu items
-		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
-		// nav drawer icons from resources
-		navMenuIcons = getResources()  
-				.obtainTypedArray(R.array.nav_drawer_icons);
-
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-
-		navDrawerItems = new ArrayList<NavigationDrawerItem>();
-
-		// adding nav drawer items to array
-
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-
-		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-
-		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-
-		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
-
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-
-		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
-
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-
-		// Recycle the typed array
-		navMenuIcons.recycle();
-
-
-
-
-		// setting the nav drawer list adapter
-		adapter = new NavDrawerListAdapterMenu(getApplicationContext(),
-				navDrawerItems);
-		mDrawerList.setAdapter(adapter); 
-
-		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-
-
+				listView.setEnabled(true);
+				listView.setFocusable(true);
+				listView.setClickable(true);
+				listView.invalidate();
+				layoutimgLock.setFocusable(false);
+				layoutimgLock.setClickable(false);
+			}
+		});
+	}
+	/**
+	 * 
+	 */
+	private void initializeActionBar() {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setIcon(null);
@@ -349,8 +280,103 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			}
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		new GetAccessProfile(parentId).execute();
+	}
+	/**
+	 * 
+	 */
+	private void initializeNavigationDrawerItems() {
+		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
+		// nav drawer icons from resources
+		navMenuIcons = getResources()  
+				.obtainTypedArray(R.array.nav_drawer_icons);
+
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+
+		navDrawerItems = new ArrayList<NavigationDrawerItem>();
+
+		// adding nav drawer items to array
+
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+
+		// Recycle the typed array
+		navMenuIcons.recycle();
+
+
+
+
+		// setting the nav drawer list adapter
+		adapter = new NavDrawerListAdapterMenu(getApplicationContext(),
+				navDrawerItems);
+		mDrawerList.setAdapter(adapter); 
+
+		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+	}
+	/**
+	 * 
+	 */
+	private void initializeData() 
+	{
+		StaticVariables.statusChild=0;
+		setInstance(this);
+		source = new DataSource(AccessProfileActivity.this);
+		appUtils=new AppUtils(AccessProfileActivity.this);
+		sharePreferenceClass=new SharePreferenceClass(AccessProfileActivity.this);
+		accessProfileList=new AccessProfileList();
+		checkNetwork=new CheckNetwork();
+		showMessage=new ShowMessages(AccessProfileActivity.this);
+		serviceMethod=new ServiceMethod();
+		gsonRegistration=new GsonBuilder().create();
+		typeface=new TypeFace(this);
+		requestaddonVersion=new RequestAddOnVersionModel();
+		if(soundEffectTransition==null)
+		{
+			soundEffectTransition = new SoundEffect(AccessProfileActivity.this, R.raw.pageflip);
+		}
+		//resetTutorialSharePrefs();
+		listView=(ListView) findViewById(R.id.containall_list);
+		imgUser=(ImageView) findViewById(R.id.imgUser);
+		imgLock=(ImageView) findViewById(R.id.imgLock);
+		txtParentName=(TextView) findViewById(R.id.txtParentName);;
+		txtChildrenName=(TextView) findViewById(R.id.txtChildrenName);
+		childAccessheading=(TextView) findViewById(R.id.childAccessheading);
+		layoutaccessprofile=(RelativeLayout) findViewById(R.id.layoutaccessprofile);
+		layoutimgLock=(RelativeLayout) findViewById(R.id.layoutimgLock);
+		layout_parentcard=(View) findViewById(R.id.layout_parentcard);
+
+		typeface.setTypefaceRegular(txtParentName);
+		typeface.setTypefaceLight(txtChildrenName);
+		typeface.setTypefaceLight(childAccessheading);
+		listView.setEnabled(false);
+		listView.setFocusable(false);
+		listView.setClickable(false);
+		layoutimgLock.setFocusable(true);
+		layoutimgLock.setClickable(true);
+		layout_parentcard.setVisibility(View.GONE);
+		childAccessheading.setVisibility(View.GONE);
+		layoutaccessprofile.setVisibility(View.GONE);
+		layoutimgLock.setVisibility(View.GONE);
 	}
 
 
@@ -360,11 +386,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	private class GetAccessProfile extends AsyncTask<Void, Void, Integer>
 	{
 		private int parentId;
+		private boolean isNeedToShowProgress=false;
 
-		public GetAccessProfile(int parentId)
+		public GetAccessProfile(int parentId, boolean isNeedtoShow)
 		{
 			// TODO Auto-generated constructor stub 
 			this.parentId = parentId;
+			this.isNeedToShowProgress=isNeedtoShow;
 		}
 
 		@Override
@@ -372,8 +400,11 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialogdeAccessProfile = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialogdeAccessProfile.setCancelable(false);
+			if(isNeedToShowProgress)
+			{
+				progressDialogdeAccessProfile = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialogdeAccessProfile.setCancelable(false);
+			}
 		}
 
 		@Override
@@ -385,6 +416,30 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			if(checkNetwork.checkNetworkConnection(AccessProfileActivity.this))
 			{
 				accessProfileList = serviceMethod.getaccessProfile(parentId);	
+				if(accessProfileList!=null && accessProfileList.getAccessProfileList().size()>0)
+				{
+					source.open();
+					for(int i=0;i<accessProfileList.getAccessProfileList().size();i++)
+					{
+						AccessProfile modelAccesssProfile=accessProfileList.getAccessProfileList().get(i);
+						byte[] imageByte=Base64.decode(modelAccesssProfile.getProfileImage(), 0);
+
+						if(imageByte!=null)
+						{
+							try {
+								String imagePath=AppUtils.PATHACCESSPROFILEIMAGES+modelAccesssProfile.getProfileID()+".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+								modelAccesssProfile.setProfileImage(appUtils.bitmapStoreInSDCard(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length),imagePath));
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+						}
+
+						source.addAccessProfile(modelAccesssProfile);
+					}
+					source.close();
+				}
 			}
 			else 
 			{
@@ -399,8 +454,11 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogdeAccessProfile.isShowing())
-					progressDialogdeAccessProfile.cancel();
+				if(isNeedToShowProgress)
+				{
+					if (progressDialogdeAccessProfile.isShowing())
+						progressDialogdeAccessProfile.cancel();
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -411,139 +469,50 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 				showMessage.showToastMessage("Please check your network connection");
 
 				if(checkNetwork.checkNetworkConnection(AccessProfileActivity.this))
-					new GetAccessProfile(parentId).execute();
+					new GetAccessProfile(parentId,false).execute();
 			}
 			else
 			{
+
 				StaticVariables.childInfo.clear();
 				if(accessProfileList!=null && accessProfileList.getAccessProfileList().size()>0)
 				{
-
-
-					parentCompleteInformation.setProfileImage(accessProfileList.getAccessProfileList().get(0).getProfileImage());
-
-					parentCompleteInformation.setFirstName(accessProfileList.getAccessProfileList().get(0).getFirstName());
-					parentCompleteInformation.setPasscode(accessProfileList.getAccessProfileList().get(0).getPasscode());
-					String parentInformation = gsonRegistration.toJson(parentCompleteInformation);
-					sharePreferenceClass.setParentProfile(parentInformation);  
-
-					try 
-					{
-						StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
-						StaticVariables.parentPasscodeModel.setPassCode(accessProfileList.getAccessProfileList().get(0).getPasscode());
-						StaticVariables.parentPasscodeModel.setPassCodeType(1);						
-						StaticVariables.parentPasscodeModel.setProfileId(accessProfileList.getAccessProfileList().get(0).getProfileID());
-
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					setParentData(accessProfileList.getAccessProfileList().get(0));
-					accessProfileList.getAccessProfileList().remove(0);
-					accessProfileListAdapter=new AccessProfileListAdapter(AccessProfileActivity.this, accessProfileList.getAccessProfileList());
-
-					listView.setAdapter(accessProfileListAdapter);
-					listView.setOnItemClickListener(AccessProfileActivity.this);
-					ArrayList<PassCode> listPasscode=new ArrayList<PassCode>();
-
+					/*source.open();
 					for(int i=0;i<accessProfileList.getAccessProfileList().size();i++)
 					{
-						if(accessProfileList.getAccessProfileList().get(i).getProfileType()==2)
+						AccessProfile modelAccesssProfile=accessProfileList.getAccessProfileList().get(i);
+						byte[] imageByte=Base64.decode(modelAccesssProfile.getProfileImage(), 0);
+
+						if(imageByte!=null)
 						{
-							ChildProfile child = new ChildProfile();
-							child.setChildID(accessProfileList.getAccessProfileList().get(i).getProfileID());
-							child.setFirstName(accessProfileList.getAccessProfileList().get(i).getFirstName());
-							child.setProfileImage(accessProfileList.getAccessProfileList().get(i).getProfileImage());
+							try {
+								String imagePath=AppUtils.PATHACCESSPROFILEIMAGES+modelAccesssProfile.getProfileID()+".jpeg"+"_"+System.currentTimeMillis()+"";
+								modelAccesssProfile.setProfileImage(appUtils.bitmapStoreInSDCard(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length),imagePath));
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 
-							PassCode pcChild = new  PassCode();
-
-							pcChild.setPassCodeType(2);
-							pcChild.setProfileId(child.getChildID());
-							pcChild.setPassCode(accessProfileList.getAccessProfileList().get(i).getPasscode());
-							listPasscode.add(pcChild);
-							StaticVariables.childInfo.add(child);
 						}
-					}	
 
-					if(StaticVariables.childPasscodeList!=null)
-						StaticVariables.childPasscodeList.setPasscodeList(listPasscode);
+						source.addAccessProfile(modelAccesssProfile);
+					}
+					source.close();*/
+					if(isNeedToShowProgress)
+						setDataForAccessProfile(FIRSTTIMESYNCFLAG);	//set data in access profile first time
 					else
 					{
-						StaticVariables.childPasscodeList=new PassCodeList();
-						StaticVariables.childPasscodeList.setPasscodeList(listPasscode);
+						setDataForAccessProfile(BACKGROUNDSYNCFLAG);	//set data in access profile back sync
 					}
-					/** Crash when moving to settings in navigation drawer*/
-					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
 				}
 				else
 				{	
 					getError();
-				}	
+				}
 			}	
 		}
 
-		private void setParentData(AccessProfile accessProfile) 
-		{
-			// TODO Auto-generated method stub
-			model=accessProfile;
-			layout_parentcard.setVisibility(View.VISIBLE);
-			childAccessheading.setVisibility(View.VISIBLE);
-			layoutaccessprofile.setVisibility(View.VISIBLE);
-			layoutimgLock.setVisibility(View.VISIBLE);
 
-			txtParentName.setText(model.getFirstName());
-			txtChildrenName.setMaxLines(4);
-			txtChildrenName.setText(txtDummyData);
-			if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>100)
-			{
-				byte[] imageByteParent=Base64.decode(model.getProfileImage(), 0);
-				if(imageByteParent!=null)
-				{
-					imgUser.setBackgroundResource(0);	
-
-					imgUser.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeByteArray(imageByteParent, 0, imageByteParent.length)));	
-				}
-			}
-			else
-			{
-				imgUser.setBackgroundResource(0);
-				imgUser.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.parent_image)));			
-			}
-
-			layout_parentcard.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
-					{
-						/*Intent intent = new Intent(AccessProfileActivity.this, ParentProfileInformationActivity.class);
-						StaticVariables.currentChild=StaticVariables.childInfo.get(0);
-						startActivity(intent);*/
-						Intent intent=new Intent(AccessProfileActivity.this, TabChildActivities.class);
-						StaticVariables.currentChild=StaticVariables.childInfo.get(0);
-						intent.putExtra("Type", 1);
-						startActivity(intent);
-						/** Fading Transition Effect */
-						/*AccessProfileActivity.this.overridePendingTransition(R.anim.grow_from_bottom, R.anim.shrink_from_top);
-						 */AccessProfileActivity.this.finish();
-					}
-					else  
-					{ 
-						StaticVariables.currentChild=StaticVariables.childInfo.get(0);
-
-						Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivity.class);
-						Bundle bundle = new Bundle();
-						bundle.putInt("ProfileId", parentId);
-						bundle.putBoolean("ToLoadNextScreen", true);
-						intent.putExtras(bundle);
-						startActivity(intent);
-						//AccessProfileActivity.this.finish();
-					}
-				}
-			});
-
-		}	
 
 	}
 
@@ -651,7 +620,6 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	protected void onRestart() {
 		// TODO Auto-generated method stub
 		super.onRestart();
-
 		/*try {
 			if(!StaticVariables.forPasscode)
 			{
@@ -676,7 +644,6 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-
 		StaticVariables.forPasscode=false;
 		StaticVariables.lastTimeValue=System.currentTimeMillis();
 	}
@@ -685,7 +652,6 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-
 		StaticVariables.forPasscode=true;
 		StaticVariables.lastTimeValue=0;
 	}
@@ -1059,7 +1025,6 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		switch (position) {
 		case 0:
 			mDrawerLayout.closeDrawers();
-
 			break;
 		case 1:
 			Intent intentAboutUs =new Intent(AccessProfileActivity.this, ActivityAboutUS.class);
@@ -1251,5 +1216,181 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		AppEventsLogger.deactivateApp(this);
 
 	}*/
+
+	private void resetTutorialSharePrefs()
+	{
+		/*sharePreferenceClass.setCalenderTutorial(false);
+		sharePreferenceClass.setAtSchoolTutorial(false);
+		sharePreferenceClass.setafterschoolTutorial(false);
+		sharePreferenceClass.setHowPinWiWorks(false);
+		sharePreferenceClass.setInsightsTutorial(false);*/
+		if(!sharePreferenceClass.gethowPinWiWorks())
+		{/*
+			sharePreferenceClass.setHowPinWiWorks(true);
+			ScreenSlidePagerAdapter.NUM_PAGES=4;
+
+			Intent tutorial=new Intent(AccessProfileActivity.this, TutorialPageActivity.class);
+			startActivity(tutorial);
+			StaticVariables.currentTutorialValue=StaticVariables.howPiNWiWorksTutorial;
+		 */}
+
+
+	}
+	/**
+	 * @param j 
+	 * 
+	 */
+	private void setDataForAccessProfile(int lockValue) 
+	{
+		parentCompleteInformation.setProfileImage(accessProfileList.getAccessProfileList().get(0).getProfileImage());
+
+		parentCompleteInformation.setFirstName(accessProfileList.getAccessProfileList().get(0).getFirstName());
+		parentCompleteInformation.setPasscode(accessProfileList.getAccessProfileList().get(0).getPasscode());
+		String parentInformation = gsonRegistration.toJson(parentCompleteInformation);
+		sharePreferenceClass.setParentProfile(parentInformation);  
+
+		try 
+		{
+			StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
+			StaticVariables.parentPasscodeModel.setPassCode(accessProfileList.getAccessProfileList().get(0).getPasscode());
+			StaticVariables.parentPasscodeModel.setPassCodeType(1);						
+			StaticVariables.parentPasscodeModel.setProfileId(accessProfileList.getAccessProfileList().get(0).getProfileID());
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setParentData(accessProfileList.getAccessProfileList().get(0),lockValue);
+		accessProfileList.getAccessProfileList().remove(0);
+
+		if(accessProfileListAdapter==null)
+		{
+			accessProfileListAdapter=new AccessProfileListAdapter(AccessProfileActivity.this, accessProfileList.getAccessProfileList());
+			listView.setAdapter(accessProfileListAdapter);
+		}
+		else
+		{
+			accessProfileListAdapter.list_accessProfile=accessProfileList.getAccessProfileList();
+			accessProfileListAdapter.notifyDataSetChanged();
+			listView.invalidate();
+		}
+		listView.setOnItemClickListener(AccessProfileActivity.this);
+		ArrayList<PassCode> listPasscode=new ArrayList<PassCode>();
+
+		for(int i=0;i<accessProfileList.getAccessProfileList().size();i++)
+		{
+			if(accessProfileList.getAccessProfileList().get(i).getProfileType()==2)
+			{
+				ChildProfile child = new ChildProfile();
+				child.setChildID(accessProfileList.getAccessProfileList().get(i).getProfileID());
+				child.setFirstName(accessProfileList.getAccessProfileList().get(i).getFirstName());
+				child.setProfileImage(accessProfileList.getAccessProfileList().get(i).getProfileImage());
+
+				PassCode pcChild = new  PassCode();
+
+				pcChild.setPassCodeType(2);
+				pcChild.setProfileId(child.getChildID());
+				pcChild.setPassCode(accessProfileList.getAccessProfileList().get(i).getPasscode());
+				listPasscode.add(pcChild);
+				StaticVariables.childInfo.add(child);
+			}
+		}	
+
+		if(StaticVariables.childPasscodeList!=null)
+			StaticVariables.childPasscodeList.setPasscodeList(listPasscode);
+		else
+		{
+			StaticVariables.childPasscodeList=new PassCodeList();
+			StaticVariables.childPasscodeList.setPasscodeList(listPasscode);
+		}
+		/** Crash when moving to settings in navigation drawer*/
+		StaticVariables.currentChild=StaticVariables.childInfo.get(0);
+
+	}
+
+	private void setParentData(AccessProfile accessProfile,int lockValue) 
+	{
+		// TODO Auto-generated method stub
+		model=accessProfile;
+		layout_parentcard.setVisibility(View.VISIBLE);
+		childAccessheading.setVisibility(View.VISIBLE);
+		if(lockValue==2)
+		{
+			layoutimgLock.setVisibility(View.VISIBLE);
+			layoutaccessprofile.setVisibility(View.VISIBLE);
+		}
+
+
+		txtParentName.setText(model.getFirstName());
+		txtChildrenName.setMaxLines(4);
+		txtChildrenName.setText(txtDummyData);
+		/*if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>100)
+		{
+			byte[] imageByteParent=Base64.decode(model.getProfileImage(), 0);
+			if(imageByteParent!=null)
+			{
+				imgUser.setBackgroundResource(0);	
+
+				imgUser.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeByteArray(imageByteParent, 0, imageByteParent.length)));	
+			}
+		}*/
+		if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>10)
+		{
+			String imagePath=AppUtils.PATHACCESSPROFILEIMAGES+model.getProfileID()+".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+			Bitmap imageProfile=null;
+			try {
+				imageProfile = new AppUtils(AccessProfileActivity.this).getImagefromSDCard(imagePath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if(imageProfile!=null)
+			{
+				imgUser.setBackgroundResource(0);	
+				imgUser.setImageBitmap(getRoundedRectBitmap(imageProfile));	
+			}
+
+		}
+		else
+		{
+			imgUser.setBackgroundResource(0);
+			imgUser.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.parent_image)));			
+		}
+
+		layout_parentcard.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
+				{
+					/*Intent intent = new Intent(AccessProfileActivity.this, ParentProfileInformationActivity.class);
+					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
+					startActivity(intent);*/
+					Intent intent=new Intent(AccessProfileActivity.this, TabChildActivities.class);
+					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
+					intent.putExtra("Type", 1);
+					startActivity(intent);
+					/** Fading Transition Effect */
+					/*AccessProfileActivity.this.overridePendingTransition(R.anim.grow_from_bottom, R.anim.shrink_from_top);
+					 */AccessProfileActivity.this.finish();
+				}
+				else  
+				{ 
+					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
+
+					Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putInt("ProfileId", parentId);
+					bundle.putBoolean("ToLoadNextScreen", true);
+					intent.putExtras(bundle);
+					startActivity(intent);
+					//AccessProfileActivity.this.finish();
+				}
+			}
+		});
+
+	}	
 
 }

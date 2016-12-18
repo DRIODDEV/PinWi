@@ -1,11 +1,14 @@
 package com.hatchtact.pinwi;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Display;
@@ -24,7 +27,9 @@ import com.hatchtact.pinwi.classmodel.AuthenticateUserResult;
 import com.hatchtact.pinwi.classmodel.CheckPasswordCode;
 import com.hatchtact.pinwi.classmodel.Error;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
+import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.sync.ServiceMethod;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
@@ -90,6 +95,15 @@ public class LoginActivity extends Activity
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.login_activity);
+		try 
+		{
+			deleteData();//delete db data and images data from sd card
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		sharePreferenceClass=new SharePreferenceClass(LoginActivity.this);
 		StaticVariables.isSignUpClicked=false;
 		getDisplayWidth(LoginActivity.this);
@@ -193,7 +207,7 @@ public class LoginActivity extends Activity
 				}
 			}
 		});	
-		
+
 		sighUp_button.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -207,6 +221,18 @@ public class LoginActivity extends Activity
 				startActivity(intent);
 			}
 		});
+	}
+
+	/**
+	 * 
+	 */
+	private void deleteData() {
+		File newfile=new File(Environment.getExternalStorageDirectory()+"/PinWi");
+		new AppUtils(LoginActivity.this).deleteDirectory(newfile);
+		DataSource datasource=new DataSource(LoginActivity.this);
+		datasource.open();
+		datasource.deleteAll();
+		datasource.close();
 	} 
 
 	private ProgressDialog progressDialog=null;	
@@ -277,7 +303,7 @@ public class LoginActivity extends Activity
 					sharePref.setIsLogin(true);
 					sharePref.setIsLogout(false);
 					sharePref.setParentIsRegistered(true);
-					
+
 
 					String parentInformation = gsonRegistration.toJson(parentCompleteInformation);
 					sharePref.setParentProfile(parentInformation);  
@@ -294,7 +320,7 @@ public class LoginActivity extends Activity
 						LoginActivity.this.finish();
 						sharePref.setCurrentScreen(4);
 						Intent intent=new Intent(LoginActivity.this, AccessProfileActivity.class);
-						
+
 						startActivity(intent);
 					}
 					else if(userres.getProfileStatus()==2)

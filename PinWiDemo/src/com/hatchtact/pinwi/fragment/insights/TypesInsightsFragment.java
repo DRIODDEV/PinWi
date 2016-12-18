@@ -1298,7 +1298,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			pointSummaryLayout.removeAllViews();
 			try {
 				imgBadge.setVisibility(View.INVISIBLE);  		
-				txtBadge.setText("No Data");
+				txtBadge.setText("Interest report is being generated");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
