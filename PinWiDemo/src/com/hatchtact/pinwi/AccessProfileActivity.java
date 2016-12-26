@@ -62,6 +62,7 @@ import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -109,6 +110,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	private AppUtils appUtils;
 	private final int BACKGROUNDSYNCFLAG=1;
 	private final int FIRSTTIMESYNCFLAG=2;
+	private SocialConstants social;
 
 
 	@Override
@@ -118,6 +120,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		//screenName="Access your Profile";
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.accessprofile_activity);
+		social=new SocialConstants(this);
 		initializeData();//initialize access profile data
 		clickListeners();//click events
 		getParentProfileData();	//get parent data for the logged in parent
@@ -950,6 +953,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 							{
 								if(StaticVariables.childPasscodeList.getPasscodeList().get(i).getPassCode()!=null&& !StaticVariables.childPasscodeList.getPasscodeList().get(i).getPassCode().trim().equalsIgnoreCase("") && StaticVariables.childPasscodeList.getPasscodeList().get(i).getPassCode().trim().length()==4)
 								{
+									social.Access_Child_ProfileFacebookLog();
+									social.Access_Child_ProfileGoogleAnalyticsLog();
 									Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivityChild.class);
 									Bundle bundle = new Bundle();
 									bundle.putInt("ProfileId", StaticVariables.childPasscodeList.getPasscodeList().get(i).getProfileId());
@@ -960,6 +965,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 								}
 								else
 								{
+									social.Access_Child_ProfileFacebookLog();
+									social.Access_Child_ProfileGoogleAnalyticsLog();
 									Intent intent = new Intent(AccessProfileActivity.this, ChildTutorialActivity.class);
 									startActivity(intent);
 									AccessProfileActivity.this.finish();
@@ -972,6 +979,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 					}
 					else
 					{
+						social.Access_Child_ProfileFacebookLog();
+						social.Access_Child_ProfileGoogleAnalyticsLog();
 						Intent intent = new Intent(AccessProfileActivity.this, ChildTutorialActivity.class);
 						startActivity(intent);
 						AccessProfileActivity.this.finish();
@@ -1368,6 +1377,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 					/*Intent intent = new Intent(AccessProfileActivity.this, ParentProfileInformationActivity.class);
 					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
 					startActivity(intent);*/
+					social.Access_Parent_ProfileFacebookLog();
+					social.Access_Parent_ProfileGoogleAnalyticsLog();
 					Intent intent=new Intent(AccessProfileActivity.this, TabChildActivities.class);
 					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
 					intent.putExtra("Type", 1);
@@ -1379,7 +1390,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 				else  
 				{ 
 					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
-
+					social.Access_Parent_ProfileFacebookLog();
+					social.Access_Parent_ProfileGoogleAnalyticsLog();
 					Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivity.class);
 					Bundle bundle = new Bundle();
 					bundle.putInt("ProfileId", parentId);
@@ -1393,4 +1405,5 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 
 	}	
 
+	
 }

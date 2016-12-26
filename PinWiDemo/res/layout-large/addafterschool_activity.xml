@@ -21,12 +21,12 @@
                 android:layout_alignParentTop="true"
                 android:background="@color/gray"
                 android:gravity="center_vertical"
-                android:paddingTop="8dip"
                 android:paddingBottom="8dip"
-                android:textColor="@color/black_color"
                 android:paddingLeft="15dip"
-                android:textSize="@dimen/textLarge" 
-                android:text=""/>
+                android:paddingTop="8dip"
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textLarge" />
 
             <ImageView
                 android:id="@+id/image_activityAfterSchoolDone"
@@ -35,7 +35,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="8dip"
-                
                 android:visibility="gone" />
 
             <TextView
@@ -46,12 +45,12 @@
                 android:layout_marginTop="1dip"
                 android:background="@color/gray"
                 android:gravity="center_vertical"
-                android:textColor="@color/black_color"
-                android:textSize="@dimen/textBig" 
+                android:paddingBottom="8dip"
                 android:paddingLeft="15dip"
                 android:paddingTop="8dip"
-                android:paddingBottom="8dip"
-                android:text=""/>
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textBig" />
 
             <LinearLayout
                 android:id="@+id/layout_startDate"
@@ -79,7 +78,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.65"
                     android:gravity="right"
-                   
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
             </LinearLayout>
@@ -252,20 +250,20 @@
                 android:layout_marginTop="5dip"
                 android:background="@color/gray"
                 android:gravity="center_vertical"
+                android:paddingBottom="8dip"
+                android:paddingLeft="15dip"
+                android:paddingTop="8dip"
                 android:text="@string/reminder_text"
                 android:textColor="@color/black_color"
-                android:textSize="@dimen/textBig"
-                android:paddingTop="8dip"
-                android:paddingBottom="8dip"
-                android:paddingLeft="15dip"/>
+                android:textSize="@dimen/textBig" />
 
             <RelativeLayout
                 android:id="@+id/layout_markPrivate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/reminderInfo_text"
-                android:padding="5dp" 
-                android:visibility="visible">
+                android:padding="5dp"
+                android:visibility="visible" >
 
                 <Switch
                     android:id="@+id/mark_private_switch"
@@ -285,7 +283,7 @@
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
             </RelativeLayout>
-         
+
             <View
                 android:id="@+id/line_belowmarkPrivate"
                 android:layout_width="match_parent"
@@ -295,14 +293,15 @@
                 android:layout_below="@id/layout_markPrivate"
                 android:layout_marginTop="5dip"
                 android:background="@color/gray"
-                android:visibility="visible" />
-            
+                android:visibility="gone" />
+
             <RelativeLayout
                 android:id="@+id/layout_markSpeical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/line_belowmarkPrivate"
-                android:padding="5dp" >
+                android:padding="5dp"
+                android:visibility="gone" >
 
                 <Switch
                     android:id="@+id/mark_special_switch"
@@ -330,9 +329,9 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/layout_markSpeical"
-                android:visibility="visible"
                 android:layout_marginTop="5dip"
-                android:background="@color/gray" />
+                android:background="@color/gray"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/layout_specialDays"
@@ -415,8 +414,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/layout_informAlly1"
                 android:layout_marginTop="5dip"
-                android:background="@color/gray" 
-                 android:visibility="gone"/>
+                android:background="@color/gray"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/layout_informAlly2"
@@ -427,8 +426,8 @@
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="8dip"
                 android:orientation="horizontal"
-                android:weightSum="1.0" 
-                 android:visibility="gone">
+                android:visibility="gone"
+                android:weightSum="1.0" >
 
                 <TextView
                     android:id="@+id/ally2_text"
@@ -456,11 +455,11 @@
                 android:layout_below="@id/layout_informAlly2"
                 android:background="@color/gray"
                 android:gravity="center_vertical"
-                android:text="@string/note_text"
-                android:paddingTop="8dip"
                 android:paddingBottom="8dip"
-                android:textColor="@color/black_color"
                 android:paddingLeft="15dip"
+                android:paddingTop="8dip"
+                android:text="@string/note_text"
+                android:textColor="@color/black_color"
                 android:textSize="@dimen/textBig" />
 
             <EditText
@@ -471,8 +470,8 @@
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="10dip"
-                android:hint="Type Note Here..." 
-                android:textSize="@dimen/textLarge"/>
+                android:hint="Type Note Here..."
+                android:textSize="@dimen/textLarge" />
 
             <Button
                 android:id="@+id/button_pickSellerAfterSchool"
@@ -482,8 +481,8 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"
                 android:layout_marginTop="20dip"
-                android:padding="10dip"
                 android:background="@drawable/rectangular_btn"
+                android:padding="10dip"
                 android:text="@string/done_text"
                 android:textColor="@color/black_color"
                 android:textSize="@dimen/textLarge" />
@@ -496,8 +495,8 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"
                 android:layout_marginTop="15dip"
-                android:padding="10dip"
                 android:background="@drawable/rectangular_btn_redcolor"
+                android:padding="10dip"
                 android:text="@string/delete_text"
                 android:textColor="@color/font_red_color"
                 android:textSize="@dimen/textBig"

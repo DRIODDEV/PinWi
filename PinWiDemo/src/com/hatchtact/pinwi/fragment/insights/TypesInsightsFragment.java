@@ -40,7 +40,6 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.TutorialPageActivity;
 import com.hatchtact.pinwi.adapter.ScreenSlidePagerAdapter;
 import com.hatchtact.pinwi.classmodel.GetBadgeDetailsByChildIDOnInsightList;
-import com.hatchtact.pinwi.classmodel.GetDelightTraitsByChildIDOnInsight;
 import com.hatchtact.pinwi.classmodel.GetDelightTraitsByChildIDOnInsightList;
 import com.hatchtact.pinwi.classmodel.GetInterestPatternByChildIDOnInsight;
 import com.hatchtact.pinwi.classmodel.GetInterestPatternByChildIDOnInsightList;
@@ -130,6 +129,10 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		setHasOptionsMenu(true);
 		serviceMethod=new ServiceMethod();
 		showMessage=new ShowMessages(getActivity());
+		//GoogleAnalytics.getInstance(getActivity()).getTracker("UA-XXXX-Y");
+		/*Bundle parameters = new Bundle();
+		parameters.putString(AppEventsConstants.EVENT_NAME_UNLOCKED_ACHIEVEMENT, "");
+		logger.logEvent(AppEventsConstants.EVENT_NAME_UNLOCKED_ACHIEVEMENT,parameters);*/
 
 		checkNetwork=new CheckNetwork();
 		getBadgeDetailsByChildIDOnInsightList=new GetBadgeDetailsByChildIDOnInsightList();
@@ -258,6 +261,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
 				StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");				
 				StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
+				social.Subscribe_Button_ClickedFacebookLog();
+				social.Subscribe_Button_ClickedGoogleAnalyticsLog();
 				switchingFragments(new SubscribeFragment());
 
 
@@ -512,7 +517,12 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		imgBadge.setVisibility(View.VISIBLE);  	
 
 		txtBadge.setMovementMethod(ScrollingMovementMethod.getInstance());
-
+		social.Insights_ActivatedFacebookLog();
+		social.Insights_ActivatedGoogleAnalyticsLog();
+		social.Quality_Badge_LevelFacebookLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
+		social.Quality_Badge_LevelGoogleAnalyticsLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
+		
+	
 		imgBadge.setImageResource(imageBadgesList.get(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge() -1));
 
 		//String Level="Level " + getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge() + ".";
@@ -908,7 +918,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 
-				/*	GetDelightTraitsByChildIDOnInsight model = (GetDelightTraitsByChildIDOnInsight) v.getTag();
+					/*	GetDelightTraitsByChildIDOnInsight model = (GetDelightTraitsByChildIDOnInsight) v.getTag();
 					StaticVariables.ActivityIdInsight=model.getActivityID();
 
 					StaticVariables.fragmentIndexCurrentTabInsight=5;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hatchtact.pinwi"
-    android:versionCode="24"
-    android:versionName="1.2" >
+    android:versionCode="25"
+    android:versionName="1.3" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -306,15 +306,73 @@
         <service
             android:name="com.hatchtact.pinwi.OnClearFromService"
             android:stopWithTask="false" />
-         <activity
+
+        <activity
             android:name="com.hatchtact.pinwi.GuideSlideActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.CustomTranslucent" />
-         <activity
+        <activity
             android:name="com.hatchtact.pinwi.WhyAmIDoingThisActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" 
-             />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="CLEVERTAP_ACCOUNT_ID"
+            android:value="67Z-877-Z84Z" />
+        <meta-data
+            android:name="CLEVERTAP_TOKEN"
+            android:value="aab-1a6" />
+<!-- 
+        <receiver
+            android:name="com.clevertap.android.sdk.InstallReferrerBroadcastReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+      
+             replace below value with your GCM project number. Separate multiple sender IDs with a comma
+        <meta-data
+            android:name="GCM_SENDER_ID"
+            android:value="25079778482" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        replace com.your.package below with your package name
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.hatchtact.pinwi" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.clevertap.android.sdk.GcmMessageListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.clevertap.android.sdk.GcmTokenListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="CLEVERTAP_NOTIFICATION_ICON"
+            android:value="ic_stat_red_star" /> 
+            name of your file in the drawable directory without the file extension. -->
+        
     </application>
 
 </manifest>

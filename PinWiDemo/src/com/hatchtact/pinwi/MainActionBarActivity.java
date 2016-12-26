@@ -15,13 +15,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Display;
 import android.widget.TextView;
-import com.hatchtact.pinwi.R;
+
+import com.hatchtact.pinwi.utility.SocialConstants;
 
 public class MainActionBarActivity extends ActionBarActivity
 {
 	String screenName;
 	private Bitmap bitmapHeader;
-	
+	protected SocialConstants social;
+
 	private void getDisplayWidth(Activity a)
 	{
 
@@ -39,6 +41,7 @@ public class MainActionBarActivity extends ActionBarActivity
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		getDisplayWidth(MainActionBarActivity.this);
+		social=new SocialConstants(this);
 		bitmapHeader = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.header_bg), SplashActivity.ScreenWidth, BitmapFactory.decodeResource(getResources(), R.drawable.header_bg).getHeight(), false);
 
 		setActionbar();

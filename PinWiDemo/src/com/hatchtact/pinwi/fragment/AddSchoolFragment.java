@@ -3,6 +3,7 @@ package com.hatchtact.pinwi.fragment;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 import android.app.DatePickerDialog;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.appevents.AppEventsConstants;
 import com.google.ads.AdRequest.ErrorCode;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.classmodel.AddSubjectActivity;
@@ -32,7 +34,9 @@ import com.hatchtact.pinwi.classmodel.SchoolActivityDetails;
 import com.hatchtact.pinwi.fragment.insights.ParentFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.Validation;
 
@@ -98,7 +102,7 @@ public class AddSchoolFragment extends ParentFragment
 	private boolean onTouchPickSellerButton=false;
 
 	private TextView text_examdate;
-
+	private SharePreferenceClass sharePref;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) 
@@ -113,6 +117,7 @@ public class AddSchoolFragment extends ParentFragment
 		showMessage=new ShowMessages(getActivity());
 		checkValidation=new Validation();
 		serviceMethod=new ServiceMethod();
+		sharePref=new SharePreferenceClass(getActivity());
 
 		addSubjectActivity=new AddSubjectActivity();
 
@@ -855,8 +860,20 @@ public class AddSchoolFragment extends ParentFragment
 
 					if(Errorcode==0)
 					{
-					StaticVariables.fragmentIndexCurrentTabSchedular = 13;
-					switchingFragments(new SubjectActivityByChildIDFragment());
+						StaticVariables.fragmentIndexCurrentTabSchedular = 13;
+						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+						{
+							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
+							social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();
+						}
+						else
+						{
+							social.scheduleSchoolActivityFacebookLog();
+							social.scheduleSchoolActivityGoogleAnalyticsLog();
+						}
+
+						switchingFragments(new SubjectActivityByChildIDFragment());
 					}
 					else
 					{
@@ -1072,6 +1089,18 @@ public class AddSchoolFragment extends ParentFragment
 					//getError("SubjectActivityByChildID");
 
 					StaticVariables.fragmentIndexCurrentTabSchedular = 13;
+					if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+					{
+						sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
+						social.scheduleFirstActivityFacebookLog();
+						social.scheduleFirstActivityGoogleAnalyticsLog();
+					}
+					else
+					{
+						social.scheduleSchoolActivityFacebookLog();
+						social.scheduleSchoolActivityGoogleAnalyticsLog();
+					}
+
 					switchingFragments(new SubjectActivityByChildIDFragment());
 				}
 			}
@@ -1191,6 +1220,18 @@ public class AddSchoolFragment extends ParentFragment
 
 					if(StaticVariables.fragmentIndexCurrentTabSchedular==26)
 					{
+						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+						{
+							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
+							social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();
+						}
+						else
+						{
+							social.scheduleSchoolActivityFacebookLog();
+							social.scheduleSchoolActivityGoogleAnalyticsLog();
+						}
+
 						StaticVariables.fragmentIndexCurrentTabSchedular = 13;
 						switchingFragments(new SubjectActivityByChildIDFragment());
 					}
@@ -1207,5 +1248,7 @@ public class AddSchoolFragment extends ParentFragment
 			}	
 		}	
 	}
+
+
 
 }

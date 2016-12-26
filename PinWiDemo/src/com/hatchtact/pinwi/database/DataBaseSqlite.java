@@ -10,8 +10,11 @@ public class DataBaseSqlite extends SQLiteOpenHelper {
 	private static final int VERSION_NO = 1;
 	private static final String DATABASE_NAME = "PINWI";
 
+	/*Table names*/
 	public static final String TABLE_ACCESS_PROFILE = "TABLE_ACCESS_PROFILE";
+	public static final String TABLE_NETWORK_MODULE = "TABLE_NETWORK_MODULE";
 
+	/*Access Profile Fields*/
 	public static final String COLUMN_PROFILEID = "ProfileID";
 	public static final String COLUMN_PROFILE_TYPE = "ProfileType";
 	public static final String COLUMN_PROFILE_IMAGE= "ProfileImage";
@@ -20,6 +23,14 @@ public class DataBaseSqlite extends SQLiteOpenHelper {
 	public static final String COLUMN_PENDING_POINTS = "PendingPoints";
 	public static final String COLUMN_PASSCODE = "Passcode";
 	//public static final String COLUMN_LASTTIMESTAMP = "LASTTIMESTAMP";
+
+	/*TABLE_NETWORK_MODULE Fields*/
+	public static final String COLUMN_FriendID="FriendID";
+	public static final String COLUMN_ProfileImage="ProfileImage";
+	public static final String COLUMN_FriendName="FriendName";
+	public static final String COLUMN_ChildName="ChildName";
+	public static final String COLUMN_FStatus="FStatus";
+	public static final String COLUMN_LoggedUserName="LoggedUserName";
 
 	public DataBaseSqlite(Context context) {
 		super(context, DATABASE_NAME, null, VERSION_NO);
@@ -44,4 +55,11 @@ public class DataBaseSqlite extends SQLiteOpenHelper {
 			+ COLUMN_PENDING_POINTS + " text,"
 			+ COLUMN_PASSCODE + " text)";
 
+	private static final String CREATE_TABLE_NETWORK_MODULE = "create table " + TABLE_NETWORK_MODULE + " ("
+			+ COLUMN_FriendID + " text primary key, "
+			+ COLUMN_ProfileImage + " text,"
+			+ COLUMN_FriendName + " text,"
+			+ COLUMN_ChildName + " text,"
+			+ COLUMN_FStatus + " text,"
+			+ COLUMN_LoggedUserName + " text)";
 }

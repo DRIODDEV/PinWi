@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -60,6 +61,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.appevents.AppEventsConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.R;
@@ -77,6 +79,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 import com.hatchtact.pinwi.utility.Validation;
@@ -1523,6 +1526,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 				if(result!=-1)
 				{
+					social.childRegistrationFacebookLog();
+					social.childRegistrationGoogleAnalyticsLog();
 					//sharePref.setCurrentScreen(2);	
 					PassCode pcChild = new  PassCode();
 
@@ -2001,6 +2006,6 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		imageByte=null;						
 		childProfile=new ChildProfile();
 	}
-
+	
 
 }

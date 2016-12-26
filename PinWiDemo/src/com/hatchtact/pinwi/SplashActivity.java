@@ -1,6 +1,8 @@
 package com.hatchtact.pinwi;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -8,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -16,12 +19,18 @@ import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.facebook.appevents.AppEventsLogger;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.hatchtact.pinwi.gcm.GCMNotificationIntentService;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 public class SplashActivity extends Activity 
@@ -41,7 +50,7 @@ public class SplashActivity extends Activity
 
 	private GoogleCloudMessaging gcm;
 	private String registrationId;
-	
+
 	private void getDisplayWidth(Activity a)
 	{
 
@@ -65,10 +74,42 @@ public class SplashActivity extends Activity
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.splash_activity);
+		//new SharePreferenceClass(getApplicationContext()).setAppDownloaded(false);
+		installFacebookLog();
+		installGoogleAnalyticsLog();
+		/*CleverTapAPI cleverTap;
+		try {
+		  cleverTap = CleverTapAPI.getInstance(getApplicationContext());
+		} catch (CleverTapMetaDataNotFoundException e) {
+		  // thrown if you haven't specified your CleverTap Account ID or Token in your AndroidManifest.xml
+		} catch (CleverTapPermissionsNotSatisfied e) {
+		  // thrown if you haven’t requested the required permissions in your AndroidManifest.xml
+			System.out.print(""+e);
+		}*/
+		/*CleverTapAPI cleverTap;
+		try {
+		  cleverTap = CleverTapAPI.getInstance(getApplicationContext());
+		} catch (CleverTapMetaDataNotFoundException e) {
+		  // thrown if you haven't specified your CleverTap Account ID or Token in your AndroidManifest.xml
+		} catch (CleverTapPermissionsNotSatisfied e) {
+		  // thrown if you haven’t requested the required permissions in your AndroidManifest.xml
+		}*/
+
 		/*FacebookSdk.sdkInitialize(getApplicationContext());
 	    AppEventsLogger.activateApp(this);*/
 
 		//startService(new Intent(getBaseContext(), OnClearFromService.class));
+		/* EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+		  // MapBuilder.createEvent().build() returns a Map of event fields and values
+		  // that are set and sent with the hit.
+		  easyTracker.send(MapBuilder
+		      .createEvent("view",     // Event category (required)
+		                   "view",  // Event action (required)
+		                   "SplashScreen",   // Event label
+		                   null)            // Event value
+		      .build()
+		  );*/
 
 		StaticVariables.isSignUpClicked=false;
 		sharePreferenceClass=new SharePreferenceClass(SplashActivity.this);
@@ -158,7 +199,7 @@ public class SplashActivity extends Activity
 
 				/*sharePreferenceClass.setParentIsRegistered(true);	
 				sharePreferenceClass.setCurrentScreen(1);*/
-				
+
 				if(sharePreferenceClass.getParentIsRegistered() && !sharePreferenceClass.getIsLogout())
 				{
 					switch (sharePreferenceClass.getCurrentScreen())
@@ -211,13 +252,13 @@ public class SplashActivity extends Activity
 			}	
 		}
 	}
-	
+
 	private void registerGCM(){
 		gcm = GoogleCloudMessaging.getInstance(this);
 		registrationId = sharePreferenceClass.getGCMDeviceId();
 		new GetGcmDeviceID().execute();
 	}
-	
+
 	private class GetGcmDeviceID extends AsyncTask<Void, Void, String>{
 
 		@Override
@@ -252,7 +293,7 @@ public class SplashActivity extends Activity
 			new CheckDeviceIdExist(deviceId).execute();
 		}	
 	}
-		
+
 	/*private void getError()
 	{
 		Error err = serviceMethod.getError();	
@@ -265,6 +306,109 @@ public class SplashActivity extends Activity
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
 
+	@Override
+	public void onStart() {
+		super.onStart();
+
+		EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+
+		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+	}
+	/**
+	 * 
+	 */
+	private void installGoogleAnalyticsLog() {
+		/*
+		 * Send a screen view to Google Analytics by setting a map of parameter
+		 * values on the tracker and calling send.
+		 */
+		Tracker tracker = GoogleAnalytics.getInstance(this).getTracker("UA-86307141-1");
+
+		/*HashMap<String, String> hitParameters = new HashMap<String, String>();
+		hitParameters.put(SocialConstants.DeviceType,Build.DEVICE);
+		hitParameters.put(SocialConstants.OSType,Build.VERSION.INCREMENTAL);
+		hitParameters.put(SocialConstants.OSVersion,Build.VERSION.RELEASE);
+
+		tracker.send(hitParameters);*/
+		if(new SharePreferenceClass(getApplicationContext()).isAppDownloaded())
+		{
+			/*HashMap<String, String> hitParameters = new HashMap<String, String>();*/
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+			String strTime = sdf.format(c.getTime());
+			SimpleDateFormat sdDate = new SimpleDateFormat("yyyy-MM-dd");
+			String strDate = sdDate.format(c.getTime());
+			/*hitParameters.put(SocialConstants.Time_of_the_day,strTime);
+			hitParameters.put(SocialConstants.Number_of_times_a_Day,strDate);
+
+			tracker.send(hitParameters);*/
+			String label=SocialConstants.Time_of_the_day+":"+strTime+","
+					+SocialConstants.Number_of_times_a_Day+":"+strDate;
+			tracker.send(MapBuilder
+					.createEvent(SocialConstants.App_Launch,// Event category (required)
+							SocialConstants.App_Launch,  // Event action (required)
+							label,
+							null)            // Event value
+							.build()
+					);
+		}
+		else
+		{
+			new SharePreferenceClass(getApplicationContext()).setAppDownloaded(true);
+			/*HashMap<String, String> hitParameters = new HashMap<String, String>();
+			hitParameters.put(SocialConstants.DeviceType,Build.DEVICE);
+			hitParameters.put(SocialConstants.OSType,Build.VERSION.INCREMENTAL);
+			hitParameters.put(SocialConstants.OSVersion,Build.VERSION.RELEASE);
+
+			tracker.send(hitParameters);*/
+
+			String label=SocialConstants.DeviceType+":"+ Build.DEVICE+","
+					+SocialConstants.OSType+":"+ "Android"+","
+					+SocialConstants.OSVersion+":"+ Build.VERSION.RELEASE;
+			tracker.send(MapBuilder
+					.createEvent(SocialConstants.Downloaded_App,// Event category (required)
+							SocialConstants.Downloaded_App,  // Event action (required)
+							label,
+							null)            // Event value
+							.build()
+					);
+		}
+	}
+	/**
+	 * 
+	 */
+	private void installFacebookLog() {
+		AppEventsLogger logger = AppEventsLogger.newLogger(this);
+
+
+		if(new SharePreferenceClass(getApplicationContext()).isAppDownloaded())
+		{
+			Bundle parameters = new Bundle();
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+			String strTime = sdf.format(c.getTime());
+			SimpleDateFormat sdDate = new SimpleDateFormat("yyyy-MM-dd");
+			String strDate = sdDate.format(c.getTime());
+
+			parameters.putString(SocialConstants.Time_of_the_day,strTime);
+			parameters.putString(SocialConstants.Number_of_times_a_Day,strDate);
+
+			logger.logEvent(SocialConstants.App_Launch,parameters);
+		}
+		else
+		{
+			Bundle parameters = new Bundle();
+			parameters.putString(SocialConstants.DeviceType, Build.DEVICE);
+			parameters.putString(SocialConstants.OSType,"Android");
+			parameters.putString(SocialConstants.OSVersion,Build.VERSION.RELEASE);
+
+			logger.logEvent(SocialConstants.Downloaded_App,parameters);	
+		}
+	}
 }

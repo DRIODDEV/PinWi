@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.hatchtact.pinwi.classmodel.AccessProfile;
+import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedID;
 
 public class DataSource {
 
@@ -148,11 +149,112 @@ public class DataSource {
 	public boolean deleteAccessProfileData() {
 		return (sqliteDataBase.delete(DataBaseSqlite.TABLE_ACCESS_PROFILE,null, null) > 0);
 	}
-	
-	
+
+
+	public long addNetworkModuleData(GetFriendsListByLoggedID modelNetwork) {
+		long added = -1;
+
+		if (isNetworkModelExist(modelNetwork.getFriendID()) == null) 
+		{
+			ContentValues values = new ContentValues();
+			values.put(DataBaseSqlite.COLUMN_FriendID,modelNetwork.getFriendID());
+			values.put(DataBaseSqlite.COLUMN_ProfileImage,modelNetwork.getProfileImage());
+			values.put(DataBaseSqlite.COLUMN_FriendName,modelNetwork.getFriendName());
+			values.put(DataBaseSqlite.COLUMN_ChildName,modelNetwork.getChildName());
+			values.put(DataBaseSqlite.COLUMN_FStatus,modelNetwork.getFStatus());
+			values.put(DataBaseSqlite.COLUMN_LoggedUserName,modelNetwork.getLoggedUserName());
+
+			added = sqliteDataBase.insert(DataBaseSqlite.TABLE_NETWORK_MODULE, null, values);
+		} else {
+			added = updateNetworkModuleData(modelNetwork);
+		}
+
+		return added;
+	}
+
+	private GetFriendsListByLoggedID isNetworkModelExist(String ProfileID) {
+
+		GetFriendsListByLoggedID model = null;
+
+		Cursor cursor = sqliteDataBase.query(DataBaseSqlite.TABLE_NETWORK_MODULE, null, DataBaseSqlite.COLUMN_PROFILEID + " = '" + ProfileID + "'", null, null, null, null);
+
+		if (cursor != null) {
+			cursor.moveToFirst();
+
+			if (cursor.getCount() > 0) {
+				model = getNetworkModuleData(cursor);
+			}
+
+			cursor.close();
+
+
+		}
+
+		return model;
+	}
+
+	private GetFriendsListByLoggedID getNetworkModuleData(Cursor cursor) {
+
+		GetFriendsListByLoggedID model = new GetFriendsListByLoggedID();
+
+		model.setFriendID(cursor.getString(0));
+		model.setProfileImage(cursor.getString(1));
+		model.setFriendName(cursor.getString(2));
+		model.setChildName(cursor.getString(3));
+		model.setFStatus(cursor.getString(4));
+		model.setLoggedUserName(cursor.getString(5));
+
+		return model;
+	}
+
+	private int updateNetworkModuleData(GetFriendsListByLoggedID modelNetwork) {
+		int updated = -1;
+
+		ContentValues values = new ContentValues();
+		values.put(DataBaseSqlite.COLUMN_FriendID,modelNetwork.getFriendID());
+		values.put(DataBaseSqlite.COLUMN_ProfileImage,modelNetwork.getProfileImage());
+		values.put(DataBaseSqlite.COLUMN_FriendName,modelNetwork.getFriendName());
+		values.put(DataBaseSqlite.COLUMN_ChildName,modelNetwork.getChildName());
+		values.put(DataBaseSqlite.COLUMN_FStatus,modelNetwork.getFStatus());
+		values.put(DataBaseSqlite.COLUMN_LoggedUserName,modelNetwork.getLoggedUserName());
+
+		updated = sqliteDataBase.update(DataBaseSqlite.TABLE_NETWORK_MODULE, values,
+				DataBaseSqlite.COLUMN_FriendID + " = '" + modelNetwork.getFriendID() + "'", null);
+
+
+		return updated;
+	}
+
+	public ArrayList<GetFriendsListByLoggedID> getNetworkModuleList() 
+	{
+
+		Cursor cursor = sqliteDataBase.query(DataBaseSqlite.TABLE_NETWORK_MODULE, null,null, null, null, null, null
+				, null);
+
+		ArrayList<GetFriendsListByLoggedID> listNetwork = null;
+
+		if (cursor != null && cursor.getCount() > 0) {
+			listNetwork = new ArrayList<GetFriendsListByLoggedID>();
+			cursor.moveToFirst();
+			while (!cursor.isAfterLast()) {
+				listNetwork.add(getNetworkModuleData(cursor));
+				cursor.moveToNext();
+			}
+			cursor.close();
+		}
+
+		return listNetwork;
+	}
+
+	public boolean deleteNetworkModuleData() {
+		return (sqliteDataBase.delete(DataBaseSqlite.TABLE_NETWORK_MODULE,null, null) > 0);
+	}
+
+
 	public void deleteAll()
 	{
 		deleteAccessProfileData();
+		deleteNetworkModuleData();
 	}
 
 

@@ -1,9 +1,5 @@
 package com.hatchtact.pinwi.fragment.insights;
 
-import com.hatchtact.pinwi.R;
-import com.hatchtact.pinwi.utility.StaticVariables;
-import com.hatchtact.pinwi.utility.TypeFace;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,10 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.appevents.AppEventsLogger;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
+import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.utility.SocialConstants;
+import com.hatchtact.pinwi.utility.StaticVariables;
+import com.hatchtact.pinwi.utility.TypeFace;
+
 public class ParentFragment extends Fragment 
 {
 	protected OnFragmentAttachedListener mListener;
 	protected TypeFace typeFace=null;
+	protected SocialConstants social;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,8 +34,9 @@ public class ParentFragment extends Fragment
 		// TODO Auto-generated method stub
 		super.onAttach(activity);
 		typeFace=new TypeFace(getActivity());
+		social=new SocialConstants(getActivity());
 
-		try {
+		try {	
 			mListener = (OnFragmentAttachedListener) activity;
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString() + " must implement OnFragmentAttachedListener");

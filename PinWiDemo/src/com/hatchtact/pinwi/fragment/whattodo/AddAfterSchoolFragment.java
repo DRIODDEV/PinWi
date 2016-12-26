@@ -1339,6 +1339,8 @@ public class AddAfterSchoolFragment extends ParentFragment
 					{*/
 					if(Errorcode==0)
 					{
+						social.Schedule_Activity_from_WTDFacebookLog();
+						social.Schedule_Activity_from_WTDGoogleAnalyticsLog();
 						resetStaticValues();
 						//getError();
 						if(StaticVariables.fragmentIndexCurrentTabWhatToDo==314)
@@ -1648,6 +1650,8 @@ public class AddAfterSchoolFragment extends ParentFragment
 				}
 				else
 				{
+					social.Schedule_Activity_from_WTDFacebookLog();
+					social.Schedule_Activity_from_WTDGoogleAnalyticsLog();
 					if(StaticVariables.fragmentIndexCurrentTabWhatToDo==314)
 					{
 						StaticVariables.fragmentIndexCurrentTabWhatToDo = 302;
@@ -1796,7 +1800,8 @@ public class AddAfterSchoolFragment extends ParentFragment
 				if(status.equalsIgnoreCase("0"))
 				{
 					//Toast.makeText(getActivity(), "Scheduled Activity Deleted Successfully.", Toast.LENGTH_LONG).show();
-
+					social.Schedule_Activity_from_WTDFacebookLog();
+					social.Schedule_Activity_from_WTDGoogleAnalyticsLog();
 					if(StaticVariables.fragmentIndexCurrentTabWhatToDo==314)
 					{
 						StaticVariables.fragmentIndexCurrentTabWhatToDo = 302;

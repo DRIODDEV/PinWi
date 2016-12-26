@@ -104,7 +104,15 @@ public class DisplayAfterSchoolActivityByChildIdAdapter extends ArrayAdapter<Aft
 			if(list_afterschooladded.get(position).isIsSpecial())
 			{
 				holder.special_image.setImageResource(R.drawable.special);
-				holder.special_image.setVisibility(View.VISIBLE);
+				//holder.special_image.setVisibility(View.VISIBLE);
+				if(holder.private_image.getVisibility()==View.VISIBLE)
+				{
+					holder.special_image.setVisibility(View.GONE);
+				}
+				else
+				{
+					holder.special_image.setVisibility(View.INVISIBLE);
+				}
 			}
 			else
 			{

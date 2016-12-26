@@ -376,4 +376,31 @@ public class SharePreferenceClass
 		return sharedPreferences.getString("Time24Hour","9:00");
 	}
 	
+	
+	
+	public void setFirstTimeActivitySchedule(int isSchedule,String key) 
+	{
+		// TODO Auto-generated method stub
+		editor = sharedPreferences.edit();
+		editor.putInt(key+"ActivitySchedule", isSchedule);
+		editor.commit();
+	}
+
+	public int isFirstTimeActivityScheduled(String key) 
+	{		
+		return sharedPreferences.getInt(key+"ActivitySchedule",0);
+	}
+	
+	public boolean isAppDownloaded()
+	{
+		return sharedPreferences.getBoolean("isAppDownloaded",false);
+	}
+	
+	public void setAppDownloaded(boolean isAppDownloaded)
+	{
+		editor = sharedPreferences.edit();
+		editor.putBoolean("isAppDownloaded", isAppDownloaded);
+		editor.commit();
+	}
+	
 }

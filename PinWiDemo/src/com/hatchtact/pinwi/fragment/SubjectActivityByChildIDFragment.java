@@ -1,6 +1,7 @@
 package com.hatchtact.pinwi.fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.facebook.appevents.AppEventsConstants;
 import com.hatchtact.pinwi.GuideSlideActivity;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.adapter.DisplaySubjectActivityByChildIdAdapter;
@@ -31,6 +33,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 @SuppressLint("ResourceAsColor")
@@ -74,6 +77,8 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 			{
 				sharePref.setAtSchoolTutorial(true);
 		          // ScreenSlidePagerAdapter.NUM_PAGES=6;
+				social.CompletedTutorialFacebookLog();
+				social.CompletedTutorialGoogleAnalyticsLog();
 				Intent tutorial=new Intent(getActivity(), GuideSlideActivity.class);
 				startActivity(tutorial);
 				//getActivity().overridePendingTransition(R.anim.activity_open_translate, R.anim.activity_close_translate);
@@ -427,4 +432,6 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
 }
