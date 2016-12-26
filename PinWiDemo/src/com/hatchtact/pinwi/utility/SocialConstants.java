@@ -2,11 +2,11 @@ package com.hatchtact.pinwi.utility;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
+
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
 import com.facebook.appevents.AppEventsLogger;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -19,9 +19,9 @@ public class SocialConstants
 	private AppEventsLogger logger;
 	private Tracker tracker;
 
-	public static final String DeviceType=" DeviceType";
-	public static final String OSType=" OSType";
-	public static final String  OSVersion="  OSVersion";
+	public static final String DeviceType="DeviceType";
+	public static final String OSType="OSType";
+	public static final String  OSVersion="OSVersion";
 	public static final String  Downloaded_App="Downloaded_App";
 	public static final String  Registration_Method="Registration_Method";
 	//public static final String  Registration_Completed="Registration_Completed";
@@ -745,7 +745,7 @@ public class SocialConstants
 		Bundle parameters = new Bundle();
 		parameters.putString(SocialConstants.LEVEL,levelValue);
 
-		logger.logEvent(SocialConstants.Quality_Badge_Level);
+		logger.logEvent(SocialConstants.Quality_Badge_Level,parameters);
 	}
 
 
@@ -803,7 +803,7 @@ public class SocialConstants
 		Bundle parameters = new Bundle();
 		parameters.putString(SocialConstants.Insights_Subscribed,value);
 
-		logger.logEvent(SocialConstants.Insights_Subscribed);
+		logger.logEvent(SocialConstants.Insights_Subscribed,parameters);
 	}
 
 	/** 
@@ -843,7 +843,7 @@ public class SocialConstants
 				// Do something after 7minutes = 420000ms
 				Bundle parameters = new Bundle();
 				parameters.putString(SocialConstants.STATUS,"Did_Not_Complete");
-				logger.logEvent(SocialConstants.Subscribe_Button_Clicked);		    }
+				logger.logEvent(SocialConstants.Subscribe_Button_Clicked,parameters);		    }
 		}, 420000); 
 
 	}

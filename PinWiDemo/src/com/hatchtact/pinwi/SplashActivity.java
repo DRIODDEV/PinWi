@@ -75,8 +75,11 @@ public class SplashActivity extends Activity
 
 		setContentView(R.layout.splash_activity);
 		//new SharePreferenceClass(getApplicationContext()).setAppDownloaded(false);
+		sharePreferenceClass=new SharePreferenceClass(SplashActivity.this);
+
 		installFacebookLog();
 		installGoogleAnalyticsLog();
+		sharePreferenceClass.setAppDownloaded(true);
 		/*CleverTapAPI cleverTap;
 		try {
 		  cleverTap = CleverTapAPI.getInstance(getApplicationContext());
@@ -112,7 +115,6 @@ public class SplashActivity extends Activity
 		  );*/
 
 		StaticVariables.isSignUpClicked=false;
-		sharePreferenceClass=new SharePreferenceClass(SplashActivity.this);
 		serviceMethod=new ServiceMethod();
 		checkNetwork=new CheckNetwork();
 		showMessage = new ShowMessages(SplashActivity.this);
@@ -336,7 +338,7 @@ public class SplashActivity extends Activity
 		hitParameters.put(SocialConstants.OSVersion,Build.VERSION.RELEASE);
 
 		tracker.send(hitParameters);*/
-		if(new SharePreferenceClass(getApplicationContext()).isAppDownloaded())
+		if(sharePreferenceClass.isAppDownloaded())
 		{
 			/*HashMap<String, String> hitParameters = new HashMap<String, String>();*/
 			Calendar c = Calendar.getInstance();
@@ -360,7 +362,6 @@ public class SplashActivity extends Activity
 		}
 		else
 		{
-			new SharePreferenceClass(getApplicationContext()).setAppDownloaded(true);
 			/*HashMap<String, String> hitParameters = new HashMap<String, String>();
 			hitParameters.put(SocialConstants.DeviceType,Build.DEVICE);
 			hitParameters.put(SocialConstants.OSType,Build.VERSION.INCREMENTAL);
@@ -368,7 +369,7 @@ public class SplashActivity extends Activity
 
 			tracker.send(hitParameters);*/
 
-			String label=SocialConstants.DeviceType+":"+ Build.DEVICE+","
+			String label=SocialConstants.DeviceType+":"+ Build.MODEL+","
 					+SocialConstants.OSType+":"+ "Android"+","
 					+SocialConstants.OSVersion+":"+ Build.VERSION.RELEASE;
 			tracker.send(MapBuilder
@@ -387,7 +388,7 @@ public class SplashActivity extends Activity
 		AppEventsLogger logger = AppEventsLogger.newLogger(this);
 
 
-		if(new SharePreferenceClass(getApplicationContext()).isAppDownloaded())
+		if(sharePreferenceClass.isAppDownloaded())
 		{
 			Bundle parameters = new Bundle();
 			Calendar c = Calendar.getInstance();
@@ -404,7 +405,7 @@ public class SplashActivity extends Activity
 		else
 		{
 			Bundle parameters = new Bundle();
-			parameters.putString(SocialConstants.DeviceType, Build.DEVICE);
+			parameters.putString(SocialConstants.DeviceType,Build.MODEL);
 			parameters.putString(SocialConstants.OSType,"Android");
 			parameters.putString(SocialConstants.OSVersion,Build.VERSION.RELEASE);
 
