@@ -293,13 +293,14 @@
                 android:layout_below="@id/layout_markPrivate"
                 android:layout_marginTop="5dip"
                 android:background="@color/gray"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/layout_markSpeical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/line_belowmarkPrivate"
+                android:visibility="gone"
                 android:padding="5dp" >
 
                 <Switch
@@ -329,7 +330,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/layout_markSpeical"
                 android:layout_marginTop="5dip"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:background="@color/gray" />
 
             <LinearLayout

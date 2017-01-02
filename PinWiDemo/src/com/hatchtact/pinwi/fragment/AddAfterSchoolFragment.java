@@ -44,6 +44,7 @@ import com.hatchtact.pinwi.classmodel.Error;
 import com.hatchtact.pinwi.fragment.insights.ParentFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.Validation;
@@ -144,6 +145,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 	private TextView specialDay_text;
 
 	public static int updatedDataFromAfterSchool = 0;
+	private SharePreferenceClass sharePref;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -152,7 +154,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 		view=inflater.inflate(R.layout.addafterschool_activity, container, false);
 		setHasOptionsMenu(true);
 		mListener.onFragmentAttached(false,"  Scheduler");
-
+		sharePref=new SharePreferenceClass(getActivity());
 		mActivity=getActivity();
 
 		init();
@@ -1635,6 +1637,18 @@ public class AddAfterSchoolFragment extends ParentFragment
 						resetStaticValues();
 						//getError();
 						StaticVariables.fragmentIndexCurrentTabSchedular = 12;
+						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+						{
+							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
+							social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();
+						}
+						else
+						{
+							social.scheduleAfterSchoolActivityFacebookLog();
+							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();
+						}
+
 						switchingFragments(new AfterSchoolActivityByChildIdFragment());
 					}
 					else
@@ -2069,6 +2083,17 @@ public class AddAfterSchoolFragment extends ParentFragment
 				else
 				{
 					StaticVariables.fragmentIndexCurrentTabSchedular = 12;
+					if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+					{
+						sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
+						social.scheduleFirstActivityFacebookLog();
+						social.scheduleFirstActivityGoogleAnalyticsLog();
+					}
+					else
+					{
+						social.scheduleAfterSchoolActivityFacebookLog();
+						social.scheduleAfterSchoolActivityGoogleAnalyticsLog();
+					}
 					switchingFragments(new AfterSchoolActivityByChildIdFragment());
 				}
 			}
@@ -2202,6 +2227,17 @@ public class AddAfterSchoolFragment extends ParentFragment
 						resetStaticValues();
 						//getError();
 						StaticVariables.fragmentIndexCurrentTabSchedular = 12;
+						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+						{
+							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
+							social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();
+						}
+						else
+						{
+							social.scheduleAfterSchoolActivityFacebookLog();
+							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();
+						}
 						switchingFragments(new AfterSchoolActivityByChildIdFragment());
 					}
 					else

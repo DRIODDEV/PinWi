@@ -12,6 +12,7 @@ public class AccessProfile implements Serializable
 	private int EarnedPoints;
 	private int PendingPoints;
 	private String Passcode;
+
 	public int getProfileID() {
 		return ProfileID;
 	}

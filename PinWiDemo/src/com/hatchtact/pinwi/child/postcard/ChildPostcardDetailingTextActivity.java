@@ -43,6 +43,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -95,6 +96,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 	private RelativeLayout layout_alphabetical;
 	private boolean isActivityFinished=false;
 	private String textData="";
+	private SocialConstants social;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 		setContentView(R.layout.activity_child_postcard_text);
 		typeFace = new TypeFace(ChildPostcardDetailingTextActivity.this);
 		sharepref = new SharePreferenceClass(ChildPostcardDetailingTextActivity.this);
-
+		social=new SocialConstants(ChildPostcardDetailingTextActivity.this);
 		msgEditText = (EditText) findViewById(R.id.msgEditText);
 		//showKeyBoard();
 		msgEditText.requestFocus();
@@ -467,6 +469,8 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 									public void onSuccess(String object) {
 										// TODO Auto-generated method stub
 										//if(!isEditingEnabled){
+										social.Create_Postcard_TextSentFacebookLog();
+										social.Create_Postcard_TextGoogleAnalyticsLog();
 										child_postcard_sent_layout.setVisibility(View.VISIBLE);
 										layout_bottomlayer_postcard_detail.setVisibility(View.INVISIBLE);
 										child_postcard_detail_mid_text.setVisibility(View.INVISIBLE);

@@ -44,6 +44,7 @@ import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.GifView;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -109,6 +110,7 @@ public class ChildPostcardDetailingAudioActivity  extends Activity {
 	private boolean isActivityFinished=false;
 	//Donot allow the touch of bottom items when the recording is going on.
 	private boolean isAudioRecordingON = false;
+	private SocialConstants social;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,12 +119,12 @@ public class ChildPostcardDetailingAudioActivity  extends Activity {
 		setContentView(R.layout.activity_child_postcard_audio);
 		typeFace = new TypeFace(ChildPostcardDetailingAudioActivity.this);
 		sharepref = new SharePreferenceClass(ChildPostcardDetailingAudioActivity.this);
+		social=new SocialConstants(this);
+		System.gc();
+		System.gc();
+		System.gc();
+		System.gc();
 
-		System.gc();
-		System.gc();
-		System.gc();
-		System.gc();
-		
 		setHeaderItems();
 		initSoundData();
 		getBundleValues();
@@ -426,57 +428,59 @@ public class ChildPostcardDetailingAudioActivity  extends Activity {
 			@Override
 			public void onClick(View v) {
 				if(!isAudioRecordingON){
-				//*********** Need to check..stop the recording before sending to server  ***********
-				setPlayRecordingNow();  
-				stopPlay();
-				//*********** Need to check..stop the recording before sending to server  ***********
+					//*********** Need to check..stop the recording before sending to server  ***********
+					setPlayRecordingNow();  
+					stopPlay();
+					//*********** Need to check..stop the recording before sending to server  ***********
 
-				try {
-					encodedAudioString= bitmapTobyte(convertToBytes());
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					encodedAudioString="";
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					encodedAudioString="";
-					e.printStackTrace();
-				}
+					try {
+						encodedAudioString= bitmapTobyte(convertToBytes());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						encodedAudioString="";
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						encodedAudioString="";
+						e.printStackTrace();
+					}
 
-				if(encodedAudioString!=null && encodedAudioString.trim().length()>0)
-				{
-					showMessage.showAlertChildInterface(ChildPostcardDetailingAudioActivity.this, "Confirmation", "Woah!! All set to post this?", new OnEventListener<String>() {
+					if(encodedAudioString!=null && encodedAudioString.trim().length()>0)
+					{
+						showMessage.showAlertChildInterface(ChildPostcardDetailingAudioActivity.this, "Confirmation", "Woah!! All set to post this?", new OnEventListener<String>() {
 
-						@Override
-						public void onSuccess(String object)
-						{
-							new AddPostcardTask(ChildPostcardDetailingAudioActivity.this, selectedIndex+1, StaticVariables.currentChild.getChildID(), 3, encodedAudioString, 1, new OnEventListener<String>() {
+							@Override
+							public void onSuccess(String object)
+							{
+								new AddPostcardTask(ChildPostcardDetailingAudioActivity.this, selectedIndex+1, StaticVariables.currentChild.getChildID(), 3, encodedAudioString, 1, new OnEventListener<String>() {
 
-								@Override
-								public void onSuccess(String object) {
-									// TODO Auto-generated method stub
-									child_postcard_sent_layout.setVisibility(View.VISIBLE);
-									layout_bottomlayer_postcard_detail.setVisibility(View.GONE);
-									child_postcard_detail_mid_audio.setVisibility(View.INVISIBLE);
-									child_header_title_label_layout.setVisibility(View.INVISIBLE);
-									placeHandlerToFinishActivity();
-								}
+									@Override
+									public void onSuccess(String object) {
+										// TODO Auto-generated method stub
+										social.Create_Postcard_VOSentFacebookLog();
+										social.Create_Postcard_VOGoogleAnalyticsLog();
+										child_postcard_sent_layout.setVisibility(View.VISIBLE);
+										layout_bottomlayer_postcard_detail.setVisibility(View.GONE);
+										child_postcard_detail_mid_audio.setVisibility(View.INVISIBLE);
+										child_header_title_label_layout.setVisibility(View.INVISIBLE);
+										placeHandlerToFinishActivity();
+									}
 
-								@Override
-								public void onFailure(String object) {
-									// TODO Auto-generated method stub
+									@Override
+									public void onFailure(String object) {
+										// TODO Auto-generated method stub
 
-								}
-							}).execute();	
-						}
+									}
+								}).execute();	
+							}
 
-						@Override
-						public void onFailure(String object) {
-							// TODO Auto-generated method stub
+							@Override
+							public void onFailure(String object) {
+								// TODO Auto-generated method stub
 
-						}
-					});
-					/*new AddPostcardTask(ChildPostcardDetailingAudioActivity.this, selectedIndex+1, StaticVariables.currentChild.getChildID(), 3, encodedAudioString, 1, new OnEventListener<String>() {
+							}
+						});
+						/*new AddPostcardTask(ChildPostcardDetailingAudioActivity.this, selectedIndex+1, StaticVariables.currentChild.getChildID(), 3, encodedAudioString, 1, new OnEventListener<String>() {
 
 						@Override
 						public void onSuccess(String object) {
@@ -494,11 +498,11 @@ public class ChildPostcardDetailingAudioActivity  extends Activity {
 
 						}
 					}).execute();*/
-				}
-				else
-				{
-					Toast.makeText(ChildPostcardDetailingAudioActivity.this, "Post cannot be left empty", Toast.LENGTH_SHORT).show();
-				}
+					}
+					else
+					{
+						Toast.makeText(ChildPostcardDetailingAudioActivity.this, "Post cannot be left empty", Toast.LENGTH_SHORT).show();
+					}
 
 				}
 			}
@@ -523,7 +527,7 @@ public class ChildPostcardDetailingAudioActivity  extends Activity {
 				layout_post.setAlpha(1f);
 
 				isAudioRecordingON = false;
-				
+
 				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){	
 					postcard_audio_image.setBackgroundDrawable(getResources().getDrawable(R.drawable.mic_icon));
 				} else {

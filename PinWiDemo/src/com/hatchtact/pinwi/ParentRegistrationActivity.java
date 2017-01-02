@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -61,6 +62,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.appevents.AppEventsConstants;
+import com.facebook.appevents.AppEventsLogger;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.classmodel.CityList;
@@ -79,6 +84,7 @@ import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.GettingLattitude;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 import com.hatchtact.pinwi.utility.Validation;
@@ -174,6 +180,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.parent_registration_activity);
+		
 
 		Bundle bundle = getIntent().getExtras();
 
@@ -2411,6 +2418,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			{
 				if(result!=-1)
 				{
+					social.parentRegistrationFacebookLog();
+					social.parentRegistrationGoogleAnalyticsLog();
 					String parentInformation = gsonRegistration.toJson(parentProfile);
 					sharePreferneceClass.setParentProfile(parentInformation);  
 
@@ -2472,4 +2481,6 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		builder.setCancelable(false);
 		return builder.create();
 	}
+	
+	
 }

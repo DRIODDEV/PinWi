@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 /**
@@ -30,6 +31,7 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 	private ServiceMethod serviceMethod;
 	private CheckNetwork checkNetwork;
 	private String friendId,actionflag,loggedId;
+	private SocialConstants social;
 	
 
 
@@ -38,6 +40,8 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 	{
 		mContext=context;
 		currentWebServiceTobeUsed=currentWebservice;
+		if(social==null)
+			social=new SocialConstants(context);
 		callback=listener;
 		friendId=FriendId;
 		actionflag=Actionflag;
@@ -124,10 +128,14 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
+						social.Network_Connection_AcceptedFacebookLog();
+						social.Network_Connection_AcceptedGoogleAnalyticsLog();
 						Toast.makeText(mContext, "Friend Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
+						social.Network_Connection_AddedFacebookLog();
+						social.Network_Connection_AddedGoogleAnalyticsLog();
 						Toast.makeText(mContext, "Friend Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -157,10 +165,14 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
+						social.Network_Connection_AcceptedFacebookLog();
+						social.Network_Connection_AcceptedGoogleAnalyticsLog();
 						Toast.makeText(mContext, "Friend Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
+						social.Network_Connection_AddedFacebookLog();
+						social.Network_Connection_AddedGoogleAnalyticsLog();
 						Toast.makeText(mContext, "Friend Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -194,6 +206,8 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
+						social.buddyRequestSentFacebookLog();
+						social.buddyRequestSentGoogleAnalyticsLog();
 						Toast.makeText(mContext, "Yay! Your request is on its way.", Toast.LENGTH_LONG).show();
 					}
 
@@ -223,10 +237,14 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
+						social.addBuddyFacebookLog();
+						social.addBuddyGoogleAnalyticsLog();
 						Toast.makeText(mContext, "Buddy Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
+						social.buddyRequestSentFacebookLog();
+						social.buddyRequestSentGoogleAnalyticsLog();
 						Toast.makeText(mContext, "Buddy Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -252,6 +270,8 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 				{
 					if(actionflag.equalsIgnoreCase("4"))
 					{
+						social.Add_to_WishlistFacebookLog();
+						social.Add_to_WishlistGoogleAnalyticsLog();
 					//Toast.makeText(mContext, "You have wished for this. Good choice.", Toast.LENGTH_LONG).show();
 					}
 					

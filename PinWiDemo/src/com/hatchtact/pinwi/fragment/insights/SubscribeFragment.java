@@ -295,6 +295,8 @@ public class SubscribeFragment extends ParentFragment
 				// bought 1/4 tank of gas. So consume it.
 				//alert("Thank you for subscribing to  twelve month!");
 				//mHelper.consumeAsync(purchase, mConsumeFinishedListener);
+				social.Insights_SubscribedFacebookLog("Annual");
+				social.Insights_SubscribedGoogleAnalyticsLog("Annual");
 				new AddSubscriptionTask().execute();
 			}
 			else if (purchase.getSku().equals(SKU_THREEMONTH)) {
@@ -303,6 +305,9 @@ public class SubscribeFragment extends ParentFragment
 				//alert("Thank you for subscribing to  three month!");
 				//updateUi();
 				//setWaitScreen(false);
+				social.Insights_SubscribedFacebookLog("Quarter");
+				social.Insights_SubscribedGoogleAnalyticsLog("Quarter");
+
 				new AddSubscriptionTask().execute();
 			}
 		}

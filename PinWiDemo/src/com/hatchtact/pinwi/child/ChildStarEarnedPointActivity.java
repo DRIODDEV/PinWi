@@ -27,6 +27,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -48,7 +49,7 @@ public class ChildStarEarnedPointActivity extends Activity
 
 	private int earnedPoints = 0;
 	private TypeFace typeFace;
-	
+
 
 	private SoundEffect soundEffectStar = null;
 	//private SoundEffect soundEffectTransition = null;
@@ -59,10 +60,10 @@ public class ChildStarEarnedPointActivity extends Activity
 
 	private boolean isHandlerActive = false;
 	private ImageView child_header_voice_over;
-	
+
 	private boolean isMusicStop = false;
 	private boolean isMute = false;
-
+	private SocialConstants social;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -71,7 +72,9 @@ public class ChildStarEarnedPointActivity extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_child_star_earned_point);
-
+		social=new SocialConstants(this);
+		social.Child_RatingsFacebookLog();
+		social.Child_RatingsGoogleAnalyticsLog();
 		typeFace = new TypeFace(ChildStarEarnedPointActivity.this);
 		sharepref = new SharePreferenceClass(ChildStarEarnedPointActivity.this);
 
@@ -133,7 +136,7 @@ public class ChildStarEarnedPointActivity extends Activity
 
 
 		child_header_music = (ImageView) findViewById(R.id.child_header_music);
-		
+
 		isMute = sharepref.isSound(StaticVariables.currentChild.getChildID() + "");
 		isMusicStop = sharepref.isVoiceOver(StaticVariables.currentChild.getChildID() + "");
 
@@ -184,7 +187,7 @@ public class ChildStarEarnedPointActivity extends Activity
 								childMusicPlayer.getMediaPlayer().stop();
 							}
 						}
-						
+
 						placeHandlerToFinishActivity();
 
 					}
@@ -388,7 +391,7 @@ public class ChildStarEarnedPointActivity extends Activity
 
 		}
 
-		
+
 
 	}
 
@@ -416,7 +419,7 @@ public class ChildStarEarnedPointActivity extends Activity
 
 		}, 1500);
 	}
-	
+
 	private void getError()
 	{
 		Error err = serviceMethod.getError();	

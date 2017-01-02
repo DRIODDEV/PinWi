@@ -524,7 +524,15 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 			if(afterschoolActivitiesByDateList.getAfterSchoolActivitiesByDate().get(i).getIsSpecial().equalsIgnoreCase("true"))
 			{
 				special_image.setImageResource(R.drawable.special);
-				special_image.setVisibility(View.VISIBLE);
+				//special_image.setVisibility(View.VISIBLE);
+				if(private_image.getVisibility()==View.VISIBLE)
+				{
+					special_image.setVisibility(View.GONE);
+				}
+				else
+				{
+					special_image.setVisibility(View.INVISIBLE);
+				}
 			}
 			else
 			{

@@ -37,6 +37,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -82,6 +83,8 @@ public class ChildPostcardDetailingImageActivity  extends Activity {
 	private String imageByte="";
 	private RelativeLayout layout_alphabetical;
 	private boolean isActivityFinished=false;
+	private SocialConstants social;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,7 @@ public class ChildPostcardDetailingImageActivity  extends Activity {
 		setContentView(R.layout.activity_child_postcard_image);
 		typeFace = new TypeFace(ChildPostcardDetailingImageActivity.this);
 		sharepref = new SharePreferenceClass(ChildPostcardDetailingImageActivity.this);
+		social=new SocialConstants(ChildPostcardDetailingImageActivity.this);
 
 		setHeaderItems();
 		initSoundData();
@@ -328,6 +332,9 @@ public class ChildPostcardDetailingImageActivity  extends Activity {
 								@Override
 								public void onSuccess(String object) {
 									// TODO Auto-generated method stub
+									social.Create_Postcard_PhotoSentFacebookLog();
+									social.Create_Postcard_PhotoGoogleAnalyticsLog();
+									
 									child_postcard_sent_layout.setVisibility(View.VISIBLE);
 									layout_bottomlayer_postcard_detail.setVisibility(View.INVISIBLE);
 									child_postcard_detail_mid_image.setVisibility(View.INVISIBLE);

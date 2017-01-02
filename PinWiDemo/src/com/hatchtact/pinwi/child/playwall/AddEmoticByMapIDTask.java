@@ -9,6 +9,7 @@ import com.hatchtact.pinwi.classmodel.GetFriendsTempleteMessageListByChildIDList
 import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 /**
@@ -27,6 +28,7 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 	private int EmoticID,loggedId,MapID;
 	private String sendingText="";
 	private GetFriendsTempleteMessageListByChildIDList getFriendsTempleteMessageListByChildIDList;
+	private SocialConstants social;
 
 
 
@@ -38,6 +40,8 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 		this.MapID=MapID;
 		this.EmoticID=EmoticID;
 		loggedId=LoggedID;
+		if(social==null)
+		social=new SocialConstants(context);
 		getFriendsTempleteMessageListByChildIDList=new GetFriendsTempleteMessageListByChildIDList();
 		getFriendsTempleteMessageListByChildIDList.getFriendsTempleteMessageListByChildID().clear();
 
@@ -121,6 +125,8 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 			if(getFriendsTempleteMessageListByChildIDList!=null && getFriendsTempleteMessageListByChildIDList.getFriendsTempleteMessageListByChildID().size()>0)
 			{
 				showToastMessage("Emoticon Added");
+				social.reactedToPostFacebookLog();
+				social.reactedToPostGoogleAnalyticsLog();
 				callback.onSuccess(getFriendsTempleteMessageListByChildIDList.getFriendsTempleteMessageListByChildID().get(0));
 			}
 			else
