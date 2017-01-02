@@ -842,7 +842,7 @@ public class SocialConstants
 			public void run() {
 				// Do something after 7minutes = 420000ms
 				Bundle parameters = new Bundle();
-				parameters.putString(SocialConstants.STATUS,"Did_Not_Complete");
+				parameters.putString(SocialConstants.Subscribe_Button_Clicked,"Did_Not_Complete");
 				logger.logEvent(SocialConstants.Subscribe_Button_Clicked,parameters);		    }
 		}, 420000); 
 
