@@ -36,7 +36,8 @@ public class AddPasscordActivity  extends MainActionBarActivity
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		// TODO Auto-generated method stub
-		screenName="Setup Passcode";
+		//screenName="Setup Passcode";
+		screenName="Lock your Profile";
 
 		super.onCreate(savedInstanceState);
 

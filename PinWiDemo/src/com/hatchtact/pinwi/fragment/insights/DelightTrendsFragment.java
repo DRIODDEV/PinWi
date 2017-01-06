@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hatchtact.pinwi.R;
-import com.hatchtact.pinwi.classmodel.GetDelightTraitsByChildIDOnInsight;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 public class DelightTrendsFragment extends ParentFragment implements OnItemClickListener 
@@ -38,6 +37,7 @@ public class DelightTrendsFragment extends ParentFragment implements OnItemClick
 		listView.setAdapter(adapterDelightTrendsInsight);
 		txtDelight=(TextView) view.findViewById(R.id.listDelightTrends_title);
 		typeFace.setTypefaceRegular(txtDelight);
+		txtDelight.setText("Activity Rating");
 		
 		listView.setOnItemClickListener(DelightTrendsFragment.this);
 		

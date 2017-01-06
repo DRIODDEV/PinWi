@@ -279,8 +279,11 @@ public class AddAfterSchoolCategoriesFragment extends ParentFragment implements 
 				} else if (actionId == EditorInfo.IME_ACTION_DONE) 
 				{
 					return true;
-				} else 
+				} 
+				
+				else 
 				{
+					hideKeyBoard();
 					return true;
 				}
 
@@ -484,7 +487,7 @@ public class AddAfterSchoolCategoriesFragment extends ParentFragment implements 
 	}
 
 
-	private ProgressDialog progressDialogSearch=null;	
+	//private ProgressDialog progressDialogSearch=null;	
 
 	private class searchActivityGlobally extends AsyncTask<Void, Void, Integer>
 	{
@@ -500,8 +503,8 @@ public class AddAfterSchoolCategoriesFragment extends ParentFragment implements 
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogSearch.setCancelable(false);
+			/*progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogSearch.setCancelable(false);*/
 		}
 
 		@Override
@@ -542,8 +545,8 @@ public class AddAfterSchoolCategoriesFragment extends ParentFragment implements 
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogSearch.isShowing())
-					progressDialogSearch.cancel();
+				/*if (progressDialogSearch.isShowing())
+					progressDialogSearch.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

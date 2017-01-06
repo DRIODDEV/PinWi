@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/background_color" >
 
+     <include
+        android:id="@+id/headerActionBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/action_layout" />
     <Button
         android:id="@+id/button_submitConfirm"
         android:layout_width="match_parent"
@@ -18,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/button_submitConfirm"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/headerActionBar"
         android:layout_marginBottom="10dip"
         android:layout_marginTop="20dip" >
 
@@ -61,9 +66,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:alpha=".5"
-                    android:clickable="false"
-                    android:enabled="false"
+                    android:alpha="1"
+                    android:clickable="true"
+                    android:enabled="true"
                     android:gravity="center"
                     android:text="@string/sms_text"
                     android:textSize="@dimen/textLarge" />
@@ -107,8 +112,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_send"
                 android:layout_marginTop="25dip"
+                android:textColorHint="@color/font_red_color"
+                android:background="@drawable/edit_code_background"
                 android:hint="Enter Code"
-                android:textSize="@dimen/textLarge" />
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="22sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

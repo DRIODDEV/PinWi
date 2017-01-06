@@ -26,27 +26,53 @@
                 android:layout_margin="20dp"
                 layout="@layout/item_card_subscription" />
 
-            <TextView
+             <TextView
                 android:id="@+id/tvtxtone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="5dp"
-                android:paddingLeft="5dip"
+                android:paddingLeft="10dip"
                 android:paddingTop="5dp"
-                android:text="Turn off auto renew from your playstore settings"
+                android:paddingRight="10dp"
+                android:text="@string/playstore_text"
                 android:textColor="@color/dark_gray"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/tvtxttwo"
+          <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="10dip"
-                android:text="Payment Policy"
-                android:textColor="@color/font_blue_color"
-                android:textSize="14sp" />
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/tvtxttwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/font_blue_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/viewLine"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/tvtxttwo"
+                    android:background="@color/font_blue_color" />
+
+                <TextView
+                    android:id="@+id/tvtxtthree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/viewLine"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Terms Of Use"
+                    android:textColor="@color/font_blue_color"
+                    android:textSize="14sp" />
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/imgBenifits"

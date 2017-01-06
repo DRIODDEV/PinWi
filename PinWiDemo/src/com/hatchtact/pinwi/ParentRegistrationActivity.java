@@ -9,7 +9,6 @@ import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -25,6 +24,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -38,8 +38,14 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 import android.text.InputType;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.TypefaceSpan;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -62,10 +68,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.appevents.AppEventsConstants;
-import com.facebook.appevents.AppEventsLogger;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.classmodel.CityList;
@@ -84,7 +86,6 @@ import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.GettingLattitude;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
-import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 import com.hatchtact.pinwi.utility.Validation;
@@ -167,6 +168,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 	private UpdateLocationByParentID updateLocationByParentID=null;
 	private boolean isPasscodeTouched=false;//need to use this flag
+	private TextView header_text,header_help;
 
 
 
@@ -180,7 +182,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.parent_registration_activity);
-		
+
 
 		Bundle bundle = getIntent().getExtras();
 
@@ -196,13 +198,29 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		parentProfile=new ParentProfile();
 		sharePreferneceClass=new SharePreferenceClass(ParentRegistrationActivity.this);
 		gsonRegistration = new GsonBuilder().create();
+		header_text=(TextView) findViewById(R.id.header_text);
+		header_help=(TextView) findViewById(R.id.header_help);
+		header_text.setText(screenName);
+
+		header_help.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentAboutUs =new Intent(ParentRegistrationActivity.this, ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";	
+			}
+		});
 
 		initailization();
 	}
 
 	private int countDialog=0;
+	protected boolean isLockDialogClicked=false;
 	private void initailization()
 	{
+		isLockDialogClicked=false;
 		onTouchContinueButton=false;
 
 		checkValidation = new Validation();
@@ -363,20 +381,28 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				if(passcode_switchView.isChecked())
 				{
 
-					sharePreferneceClass.setIsPasscodeParentSet(isChecked);
-					//layout_Pass_AutoLock.setVisibility(View.VISIBLE);
-					if(!isPasscodeTouched)
+					if(!isLockDialogClicked)
 					{
-						Intent intent=new Intent(ParentRegistrationActivity.this, AddPasscordActivity.class);
-						Bundle bundle =new Bundle();
-						text_passcode.setText("Passcode");
-						bundle.putString("passCode","");
-						intent.putExtras(bundle);
-						startActivityForResult(intent, 200);
-					}
-					layout_Pass_AutoLock.setVisibility(View.GONE);
+						sharePreferneceClass.setIsPasscodeParentSet(isChecked);
+						//layout_Pass_AutoLock.setVisibility(View.VISIBLE);
+						if(!isPasscodeTouched)
+						{
+							Intent intent=new Intent(ParentRegistrationActivity.this, AddPasscordActivity.class);
+							Bundle bundle =new Bundle();
+							//text_passcode.setText("Passcode");
+							text_passcode.setText("Lock Your Profile");
+							bundle.putString("passCode","");
+							intent.putExtras(bundle);
+							startActivityForResult(intent, 200);
+						}
+						layout_Pass_AutoLock.setVisibility(View.GONE);
 
-					isPasscodeTouched=false;
+						isPasscodeTouched=false;
+					}
+					else
+					{
+						isLockDialogClicked=false;
+					}
 				}
 				else
 				{
@@ -385,7 +411,9 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					passcode_editText.setText("");
 					text_passcode.setInputType(InputType.TYPE_CLASS_TEXT);
 					text_passcode.setAlpha(.7f);
-					text_passcode.setText("Passcode");
+					//text_passcode.setText("Passcode");
+					text_passcode.setText("Lock Your Profile");
+
 					autolocktime_autoCompleteTextView.setText("");
 				}
 			}
@@ -456,142 +484,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			@Override
 			public void onClick(View v) 
 			{
-				// TODO Auto-generated method stub
-				if(!checkValidation.isNotNullOrBlank(firstname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(lastname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(email_editText.getText().toString()) 
-						&& !checkValidation.isNotNullOrBlank(password_editText.getText().toString()) /*&& !checkValidation.isNotNullOrBlank(dob_editText.getText().toString())*/ && !checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
-				{
-					showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				}
-				else
-				{
-					if(!checkValidation.isNotNullOrBlank(firstname_editText.getText().toString()))
-						showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
-					/*	else if(!checkValidation.validateFirstName(firstname_editText.getText().toString()))
-						showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
-					 */
-					else if(!checkValidation.isNotNullOrBlank(lastname_editText.getText().toString()))
-						showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
-					/*	else if(!checkValidation.validateLastName(lastname_editText.getText().toString()))
-						showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
-					 */else if(!checkValidation.isNotNullOrBlank(email_editText.getText().toString()))
-						 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
-					 else if(!checkValidation.isValidEmail(email_editText.getText().toString()))
-						 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
-					 else if(!checkValidation.isNotNullOrBlank(password_editText.getText().toString()))
-						 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-
-					//else if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
-					//showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
-					 else if(!checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
-						 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
-					 else if(!checkValidation.isValidPhoneNo(phone_editText.getText().toString()))
-						 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
-					 else if(!checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString()))
-					 {
-						 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-						 country_autoCompleteTextView.requestFocus();
-					 }
-					/*else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()) && !checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString())
-							&& !validation.isNotNullOrBlank(street_editText.getText().toString()))*/
-					 else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()))
-					 {
-						 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-						 city_autoCompleteTextView.requestFocus();
-					 }
-					 else if(!checkValidation.isNotNullOrBlank(street_autoCompleteTextView.getText().toString()))
-					 {
-						 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-						 street_autoCompleteTextView.requestFocus();
-					 }
-
-
-					/* else if(!checkValidation.isNotNullOrBlank(street_editText.getText().toString()))
-					 {
-						 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-						 street_editText.requestFocus();
-					 }*/
-
-					 else if(checkValidation.isNotNullOrBlank(dob_editText.getText().toString()))
-					 {
-						 //showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-						 if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
-							 showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
-						 else
-						 {
-							 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
-							 if(passcode_switchView.isChecked())
-							 {
-								 //if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
-								 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
-									 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
-								 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
-									 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
-								 else
-								 {
-									 moveToLocationScreen();
-								 }
-							 }
-							 else
-							 {
-								 showAlertPasscode("Alert", "Passcodes come in handy when you want to secure access to different profiles within the app. Are you sure you don't want to set them up?");
-								 //moveToLocationScreen();
-							 }
-						 }
-					 }
-					 else if(!checkValidation.isNotNullOrBlank(dob_editText.getText().toString())&& countDialog==0)
-					 {
-
-						 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ParentRegistrationActivity.this);
-
-						 alertBuilder.setTitle("Alert");
-						 alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
-						 alertBuilder.setMessage("Sharing DOB is optional but to use PiNWi as a parent you need be above legal age.By continuing, you declare you are above 18 yrs. ");
-
-						 alertBuilder.setPositiveButton(" Yes ", new DialogInterface.OnClickListener() {
-
-							 @Override
-							 public void onClick(final DialogInterface dialog, int which) {
-								 dialog.dismiss();
-								 countDialog=1;
-							 }
-						 });
-						 alertBuilder.setNegativeButton(" Add ", new DialogInterface.OnClickListener() {
-
-							 @Override
-							 public void onClick(DialogInterface dialog, int which)
-							 {
-								 dialog.dismiss();
-								 datePickerDialog.show();
-							 }
-						 });
-
-						 alertBuilder.show();
-
-					 }
-
-					 else
-					 {
-						 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
-						 if(passcode_switchView.isChecked())
-
-						 {
-							 // if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
-							 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
-								 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
-							 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
-								 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
-							 else
-							 {
-								 moveToLocationScreen();
-							 }
-						 }
-						 else
-						 {
-							 showAlertPasscode("Alert", "Passcodes come in handy when you want to secure access to different profiles within the app. Are you sure you don't want to set them up?");
-							 //moveToLocationScreen();
-						 }
-					 }
-				}
+				validateDataOnSubmit();
 			}
 		});
 
@@ -1463,7 +1356,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				hideKeyBoard();
 				text_passcode.setText(passCodeValue);
 				parentProfile.setPasscode(passCodeValue);
-
+				passcode_switchView.setChecked(true);
 				break;
 			}
 		}
@@ -1474,7 +1367,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			case 200:
 				passcode_switchView.setChecked(false);
 				break;
-				}
+			}
 		}
 	}
 
@@ -1679,7 +1572,9 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			e.printStackTrace();
 		}
 		parentProfile.setContact(phone_editText.getText().toString());
-		if(text_passcode.getText().toString().equalsIgnoreCase("")||text_passcode.getText().toString().equalsIgnoreCase("Passcode"))
+		//if(text_passcode.getText().toString().equalsIgnoreCase("")||text_passcode.getText().toString().equalsIgnoreCase("Passcode"))
+		if(text_passcode.getText().toString().equalsIgnoreCase("")||text_passcode.getText().toString().equalsIgnoreCase("Lock Your Profile"))
+
 		{
 			parentProfile.setPasscode("");
 		}
@@ -2066,7 +1961,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		alertBuilder.setTitle(title);
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(message);
-		alertBuilder.setPositiveButton(" Yes ", new DialogInterface.OnClickListener() 
+		alertBuilder.setPositiveButton(" Submit ", new DialogInterface.OnClickListener() 
 		{
 
 			@Override
@@ -2077,13 +1972,21 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			}
 		});	
 
-		alertBuilder.setNegativeButton(" Cancel ", new DialogInterface.OnClickListener() 
+		alertBuilder.setNegativeButton(" LOCK ", new DialogInterface.OnClickListener() 
 		{
 
 			@Override
 			public void onClick(DialogInterface dialog, int which)
 			{
 				dialog.dismiss();
+				isLockDialogClicked=true;
+				Intent intent=new Intent(ParentRegistrationActivity.this, AddPasscordActivity.class);
+				Bundle bundle =new Bundle();
+				//text_passcode.setText("Passcode");
+				text_passcode.setText("Lock Your Profile");
+				bundle.putString("passCode","");
+				intent.putExtras(bundle);
+				startActivityForResult(intent, 200);
 
 			}
 		});	
@@ -2428,6 +2331,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					Bundle bundle = new Bundle();
 					bundle.putString("EmailAddress",parentProfile.getEmailAddress());
 					bundle.putInt("ParentID", parentProfile.getParentID());
+					bundle.putString("Contact",parentProfile.getContact());
+
 					intent.putExtras(bundle);
 					startActivity(intent);
 					ParentRegistrationActivity.this.finish();
@@ -2481,6 +2386,149 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		builder.setCancelable(false);
 		return builder.create();
 	}
-	
-	
+
+
+
+	/**
+	 * 
+	 */
+	private void validateDataOnSubmit() {
+		// TODO Auto-generated method stub
+		if(!checkValidation.isNotNullOrBlank(firstname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(lastname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(email_editText.getText().toString()) 
+				&& !checkValidation.isNotNullOrBlank(password_editText.getText().toString()) /*&& !checkValidation.isNotNullOrBlank(dob_editText.getText().toString())*/ && !checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
+		{
+			showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+		}
+		else
+		{
+			if(!checkValidation.isNotNullOrBlank(firstname_editText.getText().toString()))
+				showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
+			/*	else if(!checkValidation.validateFirstName(firstname_editText.getText().toString()))
+				showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
+			 */
+			else if(!checkValidation.isNotNullOrBlank(lastname_editText.getText().toString()))
+				showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
+			/*	else if(!checkValidation.validateLastName(lastname_editText.getText().toString()))
+				showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
+			 */else if(!checkValidation.isNotNullOrBlank(email_editText.getText().toString()))
+				 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
+			 else if(!checkValidation.isValidEmail(email_editText.getText().toString()))
+				 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
+			 else if(!checkValidation.isNotNullOrBlank(password_editText.getText().toString()))
+				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+
+			//else if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
+			//showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
+			 else if(!checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
+				 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
+			 else if(!checkValidation.isValidPhoneNo(phone_editText.getText().toString()))
+				 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
+			 else if(!checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString()))
+			 {
+				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				 country_autoCompleteTextView.requestFocus();
+			 }
+			/*else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()) && !checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString())
+					&& !validation.isNotNullOrBlank(street_editText.getText().toString()))*/
+			 else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()))
+			 {
+				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				 city_autoCompleteTextView.requestFocus();
+			 }
+			 else if(!checkValidation.isNotNullOrBlank(street_autoCompleteTextView.getText().toString()))
+			 {
+				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				 street_autoCompleteTextView.requestFocus();
+			 }
+
+
+			/* else if(!checkValidation.isNotNullOrBlank(street_editText.getText().toString()))
+			 {
+				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				 street_editText.requestFocus();
+			 }*/
+
+			 else if(checkValidation.isNotNullOrBlank(dob_editText.getText().toString()))
+			 {
+				 //showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				 if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
+					 showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
+				 else
+				 {
+					 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
+					 if(passcode_switchView.isChecked())
+					 {
+						 //if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
+						 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
+							 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
+						 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
+							 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
+						 else
+						 {
+							 moveToLocationScreen();
+						 }
+					 }
+					 else
+					 {
+						 showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
+						 //moveToLocationScreen();
+					 }
+				 }
+			 }
+			 else if(!checkValidation.isNotNullOrBlank(dob_editText.getText().toString())&& countDialog==0)
+			 {
+
+				 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ParentRegistrationActivity.this);
+
+				 alertBuilder.setTitle("Alert");
+				 alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+				 alertBuilder.setMessage("Sharing DOB is optional but to use PiNWi as a parent you need be above legal age.By continuing, you declare you are above 18 yrs. ");
+
+				 alertBuilder.setPositiveButton(" GOT IT ", new DialogInterface.OnClickListener() {
+
+					 @Override
+					 public void onClick(final DialogInterface dialog, int which) {
+						 dialog.dismiss();
+						 countDialog=1;
+						 validateDataOnSubmit();
+					 }
+				 });
+				 alertBuilder.setNegativeButton(" SET ", new DialogInterface.OnClickListener() {
+
+					 @Override
+					 public void onClick(DialogInterface dialog, int which)
+					 {
+						 dialog.dismiss();
+						 datePickerDialog.show();
+					 }
+				 });
+
+				 alertBuilder.show();
+
+			 }
+
+			 else
+			 {
+				 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
+				 if(passcode_switchView.isChecked())
+
+				 {
+					 // if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
+					 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
+						 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
+					 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
+						 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
+					 else
+					 {
+						 moveToLocationScreen();
+					 }
+				 }
+				 else
+				 {
+					 showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
+					 //moveToLocationScreen();
+				 }
+			 }
+		}
+	}
 }

@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
@@ -39,11 +38,15 @@ import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -61,10 +64,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.appevents.AppEventsConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.child.postcard.CompressImage;
 import com.hatchtact.pinwi.classmodel.ChildModel;
 import com.hatchtact.pinwi.classmodel.ChildProfile;
@@ -79,11 +80,11 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
-import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 import com.hatchtact.pinwi.utility.Validation;
 import com.hatchtact.pinwi.view.AutoCompleteAdapter;
+import android.view.inputmethod.EditorInfo;
 
 @SuppressLint("NewApi")
 public class ChildRegistrationActivity extends MainActionBarActivity implements OnTouchListener
@@ -151,6 +152,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	private TextView text_ProfileText;
 	private TextView textchild_passcode;
 	private boolean isPasscodeTouched=false;//need to use this flag
+	private TextView header_text,header_help;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -160,7 +163,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.child_registration_activity);
-
+		isLockDialogClicked=false;
 		Bundle bundle = getIntent().getExtras();
 
 		try {	
@@ -178,7 +181,20 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			e.printStackTrace();
 		}
 
+		header_text=(TextView) findViewById(R.id.header_text);
+		header_help=(TextView) findViewById(R.id.header_help);
+		header_text.setText(screenName);
 
+		header_help.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentAboutUs =new Intent(ChildRegistrationActivity.this, ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";	
+			}
+		});
 		checkValidation = new Validation();
 		childProfile=new ChildProfile();
 		serviceMethod = new ServiceMethod();
@@ -220,7 +236,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		boy_textView=(RadioButton) findViewById(R.id.text_boy);
 		girl_textView=(RadioButton) findViewById(R.id.text_girl);
 		school_autoCompleteTextView=(AutoCompleteTextView) findViewById(R.id.text_schoolname);
-
+		/*school_autoCompleteTextView.setFocusable(true);
+		school_autoCompleteTextView.setFocusableInTouchMode(true);*/
 		boy_textView.setChecked(true);
 
 		typeFace.setTypefaceLight(childFname_editText);
@@ -248,20 +265,30 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				// TODO Auto-generated method stub
 				if(passcodechild_switch.isChecked())
 				{
-					sharePref.setIsPasscodeChildSet(isChecked);
-					//layout_Pass_AutoLockChild.setVisibility(View.VISIBLE);
-					if(!isPasscodeTouched)
+					if(!isLockDialogClicked)
 					{
-						Intent intent=new Intent(ChildRegistrationActivity.this, AddPasscordActivity.class);
-						Bundle bundle =new Bundle();
-						textchild_passcode.setText("Passcode");
-						bundle.putString("passCode","");
-						intent.putExtras(bundle);
-						startActivityForResult(intent, 200);
-					}
-					layout_Pass_AutoLockChild.setVisibility(View.GONE);
 
-					isPasscodeTouched=false;
+						sharePref.setIsPasscodeChildSet(isChecked);
+						//layout_Pass_AutoLockChild.setVisibility(View.VISIBLE);
+						if(!isPasscodeTouched)
+						{
+							Intent intent=new Intent(ChildRegistrationActivity.this, AddPasscordActivity.class);
+							Bundle bundle =new Bundle();
+							//textchild_passcode.setText("Passcode");
+							textchild_passcode.setText("Lock Child Profile");
+
+							bundle.putString("passCode","");
+							intent.putExtras(bundle);
+							startActivityForResult(intent, 200);
+						}
+						layout_Pass_AutoLockChild.setVisibility(View.GONE);
+
+						isPasscodeTouched=false;
+					}
+					else
+					{
+						isLockDialogClicked=false;
+					}
 				}
 				else
 				{
@@ -271,7 +298,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					textchild_passcode.setInputType(InputType.TYPE_CLASS_TEXT);
 					textchild_passcode.setAlpha(.7f);
 
-					textchild_passcode.setText("Passcode");
+					//textchild_passcode.setText("Passcode");
+					textchild_passcode.setText("Lock Child Profile");
 
 					childautolocktime_autoCompleteTextView.setText("");
 				}
@@ -351,6 +379,63 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			}
 		});
+
+		/*school_autoCompleteTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				// TODO Auto-generated method stub
+				if (actionId == EditorInfo.IME_ACTION_DONE) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		});
+
+
+		school_autoCompleteTextView.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_UP) {
+					// parkingAutocomplete.requestFocus();
+					//  parkingAutocomplete.setFocusable(true);
+
+
+
+
+					school_autoCompleteTextView.showDropDown();
+
+				} else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					school_autoCompleteTextView.setText("");
+					school_autoCompleteTextView.requestFocus();
+					((InputMethodManager) ChildRegistrationActivity.this
+							.getSystemService(ChildRegistrationActivity.INPUT_METHOD_SERVICE))
+							.toggleSoftInput(
+									InputMethodManager.SHOW_FORCED,
+									InputMethodManager.HIDE_IMPLICIT_ONLY);
+				}
+				return true;
+			}
+		});
+		//school_autoCompleteTextView.setOnTouchListener(this);
+
+		school_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
+		{
+
+			@Override 
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+
+				//school_autoCompleteTextView.setText(schoolList.get);
+				school_autoCompleteTextView.setSelection(school_autoCompleteTextView.getText().toString().trim().length());
+
+				hideKeyBoard();
+			}
+		});
+		 */
 
 		addanotherchild_imageView.setOnClickListener(new OnClickListener() {
 
@@ -753,7 +838,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					else
 					{
 						onTouchChildAddButton=false;
-						showAlertPasscode("Alert", hasToaddMore, "Passcodes come in handy when you want to secure access to different profiles within the app. Are you sure you don't want to set them up?");
+						showAlertPasscode("Alert", hasToaddMore, "Locking your child's profile helps secure access to the their personal dashboard. Are you sure you don't want to set up a child profile lock?");
 					}
 
 				}
@@ -766,17 +851,17 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				alertBuilder.setTitle("Alert");
 				alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 				alertBuilder.setMessage("PiNWi is ideal for children aged 6 to 13 yrs.By choosing to share your child’s DOB, you can help us stay relevant with our information."); 
-				alertBuilder.setPositiveButton(" Ignore ", new DialogInterface.OnClickListener() {
+				alertBuilder.setPositiveButton(" GOT IT ", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(final DialogInterface dialog, int which) {
 						dialog.dismiss();
 						countDialog=1;
+						addChild(false);
 						onTouchChildAddButton=false;
-
 					}
 				});
-				alertBuilder.setNegativeButton(" Add ", new DialogInterface.OnClickListener() {
+				alertBuilder.setNegativeButton(" SET ", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which)
@@ -824,7 +909,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				else
 				{
 					onTouchChildAddButton=false;
-					showAlertPasscode("Alert", hasToaddMore, "Passcodes come in handy when you want to secure access to different profiles within the app. Are you sure you don't want to set them up?");
+					showAlertPasscode("Alert", hasToaddMore,"Locking your child's profile helps secure access to the their personal dashboard. Are you sure you don't want to set up a child profile lock?");
 				}
 			}
 		}
@@ -872,7 +957,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			e.printStackTrace();
 		}
 		childProfile.setSchoolName(school_autoCompleteTextView.getText().toString());
-		if(textchild_passcode.getText().toString().equalsIgnoreCase("")||textchild_passcode.getText().toString().equalsIgnoreCase("Passcode"))
+		//if(textchild_passcode.getText().toString().equalsIgnoreCase("")||textchild_passcode.getText().toString().equalsIgnoreCase("Passcode"))
+		if(textchild_passcode.getText().toString().equalsIgnoreCase("")||textchild_passcode.getText().toString().equalsIgnoreCase("Lock Child Profile"))
 		{
 			childProfile.setPasscode("");
 		}
@@ -1089,6 +1175,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		}
 
 	}
+	protected boolean isLockDialogClicked=false;
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1314,6 +1401,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 				if(childProfile!=null)
 					childProfile.setPasscode(passCodeValue);
+				passcodechild_switch.setChecked(true);
+
 				break;
 			}
 		}
@@ -1425,7 +1514,13 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					Collections.sort(schoolStringList);
 					AutoCompleteAdapter checkUpAdapter = new AutoCompleteAdapter(ChildRegistrationActivity.this, R.layout.list_item, R.id.item,schoolStringList);
 					school_autoCompleteTextView.setAdapter(checkUpAdapter);
+					/*					NamesAdapter namesAdapter = new NamesAdapter(
+							ChildRegistrationActivity.this, R.layout.list_item, R.id.item,schoolStringList
+							);
+					//set adapter into listStudent
+					school_autoCompleteTextView.setAdapter(namesAdapter);*/
 					school_autoCompleteTextView.setValidator(new ValidateText(schoolStringList,1));
+					//school_autoCompleteTextView.setThreshold(0);
 				}
 				else
 				{	
@@ -1834,7 +1929,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		alertBuilder.setTitle(title);
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(message);
-		alertBuilder.setPositiveButton(" Yes ", new DialogInterface.OnClickListener() 
+		alertBuilder.setPositiveButton(" Submit ", new DialogInterface.OnClickListener() 
 		{
 
 			@Override
@@ -1845,14 +1940,22 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			}
 		});	
 
-		alertBuilder.setNegativeButton(" Cancel ", new DialogInterface.OnClickListener() 
+		alertBuilder.setNegativeButton(" LOCK ", new DialogInterface.OnClickListener() 
 		{
 
 			@Override
 			public void onClick(DialogInterface dialog, int which)
 			{
 				dialog.dismiss();
+				isLockDialogClicked=true;
+				Intent intent=new Intent(ChildRegistrationActivity.this, AddPasscordActivity.class);
+				Bundle bundle =new Bundle();
+				//textchild_passcode.setText("Passcode");
+				textchild_passcode.setText("Lock Child Profile");
 
+				bundle.putString("passCode","");
+				intent.putExtras(bundle);
+				startActivityForResult(intent, 200);
 			}
 		});	
 		alertBuilder.show();
@@ -1998,7 +2101,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		childpasscode_editText.setText("");
 		childprofilePic_imageView.setImageResource(R.drawable.camera_icon);
 		childnickname_editText.requestFocus();
-		textchild_passcode.setText("Passcode");
+		//textchild_passcode.setText("Passcode");
+		textchild_passcode.setText("Lock Child Profile");
+
 		passcodechild_switch.setChecked(false);
 		sharePref.setIsPasscodeChildSet(false);
 		layout_Pass_AutoLockChild.setVisibility(View.GONE);
@@ -2006,6 +2111,23 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		imageByte=null;						
 		childProfile=new ChildProfile();
 	}
-	
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		getMenuInflater().inflate(R.menu.menu_help, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		/*if(item.getItemId()==R.id.action_help)
+		{
+			Intent intentAboutUs =new Intent(ChildRegistrationActivity.this, ActivityAboutUS.class);
+			startActivity(intentAboutUs);
+			StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";	  
+			}*/
+		return super.onOptionsItemSelected(item);
+	}
 }

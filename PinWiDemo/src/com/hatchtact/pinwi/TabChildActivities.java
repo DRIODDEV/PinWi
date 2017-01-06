@@ -297,7 +297,14 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		textViewtab_notification.setVisibility(View.GONE);
 		textViewtab_notification.setText(StaticVariables.notificationCount + "");
 
-		bitmapHeader = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.header_bg), SplashActivity.ScreenWidth, BitmapFactory.decodeResource(getResources(), R.drawable.header_bg).getHeight(), false);
+		try {
+			bitmapHeader = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.header_bg), SplashActivity.ScreenWidth, BitmapFactory.decodeResource(getResources(), R.drawable.header_bg).getHeight(), false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			bitmapHeader = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.header_bg), SplashActivity.ScreenWidth,100,false);
+
+		}
 
 		int whichisSelected=getIntent().getIntExtra("Type", 0);
 
@@ -678,9 +685,23 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			break;
 		case 5:
 			mDrawerLayout.closeDrawers();
-			Intent intentSettings =new Intent(TabChildActivities.this, SettingsActivity.class);
-			startActivity(intentSettings);
 
+			//if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
+			{
+				Intent intentSettings =new Intent(TabChildActivities.this, SettingsActivity.class);
+				startActivity(intentSettings);
+			}
+			/*else  
+			{ 
+				Intent intent = new Intent(TabChildActivities.this, PasswordUnLockActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putInt("ProfileId", parentId);
+				bundle.putBoolean("ToLoadNextScreen", true);
+				bundle.putInt("isSettings", StaticVariables.TABCHILDACTIVITIESSETTINGSPASSCODE);
+				intent.putExtras(bundle);
+				startActivity(intent);
+				//AccessProfileActivity.this.finish();
+			}*/
 			break;
 
 			/*case 7:
@@ -1417,14 +1438,14 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesFragmentByAfterSchool;//23
 				switchingFragments(new 	AddAfterSchoolCategoriesFragment());
 			}
-			
+
 			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromCalenderFragment)
 			{
 				StaticVariables.fragmentIndexCurrentTabSchedular=
 						addAfterSchoolCategoriesFragmentByActivityFragmentFromCalenderFragment;//22
 				switchingFragments(new 	AddAfterSchoolCategoriesFragment());
 			}
-			
+
 			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromGetByCalenderFragment)
 			{
 				StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesFragmentByCalenderdateFragment;//17;
@@ -1880,7 +1901,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			break;
 		}
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (SubscribeFragment.mHelper == null) return;
@@ -1894,6 +1915,26 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		}
 		else {
 			//Toast.makeText(MainActivity.this, "Purchase Activity Result:", Toast.LENGTH_LONG).show();
+		}
+	}
+
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		try
+		{
+		if(sharePref!=null && gsonRegistration!=null)
+		{
+			parentCompleteInformation = gsonRegistration.fromJson(sharePref.getParentProfile(), ParentProfile.class);
+			parentId=parentCompleteInformation.getParentID();
+			StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
+			StaticVariables.currentParentId=parentCompleteInformation.getParentID();
+		}
+		}
+		catch(Exception e)
+		{
+			
 		}
 	}
 }

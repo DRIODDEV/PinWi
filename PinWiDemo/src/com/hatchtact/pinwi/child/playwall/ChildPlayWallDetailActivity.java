@@ -103,7 +103,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 	private TextView txtemojione,txtemojitwo,txtemojithree,txtemojifour,txtemojifive,buddies_time;
 	private ImageView  emojilayoutimageone,emojilayoutimagetwo,emojilayoutimagethree,emojilayoutimagefour,emojilayoutimagefive;
 	private RelativeLayout layout_bottom;
-	private Integer[] arrayImagesSmileys={R.drawable.wow_i,R.drawable.lol_i,R.drawable.inspired_i,R.drawable.welldone_i,R.drawable.cool_i,R.drawable.me_too_i,R.drawable.love_i,R.drawable.party_time_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i};
+	private Integer[] arrayImagesSmileys={R.drawable.wow_i,R.drawable.wow_i,R.drawable.lol_i,R.drawable.inspired_i,R.drawable.welldone_i,R.drawable.cool_i,R.drawable.me_too_i,R.drawable.love_i,R.drawable.party_time_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i};
 	private LinearLayout layoutemojione,layoutemojitwo,layoutemojithree,layoutemojifour,layoutemojifive;
 
 	@Override
