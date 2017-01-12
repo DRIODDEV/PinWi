@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.child.ChildTutorialActivity;
 import com.hatchtact.pinwi.classmodel.Error;
-import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.classmodel.RecoverPasscode;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
@@ -70,7 +69,7 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		screenName="Access Code";
+		screenName="Unlock Profile";
 
 		super.onCreate(savedInstanceState);
 
@@ -392,7 +391,7 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 			pinCodeField4.setBackgroundResource(R.drawable.rounded_button);
 
 
-			showMessage.showAlert("Warning", "Wrong passcode.Please try again");
+			showMessage.showAlert("Warning", "Wrong code.Please try again");
 
 			//	Toast.makeText(PasswordUnLockActivity.this,"Wrong passcode.Please try again",Toast.LENGTH_SHORT).show();
 		}
@@ -494,7 +493,7 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 	private void getError()
 	{
 		Error err = serviceMethod.getError();	
-		showMessage.showAlert("Recover Passcode", err.getErrorDesc());
+		showMessage.showAlert("Recover Code", err.getErrorDesc());
 	}
 
 	/*private class CheckPassCode extends AsyncTask<Void, Void, Integer>

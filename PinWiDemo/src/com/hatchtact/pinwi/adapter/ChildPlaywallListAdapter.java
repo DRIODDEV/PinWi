@@ -43,8 +43,8 @@ public class ChildPlaywallListAdapter extends ArrayAdapter<GetFriendsTempleteMes
 	private ShowMessages showMessage;
 	private ChildPlayWallActivity mActivity;
 	private String[] innerColor = {"#6a24ae","#f7941d","#fdb813","#64ad17","#acc138","#f2716c","#5b9ddd","#a3238e"};
-	private Integer[] arrayImagesSmileys={R.drawable.wow_i,R.drawable.lol_i,R.drawable.inspired_i,R.drawable.welldone_i,R.drawable.cool_i,R.drawable.me_too_i,R.drawable.love_i,R.drawable.party_time_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i};
-	private Integer[] arrayImagesSmileysBig={R.drawable.wow_big_i,R.drawable.lol_big_i,R.drawable.inspired_big_i,R.drawable.welldone_big_i,R.drawable.cool_big_i,R.drawable.me_too_big_i,R.drawable.love_big_i,R.drawable.party_time_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i};
+	private Integer[] arrayImagesSmileys={R.drawable.wow_i,R.drawable.wow_i,R.drawable.lol_i,R.drawable.inspired_i,R.drawable.welldone_i,R.drawable.cool_i,R.drawable.me_too_i,R.drawable.love_i,R.drawable.party_time_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i};
+	private Integer[] arrayImagesSmileysBig={R.drawable.wow_i,R.drawable.wow_big_i,R.drawable.lol_big_i,R.drawable.inspired_big_i,R.drawable.welldone_big_i,R.drawable.cool_big_i,R.drawable.me_too_big_i,R.drawable.love_big_i,R.drawable.party_time_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i,R.drawable.wow_big_i};
 
 	/*private int previousColorIndex = 0;
 	private Random random;*/

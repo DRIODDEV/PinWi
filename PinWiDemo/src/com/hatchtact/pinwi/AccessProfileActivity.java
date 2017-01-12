@@ -1067,10 +1067,26 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			break;
 		case 5:
 			mDrawerLayout.closeDrawers();
-			finish();
-			StaticVariables.isSettingsFromAccessProfile=true;
-			Intent intentSettings =new Intent(AccessProfileActivity.this, SettingsActivity.class);
-			startActivity(intentSettings);
+			if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
+			{
+				finish();
+				StaticVariables.isSettingsFromAccessProfile=true;
+				Intent intentSettings =new Intent(AccessProfileActivity.this, SettingsActivity.class);
+				startActivity(intentSettings);
+			}
+			else  
+			{ 
+				Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putInt("ProfileId", parentId);
+				bundle.putBoolean("ToLoadNextScreen", true);
+				bundle.putInt("isSettings", StaticVariables.ACCESSPROFILESETTINGSPASSCODE);
+
+				intent.putExtras(bundle);
+				startActivity(intent);
+				//AccessProfileActivity.this.finish();
+			}
+			
 
 			break;
 
@@ -1406,4 +1422,23 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	}	
 
 	
+	/*@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		try
+		{
+		if(sharePreferenceClass!=null && gsonRegistration!=null)
+		{
+			parentCompleteInformation = gsonRegistration.fromJson(sharePreferenceClass.getParentProfile(), ParentProfile.class);
+			parentId=parentCompleteInformation.getParentID();
+			StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
+			StaticVariables.currentParentId=parentCompleteInformation.getParentID();
+		}
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}*/
 }

@@ -81,7 +81,7 @@ public class ChildEmoticonDetailActivity extends Activity
 	private TextView noconnectiontext;
 	private String MapID;
 	private ImageView  emojilayoutimageone,emojilayoutimagetwo,emojilayoutimagethree,emojilayoutimagefour,emojilayoutimagefive;
-	private Integer[] arrayImagesSmileys={R.drawable.wow_i,R.drawable.lol_i,R.drawable.inspired_i,R.drawable.welldone_i,R.drawable.cool_i,R.drawable.me_too_i,R.drawable.love_i,R.drawable.party_time_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i};
+	private Integer[] arrayImagesSmileys={R.drawable.wow_i,R.drawable.wow_i,R.drawable.lol_i,R.drawable.inspired_i,R.drawable.welldone_i,R.drawable.cool_i,R.drawable.me_too_i,R.drawable.love_i,R.drawable.party_time_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i};
 
 	private String EmoticID;
 	private int screen=0;

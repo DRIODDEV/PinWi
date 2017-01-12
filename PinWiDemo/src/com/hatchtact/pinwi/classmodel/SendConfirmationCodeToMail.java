@@ -8,7 +8,7 @@ public class SendConfirmationCodeToMail implements Serializable
 	private String wsid="";
 	private String wspwd="";
 	private String EmailAddress="";
-	//private String Contact="";
+	private String Contact="";
 
 	private int ParentID;
 
@@ -36,10 +36,11 @@ public class SendConfirmationCodeToMail implements Serializable
 	public void setParentID(Integer parentID) {
 		ParentID = parentID;
 	}
-	/*public String getContact() {
+	public String getContact() {
 		return Contact;
 	}
 	public void setContact(String contact) {
 		Contact = contact;
-	}*/
+	}
+	
 }

@@ -127,6 +127,8 @@ public class StaticVariables
 	public static PassCode parentPasscodeModel=new PassCode();
 	public static PassCodeList childPasscodeList=new PassCodeList();;
 	public static boolean isInterestDriver=false;
+	public static final int  ACCESSPROFILESETTINGSPASSCODE=1;
+	public static final int  TABCHILDACTIVITIESSETTINGSPASSCODE=2;
 
 
 

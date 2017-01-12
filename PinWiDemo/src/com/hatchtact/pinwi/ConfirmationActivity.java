@@ -9,7 +9,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -61,12 +63,13 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 	private CheckNetwork checkNetwork=null;
 
 	int parentID;
-	String EmailAddress;
+	String EmailAddress,Contact;
 
 	private Gson gsonRegistration=null; 
 	private boolean  onTouchSendButton=false;
 
 	private RadioGroup group_sms_email=null;
+	private TextView header_text,header_help;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +86,8 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 		// Get bundle and pass it to webservice
 		parentID=getIntent().getIntExtra("ParentID", -1);
 		EmailAddress=getIntent().getStringExtra("EmailAddress");
-
+		Contact=getIntent().getStringExtra("Contact");
+		
 		typeFace= new TypeFace(ConfirmationActivity.this);
 		sendConfirmationCodeToMail=new SendConfirmationCodeToMail();
 		serviceMethod = new ServiceMethod();
@@ -108,10 +112,15 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 
 		sendConfirmationCodeToMail.setEmailAddress(EmailAddress);
 		sendConfirmationCodeToMail.setParentID(parentID);
+		sendConfirmationCodeToMail.setContact(Contact);
 
 		text_confirmation = (TextView) findViewById(R.id.text_confirmation);
 		text_receiveConfirmation = (TextView) findViewById(R.id.text_receiveConfirmation);
 		text_condition  = (TextView) findViewById(R.id.text_condition);
+
+		code_editText.clearFocus();
+		code_editText.clearFocus();
+		code_editText.clearFocus();
 
 		typeFace.setTypefaceLight(code_editText);
 		typeFace.setTypefaceLight(text_confirmation);
@@ -120,6 +129,7 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 
 		typeFace.setTypefaceRegular(check_imageView);
 
+		send_button.requestFocus();
 		typeFace.setTypefaceRegular(send_button);
 		typeFace.setTypefaceRegular(submit_button);
 
@@ -129,7 +139,20 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 
 		send_button.setOnClickListener(this);
 		submit_button.setOnClickListener(this);
-
+		header_text=(TextView) findViewById(R.id.header_text);
+		header_help=(TextView) findViewById(R.id.header_help);
+		header_text.setText(screenName);
+		
+		header_help.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentAboutUs =new Intent(ConfirmationActivity.this, ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";	
+			}
+		});
 		text_condition.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -169,6 +192,17 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+			/*if(email_text.isChecked())
+			{
+				sms_text.setEnabled(false);
+				sms_text.setClickable(false);
+			}
+			else
+			{
+				email_text.setEnabled(false);
+				email_text.setClickable(false);	
+			}*/
+			
 		}
 
 		@Override
@@ -221,7 +255,7 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 				}
 				else
 				{
-					showMessage.showAlert("Confirmation", "We just sent a verification code to your registered conatct no.");
+					showMessage.showAlert("Confirmation", "We just sent a verification code to your registered contact no.");
 
 				}
 				if(result!=0)
@@ -481,4 +515,39 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 		startActivity(intent);
 		ConfirmationActivity.this.finish();
 	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		code_editText.clearFocus();
+		code_editText.clearFocus();
+		code_editText.clearFocus();
+		hideKeyBoard();
+	}
+
+	private void hideKeyBoard()
+	{
+		try  
+		{
+			this.getWindow().setSoftInputMode(
+					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+			InputMethodManager inputManager = (InputMethodManager)this
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+			inputManager.hideSoftInputFromWindow(this
+					.getCurrentFocus().getWindowToken(), 0);
+
+			this.getWindow().setSoftInputMode(
+					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		} 
+		catch (Exception e) 
+		{
+
+		}
+	}
+
+
+	
 }

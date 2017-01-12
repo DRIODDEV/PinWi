@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hatchtact.pinwi"
-    android:versionCode="29"
-    android:versionName="1.2.2" >
+    android:versionCode="34"
+    android:versionName="1.2.4" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -77,7 +77,7 @@
         <activity
             android:name="com.hatchtact.pinwi.ParentRegistrationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/NoActionBar" />
         <activity
             android:name="com.hatchtact.pinwi.LocationActivity"
             android:screenOrientation="portrait"
@@ -85,11 +85,11 @@
         <activity
             android:name="com.hatchtact.pinwi.ConfirmationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/NoActionBar" />
         <activity
             android:name="com.hatchtact.pinwi.ChildRegistrationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/NoActionBar" />
         <activity
             android:name="com.hatchtact.pinwi.AllyRegistrationActivity"
             android:screenOrientation="portrait"
@@ -322,7 +322,7 @@
         <meta-data
             android:name="CLEVERTAP_TOKEN"
             android:value="aab-1a6" />
-<!-- 
+        <!--
         <receiver
             android:name="com.clevertap.android.sdk.InstallReferrerBroadcastReceiver"
             android:exported="true" >
@@ -371,8 +371,9 @@
         <meta-data
             android:name="CLEVERTAP_NOTIFICATION_ICON"
             android:value="ic_stat_red_star" /> 
-            name of your file in the drawable directory without the file extension. -->
-        
+            name of your file in the drawable directory without the file extension.
+        -->
+
     </application>
 
 </manifest>

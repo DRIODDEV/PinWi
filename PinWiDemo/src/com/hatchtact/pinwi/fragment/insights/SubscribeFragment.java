@@ -2,6 +2,7 @@ package com.hatchtact.pinwi.fragment.insights;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hatchtact.pinwi.ActivityAboutUS;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.util.IabHelper;
@@ -34,7 +36,7 @@ public class SubscribeFragment extends ParentFragment
 	private View view;
 	public static SubscribeFragment subscribefragment;
 	private View layoutYearly,layoutQuarterly;
-	private TextView tvtxtone,tvtxttwo;
+	private TextView tvtxtone,tvtxttwo,tvtxtthree;
 	private ImageView imgBenifits;
 	private TextView yearlytext,yearlyprice,yearlytotalprice,quarterlyytext,quarterlyprice,quarterlytotalprice;
 	private Typeface typeface;
@@ -279,12 +281,12 @@ public class SubscribeFragment extends ParentFragment
 			if (mHelper == null) return;
 
 			if (result.isFailure()) {
-			//	complain("Error purchasing: " + result);
+				//	complain("Error purchasing: " + result);
 				//setWaitScreen(false);
 				return;
 			}
 			if (!verifyDeveloperPayload(purchase)) {
-			//	complain("Error purchasing. Authenticity verification failed.");
+				//	complain("Error purchasing. Authenticity verification failed.");
 				//setWaitScreen(false);
 				return;
 			}
@@ -388,6 +390,7 @@ public class SubscribeFragment extends ParentFragment
 
 		tvtxtone=(TextView) view.findViewById(R.id.tvtxtone);
 		tvtxttwo=(TextView) view.findViewById(R.id.tvtxttwo);
+		tvtxtthree=(TextView) view.findViewById(R.id.tvtxtthree);
 		imgBenifits=(ImageView) view.findViewById(R.id.imgBenifits);
 
 		yearlytext=(TextView) layoutYearly.findViewById(R.id.yearlytext);
@@ -405,12 +408,35 @@ public class SubscribeFragment extends ParentFragment
 		typeFace=new TypeFace(getActivity());
 		typeFace.setTypefaceRegular(tvtxtone);
 		typeFace.setTypefaceRegular(tvtxttwo);
+		typeFace.setTypefaceRegular(tvtxtthree);
+
 		typeFace.setTypefaceRegular(yearlytext);
 		typeFace.setTypefaceRegular(yearlyprice);
 		typeFace.setTypefaceRegular(yearlytotalprice);
 		typeFace.setTypefaceRegular(quarterlyytext);
 		typeFace.setTypefaceRegular(quarterlyprice);
 		typeFace.setTypefaceRegular(quarterlytotalprice);
+
+		tvtxttwo.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentAboutUs =new Intent(getActivity(), ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+				StaticVariables.webUrl="http://pinwi.in/privacy_policy.html";
+			}
+		});
+		tvtxtthree.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentAboutUs =new Intent(getActivity(), ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+				StaticVariables.webUrl="http://pinwi.in/terms.html";
+			}
+		});
 	}
 
 

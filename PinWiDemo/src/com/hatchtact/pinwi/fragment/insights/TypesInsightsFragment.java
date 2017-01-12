@@ -246,7 +246,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		typeFace.setTypefaceRegular(txtInterestPatterns);
 		typeFace.setTypefaceRegular(txtDelightTrends);
 		typeFace.setTypefaceRegular(txtPointsSummary);
-
+		txtDelightTrends.setText("Activity Rating");
 
 		subscribeNow=(Button) view.findViewById(R.id.buttoninsightsubscribe);
 		subscribeNow.setVisibility(View.GONE);
@@ -1436,7 +1436,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			break;
 
 		case R.id.layoutThree:
-			showMessage.showAlertInsights("Delight Trends",getString(R.string.namesDelightTrends));
+			showMessage.showAlertInsights("Activity Rating",getString(R.string.namesDelightTrends));
 
 			break;
 		case R.id.layoutFour:
@@ -1455,7 +1455,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 			break;
 		case R.id.imageinsightdelightTrendsInstruction:
-			showMessage.showAlertInsights("Delight Trends",getString(R.string.namesDelightTrends));
+			showMessage.showAlertInsights("Activity Rating",getString(R.string.namesDelightTrends));
 
 			break;
 

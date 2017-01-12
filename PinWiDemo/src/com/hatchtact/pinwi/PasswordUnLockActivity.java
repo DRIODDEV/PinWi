@@ -19,10 +19,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.classmodel.Error;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
-import com.hatchtact.pinwi.classmodel.PassCodeList;
 import com.hatchtact.pinwi.classmodel.RecoverPasscode;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
@@ -67,23 +65,26 @@ public  class PasswordUnLockActivity extends MainActionBarActivity
 	private Button button7;
 	private Button button8;
 	private Button button9;
+	private int  isSettings=0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		screenName="Access Code";
+		screenName="Unlock Profile";
 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.app_passcode_keyboard);
-
+		isSettings=0;
 		try {
 			Bundle bundle = getIntent().getExtras();	
 			profileId = bundle.getInt("ProfileId");
 			loadNextScreen = bundle.getBoolean("ToLoadNextScreen");
+			isSettings = bundle.getInt("isSettings");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			isSettings=0;
 		}
 
 		typeFace= new TypeFace(PasswordUnLockActivity.this); 
@@ -211,8 +212,21 @@ public  class PasswordUnLockActivity extends MainActionBarActivity
 						if(loadNextScreen)
 						{
 							PasswordUnLockActivity.this.finish();
-							Intent intent=new Intent(PasswordUnLockActivity.this, AccessProfileActivity.class);
-							startActivity(intent);
+							switch (isSettings) {
+							/*case StaticVariables.ACCESSPROFILESETTINGSPASSCODE:
+								Intent intent=new Intent(PasswordUnLockActivity.this, AccessProfileActivity.class);
+								startActivity(intent);
+								break;*/
+							case StaticVariables.TABCHILDACTIVITIESSETTINGSPASSCODE:
+								finish();
+								break;
+							default:
+								/*Intent intent=new Intent(PasswordUnLockActivity.this, AccessProfileActivity.class);
+								startActivity(intent);*/
+								finish();
+								break;
+							}
+							
 						}
 						else
 						{
@@ -352,10 +366,24 @@ public  class PasswordUnLockActivity extends MainActionBarActivity
 				if(loadNextScreen)
 				{
 					PasswordUnLockActivity.this.finish();
-					AccessProfileActivity.getInstance().finish();
-					Intent intent=new Intent(PasswordUnLockActivity.this, TabChildActivities.class);
-					intent.putExtra("Type", 1);
-					startActivity(intent);
+					switch (isSettings) {
+					case StaticVariables.ACCESSPROFILESETTINGSPASSCODE:
+						StaticVariables.isSettingsFromAccessProfile=true;
+						Intent intentSettings =new Intent(PasswordUnLockActivity.this, SettingsActivity.class);
+						startActivity(intentSettings);
+						break;
+					case StaticVariables.TABCHILDACTIVITIESSETTINGSPASSCODE:
+						Intent intentSettingsTab =new Intent(PasswordUnLockActivity.this, SettingsActivity.class);
+						startActivity(intentSettingsTab);
+						break;
+					default:
+						AccessProfileActivity.getInstance().finish();
+						Intent intent=new Intent(PasswordUnLockActivity.this, TabChildActivities.class);
+						intent.putExtra("Type", 1);
+						startActivity(intent);
+						break;
+					}
+
 					/*Intent intent=new Intent(PasswordUnLockActivity.this, ParentProfileInformationActivity.class)	;
 					startActivity(intent);*/
 				}
@@ -370,10 +398,23 @@ public  class PasswordUnLockActivity extends MainActionBarActivity
 				// Screen Next to child
 				if(loadNextScreen)
 				{
-					AccessProfileActivity.getInstance().finish();
-					Intent intent=new Intent(PasswordUnLockActivity.this, TabChildActivities.class);
-					intent.putExtra("Type", 1);
-					startActivity(intent);
+					switch (isSettings) {
+					case StaticVariables.ACCESSPROFILESETTINGSPASSCODE:
+						StaticVariables.isSettingsFromAccessProfile=true;
+						Intent intentSettings =new Intent(PasswordUnLockActivity.this, SettingsActivity.class);
+						startActivity(intentSettings);
+						break;
+					case StaticVariables.TABCHILDACTIVITIESSETTINGSPASSCODE:
+						Intent intentSettingsTab =new Intent(PasswordUnLockActivity.this, SettingsActivity.class);
+						startActivity(intentSettingsTab);
+						break;
+					default:
+						AccessProfileActivity.getInstance().finish();
+						Intent intent=new Intent(PasswordUnLockActivity.this, TabChildActivities.class);
+						intent.putExtra("Type", 1);
+						startActivity(intent);
+						break;
+					}
 					/*Intent intent=new Intent(PasswordUnLockActivity.this, ParentProfileInformationActivity.class)	;
 					startActivity(intent);*/
 				}
@@ -399,7 +440,7 @@ public  class PasswordUnLockActivity extends MainActionBarActivity
 			pinCodeField4.setBackgroundResource(R.drawable.rounded_button);
 
 
-			showMessage.showAlert("Warning", "Wrong passcode.Please try again");
+			showMessage.showAlert("Warning", "Wrong code.Please try again");
 
 			//	Toast.makeText(PasswordUnLockActivity.this,"Wrong passcode.Please try again",Toast.LENGTH_SHORT).show();
 		}
@@ -501,7 +542,7 @@ public  class PasswordUnLockActivity extends MainActionBarActivity
 	private void getError()
 	{
 		Error err = serviceMethod.getError();	
-		showMessage.showAlert("Recover Passcode", err.getErrorDesc());
+		showMessage.showAlert("Recover Code", err.getErrorDesc());
 	}
 
 	/*private class CheckPassCode extends AsyncTask<Void, Void, Integer>

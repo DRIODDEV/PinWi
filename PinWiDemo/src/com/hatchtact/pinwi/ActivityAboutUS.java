@@ -40,7 +40,12 @@ public class ActivityAboutUS extends MainActionBarActivity
 		
 		else if(StaticVariables.webUrl.contains("terms"))
 		{
-			screenName="Terms & Conditions";
+			screenName="Terms Of Use";
+
+		}
+		else if(StaticVariables.webUrl.contains("privacy_policy"))
+		{
+			screenName="Privacy Policy";
 
 		}
 		else if(StaticVariables.webUrl.contains("Insight_Report"))

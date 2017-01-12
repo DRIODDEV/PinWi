@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/background_color" >
 
+    <include
+        android:id="@+id/headerActionBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/action_layout" />
     <Button
         android:id="@+id/button_continueParent"
         android:layout_width="match_parent"
@@ -17,10 +22,10 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/headerActionBar"
         android:layout_above="@id/button_continueParent"
-        android:layout_alignParentTop="true"
         android:layout_marginBottom="10dip"
-        android:layout_marginTop="15dip" >
+        android:layout_marginTop="5dip" >
 
         <RelativeLayout
             android:layout_width="match_parent"

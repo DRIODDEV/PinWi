@@ -7,9 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.facebook.appevents.AppEventsLogger;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.Tracker;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;

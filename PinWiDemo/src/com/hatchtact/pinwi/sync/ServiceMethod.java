@@ -124,7 +124,7 @@ public class ServiceMethod
 	private final String URL = "http://166.78.47.124:2016/pinwiservice.asmx";
 	//private final String URL = "http://166.78.47.124:2015/pinwiservice.asmx";
 
-	
+
 	/** The Constant NAMESPACE. */
 	private final String NAMESPACE = "http://tempuri.org/";
 
@@ -520,10 +520,16 @@ public class ServiceMethod
 		request.addProperty(WSIDKEY, WSID);
 		request.addProperty(WSPWDKEY,WSPWD);
 		if(type==0)
-		request.addProperty("EmailAddress",sendCodeTomail.getEmailAddress());
-		/*else
-		request.addProperty("Contact",sendCodeTomail.getContact());*/
-		
+		{
+			request.addProperty("EmailAddress",sendCodeTomail.getEmailAddress());
+			request.addProperty("Contact","");
+		}
+		else
+		{
+			request.addProperty("EmailAddress","");
+			request.addProperty("Contact",sendCodeTomail.getContact());
+		}
+
 		request.addProperty("ParentID",sendCodeTomail.getParentID());
 
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
@@ -9783,7 +9789,7 @@ public class ServiceMethod
 		request.addProperty("DeviceType",DeviceType);
 		request.addProperty("ChildID",StaticVariables.currentChild.getChildID());
 
-	
+
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
@@ -10351,7 +10357,7 @@ public class ServiceMethod
 		request.addProperty("CityID",/*cityId+*/"");
 		request.addProperty("SearchText","");
 
-	
+
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
@@ -10423,10 +10429,10 @@ public class ServiceMethod
 			e.printStackTrace();
 		}
 		return locality;
-	
+
 	}
 
-	
+
 	public SearchActivitiesByActivityNameList searchActivityByName(String  SearchText)
 	{
 		//NumberOfRows=8;
