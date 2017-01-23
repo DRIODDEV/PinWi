@@ -213,7 +213,7 @@ public class SharePreferenceClass
 	}
 	public String getTime()
 	{
-		return sharedPreferences.getString("Time","9:00 AM");
+		return sharedPreferences.getString("Time","7:30 PM");
 	}
 	
 	
@@ -373,7 +373,7 @@ public class SharePreferenceClass
 	}
 	public String getTime24Hour()
 	{
-		return sharedPreferences.getString("Time24Hour","9:00");
+		return sharedPreferences.getString("Time24Hour","19:30");
 	}
 	
 	
@@ -401,6 +401,32 @@ public class SharePreferenceClass
 		editor = sharedPreferences.edit();
 		editor.putBoolean("isAppDownloaded", isAppDownloaded);
 		editor.commit();
+	}
+	
+	
+	public boolean isReminderOn()
+	{
+		return sharedPreferences.getBoolean("isReminderOn",true);
+	}
+	
+	public void setReminder(boolean isReminderOn)
+	{
+		editor = sharedPreferences.edit();
+		editor.putBoolean("isReminderOn", isReminderOn);
+		editor.commit();
+	}
+	
+	public void setInsightsActivated(int isInsightsActivated,String key) 
+	{
+		// TODO Auto-generated method stub
+		editor = sharedPreferences.edit();
+		editor.putInt(key+"InsightsActivated",isInsightsActivated);
+		editor.commit();
+	}
+
+	public int isInsightsActivared(String key) 
+	{		
+		return sharedPreferences.getInt(key+"InsightsActivated",0);
 	}
 	
 }

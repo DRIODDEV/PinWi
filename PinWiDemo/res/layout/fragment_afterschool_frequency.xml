@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button_Save_Frequency"
+        android:background="@color/background_color"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/layoutAllDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            layout="@layout/item_row_frequency" />
+
+        <TextView
+            android:id="@+id/txtRepeatMode"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:background="@color/gray"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Repeat"
+            android:textColor="@color/black_color"
+            android:textSize="18sp" />
+
+        <include
+            android:id="@+id/layoutWeekly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            layout="@layout/item_row_frequency" />
+
+        <include
+            android:id="@+id/layoutBiWeekly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            layout="@layout/item_row_frequency" />
+
+        <TextView
+            android:id="@+id/txtDaysOfWeek"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:background="@color/gray"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Days Of Week"
+            android:textColor="@color/black_color"
+            android:textSize="18sp" />
+
+        <ScrollView
+            android:id="@+id/scrollDaysOfWeek"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <include
+                    android:id="@+id/layoutMonday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutTuesday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutWednesday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutThurday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutFriday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutSaturday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutSunday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutAllWeekdays"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+
+                <include
+                    android:id="@+id/layoutOnlyWeekends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    layout="@layout/item_row_frequency_day" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_Save_Frequency"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/rectangular_btn"
+        android:text="Save"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" />
+
+</RelativeLayout>

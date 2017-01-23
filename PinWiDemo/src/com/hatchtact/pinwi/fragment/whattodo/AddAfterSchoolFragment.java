@@ -1468,7 +1468,19 @@ public class AddAfterSchoolFragment extends ParentFragment
 						addAfterSchoolActivities.setEndTime(afterSchoolActivityDetails.getEndTime());
 						addAfterSchoolActivities.setActivityDays(afterSchoolActivityDetails.getDayID());
 						addAfterSchoolActivities.setActivityID(AddAfterSchoolFragment.this.activityId);
+						addAfterSchoolActivities.setRemarks(afterSchoolActivityDetails.getRemarks());
 
+						try {
+							if(addAfterSchoolActivities.getRemarks().trim().length()>0)
+							text_typeNoteAfterSchool.setText(addAfterSchoolActivities.getRemarks());
+							else
+							{
+								text_typeNoteAfterSchool.setText("");
+							}
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
 						/*addAfterSchoolActivities.setAllyId1(afterSchoolActivityDetails.getAllyID1());
 						addAfterSchoolActivities.setAllyId2(afterSchoolActivityDetails.getAllyID2());
 						 */

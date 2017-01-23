@@ -1084,12 +1084,12 @@ public class AddAfterSchoolFragment extends ParentFragment
 	private void showDialog(boolean isStartTime)
 	{
 		// TODO Auto-generated method stub
-		
+
 		if(builder_time_picker != null){
 			builder_time_picker.dismiss();
 			builder_time_picker = null;
 		}
-		
+
 		builder_time_picker = new Dialog(mActivity);
 		builder_time_picker.setTitle("Select Time:");
 		LayoutInflater li = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -1102,7 +1102,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 		mTimePicker.setIs24HourView(true);
 		mTimePicker.setCurrentHour(c.get(Calendar.HOUR_OF_DAY));
 		mTimePicker.setCurrentMinute(c.get(Calendar.MINUTE));
-		
+
 		if(isStartTime)
 		{
 			if(start_timeValue_text.getText().toString().trim().length() > 0){
@@ -1110,7 +1110,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 					mTimePicker.setCurrentHour(Integer.parseInt(start_timeValue_text.getText().toString().split(":")[0]));
 					mTimePicker.setCurrentMinute(Integer.parseInt(start_timeValue_text.getText().toString().split(":")[1]));
 				}catch(Exception e){
-						
+
 				}
 			}
 		}else{
@@ -1119,11 +1119,11 @@ public class AddAfterSchoolFragment extends ParentFragment
 					mTimePicker.setCurrentHour(Integer.parseInt(end_timeValue_text.getText().toString().split(":")[0]));
 					mTimePicker.setCurrentMinute(Integer.parseInt(end_timeValue_text.getText().toString().split(":")[1]));
 				}catch(Exception e){
-						
+
 				}
 			}
 		}
-		
+
 
 		Button cancel_time = (Button) view.findViewById(R.id.cancel_time);
 		cancel_time.setOnClickListener(new OnClickListener() {
@@ -1232,6 +1232,17 @@ public class AddAfterSchoolFragment extends ParentFragment
 	}
 
 	private void showChoiceForDays() {
+		/**Added for frquency page after school new changes *//*
+		StaticVariables.addAfterSchoolActivities = addAfterSchoolActivities;
+		StaticVariables.ActivityIdScheduler=activityId;
+		StaticVariables.fragmentIndexFrequencyPage=1000;
+		if(text_typeNoteAfterSchool.getText().toString().trim()!=null)
+			StaticVariables.addAfterSchoolActivities.setRemarks(text_typeNoteAfterSchool.getText().toString().trim());
+
+		switchingFragments(new FrequencyAfterSchoolFragment());	
+		 *//**Added for frquency page after school new changes */
+
+
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 
@@ -1900,6 +1911,19 @@ public class AddAfterSchoolFragment extends ParentFragment
 						addAfterSchoolActivities.setEndTime(afterSchoolActivityDetails.getEndTime());
 						addAfterSchoolActivities.setActivityDays(afterSchoolActivityDetails.getDayID());
 						addAfterSchoolActivities.setActivityID(AddAfterSchoolFragment.this.activityId);
+						addAfterSchoolActivities.setRemarks(afterSchoolActivityDetails.getRemarks());
+
+						try {
+							if(addAfterSchoolActivities.getRemarks().trim().length()>0)
+							text_typeNoteAfterSchool.setText(addAfterSchoolActivities.getRemarks());
+							else
+							{
+								text_typeNoteAfterSchool.setText("");
+							}
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
 
 						/*addAfterSchoolActivities.setAllyId1(afterSchoolActivityDetails.getAllyID1());
 						addAfterSchoolActivities.setAllyId2(afterSchoolActivityDetails.getAllyID2());

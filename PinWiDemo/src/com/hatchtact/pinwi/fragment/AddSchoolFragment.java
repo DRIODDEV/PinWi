@@ -952,7 +952,9 @@ public class AddSchoolFragment extends ParentFragment
 					if(schoolActivityDetails!=null)
 					{  
 						subjectName_text.setText(schoolActivityDetails.getName());
+						if(schoolActivityDetails.getRemarks().trim().length()>0)
 						note_text.setText(schoolActivityDetails.getRemarks());
+						
 						if(schoolActivityDetails.getExamDate()==null||schoolActivityDetails.getExamDate().equalsIgnoreCase("")||schoolActivityDetails.getExamDate().equalsIgnoreCase("null"))
 						{
 							date_text.setText("");

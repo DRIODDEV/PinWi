@@ -19,6 +19,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 public class GuideSlideActivity extends FragmentActivity 
@@ -33,6 +34,7 @@ public class GuideSlideActivity extends FragmentActivity
 	private TextView text_previous,text_next,text_why,text_getStarted;
 	private TemplateViewPager guideSlideTemplate;
 	private View emptyView;
+	//protected SocialConstants social;
 
 
 
@@ -50,6 +52,8 @@ public class GuideSlideActivity extends FragmentActivity
 		setContentView(R.layout.activity_guideslide);
 		GuideSlideActivity.this.overridePendingTransition(R.anim.grow_from_bottomright_to_topleft, R.anim.activity_close);
 		typeFace = new TypeFace(GuideSlideActivity.this);
+		//social=new SocialConstants(this);
+
 		sharepref = new SharePreferenceClass(GuideSlideActivity.this);
 		hideKeyBoard();
 		guideSlideTemplate = (TemplateViewPager) findViewById(R.id.postcard_templates);
@@ -164,6 +168,8 @@ public class GuideSlideActivity extends FragmentActivity
 				text_next.setVisibility(View.GONE);
 				text_why.setVisibility(View.GONE);
 				text_getStarted.setVisibility(View.VISIBLE);
+			/*	social.CompletedTutorialFacebookLog();
+				social.CompletedTutorialGoogleAnalyticsLog();*/
 				/* previousState = currentState;
 			    currentState = state;
 			    if (previousState == 1 && currentState == 0) {

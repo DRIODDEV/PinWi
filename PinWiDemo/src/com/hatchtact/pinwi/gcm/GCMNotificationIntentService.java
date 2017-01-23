@@ -84,7 +84,8 @@ public class GCMNotificationIntentService  extends IntentService {
 				.setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
 				.setContentText(msg).setAutoCancel(true).setDefaults(Notification.DEFAULT_SOUND)
 				.setDefaults(Notification.DEFAULT_VIBRATE);
-		
+		/*Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        mBuilder.setSound(uri);*/
 		boolean foregroud=true;
 		try {
 			foregroud = new ForegroundCheckTask().execute(this).get();

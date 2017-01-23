@@ -3,6 +3,7 @@ package com.hatchtact.pinwi.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +61,8 @@ public class NamesAdapter extends ArrayAdapter<String> {
             return str;
         }
 
-        @Override
+        @SuppressLint("DefaultLocale")
+		@Override
         protected FilterResults performFiltering(CharSequence constraint) {
             if (constraint != null) {
                 suggestions.clear();
@@ -80,13 +82,20 @@ public class NamesAdapter extends ArrayAdapter<String> {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            List<String> filterList = (ArrayList<String>) results.values;
+            @SuppressWarnings("unchecked")
+			List<String> filterList = (ArrayList<String>) results.values;
             if (results != null && results.count > 0) {
-                clear();
-                for (String names : filterList) {
-                    add(names);
-                    notifyDataSetChanged();
-                }
+                try {
+					clear();
+					for (String names : filterList) {
+					    add(names);
+					}
+					notifyDataSetChanged();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
             }
         }
     };

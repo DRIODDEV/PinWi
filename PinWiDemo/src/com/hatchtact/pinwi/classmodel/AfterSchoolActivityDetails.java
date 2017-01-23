@@ -24,6 +24,7 @@ public class AfterSchoolActivityDetails implements Serializable
 	
 	private int Ally1Index;
 	private int Ally2Index;
+	private String Remarks;
 
 	public String getActivityAllyID() {
 		return ActivityAllyID;
@@ -133,5 +134,11 @@ public class AfterSchoolActivityDetails implements Serializable
 	}
 	public void setAlly2Index(int ally2Index) {
 		Ally2Index = ally2Index;
+	}
+	public String getRemarks() {
+		return Remarks;
+	}
+	public void setRemarks(String remarks) {
+		Remarks = remarks;
 	}
 }
