@@ -15,7 +15,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hatchtact.pinwi.GuideSlideActivity;
 import com.hatchtact.pinwi.NotificationDetailActivity;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.classmodel.GetNotificationListByParentIDList;

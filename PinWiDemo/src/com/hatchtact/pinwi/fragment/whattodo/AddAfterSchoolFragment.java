@@ -9,14 +9,12 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -41,9 +39,11 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.classmodel.AddAfterSchoolActivities;
 import com.hatchtact.pinwi.classmodel.AfterSchoolActivityDetails;
 import com.hatchtact.pinwi.classmodel.Error;
+import com.hatchtact.pinwi.fragment.FrequencyAfterSchoolFragment;
 import com.hatchtact.pinwi.fragment.insights.ParentFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.Validation;
@@ -135,6 +135,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 	private TextView specialDay_text;
 
 	public static int updatedDataFromAfterSchool = 0;
+	private SharePreferenceClass sharePref;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,10 +143,11 @@ public class AddAfterSchoolFragment extends ParentFragment
 	{
 		view=inflater.inflate(R.layout.addafterschool_activity, container, false);
 		setHasOptionsMenu(true);
+		StaticVariables.fragmentIndexFrequencyPage=0;
 		mListener.onFragmentAttached(false,"  Scheduler");
-
+		sharePref=new SharePreferenceClass(getActivity());
 		mActivity=getActivity();
-
+		StaticVariables.isFrequencySaveClicked=false;
 		init();
 
 		reFillValueIfAny();
@@ -167,7 +169,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 	 * 
 	 */
 	private void settingDefaultValueDaysDialog() {
-		boolean flag=true;
+		/*boolean flag=true;
 		for(int i=0;i<StaticVariables.daysSelectedInAfterSchool.length;i++)
 		{
 			if(StaticVariables.daysSelectedInAfterSchool[i])
@@ -201,6 +203,45 @@ public class AddAfterSchoolFragment extends ParentFragment
 			daySelected.add("7");
 
 			daysOfWeekValue_text.setText("All days");
+		}*/
+		/**Frequency mode implementation*/
+		if(StaticVariables.addAfterSchoolActivities!=null)
+		{
+			if(StaticVariables.addAfterSchoolActivities.getfMode()==0)
+			{
+				daySelected.clear();
+				daySelected.add("1");
+				daySelected.add("2");
+				daySelected.add("3");
+				daySelected.add("4");
+				daySelected.add("5");
+				daySelected.add("6");
+				daySelected.add("7");
+				daysOfWeekValue_text.setText("All days");
+			}
+			else if(StaticVariables.addAfterSchoolActivities.getfMode()==1)
+			{
+				daysOfWeekValue_text.setText("Weekly");
+			}
+			else if(StaticVariables.addAfterSchoolActivities.getfMode()==2)
+			{
+				daysOfWeekValue_text.setText("Bi-Weekly");
+			}
+		}
+		else
+		{
+			if(updatedDataFromAfterSchool!=1)
+			{
+				daySelected.clear();
+				daySelected.add("1");
+				daySelected.add("2");
+				daySelected.add("3");
+				daySelected.add("4");
+				daySelected.add("5");
+				daySelected.add("6");
+				daySelected.add("7");
+				daysOfWeekValue_text.setText("All days");
+			}
 		}
 	}
 
@@ -754,7 +795,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 				}
 			}
 
-			if(StaticVariables.daysSelectedInAfterSchool[7]==true)
+			/*if(StaticVariables.daysSelectedInAfterSchool[7]==true)
 			{
 				daysOfWeekValue_text.setText("Weekdays");
 			}
@@ -772,6 +813,29 @@ public class AddAfterSchoolFragment extends ParentFragment
 			{
 				daysOfWeekValue_text.setText("Specific Day");
 			}
+
+			else if(StaticVariables.daysSelectedInAfterSchool[0]==true || StaticVariables.daysSelectedInAfterSchool[1]==true || StaticVariables.daysSelectedInAfterSchool[2]==true
+					|| StaticVariables.daysSelectedInAfterSchool[3]==true || StaticVariables.daysSelectedInAfterSchool[4]==true || StaticVariables.daysSelectedInAfterSchool[5]==true
+					|| StaticVariables.daysSelectedInAfterSchool[6]==true)
+			{
+				daysOfWeekValue_text.setText("Specific Day");
+			}
+			 */
+			/**Frequency mode implementation*/
+			if(StaticVariables.addAfterSchoolActivities.getfMode()==0)
+			{
+				daysOfWeekValue_text.setText("All days");
+			}
+			else if(StaticVariables.addAfterSchoolActivities.getfMode()==1)
+			{
+				daysOfWeekValue_text.setText("Weekly");
+			}
+			else if(StaticVariables.addAfterSchoolActivities.getfMode()==2)
+			{
+				daysOfWeekValue_text.setText("Bi-Weekly");
+			}
+
+			/**Frequency mode implementation*/
 
 			addAfterSchoolActivities.setActivityDays(StaticVariables.addAfterSchoolActivities.getActivityDays());
 
@@ -937,8 +1001,19 @@ public class AddAfterSchoolFragment extends ParentFragment
 	}
 
 	private void showChoiceForDays() {
+		/**Added for frequency page after school new changes */
+		StaticVariables.addAfterSchoolActivities = addAfterSchoolActivities;
+		StaticVariables.ActivityIdScheduler=activityId;
+		StaticVariables.fragmentIndexFrequencyPage=1001;
+		if(text_typeNoteAfterSchool.getText().toString().trim()!=null)
+			StaticVariables.addAfterSchoolActivities.setRemarks(text_typeNoteAfterSchool.getText().toString().trim());
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+		switchingFragments(new FrequencyAfterSchoolFragment());	
+		/**Added for frquency page after school new changes */
+
+
+
+		/*AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 
 		builder.setTitle("Select Days For Activity");
 
@@ -1187,7 +1262,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 		});	
 
 		AlertDialog alert = builder.create();
-		alert.show();
+		alert.show();*/
 	}
 
 

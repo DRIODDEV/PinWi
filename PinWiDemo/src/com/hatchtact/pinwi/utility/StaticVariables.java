@@ -132,6 +132,7 @@ public class StaticVariables
 
 	public static int fragmentIndexFrequencyPage=0;
 	public static int fragmentIndexErrorDetailPage=0;
+	public static boolean isFrequencySaveClicked=false;
 
 
 }

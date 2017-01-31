@@ -340,4 +340,41 @@ public class ShowMessages {
 	
 		
 	}
+	
+	public void showAlertFrequency( Context mContext,final OnEventListener<String> callback) 
+	{
+		// TODO Auto-generated method stub
+
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(mContext);
+
+		alertBuilder.setTitle("Alert");
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage("Continue without saving? ");
+
+		alertBuilder.setPositiveButton(" No ", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(final DialogInterface dialog, int which) {
+				
+				dialog.dismiss();
+				callback.onFailure("");
+			}
+		});
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				
+				dialog.dismiss();
+				callback.onSuccess("");
+
+			}
+		});
+
+		alertBuilder.show();
+	
+		
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.hatchtact.pinwi;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import leolin.shortcutbadger.ShortcutBadger;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -36,6 +37,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -69,6 +71,7 @@ import com.hatchtact.pinwi.fragment.network.MyProfileScreenFragment;
 import com.hatchtact.pinwi.fragment.network.NetworkConnectionsFragment;
 import com.hatchtact.pinwi.fragment.network.NetworkDiscoverFragment;
 import com.hatchtact.pinwi.fragment.network.NetworkRequestFragment;
+import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.fragment.network.ProfileConnectionsFragment;
 import com.hatchtact.pinwi.fragment.whattodo.ActivityListFragment;
 import com.hatchtact.pinwi.fragment.whattodo.WhatToDoExploreFragment;
@@ -257,8 +260,10 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 	private ServiceMethod serviceMethod=null;
 	private RequestAddOnVersionModel requestaddonVersion=null;
 	private TypeFace typeFace;
-	
+
 	private final int frequencyPageAfterSchool=1000;
+	private final int frequencyPageAfterSchoolWhattodo=1001;
+
 	private final int errorDetailPageInsights=2000;
 
 	private Bitmap bitmapHeader;
@@ -346,9 +351,9 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			tab_network.setSelected(false);
 			tab_activity.setSelected(false);
 			textViewtab_notification.setVisibility(View.GONE);
-			/* boolean success = ShortcutBadger.removeCount(TabChildActivities.this);
-
-	         Toast.makeText(getApplicationContext(), "success=" + success, Toast.LENGTH_SHORT).show();*/
+			sharePref.setBadgeScore("0");
+			/*boolean success =*/ ShortcutBadger.removeCount(TabChildActivities.this);
+			//Toast.makeText(getApplicationContext(), "success=" + success, Toast.LENGTH_SHORT).show();
 			switchingFragments(new NotificationFragment());	
 			break;
 
@@ -928,12 +933,36 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			break;
 
 		case 1:
-			/*if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchool)
+			if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchool)
 			{
-				StaticVariables.fragmentIndexFrequencyPage=0;
-				switchingFragments(new AddAfterSchoolFragment());
+				if(!StaticVariables.isFrequencySaveClicked)
+				{
+					showMessage.showAlertFrequency(TabChildActivities.this, new OnEventListener<String>() {
+
+						@Override
+						public void onSuccess(String object) {
+							// TODO Auto-generated method stub
+							StaticVariables.fragmentIndexFrequencyPage=0;
+							switchingFragments(new AddAfterSchoolFragment());
+							StaticVariables.isFrequencySaveClicked=false;
+						}
+
+						@Override
+						public void onFailure(String object) {
+							// TODO Auto-generated method stub
+
+						}
+					});
+				}
+				else
+				{
+					StaticVariables.fragmentIndexFrequencyPage=0;
+					switchingFragments(new AddAfterSchoolFragment());
+					StaticVariables.isFrequencySaveClicked=false;
+				}
+
 			}
-			else*/ if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
+			else if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
 			{
 				//finish();
 				finish();
@@ -1542,7 +1571,37 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			break;
 
 		case 3:
-			if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentActivityDetailByClusterId ||StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWislistScreen)
+			if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchoolWhattodo)
+			{
+				if(!StaticVariables.isFrequencySaveClicked)
+				{
+					showMessage.showAlertFrequency(TabChildActivities.this, new OnEventListener<String>() {
+
+						@Override
+						public void onSuccess(String object) {
+							// TODO Auto-generated method stub
+							StaticVariables.fragmentIndexFrequencyPage=0;
+							switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+							StaticVariables.isFrequencySaveClicked=false;
+						}
+
+						@Override
+						public void onFailure(String object) {
+							// TODO Auto-generated method stub
+
+						}
+					});
+				}
+				else
+				{
+					StaticVariables.fragmentIndexFrequencyPage=0;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+					StaticVariables.isFrequencySaveClicked=false;
+				}
+
+			}
+
+			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentActivityDetailByClusterId ||StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWislistScreen)
 			{
 				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentRecommended;
 				switch (StaticVariables.screenIndex)

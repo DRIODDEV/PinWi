@@ -3,6 +3,7 @@ package com.hatchtact.pinwi.gcm;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import leolin.shortcutbadger.ShortcutBadger;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.IntentService;
@@ -20,6 +21,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.hatchtact.pinwi.ExitActivity;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.SplashActivity;
+import com.hatchtact.pinwi.utility.SharePreferenceClass;
 
 public class GCMNotificationIntentService  extends IntentService {
 
@@ -29,6 +31,7 @@ public class GCMNotificationIntentService  extends IntentService {
 
 	public static String GOOGLE_PROJECT_ID = "25079778482";
 	public static String MESSAGE_KEY = "message";
+	public static String SCORE_KEY = "score";
 
 	public GCMNotificationIntentService() {
 		super("GcmIntentService");
@@ -63,6 +66,29 @@ public class GCMNotificationIntentService  extends IntentService {
 				}*/
 				/*sendNotification("Message Received from Google GCM Server: "
 						+ extras.get(MESSAGE_KEY));*/
+				SharePreferenceClass sharePref=null;
+
+				try {
+					sharePref=new SharePreferenceClass(this); 
+					//sharePref.setBadgeScore("0");
+					int count=Integer.parseInt(sharePref.getBadgeScore()+extras.get(SCORE_KEY));
+					sharePref.setBadgeScore(count+"");
+					if(!sharePref.getBadgeScore().trim().equalsIgnoreCase("0") && !sharePref.getBadgeScore().trim().equalsIgnoreCase("null"))
+					{
+						int badgeCount=Integer.parseInt(sharePref.getBadgeScore().trim());
+						/*boolean success = */ShortcutBadger.applyCount(this, badgeCount);
+						//Toast.makeText(getApplicationContext(), "Set count=" + badgeCount + ", success=" + success, Toast.LENGTH_SHORT).show();
+					}
+					else if(sharePref.getBadgeScore().trim().equalsIgnoreCase("null"))
+					{
+						//sharePref.setBadgeScore("0");
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					//sharePref.setBadgeScore("0");
+				}
+
 				sendNotification(extras.get(MESSAGE_KEY)+"");
 				Log.i(TAG, "Received: " + extras.toString());
 			}
@@ -83,9 +109,9 @@ public class GCMNotificationIntentService  extends IntentService {
 				.setContentTitle("PinWi Notification")
 				.setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
 				.setContentText(msg).setAutoCancel(true).setDefaults(Notification.DEFAULT_SOUND)
-				.setDefaults(Notification.DEFAULT_VIBRATE);
+				/*.setDefaults(Notification.DEFAULT_VIBRATE)*/;
 		/*Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        mBuilder.setSound(uri);*/
+		mBuilder.setSound(uri);*/
 		boolean foregroud=true;
 		try {
 			foregroud = new ForegroundCheckTask().execute(this).get();
@@ -106,36 +132,36 @@ public class GCMNotificationIntentService  extends IntentService {
 			mBuilder.setContentIntent(contentIntentExit);
 
 		}
-		
+
 		Notification notification = mBuilder.build();
 		//notification.flags |= Notification.FLAG_AUTO_CANCEL;
-		notification.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL;
+		//notification.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL|Notification.FLAG_ONLY_ALERT_ONCE;
 
 		mNotificationManager.notify(NOTIFICATION_ID,notification);
 		Log.d(TAG, "Notification sent successfully.");
 	}
-	
+
 	class ForegroundCheckTask extends AsyncTask<Context, Void, Boolean> {
 
-		  @Override
-		  protected Boolean doInBackground(Context... params) {
-		    final Context context = params[0].getApplicationContext();
-		    return isAppOnForeground(context);
-		  }
-
-		  private boolean isAppOnForeground(Context context) {
-		    ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-		    List<RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
-		    if (appProcesses == null) {
-		      return false;
-		    }
-		    final String packageName = context.getPackageName();
-		    for (RunningAppProcessInfo appProcess : appProcesses) {
-		      if (appProcess.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName)) {
-		        return true;
-		      }
-		    }
-		    return false;
-		  }
+		@Override
+		protected Boolean doInBackground(Context... params) {
+			final Context context = params[0].getApplicationContext();
+			return isAppOnForeground(context);
 		}
+
+		private boolean isAppOnForeground(Context context) {
+			ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+			List<RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+			if (appProcesses == null) {
+				return false;
+			}
+			final String packageName = context.getPackageName();
+			for (RunningAppProcessInfo appProcess : appProcesses) {
+				if (appProcess.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
 }

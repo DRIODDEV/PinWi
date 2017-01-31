@@ -27,6 +27,7 @@ import android.util.Log;
 /**
  * @author Leo Lin
  */
+@SuppressWarnings("deprecation")
 public class ShortcutBadger {
 
     private static final String LOG_TAG = "ShortcutBadger";

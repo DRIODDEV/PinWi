@@ -1989,7 +1989,14 @@ public class ServiceMethod
 		request.addProperty("StartTime",addAfterSchoolActivities.getStartTime());
 		request.addProperty("EndTime",addAfterSchoolActivities.getEndTime());
 		request.addProperty("Enddate",addAfterSchoolActivities.getEnddate());
+		/*if(addAfterSchoolActivities.getfMode()==0)
+		{
+			request.addProperty("ActivityDays","1,2,3,4,5,6,7");
+		}*/
 		request.addProperty("ActivityDays",addAfterSchoolActivities.getActivityDays());
+		/*request.addProperty("fMode",addAfterSchoolActivities.getfMode());
+		request.addProperty("BWFMode",addAfterSchoolActivities.getBWFMode());*/
+
 		request.addProperty("IsSpecial",addAfterSchoolActivities.getIsSpecial());
 		request.addProperty("IsPrivate",addAfterSchoolActivities.getIsPrivate());
 
@@ -10177,7 +10184,7 @@ public class ServiceMethod
 
 
 
-	public Error setRemainderByProfileID(int ProfileID/*,int ProfileMode*/,int Frequency,String Time)
+	public Error setRemainderByProfileID(int ProfileID/*,int ProfileMode*/,int Frequency,String Time, int flag)
 	{
 		int errorcode = 0;
 
@@ -10192,6 +10199,7 @@ public class ServiceMethod
 		request.addProperty("ProfileMode",/*ProfileMode*/1);
 		request.addProperty("Frequency",Frequency);
 		request.addProperty("Time",Time);
+		request.addProperty("IsActive",flag);//1-on 0-off
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 

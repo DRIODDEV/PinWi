@@ -7,18 +7,18 @@ import android.content.SharedPreferences.Editor;
 public class SharePreferenceClass
 {
 	private String PREFS_NAME = "SettingsFile";
-	
+
 	private SharedPreferences sharedPreferences;
 	private Editor editor;
-	
+
 	private int currentScreen=0;
-	
+
 	public SharePreferenceClass(Context ctx)
 	{
 		if(sharedPreferences==null)
 			sharedPreferences = ctx.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
 	}
-	
+
 	public void setParentIsRegistered(boolean reg_state)
 	{
 		editor = sharedPreferences.edit();
@@ -30,7 +30,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("IS_REGISTERED", false);
 	}
-	
+
 	public void setParentProfile(String parentProfile)
 	{
 		editor = sharedPreferences.edit();
@@ -43,7 +43,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("ParentProfile","");
 	}
-	
+
 	/*//child Information
 	public void setChildProfile(String childProfile)
 	{
@@ -57,7 +57,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("ChildProfile","");
 	}  
-*/
+	 */
 	//PassCodeList
 	public void setPassCodeList(String passcodeList)
 	{
@@ -71,7 +71,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("PassCodeList","");
 	}
-	
+
 	public int getCurrentScreen() {
 		return sharedPreferences.getInt("CurrentScreen", 0);
 	}
@@ -81,7 +81,7 @@ public class SharePreferenceClass
 		editor.putInt("CurrentScreen", currentScreen);
 		editor.commit();
 	}
-	
+
 	public void setIsLogin(boolean login_state)
 	{
 		editor = sharedPreferences.edit();
@@ -93,7 +93,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("IS_LOGIN", false);
 	}
-	
+
 	public void setIsLogout(boolean logout_state)
 	{
 		editor = sharedPreferences.edit();
@@ -105,9 +105,9 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("IS_LOGOUT", false);
 	}
-	
+
 	//For AllyDropPick
-	
+
 	public void setAddAllyInformationOnActivity(String addAllyInformationOnActivity)
 	{
 		editor = sharedPreferences.edit();
@@ -118,9 +118,9 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("AddAllyInformationOnActivity","");
 	}
-	
-	
-	
+
+
+
 	public void setIsPasscodeParentSet(boolean passcode_state)
 	{
 		editor = sharedPreferences.edit();
@@ -132,7 +132,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("IS_PASSCODESET", false);
 	}
-	
+
 	public void setIsPasscodeChildSet(boolean passcodeChild_state)
 	{
 		editor = sharedPreferences.edit();
@@ -144,8 +144,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("IS_PASSCODECHILD", false);
 	}
-	
-	
+
+
 	public void setActivitySetting_Notification(boolean isActivitySetting_Notification)
 	{
 		editor = sharedPreferences.edit();
@@ -156,8 +156,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("ActivitySetting_Notification",true);
 	}
-	
-	
+
+
 	public void setReportSetting_Notification(boolean isReportSetting_Notification)
 	{
 		editor = sharedPreferences.edit();
@@ -168,8 +168,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("ReportSetting_Notification",true);
 	}
-	
-	
+
+
 	public void setNotification3Setting_Notification(boolean isNotification3Setting_Notification)
 	{
 		editor = sharedPreferences.edit();
@@ -180,8 +180,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("Notification3Setting_Notification",true);
 	}
-	
-	
+
+
 	public void setNotification4Setting_Notification(boolean isNotification4Setting_Notification)
 	{
 		editor = sharedPreferences.edit();
@@ -192,8 +192,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("Notification4Setting_Notification",true);
 	}
-	
-	
+
+
 	public void setFrequency(String frequency)
 	{
 		editor = sharedPreferences.edit();
@@ -204,7 +204,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("Frequency","Daily");
 	}
-	
+
 	public void setTime(String time)
 	{
 		editor = sharedPreferences.edit();
@@ -215,8 +215,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("Time","7:30 PM");
 	}
-	
-	
+
+
 	/*public void setSound(boolean isSound)
 	{
 		editor = sharedPreferences.edit();
@@ -227,7 +227,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("isSound",false);
 	}*/
-	
+
 	/*For Sounds Child Module*/
 	public void setSound(boolean isSound,String key) 
 	{
@@ -241,7 +241,7 @@ public class SharePreferenceClass
 	{		
 		return sharedPreferences.getBoolean(key+"Sound",false);
 	}
-	
+
 	/*For VoiceOvers Child Module*/
 	public void setVoiceOvers(boolean isVoiceOver,String key) 
 	{
@@ -255,11 +255,11 @@ public class SharePreferenceClass
 	{		
 		return sharedPreferences.getBoolean(key+"VoiceOver",false);
 	}
-	
-	
+
+
 	/***************Tutorial*********************************************/
-	
-	
+
+
 	public void setHowPinWiWorks(boolean howPinWiWorks)
 	{
 		editor = sharedPreferences.edit();
@@ -270,8 +270,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("howPinWiWorks",false);
 	}
-	
-	
+
+
 	public void setCalenderTutorial(boolean calenderTutorial)
 	{
 		editor = sharedPreferences.edit();
@@ -282,8 +282,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("calenderTutorial",false);
 	}
-	
-	
+
+
 	public void setAtSchoolTutorial(boolean atSchoolTutorial)
 	{
 		editor = sharedPreferences.edit();
@@ -294,7 +294,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("atSchoolTutorial",false);
 	}
-	
+
 	public void setafterschoolTutorial(boolean afterschoolTutorial)
 	{
 		editor = sharedPreferences.edit();
@@ -305,7 +305,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("afterschoolTutorial",false);
 	}
-	
+
 	public void setInsightsTutorial(boolean insightsTutorial)
 	{
 		editor = sharedPreferences.edit();
@@ -316,7 +316,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("insightsTutorial",false);
 	}
-	
+
 	public void setholidaycalendertutorial(boolean holidaycalendertutorial)
 	{
 		editor = sharedPreferences.edit();
@@ -327,7 +327,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("holidaycalendertutorial",false);
 	}
-	
+
 	public void setIsChildTutorialDone(int childID)
 	{
 		editor = sharedPreferences.edit();
@@ -339,7 +339,7 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("IS_TUTORIAL_DONE"+childID, false);
 	}
-	
+
 	public void setDeviceId(String deviceId)
 	{
 		editor = sharedPreferences.edit();
@@ -350,9 +350,9 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("deviceId","");
 	}
-	
 
-	
+
+
 	public void setGCMDeviceId(String deviceId)
 	{
 		editor = sharedPreferences.edit();
@@ -363,8 +363,8 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("gcmdeviceId","");
 	}
-	
-	
+
+
 	public void setTime24Hour(String time)
 	{
 		editor = sharedPreferences.edit();
@@ -375,9 +375,9 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getString("Time24Hour","19:30");
 	}
-	
-	
-	
+
+
+
 	public void setFirstTimeActivitySchedule(int isSchedule,String key) 
 	{
 		// TODO Auto-generated method stub
@@ -390,32 +390,32 @@ public class SharePreferenceClass
 	{		
 		return sharedPreferences.getInt(key+"ActivitySchedule",0);
 	}
-	
+
 	public boolean isAppDownloaded()
 	{
 		return sharedPreferences.getBoolean("isAppDownloaded",false);
 	}
-	
+
 	public void setAppDownloaded(boolean isAppDownloaded)
 	{
 		editor = sharedPreferences.edit();
 		editor.putBoolean("isAppDownloaded", isAppDownloaded);
 		editor.commit();
 	}
-	
-	
+
+
 	public boolean isReminderOn()
 	{
 		return sharedPreferences.getBoolean("isReminderOn",true);
 	}
-	
+
 	public void setReminder(boolean isReminderOn)
 	{
 		editor = sharedPreferences.edit();
 		editor.putBoolean("isReminderOn", isReminderOn);
 		editor.commit();
 	}
-	
+
 	public void setInsightsActivated(int isInsightsActivated,String key) 
 	{
 		// TODO Auto-generated method stub
@@ -428,5 +428,18 @@ public class SharePreferenceClass
 	{		
 		return sharedPreferences.getInt(key+"InsightsActivated",0);
 	}
-	
+
+
+	public void setBadgeScore(String score) 
+	{
+		// TODO Auto-generated method stub
+		editor = sharedPreferences.edit();
+		editor.putString("BadgeScore",score);
+		editor.commit();
+	}
+
+	public String getBadgeScore() 
+	{		
+		return sharedPreferences.getString("BadgeScore","0");
+	}
 }

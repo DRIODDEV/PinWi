@@ -1,5 +1,9 @@
 package com.hatchtact.pinwi;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.hatchtact.pinwi.fragment.NotificationFragment;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
@@ -62,8 +66,13 @@ public class NotificationDetailActivity extends FragmentActivity
 		}		
 		
 		
-		
-		idNotificationTimeFragment2.setText(NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getTime());
+		//String date=parseDateToddMMyyyy(getFormattedDate(NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getDate()));
+		String date=getFormattedDate(parseDateToddMMyyyy(NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getDate()));
+
+		idNotificationTimeFragment2.setText(date +", "+NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getTime());
+
+
+		//idNotificationTimeFragment2.setText(NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getTime());
 		typeFace.setTypefaceLight(idNotificationTimeFragment2);
 		
 		idNotificationDescFragment2.setText(NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getDescription());
@@ -80,5 +89,50 @@ public class NotificationDetailActivity extends FragmentActivity
 		NotificationDetailActivity.this.overridePendingTransition(R.anim.activity_open_scale, R.anim.disappear);
 		//super.onBackPressed();
 	} 
+	public String parseDateToddMMyyyy(String time) {
+		String inputPattern = "MM/dd/yyyy";
+		//String outputPattern = "dd/MM/yyyy";
+		SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+		SimpleDateFormat outputFormat = new SimpleDateFormat(inputPattern);
 
+		Date date = null;
+		String str = null;
+		try {
+			date = inputFormat.parse(time);
+			str = outputFormat.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return  "";
+		}
+		return str;
+	}
+
+	private String getFormattedDate(String time){
+		if(time!=null && time.trim().length() > 0) {
+			int month = Integer.parseInt(time.split("/")[0]);
+			int day = Integer.parseInt(time.split("/")[1]);
+			int year = Integer.parseInt(time.split("/")[2]);
+
+			SimpleDateFormat inputFormat = new SimpleDateFormat("MM-dd-yyyy");
+			String todayDate = inputFormat.format(new Date());
+			int currentDay = Integer.parseInt(todayDate.split("-")[1]);
+			int currentMonth = Integer.parseInt(todayDate.split("-")[0]);
+			int currentYear = Integer.parseInt(todayDate.split("-")[2]);
+
+			if (currentMonth == month && currentYear==year) {
+				if (currentDay - day == 0) {
+					return "Today";
+				} else if (currentDay - day == 1) {
+					return "Yesterday";
+				} else {
+					return time;
+				}
+			} else {
+				return time;
+			}
+		}else{
+			SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
+			return inputFormat.format(new Date());
+		}
+	}
 }

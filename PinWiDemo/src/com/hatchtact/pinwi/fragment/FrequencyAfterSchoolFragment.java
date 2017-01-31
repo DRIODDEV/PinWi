@@ -80,6 +80,13 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 	private boolean isCheckedSunday=false;
 	private boolean isCheckedAllWeekdays=false;
 	private boolean isCheckedOnlyWeekends=false;
+	private final int modeAllDays=0;
+	private final int modeWeekly=1;
+	private final int modeBiWeekly=2;
+	private ArrayList<String> daySelected=null;
+	private int BWFMode=0;
+
+	private boolean isRefillData=false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,16 +94,11 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 		// TODO Auto-generated method stub
 		view=inflater.inflate(R.layout.fragment_afterschool_frequency, container, false);
 		mListener.onFragmentAttached(false,"  Scheduler");
+		daySelected=new ArrayList<String>();
+		isRefillData=false;
+		daySelected.clear();
 		setHasOptionsMenu(true);
-		isCheckedMonday=false;
-		isCheckedTuesday=false;
-		isCheckedWednesday=false;
-		isCheckedThursday=false;
-		isCheckedFriday=false;
-		isCheckedSaturday=false;
-		isCheckedSunday=false;
-		isCheckedAllWeekdays=false;
-		isCheckedOnlyWeekends=false;
+		refactorDaysFlags();
 
 		viewLayouts=new ArrayList<View>();
 		viewLayouts.clear();
@@ -125,7 +127,35 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 		});
 		expand=AnimationUtils.loadAnimation(getActivity(), R.anim.abc_fade_in);
 		initializeResources();
+		setData();
 		return view;
+	}
+
+	private void setData() 
+	{
+		// TODO Auto-generated method stub
+		if(StaticVariables.addAfterSchoolActivities!=null)
+		{
+			isRefillData=true;
+
+			switch (StaticVariables.addAfterSchoolActivities.getfMode())
+			{
+			case 0:
+				checkBoxAlldays.setChecked(true);
+				break;
+			case 1:
+				checkBoxWeekly.setChecked(true);
+				refillActivityDaysData();
+				break;
+			case 2:
+				checkBoxBiWeekly.setChecked(true);
+				BWFMode=StaticVariables.addAfterSchoolActivities.getBWFMode(); 
+				refillActivityDaysData();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	private void initializeResources() 
@@ -162,7 +192,7 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 		setTextData(txtOnlyWeekends,11);
 
 		checkBoxAlldays=(CheckBox) viewLayouts.get(0).findViewById(R.id.checkboxDay);
-		checkBoxAlldays.setChecked(true);
+		//checkBoxAlldays.setChecked(true);
 		checkBoxWeekly=(CheckBox) viewLayouts.get(1).findViewById(R.id.checkboxDay);
 		checkBoxBiWeekly=(CheckBox) viewLayouts.get(2).findViewById(R.id.checkboxDay);
 		checkBoxMonday=(ImageView) viewLayouts.get(3).findViewById(R.id.imageDay);
@@ -195,32 +225,94 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 		typeFace.setTypefaceRegular(txtDaysOfWeek);
 		typeFace.setTypefaceRegular(buttonSave);
 
+		buttonSave.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				if(!checkBoxAlldays.isChecked() && !checkBoxWeekly.isChecked() && !checkBoxBiWeekly.isChecked())
+				{
+					//if all three options – all these, weekly or bi-weekly are unselected and user tries to save there will be error msg 
+					showMessage.showAlert("Alert", "Please define the frequency for this activity.");
+				}
+				else if(checkIfDaysSelected())
+				{
+					//This Error pop up will pop in Both cases – not picking weekdays
+					//In weekly or bi-weekly selection
+					showMessage.showAlert("Alert", "Please pick days of week for the activity in order to schedule it.");
+				}
+				else 
+				{
+					if(checkBoxAlldays.isChecked())
+					{
+						StaticVariables.addAfterSchoolActivities.setfMode(modeAllDays);
+					}
+					else if(checkBoxWeekly.isChecked())
+					{
+						StaticVariables.addAfterSchoolActivities.setfMode(modeWeekly);
+						addDaySelected();
+					}
+					else if(checkBoxBiWeekly.isChecked())
+					{
+						StaticVariables.addAfterSchoolActivities.setfMode(modeBiWeekly);
+						addDaySelected();
+						StaticVariables.addAfterSchoolActivities.setBWFMode(BWFMode);
+					}
+					//showMessage.showAlert("Alert", "Data Saved.");
+
+					StaticVariables.isFrequencySaveClicked=true;
+					switch (StaticVariables.fragmentIndexFrequencyPage) {
+					case 1000:
+						StaticVariables.fragmentIndexFrequencyPage=0;
+						switchingFragments(new AddAfterSchoolFragment());
+						break;
+
+					case 1001:
+						StaticVariables.fragmentIndexFrequencyPage=0;
+						switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+						break;
+					}
+
+
+				}
+			}
+		});
+
 
 		checkBoxAlldays.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
-				if(isChecked)
+				if(!isRefillData)
 				{
-					scrollDaysOfWeek.setVisibility(View.GONE);
-					scrollDaysOfWeek.setScrollY(0);
-					checkBoxAlldays.setChecked(true);
-					checkBoxWeekly.setChecked(false);
-					checkBoxBiWeekly.setChecked(false);
-					checkBoxMonday.setImageResource(0);
-					checkBoxTuesday.setImageResource(0);
-					checkBoxWednesday.setImageResource(0);
-					checkBoxThurday.setImageResource(0);
-					checkBoxFriday.setImageResource(0);
-					checkBoxSaturday.setImageResource(0);
-					checkBoxSunday.setImageResource(0);
-					checkBoxAllWeekdays.setImageResource(0);
-					checkBoxOnlyWeekends.setImageResource(0);
+					if(isChecked)
+					{
+						scrollDaysOfWeek.setVisibility(View.GONE);
+						scrollDaysOfWeek.setScrollY(0);
+						checkBoxAlldays.setChecked(true);
+						checkBoxWeekly.setChecked(false);
+						checkBoxBiWeekly.setChecked(false);
+						checkBoxMonday.setImageResource(0);
+						checkBoxTuesday.setImageResource(0);
+						checkBoxWednesday.setImageResource(0);
+						checkBoxThurday.setImageResource(0);
+						checkBoxFriday.setImageResource(0);
+						checkBoxSaturday.setImageResource(0);
+						checkBoxSunday.setImageResource(0);
+						checkBoxAllWeekdays.setImageResource(0);
+						checkBoxOnlyWeekends.setImageResource(0);
+						refactorDaysFlags();
+					}
+					else
+					{
+
+					}
 				}
 				else
 				{
-
+					isRefillData=false;
 				}
 			}
 		});
@@ -229,29 +321,37 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
-				if(isChecked)
+				if(!isRefillData)
 				{
-					scrollDaysOfWeek.setVisibility(View.VISIBLE);
-					scrollDaysOfWeek.setScrollY(0);
+					if(isChecked)
+					{
+						scrollDaysOfWeek.setVisibility(View.VISIBLE);
+						scrollDaysOfWeek.setScrollY(0);
 
-					scrollDaysOfWeek.startAnimation(expand);
-					checkBoxAlldays.setChecked(false);
-					checkBoxWeekly.setChecked(true);
-					checkBoxBiWeekly.setChecked(false);
-					checkBoxMonday.setImageResource(0);
-					checkBoxTuesday.setImageResource(0);
-					checkBoxWednesday.setImageResource(0);
-					checkBoxThurday.setImageResource(0);
-					checkBoxFriday.setImageResource(0);
-					checkBoxSaturday.setImageResource(0);
-					checkBoxSunday.setImageResource(0);
-					checkBoxAllWeekdays.setImageResource(0);
-					checkBoxOnlyWeekends.setImageResource(0);
+						scrollDaysOfWeek.startAnimation(expand);
+						checkBoxAlldays.setChecked(false);
+						checkBoxWeekly.setChecked(true);
+						checkBoxBiWeekly.setChecked(false);
+						checkBoxMonday.setImageResource(0);
+						checkBoxTuesday.setImageResource(0);
+						checkBoxWednesday.setImageResource(0);
+						checkBoxThurday.setImageResource(0);
+						checkBoxFriday.setImageResource(0);
+						checkBoxSaturday.setImageResource(0);
+						checkBoxSunday.setImageResource(0);
+						checkBoxAllWeekdays.setImageResource(0);
+						checkBoxOnlyWeekends.setImageResource(0);
+						refactorDaysFlags();
+					}
+					else
+					{
+						scrollDaysOfWeek.setVisibility(View.GONE);
+						scrollDaysOfWeek.setScrollY(0);
+					}
 				}
 				else
 				{
-					scrollDaysOfWeek.setVisibility(View.GONE);
-					scrollDaysOfWeek.setScrollY(0);
+					isRefillData=false;
 				}
 			}
 		});
@@ -261,18 +361,26 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
-				if(isChecked)
+				if(!isRefillData)
 				{
-					scrollDaysOfWeek.setVisibility(View.GONE);
-					scrollDaysOfWeek.setScrollY(0);
-					checkBoxAlldays.setChecked(false);
-					checkBoxWeekly.setChecked(false);
-					customDialog.show();
+					if(isChecked)
+					{
+						scrollDaysOfWeek.setVisibility(View.GONE);
+						scrollDaysOfWeek.setScrollY(0);
+						checkBoxAlldays.setChecked(false);
+						checkBoxWeekly.setChecked(false);
+						customDialog.show();
+						refactorDaysFlags();
+					}
+					else
+					{
+						if(!checkBoxWeekly.isChecked())
+							scrollDaysOfWeek.setVisibility(View.GONE);
+					}
 				}
 				else
 				{
-					if(!checkBoxWeekly.isChecked())
-						scrollDaysOfWeek.setVisibility(View.GONE);
+					isRefillData=false;
 				}
 			}
 		});
@@ -812,6 +920,7 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 	{
 		switch (i) {
 		case 0:
+			BWFMode=2;//this week
 			scrollDaysOfWeek.setVisibility(View.VISIBLE);
 			scrollDaysOfWeek.setScrollY(0);
 			checkBoxAlldays.setChecked(false);
@@ -827,17 +936,10 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 			checkBoxAllWeekdays.setImageResource(0);
 			checkBoxOnlyWeekends.setImageResource(0);
 			isCheckedAllWeekdays=false;
-			isCheckedMonday=false;
-			isCheckedTuesday=false;
-			isCheckedWednesday=false;
-			isCheckedThursday=false;
-			isCheckedFriday=false;
-			isCheckedSaturday=false;
-			isCheckedSunday=false;
-			isCheckedAllWeekdays=false;
-			isCheckedOnlyWeekends=false;
+			refactorDaysFlags();
 			break;
 		case 1:
+			BWFMode=1;//next week
 			scrollDaysOfWeek.setVisibility(View.VISIBLE);
 			scrollDaysOfWeek.setScrollY(0);
 			checkBoxAlldays.setChecked(false);
@@ -853,15 +955,7 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 			checkBoxAllWeekdays.setImageResource(0);
 			checkBoxOnlyWeekends.setImageResource(0);
 			isCheckedAllWeekdays=false;
-			isCheckedMonday=false;
-			isCheckedTuesday=false;
-			isCheckedWednesday=false;
-			isCheckedThursday=false;
-			isCheckedFriday=false;
-			isCheckedSaturday=false;
-			isCheckedSunday=false;
-			isCheckedAllWeekdays=false;
-			isCheckedOnlyWeekends=false;
+			refactorDaysFlags();
 			break;
 		case 2:
 			scrollDaysOfWeek.setVisibility(View.GONE);
@@ -879,21 +973,160 @@ public class FrequencyAfterSchoolFragment extends ParentFragment
 			checkBoxAllWeekdays.setImageResource(0);
 			checkBoxOnlyWeekends.setImageResource(0);
 			isCheckedAllWeekdays=false;
-			isCheckedMonday=false;
-			isCheckedTuesday=false;
-			isCheckedWednesday=false;
-			isCheckedThursday=false;
-			isCheckedFriday=false;
-			isCheckedSaturday=false;
-			isCheckedSunday=false;
-			isCheckedAllWeekdays=false;
-			isCheckedOnlyWeekends=false;
+			refactorDaysFlags();
 			break;
 
 		default:
 			break;
 		}
+	}
+
+	private boolean checkIfDaysSelected()
+	{
+		if(checkBoxWeekly.isChecked()|| checkBoxBiWeekly.isChecked())
+		{
+			if(isCheckedMonday||isCheckedTuesday||isCheckedWednesday||isCheckedThursday||isCheckedFriday||isCheckedSaturday||isCheckedSunday)
+			{
+				return false;
+			}
+			else 
+			{
+				return true;
+			}
+		}
+		else
+		{
+			return false;	
+		}
+
+	}
+
+	private void addDaySelected()
+	{
+		daySelected.clear();
+		if(isCheckedMonday)
+		{
+			daySelected.add("2");
+		}
+		if(isCheckedTuesday)
+		{
+			daySelected.add("3");
+		}
+		if(isCheckedWednesday)
+		{
+			daySelected.add("4");
+		}
+		if(isCheckedThursday)
+		{
+			daySelected.add("5");
+		}
+		if(isCheckedFriday)
+		{
+			daySelected.add("6");
+		}
+		if(isCheckedSaturday)
+		{
+			daySelected.add("7");
+		}
+		if(isCheckedSunday)
+		{
+			daySelected.add("1");
+		}
+
+		String days="";
+		for(int i=0;i<daySelected.size();i++)
+		{
+			if(i==daySelected.size()-1)
+			{
+				days+=daySelected.get(i)+"";
+			}
+			else
+			{
+				days+=daySelected.get(i)+",";
+			}
+		}
+		StaticVariables.addAfterSchoolActivities.setActivityDays(days);
+
+	}
 
 
+	private void refillActivityDaysData()
+	{
+		String dayValue=StaticVariables.addAfterSchoolActivities.getActivityDays();
+		String[] daySelectedValue=dayValue.split(",");
+		if(daySelectedValue.length>0)
+		{
+			scrollDaysOfWeek.setVisibility(View.VISIBLE);
+			scrollDaysOfWeek.setScrollY(0);
+			scrollDaysOfWeek.startAnimation(expand);
+		}
+
+		for(int i=0;i<daySelectedValue.length;i++)
+		{
+			if(daySelectedValue[i].toString().trim().equalsIgnoreCase("1"))
+			{
+				isCheckedSunday=true;
+				checkBoxSunday.setImageResource(R.drawable.accept_i);
+			}
+			else if(daySelectedValue[i].toString().trim().equalsIgnoreCase("2"))
+			{
+				isCheckedMonday=true;
+				checkBoxMonday.setImageResource(R.drawable.accept_i);
+			}
+			else if(daySelectedValue[i].toString().trim().equalsIgnoreCase("3"))
+			{
+				isCheckedTuesday=true;
+				checkBoxTuesday.setImageResource(R.drawable.accept_i);
+			}
+			else if(daySelectedValue[i].toString().trim().equalsIgnoreCase("4"))
+			{
+				isCheckedWednesday=true;
+				checkBoxWednesday.setImageResource(R.drawable.accept_i);
+			}
+			else if(daySelectedValue[i].toString().trim().equalsIgnoreCase("5"))
+			{
+				isCheckedThursday=true;
+				checkBoxThurday.setImageResource(R.drawable.accept_i);
+			}
+			else if(daySelectedValue[i].toString().trim().equalsIgnoreCase("6"))
+			{
+				isCheckedFriday=true;
+				checkBoxFriday.setImageResource(R.drawable.accept_i);
+			}
+			else if(daySelectedValue[i].toString().trim().equalsIgnoreCase("7"))
+			{
+				isCheckedSaturday=true;
+				checkBoxSaturday.setImageResource(R.drawable.accept_i);
+			}
+		}
+
+
+		if(isCheckedMonday&& isCheckedTuesday&& isCheckedWednesday&&isCheckedThursday&&isCheckedFriday)
+		{
+			isCheckedAllWeekdays=true;
+			checkBoxAllWeekdays.setImageResource(R.drawable.accept_i);
+		}
+		else if(isCheckedSaturday&& isCheckedSunday)
+		{
+			isCheckedOnlyWeekends=true;
+			checkBoxOnlyWeekends.setImageResource(R.drawable.accept_i);
+		}
+
+
+	}
+
+	/**
+	 * 
+	 */
+	private void refactorDaysFlags() {
+		isCheckedMonday=false;
+		isCheckedTuesday=false;
+		isCheckedWednesday=false;
+		isCheckedThursday=false;
+		isCheckedFriday=false;
+		isCheckedSaturday=false;
+		isCheckedSunday=false;
+		isCheckedAllWeekdays=false;
+		isCheckedOnlyWeekends=false;
 	}
 }

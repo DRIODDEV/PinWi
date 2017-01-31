@@ -15,22 +15,20 @@ public class AddAfterSchoolActivities implements Serializable
 	private String StartTime="";
 	private String EndTime="";
 	private String Enddate="";
-	private String ActivityDays="";    
+	private String ActivityDays="";   
+	private int fMode=0;/* 0 == all days 1 == Weekly 2 == Bi Weekly */
+	private int BWFMode=0;/* 1 == this week 2 == next week */
 	private String IsSpecial="";
 	private String IsPrivate="";
 	private String SpecialDate="";
-	
 	private int isUpdate;
-	
 	private String allyId1;
 	private String allyId2;
-	
 	private String allyName1;
 	private String allyName2;
-	
 	private int allyIndex1;
 	private int allyIndex2;
-	
+
 	public int getAllyIndex1() {
 		return allyIndex1;
 	}
@@ -43,7 +41,7 @@ public class AddAfterSchoolActivities implements Serializable
 	public void setAllyIndex2(int allyIndex2) {
 		this.allyIndex2 = allyIndex2;
 	}
-	
+
 	public String getAllyName1() {
 		return allyName1;
 	}
@@ -157,5 +155,17 @@ public class AddAfterSchoolActivities implements Serializable
 	}
 	public void setSpecialDate(String specialDate) {
 		SpecialDate = specialDate;
+	}
+	public int getfMode() {
+		return fMode;
+	}
+	public void setfMode(int fMode) {
+		this.fMode = fMode;
+	}
+	public int getBWFMode() {
+		return BWFMode;
+	}
+	public void setBWFMode(int bWFMode) {
+		BWFMode = bWFMode;
 	}
 }

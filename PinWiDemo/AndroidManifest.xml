@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hatchtact.pinwi"
-    android:versionCode="35"
+    android:versionCode="36"
     android:versionName="1.2.5" >
 
     <uses-sdk
@@ -11,6 +11,7 @@
   
     <uses-permission android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- for Samsung -->
     <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />

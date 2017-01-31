@@ -10,6 +10,7 @@ public class GetNotificationListByParentID implements Serializable
 	private String Time;
 	private int read=0;
 	private int Status=0;
+	private String Date;
 	public int getNotificationID() {
 		return NotificationID;
 	}
@@ -39,6 +40,12 @@ public class GetNotificationListByParentID implements Serializable
 	}
 	public void setStatus(int status) {
 		Status = status;
+	}
+	public String getDate() {
+		return Date;
+	}
+	public void setDate(String date) {
+		Date = date;
 	}
 
 

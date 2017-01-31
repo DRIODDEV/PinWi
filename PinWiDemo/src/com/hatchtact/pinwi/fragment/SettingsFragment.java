@@ -125,12 +125,12 @@ public class SettingsFragment extends Fragment implements OnClickListener
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				sharePref.setReminder(reminder_switch.isChecked());
-				if(reminder_switch.isChecked())
+				//if(reminder_switch.isChecked())
 					new SetReminderAsync().execute();
-				else
+				/*else
 				{
 					
-				}
+				}*/
 			}
 		});
 		setHasOptionsMenu(true);
@@ -551,8 +551,12 @@ public class SettingsFragment extends Fragment implements OnClickListener
 				{
 					day=7;
 				}
-				err=new ServiceMethod().setRemainderByProfileID(StaticVariables.currentParentId, day,sharePref.getTime24Hour());
-
+				if(reminder_switch.isChecked())
+				err=new ServiceMethod().setRemainderByProfileID(StaticVariables.currentParentId, day,sharePref.getTime24Hour(),1);
+				else
+				{
+					err=new ServiceMethod().setRemainderByProfileID(StaticVariables.currentParentId, day,sharePref.getTime24Hour(),0);
+				}
 			}
 			else 
 			{

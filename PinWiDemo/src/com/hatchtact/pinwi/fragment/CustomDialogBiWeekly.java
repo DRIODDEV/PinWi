@@ -8,7 +8,6 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.hatchtact.pinwi.R;
-import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 
@@ -65,11 +64,11 @@ public class CustomDialogBiWeekly extends Dialog implements View.OnClickListener
 		switch (v.getId()) {
 
 		case R.id.txtwhoisdoingthis:
-			contextAfterSchool.biWeeklyImplementation(0);
+			contextAfterSchool.biWeeklyImplementation(0);//next week
 			dismiss();
 			break;
 		case R.id.txtSchedulethisAct:
-			contextAfterSchool.biWeeklyImplementation(1);
+			contextAfterSchool.biWeeklyImplementation(1);//this week
 			dismiss();
 			break;
 		case R.id.txtCancel:
