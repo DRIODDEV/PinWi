@@ -24,7 +24,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -38,19 +37,15 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 import android.text.InputType;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.TypefaceSpan;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -320,7 +315,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			}
 		});
 
-		/*city_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
+		city_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -336,20 +331,20 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					}
 				}
 
-				if(currentCountryId==CountryId)
+				/*if(currentCountryId==CountryId)
 				{
 					System.out.println("current CountryId"+currentCountryId+"previous id"+CountryId);
 				}
-				else
+				else*/
 				{
 
 					new GetListOfField("locality",currentCityId).execute();	
 					CityId=currentCityId;
 				}
 			}
-		});*/
+		});
 
-		city_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
+		/*city_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
 		{
 
 			@Override
@@ -358,7 +353,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				// TODO Auto-generated method stub
 
 			}
-		});
+		});*/
 
 		street_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
 		{
@@ -368,6 +363,40 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					long arg3) {
 				// TODO Auto-generated method stub
 
+			}
+		});
+		street_autoCompleteTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				// TODO Auto-generated method stub
+				if (actionId == EditorInfo.IME_ACTION_DONE) {
+					hideKeyBoard();
+
+					return true;
+				} 
+				else 
+				{
+					hideKeyBoard();
+					return true;
+				}
+			}
+		});
+		city_autoCompleteTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				// TODO Auto-generated method stub
+				if (actionId == EditorInfo.IME_ACTION_DONE) {
+					hideKeyBoard();
+
+					return true;
+				} 
+				else 
+				{
+					hideKeyBoard();
+					return true;
+				}
 			}
 		});
 
@@ -651,6 +680,10 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						{
 							city_autoCompleteTextView.setText(locationInformationFromServer.getCityName());
 							parentProfile.setCityID(locationInformationFromServer.getCity());
+							new GetListOfField("locality",parentProfile.getCityID()).execute();	
+
+							parentProfile.setCity(locationInformationFromServer.getCityName());
+
 						}
 
 						if(locationInformationFromServer.getStreetLocality()!=null && locationInformationFromServer.getStreetLocality().trim().length()>0)
@@ -1538,7 +1571,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 		String textSelectedCity = city_autoCompleteTextView.getText().toString();	
 
-		for(int i=0;i<cityList.getCity().size();i++)
+		/*for(int i=0;i<cityList.getCity().size();i++)
 		{
 			if(textSelectedCity.trim().equalsIgnoreCase(cityList.getCity().get(i).getCityName().trim()))
 			{
@@ -1546,7 +1579,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 				parentProfile.setCity(textSelectedCity);
 			}
-		}
+		}*/
+		parentProfile.setCity(textSelectedCity);
 
 		String textSelectedCountry = country_autoCompleteTextView.getText().toString();	
 		for(int i=0;i<countryList.getCountry().size();i++)
@@ -1674,7 +1708,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			updateLocationByParentID.setParentID(parentId);
 			updateLocationByParentID.setStreetLocality(parentProfile.getStreetLocality());
-			updateLocationByParentID.setCity(parentProfile.getCityID()+"");
+			//updateLocationByParentID.setCity(parentProfile.getCityID()+"");
+			updateLocationByParentID.setCity(parentProfile.getCity());
 			updateLocationByParentID.setCountry(parentProfile.getCountryID()+"");
 			new UpdateParentInformationOnServer().execute();	
 		}
@@ -1715,8 +1750,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			if(checkNetwork.checkNetworkConnection(ParentRegistrationActivity.this))
 			{
-				ErrorCode = serviceMethod.getupdateLocation(updateLocationByParentID);
-				ErrorCode = serviceMethod.getupdateParentProfile(updateParentProfile);
+				//ErrorCode = serviceMethod.getupdateLocation(updateLocationByParentID);
+				ErrorCode = serviceMethod.getupdateParentProfile(updateParentProfile,updateLocationByParentID);
 			}
 			else 
 			{
@@ -2203,7 +2238,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					}
 					else
 					{	
-						getError();
+						//getError();
 						new GetListOfField("country",0).execute();
 					}	
 				}
@@ -2216,13 +2251,17 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						{
 							AutoCompleteAdapter checkUpAdapter = new AutoCompleteAdapter(ParentRegistrationActivity.this, R.layout.list_item, R.id.item,localityStringList);
 							street_autoCompleteTextView.setAdapter(checkUpAdapter);
-							street_autoCompleteTextView.setValidator(new ValidateText(localityStringList,1));
+							street_autoCompleteTextView.setThreshold(0);
+
+							//street_autoCompleteTextView.setValidator(new ValidateText(localityStringList,1));
 						}
 					}
 					else
-					{	
-						getError();
-						new GetListOfField("locality",countryId).execute();	
+					{
+						street_autoCompleteTextView.setAdapter(null);
+						street_autoCompleteTextView.setThreshold(0);
+						//getError();
+						//new GetListOfField("locality",countryId).execute();	
 					}	
 				}	
 				else
@@ -2233,12 +2272,13 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						{
 							AutoCompleteAdapter checkUpAdapter = new AutoCompleteAdapter(ParentRegistrationActivity.this, R.layout.list_item, R.id.item,cityStringList);
 							city_autoCompleteTextView.setAdapter(checkUpAdapter);
-							city_autoCompleteTextView.setValidator(new ValidateText(cityStringList,1));
+							city_autoCompleteTextView.setThreshold(0);
+							//city_autoCompleteTextView.setValidator(new ValidateText(cityStringList,1));
 						}
 					}
 					else
 					{	
-						getError();
+						//getError();
 						new GetListOfField("city",countryId).execute();	
 					}	
 				}	

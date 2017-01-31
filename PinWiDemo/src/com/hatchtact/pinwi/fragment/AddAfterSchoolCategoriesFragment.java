@@ -275,9 +275,11 @@ public class AddAfterSchoolCategoriesFragment extends ParentFragment implements 
 
 				if (actionId == EditorInfo.IME_ACTION_NEXT)
 				{
+					hideKeyBoard();
 					return true;
 				} else if (actionId == EditorInfo.IME_ACTION_DONE) 
 				{
+					hideKeyBoard();
 					return true;
 				} 
 				

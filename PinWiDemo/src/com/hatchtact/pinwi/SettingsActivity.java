@@ -1,10 +1,7 @@
 package com.hatchtact.pinwi;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Calendar;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,7 +10,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -23,27 +19,16 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.ads.AdRequest.ErrorCode;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hatchtact.pinwi.R;
-import com.hatchtact.pinwi.adapter.ChildEmoticonDetailAdapter;
-import com.hatchtact.pinwi.child.playwall.ChildEmoticonDetailActivity;
-import com.hatchtact.pinwi.classmodel.GetDetailByMapEmoticID;
-import com.hatchtact.pinwi.classmodel.GetDetailByMapEmoticIDList;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.fragment.HolidayListFragment;
 import com.hatchtact.pinwi.fragment.SettingsFragment;
 import com.hatchtact.pinwi.fragment.insights.OnFragmentAttachedListener;
-import com.hatchtact.pinwi.sync.ServiceMethod;
-import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
-import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 public class SettingsActivity extends FragmentActivity implements OnFragmentAttachedListener

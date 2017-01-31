@@ -40,6 +40,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.adapter.NavDrawerListAdapterMenu;
+import com.hatchtact.pinwi.classmodel.GetNewNotificationCount;
 import com.hatchtact.pinwi.classmodel.NavigationDrawerItem;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.classmodel.RequestAddOnVersionModel;
@@ -58,6 +59,7 @@ import com.hatchtact.pinwi.fragment.HolidayListFragment;
 import com.hatchtact.pinwi.fragment.NotificationFragment;
 import com.hatchtact.pinwi.fragment.SubjectActivityByChildIDFragment;
 import com.hatchtact.pinwi.fragment.insights.DelightTrendsFragment;
+import com.hatchtact.pinwi.fragment.insights.InsightsErrorFragment;
 import com.hatchtact.pinwi.fragment.insights.OnFragmentAttachedListener;
 import com.hatchtact.pinwi.fragment.insights.SubscribeFragment;
 import com.hatchtact.pinwi.fragment.insights.TypesInsightsFragment;
@@ -255,6 +257,9 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 	private ServiceMethod serviceMethod=null;
 	private RequestAddOnVersionModel requestaddonVersion=null;
 	private TypeFace typeFace;
+	
+	private final int frequencyPageAfterSchool=1000;
+	private final int errorDetailPageInsights=2000;
 
 	private Bitmap bitmapHeader;
 
@@ -266,7 +271,9 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_tab);
+		/* boolean success = ShortcutBadger.removeCount(TabChildActivities.this);
 
+         Toast.makeText(getApplicationContext(), "success=" + success, Toast.LENGTH_SHORT).show();*/
 		try {
 			ViewConfiguration config = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
@@ -285,6 +292,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		checkNetwork=new CheckNetwork();
 		serviceMethod=new ServiceMethod();
 		requestaddonVersion=new RequestAddOnVersionModel();
+		new AsyncNotificationCountByParentID().execute();
 
 		tab_notification = (ImageView) findViewById(R.id.tab_notification);
 		tab_scheduler = (ImageView) findViewById(R.id.tab_scheduler);
@@ -293,9 +301,9 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		tab_network = (ImageView) findViewById(R.id.tab_network);
 		textViewtab_notification=(TextView) findViewById(R.id.textViewtab_notification);
 		typeFace.setTypefaceRegular(textViewtab_notification);
-
 		textViewtab_notification.setVisibility(View.GONE);
-		textViewtab_notification.setText(StaticVariables.notificationCount + "");
+		/*textViewtab_notification.setVisibility(View.GONE);
+		textViewtab_notification.setText(StaticVariables.notificationCount + "");*/
 
 		try {
 			bitmapHeader = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.header_bg), SplashActivity.ScreenWidth, BitmapFactory.decodeResource(getResources(), R.drawable.header_bg).getHeight(), false);
@@ -337,6 +345,10 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			tab_insights.setSelected(false);
 			tab_network.setSelected(false);
 			tab_activity.setSelected(false);
+			textViewtab_notification.setVisibility(View.GONE);
+			/* boolean success = ShortcutBadger.removeCount(TabChildActivities.this);
+
+	         Toast.makeText(getApplicationContext(), "success=" + success, Toast.LENGTH_SHORT).show();*/
 			switchingFragments(new NotificationFragment());	
 			break;
 
@@ -916,7 +928,12 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			break;
 
 		case 1:
-			if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
+			/*if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchool)
+			{
+				StaticVariables.fragmentIndexFrequencyPage=0;
+				switchingFragments(new AddAfterSchoolFragment());
+			}
+			else*/ if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
 			{
 				//finish();
 				finish();
@@ -1471,7 +1488,12 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 
 		case 2:
 
-			if(StaticVariables.fragmentIndexCurrentTabInsight==typesInsightFragment)
+			/*if(StaticVariables.fragmentIndexErrorDetailPage==errorDetailPageInsights)
+			{
+				StaticVariables.fragmentIndexErrorDetailPage=0;
+				switchingFragments(new InsightsErrorFragment());
+			}
+			else*/ if(StaticVariables.fragmentIndexCurrentTabInsight==typesInsightFragment)
 			{
 				//finish();
 				finish();
@@ -1488,9 +1510,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			else if(StaticVariables.fragmentIndexCurrentTabInsight==insightDriversFragment)
 			{
 				switchingFragments(new TypesInsightsFragment());
-
 			}
-
 			else if(StaticVariables.fragmentIndexCurrentTabInsight==insightsFragment)
 			{
 				switchingFragments(new TypesInsightsFragment());
@@ -1851,6 +1871,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			tab_insights.setSelected(false);
 			tab_network.setSelected(false);
 			tab_activity.setSelected(false);
+			textViewtab_notification.setVisibility(View.GONE);
 			switchingFragments(new NotificationFragment());	
 			break;
 		case R.id.tab_scheduler:
@@ -1924,17 +1945,95 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		super.onStart();
 		try
 		{
-		if(sharePref!=null && gsonRegistration!=null)
-		{
-			parentCompleteInformation = gsonRegistration.fromJson(sharePref.getParentProfile(), ParentProfile.class);
-			parentId=parentCompleteInformation.getParentID();
-			StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
-			StaticVariables.currentParentId=parentCompleteInformation.getParentID();
-		}
+			if(sharePref!=null && gsonRegistration!=null)
+			{
+				parentCompleteInformation = gsonRegistration.fromJson(sharePref.getParentProfile(), ParentProfile.class);
+				parentId=parentCompleteInformation.getParentID();
+				StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
+				StaticVariables.currentParentId=parentCompleteInformation.getParentID();
+			}
 		}
 		catch(Exception e)
 		{
-			
+
 		}
 	}
+	GetNewNotificationCount model;
+
+	private class AsyncNotificationCountByParentID extends AsyncTask<Void, Void, Integer>
+	{
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+
+		}
+
+		@Override
+		protected Integer doInBackground(Void... params)
+		{
+			// TODO Auto-generated method stub
+			int ErrorCode=0;
+
+			if(checkNetwork.checkNetworkConnection(TabChildActivities.this))
+			{
+				model=serviceMethod.getNewNotificationCount(parentId);
+				if(model!=null)
+				{
+					StaticVariables.notificationCount=model.getCount();			
+				}
+				else
+				{
+					StaticVariables.notificationCount=0;
+				}
+			}
+			else 
+			{
+				ErrorCode=-1;
+			}
+			return ErrorCode;
+		}
+
+		@Override
+		protected void onPostExecute(Integer  result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+
+			try {
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if(result==-1)
+			{
+				showMessage.showToastMessage("Please check your network connection");
+
+				if(checkNetwork.checkNetworkConnection(TabChildActivities.this))
+					new AsyncNotificationCountByParentID().execute();
+
+			}
+			else
+			{
+				if(model!=null)
+				{
+					if(StaticVariables.notificationCount>0)
+					{
+						textViewtab_notification.setVisibility(View.VISIBLE);
+						textViewtab_notification.setText(StaticVariables.notificationCount + "");
+					}
+					else
+					{
+						textViewtab_notification.setVisibility(View.GONE);
+					}
+				}
+				else
+				{	
+					//getError();
+				}	
+			}	
+		}	
+	}
+
 }

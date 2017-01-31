@@ -76,8 +76,10 @@ public class SplashActivity extends Activity
 		setContentView(R.layout.splash_activity);
 		//new SharePreferenceClass(getApplicationContext()).setAppDownloaded(false);
 		sharePreferenceClass=new SharePreferenceClass(SplashActivity.this);
-
-		installFacebookLog();
+		/*int badgeCount = 1;
+		boolean success = ShortcutBadger.applyCount(SplashActivity.this, badgeCount);
+		Toast.makeText(getApplicationContext(), "Set count=" + badgeCount + ", success=" + success, Toast.LENGTH_SHORT).show();
+	*/	installFacebookLog();
 		installGoogleAnalyticsLog();
 		sharePreferenceClass.setAppDownloaded(true);
 		/*CleverTapAPI cleverTap;

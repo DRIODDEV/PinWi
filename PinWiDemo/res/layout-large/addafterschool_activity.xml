@@ -93,10 +93,50 @@
                 android:background="@color/gray" />
 
             <LinearLayout
-                android:id="@+id/layout_startTime"
+                android:id="@+id/layout_endDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/line_belowStartDate"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="8dip"
+                android:orientation="horizontal"
+                android:weightSum="1.0" >
+
+                <TextView
+                    android:id="@+id/end_date_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
+                    android:text="@string/endDate_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+
+                <TextView
+                    android:id="@+id/end_dateValue_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:gravity="right"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line_belowEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/layout_endDate"
+                android:layout_marginTop="5dip"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/layout_startTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line_belowEndDate"
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="8dip"
@@ -173,50 +213,10 @@
                 android:background="@color/gray" />
 
             <LinearLayout
-                android:id="@+id/layout_endDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/line_belowEndTime"
-                android:layout_marginLeft="15dip"
-                android:layout_marginRight="15dip"
-                android:layout_marginTop="8dip"
-                android:orientation="horizontal"
-                android:weightSum="1.0" >
-
-                <TextView
-                    android:id="@+id/end_date_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
-                    android:text="@string/endDate_text"
-                    android:textColor="@color/black_color"
-                    android:textSize="@dimen/textLarge" />
-
-                <TextView
-                    android:id="@+id/end_dateValue_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
-                    android:gravity="right"
-                    android:textColor="@color/black_color"
-                    android:textSize="@dimen/textLarge" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/line_belowEndDate"
-                android:layout_width="match_parent"
-                android:layout_height="2dip"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/layout_endDate"
-                android:layout_marginTop="5dip"
-                android:background="@color/gray" />
-
-            <LinearLayout
                 android:id="@+id/layout_daysofWeek"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line_belowEndDate"
+                android:layout_below="@id/line_belowEndTime"
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="8dip"
@@ -255,13 +255,24 @@
                 android:paddingTop="8dip"
                 android:text="@string/reminder_text"
                 android:textColor="@color/black_color"
-                android:textSize="@dimen/textBig" />
+                android:textSize="@dimen/textBig"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/line_belowFrequency"
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/reminderInfo_text"
+                android:layout_marginTop="5dip"
+                android:background="@color/gray" />
 
             <RelativeLayout
                 android:id="@+id/layout_markPrivate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/reminderInfo_text"
+                android:layout_below="@id/line_belowFrequency"
                 android:padding="5dp"
                 android:visibility="visible" >
 
@@ -458,7 +469,7 @@
                 android:paddingBottom="8dip"
                 android:paddingLeft="15dip"
                 android:paddingTop="8dip"
-                android:text="@string/note_text"
+                android:text="@string/afterschool_notetext"
                 android:textColor="@color/black_color"
                 android:textSize="@dimen/textBig" />
 
@@ -470,7 +481,7 @@
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="10dip"
-                android:hint="Type Note Here..."
+                android:hint="Where is this happening?"
                 android:textSize="@dimen/textLarge" />
 
             <Button

@@ -79,6 +79,8 @@ public class SettingsFragment extends Fragment implements OnClickListener
 
 	private TypeFace typeFace;
 	private Button button_save;
+	//private TextView text_settingreminerOff;
+	//private Switch reminder_switch;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
@@ -120,7 +122,13 @@ public class SettingsFragment extends Fragment implements OnClickListener
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				new SetReminderAsync().execute();
+				//sharePref.setReminder(reminder_switch.isChecked());
+				//if(reminder_switch.isChecked())
+					new SetReminderAsync().execute();
+				/*else
+				{
+					
+				}*/
 			}
 		});
 		setHasOptionsMenu(true);
@@ -128,6 +136,52 @@ public class SettingsFragment extends Fragment implements OnClickListener
 		{
 			setTextViewId(info_ids[i],i);
 		}
+
+		//text_settingreminerOff=(TextView)view.findViewById(R.id.text_settingreminderOff);
+		//typeFace.setTypefaceRegular(text_settingreminerOff);
+
+		//reminder_switch=(Switch) view.findViewById(R.id.reminder_switch);
+
+		//typeFace.setTypefaceLight(reminder_switch);
+		/*if(sharePref.isReminderOn())
+		{
+			reminder_switch.setChecked(true);
+		}
+		else
+		{
+			reminder_switch.setChecked(false);
+		}*/
+
+		/*reminder_switch.setOnCheckedChangeListener(new android.widget.CompoundButton.OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(reminder_switch.isChecked())
+				{
+					relativeFrequency.setAlpha(1f);
+					relativeFrequency.setClickable(true);
+					relativeFrequency.setEnabled(true);
+					relativeTime.setAlpha(1f);
+					relativeTime.setClickable(true);
+					relativeTime.setEnabled(true);
+					//sharePref.setReminder(true);
+				}
+				else
+				{
+					relativeFrequency.setAlpha(.5f);
+					relativeFrequency.setClickable(false);
+					relativeFrequency.setEnabled(false);
+					relativeTime.setAlpha(.5f);
+					relativeTime.setClickable(false);
+					relativeTime.setEnabled(false);
+					//sharePref.setReminder(false);
+				}
+			}
+		});
+*/
+
+
 
 		relativeFrequency=(RelativeLayout) view.findViewById(R.id.horizontal_layout_setting);
 		relativeTime=(RelativeLayout) view.findViewById(R.id.horizontal_layout_setting1);
@@ -238,7 +292,7 @@ public class SettingsFragment extends Fragment implements OnClickListener
 			Intent childIntent=new Intent(getActivity(),ChildListActivity.class);
 			startActivity(childIntent);
 			break;
-		/*case R.id.text_setting4:
+			/*case R.id.text_setting4:
 			Intent allyIntent=new Intent(getActivity(),AllyListActivity.class);
 			startActivity(allyIntent);
 			break;*/

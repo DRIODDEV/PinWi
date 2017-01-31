@@ -130,6 +130,8 @@ public class StaticVariables
 	public static final int  ACCESSPROFILESETTINGSPASSCODE=1;
 	public static final int  TABCHILDACTIVITIESSETTINGSPASSCODE=2;
 
+	public static int fragmentIndexFrequencyPage=0;
+	public static int fragmentIndexErrorDetailPage=0;
 
 
 }

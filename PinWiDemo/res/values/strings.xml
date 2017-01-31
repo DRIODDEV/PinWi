@@ -44,7 +44,7 @@
 
     <!-- ConfirmationActivity -->
     <string name="confirmation_header_text">Confirm Profile</string>
-    <!-- <string name="confirmation_text">You are almost done. For security reasons we would like you to confirm your details. Select how you would like to receive the confirmation code:</string> --> 
+    <!-- <string name="confirmation_text">You are almost done. For security reasons we would like you to confirm your details. Select how you would like to receive the confirmation code:</string> -->
     <string name="confirmation_text">You are almost done. For security reasons we would like you to confirm your details. Please select how you would like to receive a verification code and tap send.</string>
     <string name="receive_confirmation_text">Receive Confirmation Through:</string>
     <string name="agree_text">I agree with</string>
@@ -64,7 +64,6 @@
     <string name="passcode_enter_passcode">Enter a 4-Digit Code</string>
     <string name="passcode_parent_text">Lock Your Profile</string>
     <string name="passcode_child_text">Lock Child Profile</string>
-    
     <string name="cancel_text">Cancel</string>
     <string name="done_text">Done</string>
     <string name="submit_text">Submit</string>
@@ -194,7 +193,7 @@
     <string name="startTime_text">Start Time</string>
     <string name="endDate_text">End Date</string>
     <string name="endTime_text">End Time</string>
-    <string name="dayofWeek_text">Days of Week</string>
+    <string name="dayofWeek_text">Frequency</string>
     <string name="reminder_text">Reminder</string>
     <string name="markPrivate_text">Mark Private</string>
     <string name="markSpecial_text">Mark Special</string>
@@ -267,7 +266,22 @@ content here\', making it look like readable English. </string>
         realistic and real-time \n insights that can help you stay focused on your child’s interests. 
         Remember interests evolve with time and exposure. So keep the activities updated and the ratings consistent.\n\n</string>
     <string name="btnWhyamIdoingthis">Thanks I got it</string>
-    
     <string name="playstore_text">Subscription renews automatically at end of term.\nTurn off auto-renew from your PlayStore settings.</string>
+    <string name="afterschool_notetext">Location</string>
+
+    <string-array name="freq_page_txt">
+        <item>All these days</item>
+        <item>Weekly</item>
+        <item>Bi-Weekly</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>All Weekdays</item>
+        <item>Only Weekends</item>
+    </string-array>
 
 </resources>

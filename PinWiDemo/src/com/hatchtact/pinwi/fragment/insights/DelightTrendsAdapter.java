@@ -23,8 +23,6 @@ public class DelightTrendsAdapter  extends BaseAdapter
 		// TODO Auto-generated constructor stub
 		layout_inflator=LayoutInflater.from(context);
 		typeface=new TypeFace(context);
-		
-
 	}
 
 	@Override
@@ -59,12 +57,10 @@ public class DelightTrendsAdapter  extends BaseAdapter
 			holder.imageTick=(ImageView) view.findViewById(R.id.imagedelighttrends);
 			holder.txtView=(TextView)view.findViewById(R.id.textSeekBarDelightTrends);
 			holder.txtViewName=(TextView)view.findViewById(R.id.textNameSeekBarDelightTrends);
-			 typeface.setTypefaceRegular(holder.txtViewName);
-             typeface.setTypefaceLight(holder.txtView);
+			typeface.setTypefaceRegular(holder.txtViewName);
+            typeface.setTypefaceLight(holder.txtView);
 			view.setTag(holder);
-
 		}
-
 		else
 		{
 			holder=(Holder)view.getTag();
@@ -72,27 +68,21 @@ public class DelightTrendsAdapter  extends BaseAdapter
 
 		holder.seekBar.setEnabled(false);
 		holder.seekBar.setProgress((int)(TypesInsightsFragment.getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(position).getRating()));
-		holder.txtView.setText(TypesInsightsFragment.getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(position).getRating() + "");
+		holder.txtView.setText(Math.round(TypesInsightsFragment.getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(position).getRating()) + ".0");
 		holder.txtViewName.setText(TypesInsightsFragment.getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(position).getName() + "");
-		
 		
 		if(TypesInsightsFragment.getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(position).getChange()==2.0)
 		{
 			holder.imageTick.setImageResource(R.drawable.down_arrow);
 		}
 		else if(TypesInsightsFragment.getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(position).getChange()==1.0)
-
 		{
-
 			holder.imageTick.setImageResource(R.drawable.up_arrow);
-
 		}
-
 		else
 		{
 			holder.imageTick.setVisibility(View.INVISIBLE);
 		}
-		
 		
 		return view;
 	}

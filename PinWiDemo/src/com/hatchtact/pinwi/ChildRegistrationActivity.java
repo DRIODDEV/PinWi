@@ -84,7 +84,7 @@ import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 import com.hatchtact.pinwi.utility.Validation;
 import com.hatchtact.pinwi.view.AutoCompleteAdapter;
-import android.view.inputmethod.EditorInfo;
+import com.hatchtact.pinwi.view.NamesAdapter;
 
 @SuppressLint("NewApi")
 public class ChildRegistrationActivity extends MainActionBarActivity implements OnTouchListener
@@ -236,8 +236,10 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		boy_textView=(RadioButton) findViewById(R.id.text_boy);
 		girl_textView=(RadioButton) findViewById(R.id.text_girl);
 		school_autoCompleteTextView=(AutoCompleteTextView) findViewById(R.id.text_schoolname);
-		/*school_autoCompleteTextView.setFocusable(true);
-		school_autoCompleteTextView.setFocusableInTouchMode(true);*/
+		school_autoCompleteTextView.setFocusable(true);
+		school_autoCompleteTextView.setFocusableInTouchMode(true);
+		/*school_autoCompleteTextView.setSingleLine(false);
+		school_autoCompleteTextView.setMaxLines(2);*/
 		boy_textView.setChecked(true);
 
 		typeFace.setTypefaceLight(childFname_editText);
@@ -367,7 +369,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			}
 		});
 
-		school_autoCompleteTextView.setOnTouchListener(this);
+		/*school_autoCompleteTextView.setOnTouchListener(this);
 
 		school_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
 		{
@@ -378,17 +380,22 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				// TODO Auto-generated method stub
 
 			}
-		});
+		});*/
 
-		/*school_autoCompleteTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+		school_autoCompleteTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 				// TODO Auto-generated method stub
 				if (actionId == EditorInfo.IME_ACTION_DONE) {
+					hideKeyBoard();
+
 					return true;
-				} else {
-					return false;
+				} 
+				else 
+				{
+					hideKeyBoard();
+					return true;
 				}
 			}
 		});
@@ -435,7 +442,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				hideKeyBoard();
 			}
 		});
-		 */
+		 
 
 		addanotherchild_imageView.setOnClickListener(new OnClickListener() {
 
@@ -925,14 +932,15 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	private void childSaving(boolean hasToaddMore) {
 		String textSelectSchool = school_autoCompleteTextView.getText().toString();	
 
-		for(int i=0;i<schoolList.getSchoolList().size();i++)
+		/*for(int i=0;i<schoolList.getSchoolList().size();i++)
 		{
 			if(textSelectSchool.trim().equalsIgnoreCase(schoolList.getSchoolList().get(i).getSchoolName().trim()))
 			{
 				childProfile.setSchoolID(schoolList.getSchoolList().get(i).getSchoolID());	
 				childProfile.setSchoolName(textSelectSchool);
 			}
-		}
+		}*/
+		childProfile.setSchoolName(textSelectSchool);
 
 		String textSelectedAutolockTime = childautolocktime_autoCompleteTextView.getText().toString();	
 
@@ -999,7 +1007,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			updateChildProfile.setDateOfBirth(childProfile.getDateOfBirth());
 			updateChildProfile.setNickName(childProfile.getNickName());
 			updateChildProfile.setGender(childProfile.getGender());
-			updateChildProfile.setSchoolName(childProfile.getSchoolID()+"");
+			//updateChildProfile.setSchoolName(childProfile.getSchoolID()+"");
+			updateChildProfile.setSchoolName(childProfile.getSchoolName());
 			updateChildProfile.setPasscode(childProfile.getPasscode());
 			updateChildProfile.setAutolockTime(childProfile.getAutolockID()+"");
 
@@ -1512,15 +1521,15 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				if(schoolStringList!=null && schoolStringList.size()>0)
 				{
 					Collections.sort(schoolStringList);
-					AutoCompleteAdapter checkUpAdapter = new AutoCompleteAdapter(ChildRegistrationActivity.this, R.layout.list_item, R.id.item,schoolStringList);
-					school_autoCompleteTextView.setAdapter(checkUpAdapter);
-					/*					NamesAdapter namesAdapter = new NamesAdapter(
+					/*AutoCompleteAdapter checkUpAdapter = new AutoCompleteAdapter(ChildRegistrationActivity.this, R.layout.list_item, R.id.item,schoolStringList);
+					school_autoCompleteTextView.setAdapter(checkUpAdapter);*/
+					NamesAdapter namesAdapter = new NamesAdapter(
 							ChildRegistrationActivity.this, R.layout.list_item, R.id.item,schoolStringList
 							);
 					//set adapter into listStudent
-					school_autoCompleteTextView.setAdapter(namesAdapter);*/
-					school_autoCompleteTextView.setValidator(new ValidateText(schoolStringList,1));
-					//school_autoCompleteTextView.setThreshold(0);
+					school_autoCompleteTextView.setAdapter(namesAdapter);
+					school_autoCompleteTextView.setThreshold(0);
+					//school_autoCompleteTextView.setValidator(new ValidateText(schoolStringList,1));
 				}
 				else
 				{	

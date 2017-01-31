@@ -1,6 +1,7 @@
 package com.hatchtact.pinwi.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.hatchtact.pinwi.GuideSlideActivity;
+import com.hatchtact.pinwi.NotificationDetailActivity;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.classmodel.GetNotificationListByParentIDList;
 import com.hatchtact.pinwi.fragment.insights.ParentFragment;
@@ -27,7 +30,7 @@ public class NotificationFragment extends ParentFragment implements OnItemClickL
 	private View view;
 	private static NotificationFragment notificationFragment;
 	private ListView listView=null;
-	static GetNotificationListByParentIDList getNotificationListByParentIDList=new GetNotificationListByParentIDList();
+	public static GetNotificationListByParentIDList getNotificationListByParentIDList=new GetNotificationListByParentIDList();
 	private ShowMessages showMessage=null;  
 	private ServiceMethod serviceMethod=null;
 	private CheckNetwork checkNetwork=null;
@@ -238,10 +241,13 @@ public class NotificationFragment extends ParentFragment implements OnItemClickL
 
 			// TODO Auto-generated method stub
 			StaticVariables.positionNotificationSelected=position;
-			StaticVariables.fragmentIndexCurrentTabNotification=102;
+			//StaticVariables.fragmentIndexCurrentTabNotification=102;
 			getNotificationListByParentIDList.getGetNotificationListByParentID().get(position).setRead(1);
-
-			switchingFragments(new NotificationFragmentTwo());
+			adapter.notifyDataSetChanged();
+			listView.invalidate();
+			Intent notificationDetail=new Intent(getActivity(), NotificationDetailActivity.class);
+			startActivity(notificationDetail);
+			//switchingFragments(new NotificationFragmentTwo());
 			
 		
 			

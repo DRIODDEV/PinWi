@@ -77,6 +77,8 @@
     <color name="stepsevenbackground"> #f79633</color>
     <color name="steptitle"> #db353a</color>
     <color name="steptext">#444444</color>
+    <color name="yellow">#FFD740</color>
+    
 
     
 </resources>

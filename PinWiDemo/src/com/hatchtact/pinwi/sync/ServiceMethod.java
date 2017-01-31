@@ -85,6 +85,7 @@ import com.hatchtact.pinwi.classmodel.GetNotificationListByParentIDList;
 import com.hatchtact.pinwi.classmodel.GetParentDetails;
 import com.hatchtact.pinwi.classmodel.GetPastDaysRatingStatusModelList;
 import com.hatchtact.pinwi.classmodel.GetPeopleYouMayKnowListByLoggedIDList;
+import com.hatchtact.pinwi.classmodel.GetPercentageCount;
 import com.hatchtact.pinwi.classmodel.GetPointsInfoByChildIDModel;
 import com.hatchtact.pinwi.classmodel.GetPointsInfoByChildIDOnInsightsList;
 import com.hatchtact.pinwi.classmodel.GetProfileDetailsByLoggedIDList;
@@ -442,7 +443,8 @@ public class ServiceMethod
 		request.addProperty("AutolockTime",parentProfie.getAutolockID()+"");
 		request.addProperty("FlatNoBuilding",parentProfie.getFlatNoBuilding());
 		request.addProperty("StreetLocality",parentProfie.getStreetLocality());
-		request.addProperty("City",parentProfie.getCityID()+"");
+		//request.addProperty("City",parentProfie.getCityID()+"");
+		request.addProperty("City",parentProfie.getCity());
 		request.addProperty("Country",parentProfie.getCountryID()+"");
 		request.addProperty("GoogleMapAddress",parentProfie.getGoogleMapAddress());
 		request.addProperty("Longitude",parentProfie.getLongitude());
@@ -684,7 +686,8 @@ public class ServiceMethod
 		}
 		//request.addProperty("DateOfBirth",childProfile.getDateOfBirth());
 		request.addProperty("Gender",childProfile.getGender());
-		request.addProperty("SchoolName",childProfile.getSchoolID()+"");
+		//request.addProperty("SchoolName",childProfile.getSchoolID()+"");
+		request.addProperty("SchoolName",childProfile.getSchoolName());
 		request.addProperty("Passcode",childProfile.getPasscode());
 		request.addProperty("AutolockTime",childProfile.getAutolockID()+"");
 
@@ -4318,7 +4321,7 @@ public class ServiceMethod
 
 	//Update Parent,Location, Child and ally
 
-	public int getupdateParentProfile(UpdateParentProfile updateParentProfie)
+	public int getupdateParentProfile(UpdateParentProfile updateParentProfie, UpdateLocationByParentID updateLocationByParentID)
 	{
 		int Errorcode =0;
 
@@ -4347,6 +4350,14 @@ public class ServiceMethod
 		{
 			request.addProperty("DateOfBirth",updateParentProfie.getDateOfBirth());
 		}
+		request.addProperty("FlatNoBuilding",updateLocationByParentID.getFlatNoBuilding());
+		request.addProperty("StreetLocality",updateLocationByParentID.getStreetLocality());
+		request.addProperty("City",updateLocationByParentID.getCity());
+		request.addProperty("Country",updateLocationByParentID.getCountry());
+		request.addProperty("GoogleMapAddress",updateLocationByParentID.getGoogleMapAddress());
+		request.addProperty("Longitude",updateLocationByParentID.getLongitude());
+		request.addProperty("Latitude",updateLocationByParentID.getLatitude());
+		request.addProperty("NeighbourhoodRadius",updateLocationByParentID.getNeighbourhoodRadius()+"");
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
@@ -10348,13 +10359,13 @@ public class ServiceMethod
 
 		LocalityList locality =null;
 
-		String METHOD_NAME = "LocalityActivity";
+		String METHOD_NAME = "GetLocalityList";
 		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
 
 		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 		request.addProperty(WSIDKEY, WSID);
 		request.addProperty(WSPWDKEY,WSPWD);
-		request.addProperty("CityID",/*cityId+*/"");
+		request.addProperty("CityID",cityId);
 		request.addProperty("SearchText","");
 
 
@@ -10525,6 +10536,96 @@ public class ServiceMethod
 
 		return searchActivitiesByActName;
 	}
+
+
+	@SuppressWarnings("null")
+	public GetPercentageCount getPercentageCountOnCI(int ChildID)
+	{
+		GetPercentageCount getPercentageCount =null;
+
+		String METHOD_NAME = "GetPercentageCountOnCI";
+		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request.addProperty(WSIDKEY, WSID);
+		request.addProperty(WSPWDKEY,WSPWD);
+		request.addProperty("ChildID",ChildID);
+
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+				SOAP_VERSION); // put
+
+		envelope.dotNet = true;
+
+		envelope.setAddAdornments(false);
+		envelope.implicitTypes = false;
+		envelope.setOutputSoapObject(request); // prepare request
+
+		HttpTransportSE httpTransport = new HttpTransportSE(URL, TIMEOUT);
+
+		httpTransport.debug = DEBUG; // this is optional, use it if you don't
+
+		// want to use a packet sniffer to check
+		// what the sent
+		// message was (httpTransport.requestDump)
+		httpTransport.setXmlVersionTag(HEADER);
+
+		try {
+
+			httpTransport.call(SOAP_ACTION, envelope);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		// send request
+		Log.d("RAM RAM3", "XML: " + httpTransport.requestDump);
+
+		SoapObject result = null;
+		String returnString = "";
+		try {
+			envelope.getResponse();
+			result = (SoapObject) envelope.bodyIn;
+			for (int i = 0; i < result.getPropertyCount(); i++) {
+				returnString = result.getProperty(i).toString();
+			}	
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+		Log.d("Response of Webservice: Method: "+METHOD_NAME, " " + returnString);
+
+		errorMessage  = returnString;
+
+		String getNewNotificationCountString = getValidJson.getValidJsonObject(returnString);
+		try {
+
+			JSONObject  onj = new JSONObject(getNewNotificationCountString);
+			getPercentageCount=new GetPercentageCount();
+			getPercentageCount.setGetPercentageCountOnCI(onj.getString("GetPercentageCountOnCI"));
+
+
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return getPercentageCount;
+	}
+
+
+
 
 
 

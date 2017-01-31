@@ -517,12 +517,19 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		imgBadge.setVisibility(View.VISIBLE);  	
 
 		txtBadge.setMovementMethod(ScrollingMovementMethod.getInstance());
-		social.Insights_ActivatedFacebookLog();
-		social.Insights_ActivatedGoogleAnalyticsLog();
+
+		if(sharePref.isInsightsActivared(StaticVariables.currentChild.getChildID()+"")==0)
+		{
+
+			social.Insights_ActivatedFacebookLog();
+			social.Insights_ActivatedGoogleAnalyticsLog();
+			sharePref.setInsightsActivated(1,StaticVariables.currentChild.getChildID()+"");
+		}
+
 		social.Quality_Badge_LevelFacebookLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
 		social.Quality_Badge_LevelGoogleAnalyticsLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
-		
-	
+
+
 		imgBadge.setImageResource(imageBadgesList.get(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge() -1));
 
 		//String Level="Level " + getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge() + ".";
@@ -912,6 +919,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 			viewDelightTrends.setTag(getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(i));
 
+			//Math.round(d);
 			viewDelightTrends.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -938,7 +946,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 			seekBarDelightTrends.setEnabled(false);
 			seekBarDelightTrends.setProgress((int)(getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(i).getRating()));
-			textDelightTrends.setText(getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(i).getRating() +"");
+			textDelightTrends.setText(Math.round(getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(i).getRating()) +".0");
 			textNameDelightTrends.setText(getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().get(i).getName() +"");
 
 
@@ -1542,7 +1550,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				/*getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
 						new InsightsErrorFragment()).commit(); */
 				getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
-						new InsightsErrorFragment()).commitAllowingStateLoss(); 
+						new InsightsErrorDummyFragment()).commitAllowingStateLoss(); 
 				/*if(checkNetwork.checkNetworkConnection(getActivity()))
 					new GetInsightsReportStatusByParentAndChildId(parentId,childId).execute();*/
 
@@ -1558,7 +1566,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 						/*getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
 								new InsightsErrorFragment()).commit(); */
 						getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
-								new InsightsErrorFragment()).commitAllowingStateLoss(); 
+								new InsightsErrorDummyFragment()).commitAllowingStateLoss(); 
 					}
 					else if(reportStatus==1)
 					{
