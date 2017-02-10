@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_in.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\bundles\\debug\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\bundles\\debug\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_out.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\bundles\\debug\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\bundles\\debug\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\bundles\\debug\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\android-support-v7-appcompat\\build\\intermediates\\bundles\\debug\\res\\anim\\abc_slide_in_bottom.xml"
+    }
+]

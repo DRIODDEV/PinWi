@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/child_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/child_star_pending_points_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/header_child_dashboard" />
+
+    <TextView
+        android:id="@+id/child_star_pending_points_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="POINTS CALENDAR"
+        android:textColor="@color/font_white_color"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/child_star_pending_points_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="16 June"
+        android:textColor="@color/font_white_color"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:weightSum="1" >
+
+        <LinearLayout
+            android:id="@+id/child_star_pending_points_day_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2" >
+
+            <TextView
+                android:id="@+id/child_star_pending_points_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="10dip"
+                android:text="Great! You earned 70 points."
+                android:textColor="@color/font_white_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/child_star_pending_points_date_layout"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            
+            android:layout_weight=".8" >
+
+            <ImageView
+                android:id="@+id/child_star_pending_points_imageBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:src="@drawable/cup_bar"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/child_star_pending_points_date_select_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dip"
+        android:text="Select the Date"
+        android:textColor="@color/font_white_color"
+        android:visibility="invisible" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="5dip" >
+
+        <LinearLayout
+            android:id="@+id/child_star_pending_points_grid_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/child_star_pending_points_day5_6_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <RelativeLayout
+                    android:id="@+id/child_star_pending_points_day5_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center" >
+
+                    <include
+                        android:id="@+id/child_star_pending_points_day5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        layout="@layout/item_pending_point_done" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/child_star_pending_points_day6_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center" >
+
+                    <include
+                        android:id="@+id/child_star_pending_points_day6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        layout="@layout/item_pending_point_done" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/child_star_pending_points_day4_3_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <RelativeLayout
+                    android:id="@+id/child_star_pending_points_day3_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center" >
+
+                    <include
+                        android:id="@+id/child_star_pending_points_day3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        layout="@layout/item_pending_point_done" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/child_star_pending_points_day4_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center" >
+
+                    <include
+                        android:id="@+id/child_star_pending_points_day4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        layout="@layout/item_pending_point_done" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/child_star_pending_points_day2_1_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <RelativeLayout
+                    android:id="@+id/child_star_pending_points_day1_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center" >
+
+                    <include
+                        android:id="@+id/child_star_pending_points_day1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        layout="@layout/item_pending_point_done" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/child_star_pending_points_day2_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".5"
+                    android:gravity="center" >
+
+                    <include
+                        android:id="@+id/child_star_pending_points_day2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        layout="@layout/item_pending_point_done" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

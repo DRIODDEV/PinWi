@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\PinWiGradle\android-support-v7-appcompat\unspecified\jars\libs\android-support-v7-appcompat.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="19f81bd0a7e2467241f6fba89ee131df3bbdc49e">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\android-support-v7-appcompat_f8947c1287e3abae1b0aff4e5da98e1618191bbf.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-tasks-10.0.1_f050a6601d2bf85a209e866db67e0202e57ac23a.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\libs\gson-2.2.1.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="42a24d508f5e05bd22cc42bd2e2babd7b5466ec9">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\gson-2.2.1_7ee0844f866cbc9c01f4a3131f575db8647539c7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ankur\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.1.4\129874135e6081269ace2312092031558865de12\bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\bolts-android-1.1.4_a5cc826afa0848032f81b7fca7e9e1b1f06cca8d.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.firebase-firebase-analytics-10.0.1_f0b71f680593ef1a28a47ee4b1f0eae7669f8590.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-iid-10.0.1_c1dd799787c1faca01767487a27d18083b970bad.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.firebase-firebase-common-10.0.1_27cc5f29c014376ccc9e6060e5f74aacf3fe498e.jar" />
+    </item>
+    <item
+        jar="D:\ANDROID STUDIO SDK\sdk\extras\android\m2repository\com\android\support\support-annotations\24.0.0\support-annotations-24.0.0.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\support-annotations-24.0.0_d4867c897cfd25058505d9937224f6f7f7119c22.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-basement-10.0.1_60a4da171f6747344762e73d367e74dec2a03719.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-v4-impl\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="f23ad0f8e58713ff4b55f61c0bbde3830378347c">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-tagmanager-v4-impl-10.0.1_cfcfaeb1912b4efa263321293f9f1a98590f5b12.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.android.support-support-v4-24.0.0_761ba3ec82b60511ef377f2b506ea4e4f40f61a6.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.clevertap.android\clevertap-android-sdk\3.1.2\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="cefd4d4b1cb3c2468c9551127b05b1179afcd2a6">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.clevertap.android-clevertap-android-sdk-3.1.2_686c085096b971ecb7060e163361457dd87f110f.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\libs\libGoogleAnalyticsServices.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="e887c6c9b31b39a39b0eaba981448b78902ea813">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\libGoogleAnalyticsServices_b5df23ecf575c63d6e9414e067181bf9b960d6ee.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-base-10.0.1_9cd7ea9ed23d4368906d5ec49a8adddfea00cb5a.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\libs\internal_impl-24.0.0.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\internal_impl-24.0.0_3f2601fe38e3db2f4fa4b57ea17031789edd84ef.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\libs\gcm.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="a6d7bce795a14c7f86111756c4ceb44b79de14aa">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\gcm_67801d9765064c7b940b00f3497ac8b17a446003.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="0f254ec13d6671680482d2218f01ecf14dfa93e6">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.facebook.android-facebook-android-sdk-4.0.0_6e70bc7347ccfd5d1c728d5aa5a02313a1a0470a.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\PinWiGradle\android-support-v7-appcompat\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="50911da08c48c656f7050c6670e98e64538a5fef">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\PinWiGradle-android-support-v7-appcompat-unspecified_01aca2900c715c4cd27b074ab9dd330fbf861797.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.firebase-firebase-iid-10.0.1_4ce1748b1c4b975694795bf7b04d25d544495397.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\PinWiGradle\MPChartLib\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="2f124f17a61f2f9b7cdb46f28bc240e1c862e27f">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\PinWiGradle-MPChartLib-unspecified_0792f2ff679c4895db6bbc0eb063a77c16081064.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="e871881b36b32e6bfd271a830c6eeb54ff0fc185">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-analytics-impl-10.0.1_1ad0b4ebe98b887739ed83ec8c033d81ea42e16a.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.firebase-firebase-analytics-impl-10.0.1_f1ac064a6582500a95ceea8caef0dbb7081429e4.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="4c829ff0ccfecb28a999ee46d9e75948dfc777a4">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-analytics-10.0.1_59d6af9e8f2d2c4f962e60cffb390436ce88a94a.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\libs\ksoap2-android-assembly-3.4.0-jar-with-dependencies.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="45fbaab416fb5cff992e662d1f7a83786f084fc3">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\ksoap2-android-assembly-3.4.0-jar-with-dependencies_b61b453b06596dd296065cd4b3a9605a0001fe43.jar" />
+    </item>
+    <item
+        jar="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
+        <dex dex="D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-gcm-10.0.1_e17817031400d66faf90be454383fe865f328bf2.jar" />
+    </item>
+
+</items>

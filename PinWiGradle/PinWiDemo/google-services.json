@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "836624727534",
+    "firebase_url": "https://fir-pinwi.firebaseio.com",
+    "project_id": "firebase-pinwi",
+    "storage_bucket": "firebase-pinwi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836624727534:android:3e383128c0f818d0",
+        "android_client_info": {
+          "package_name": "com.hatchtact.pinwi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836624727534-a1vrvsuh21hrjh87962jr39hpqdapidd.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "836624727534-9eoglff9j60kike6c9o590vaqco2o02t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBbLkDh7XGERZvNllZBC0HmA0aPzUVloo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836624727534-a1vrvsuh21hrjh87962jr39hpqdapidd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "836624727534-32jqd2th0b3utpv4dhrban2vgggihhkc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hatchtact.pinwi"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

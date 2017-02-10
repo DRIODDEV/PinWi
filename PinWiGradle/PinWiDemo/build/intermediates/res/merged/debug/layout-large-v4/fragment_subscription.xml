@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/layoutYearly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                layout="@layout/item_card_subscription" />
+
+            <include
+                android:id="@+id/layoutQuarterly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                layout="@layout/item_card_subscription" />
+
+             <TextView
+                android:id="@+id/tvtxtone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:text="@string/playstore_text"
+                android:textColor="@color/dark_gray"
+                android:textSize="12sp" />
+
+          <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/tvtxttwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/font_blue_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/viewLine"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/tvtxttwo"
+                    android:background="@color/font_blue_color" />
+
+                <TextView
+                    android:id="@+id/tvtxtthree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/viewLine"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Terms Of Use"
+                    android:textColor="@color/font_blue_color"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imgBenifits"
+                android:scaleType="matrix"
+                android:background="#398EC8"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/subimagenew" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

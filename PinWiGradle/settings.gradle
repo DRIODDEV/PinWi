@@ -1,0 +1,5 @@
+include ':android-support-v7-appcompat'
+include ':PinWiDemo'
+include ':facebook'
+include ':google-play-services_lib'
+include ':MPChartLib'

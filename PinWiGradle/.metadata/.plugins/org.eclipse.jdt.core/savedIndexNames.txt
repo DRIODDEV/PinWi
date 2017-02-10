@@ -1,0 +1,9 @@
+INDEX VERSION 1.126+D:\Android\New Android\PinWiGradle\.metadata\.plugins\org.eclipse.jdt.core
+2110317816.index
+2084155717.index
+3547405270.index
+3777430224.index
+3583641664.index
+4097851679.index
+848856923.index
+3515282563.index

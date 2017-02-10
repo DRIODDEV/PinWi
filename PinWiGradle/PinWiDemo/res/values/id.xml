@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="nextId" type="id" />
+    <item name="baseId" type="id" />
+    <item name="prevId" type="id" />
+
+</resources>

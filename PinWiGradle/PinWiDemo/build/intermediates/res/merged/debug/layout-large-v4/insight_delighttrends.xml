@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/textNameSeekBarDelightTrends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-10dp"
+        android:text="Maths"
+        android:textColor="@color/black_color" />
+
+    <SeekBar
+        android:id="@+id/seekbardelighttrends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textNameSeekBarDelightTrends"
+        android:layout_toLeftOf="@+id/textSeekBarDelightTrends"
+        android:clickable="false"
+        android:max="10"
+        android:paddingLeft="0dp"
+        android:progress="9"
+        android:progressDrawable="@drawable/apptheme_scrubber_progress_horizontal_holo_light"
+        android:thumb="@drawable/apptheme_scrubber_control_selector_holo_light" />
+
+    <ImageView
+        android:id="@+id/imagedelighttrends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/up_arrow" />
+
+    <TextView
+        android:id="@+id/textSeekBarDelightTrends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/imagedelighttrends"
+        android:textColor="@color/black_color" />
+
+</RelativeLayout>

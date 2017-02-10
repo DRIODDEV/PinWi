@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <LinearLayout
+        android:id="@+id/layout_slide_bottomlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/font_white_color"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/text_previous"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:background="@drawable/rectangular_btnguide"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:text="Prev"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/normalTextGuide"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_why"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".8"
+            android:background="@drawable/rectangular_btnguide"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:text="Why am I doing this?"
+            android:textColor="@color/btnrelationselection_color"
+            android:textSize="@dimen/normalTextGuide"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:background="@drawable/rectangular_btnguide"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dp"
+            android:paddingTop="10dp"
+            android:text="Next"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/normalTextGuide"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_getStarted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/greenslideBtn"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="Cool, Got it!"
+            android:textColor="@color/font_white_color"
+            android:textSize="@dimen/normalTextGuide"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/layout_slide_bottomlayer"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_gray"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/emptyView"
+        android:layout_marginLeft="0dip"
+        android:layout_marginRight="0dip" >
+
+        <com.hatchtact.pinwi.child.postcard.TemplateViewPager
+            android:id="@+id/postcard_templates"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="0dip"
+            android:overScrollMode="never" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/live_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/interestDriverSpecificName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:paddingBottom="7dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="7dip"
+        android:text="Exhilarotors"
+        android:textColor="#000000"
+        android:textSize="@dimen/textxLarge" />
+
+    <RelativeLayout
+        android:id="@+id/parent_driverslayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/interestDriverSpecificName" >
+
+        <TextView
+            android:id="@+id/interestDriverSpecificDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dip"
+            android:padding="5dip"
+            android:text="Abc12343 kwdvew, hjvaerg/WFWEF.HEWFEWFGUF/ 4353543434344"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/textNormal" />
+
+        <View
+            android:id="@+id/lining_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_below="@id/interestDriverSpecificDetail"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:background="@color/gray" />
+
+        <ListView
+            android:id="@+id/live_gridview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lining_view"
+             android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:divider="@color/font_white_color"
+            android:dividerHeight="1dip"
+            android:scrollbars="none" />
+    </RelativeLayout>
+
+</RelativeLayout>

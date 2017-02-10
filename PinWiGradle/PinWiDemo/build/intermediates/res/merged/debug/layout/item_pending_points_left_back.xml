@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+     android:padding="5dip"
+     android:background="@android:color/transparent"
+     android:id="@+id/item_child_pending_points_left_back_mainlayout" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/item_child_pending_points_left_weekday"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Sat" />
+
+        <TextView
+            android:id="@+id/item_child_pending_points_left_date_of_month"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="15"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/item_child_pending_points_left_month"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="JUN" />
+    </LinearLayout>
+
+</RelativeLayout>

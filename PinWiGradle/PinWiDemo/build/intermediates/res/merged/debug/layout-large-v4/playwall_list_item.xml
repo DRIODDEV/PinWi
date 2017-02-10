@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_background" >
+
+        <LinearLayout
+            android:id="@+id/layout_playwall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/playwall_list_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/header_playwalllist_item" />
+
+            <TextView
+                android:id="@+id/playwall_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="15dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:singleLine="true"
+                android:text="Template Heading"
+                android:textColor="@color/black_color"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/playwalldatalayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp" >
+
+                <TextView
+                    android:id="@+id/playwall_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="5"
+                    android:minLines="2"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="10dp"
+                    android:text="Template Data"
+                    android:textColor="@color/black_color"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/playwall_image"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+
+                <include
+                    android:id="@+id/playwall_audio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/audio_player_layout"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutemoji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/layout_bottom"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_background"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/emojione"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/emojitwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/emojithree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/emojifour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/emojifive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_launcher" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_playwall" >
+
+            <include
+                android:id="@+id/playwall_smiley_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/playwall_smileyimage"
+                layout="@layout/emoji_layout" />
+
+            <ImageView
+                android:id="@+id/playwall_smileyimage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/smiley_pick"
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.hatchtact.pinwi.child.HexagonImageView
+        android:id="@+id/child_buddies_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:paddingBottom="20dp"
+        android:src="@drawable/camera_icon" />
+
+</RelativeLayout>

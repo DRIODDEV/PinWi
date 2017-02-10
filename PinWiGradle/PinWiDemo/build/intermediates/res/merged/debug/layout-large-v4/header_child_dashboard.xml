@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:id="@+id/child_header_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="fill_horizontal"
+        android:background="@drawable/child_header_bg" >
+    </RelativeLayout>
+
+<LinearLayout
+        android:id="@+id/child_header_title_label_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/btngreen_color"
+        android:layout_below="@id/child_header_title_layout"
+        android:orientation="vertical"
+        android:visibility="gone"
+         >
+        
+        <TextView 
+	    android:id="@+id/child_header_title_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:gravity="center_horizontal"
+         android:layout_marginTop="40dip"
+         android:textSize="@dimen/textNormal"
+         android:text=""
+      />
+	
+	<TextView 
+	    android:id="@+id/child_header_title_label_underline"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:textSize="@dimen/normal_text"
+        android:background="@color/black_color"
+      />
+	
+    </LinearLayout>
+    <com.hatchtact.pinwi.child.HexagonImageView
+        android:id="@+id/child_header_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dip"
+        android:src="@drawable/camera_icon" />
+
+    
+    <ImageView
+        android:id="@+id/child_header_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dip"
+        android:layout_marginRight="10dip"
+        android:padding="15dip"
+        android:background="@drawable/child_volume" />
+    
+    <ImageView
+        android:id="@+id/child_header_voice_over"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/child_header_music"
+        android:layout_marginTop="15dip"
+        android:layout_marginRight="10dip"
+        android:padding="15dip"
+        android:background="@drawable/child_voiceover" />
+    
+    
+      <ImageView
+        android:id="@+id/child_header_move_to_access_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dip"
+        android:padding="15dip"
+        android:background="@drawable/child_accessprofileicon" />
+
+</RelativeLayout>

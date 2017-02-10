@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dip" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/image_pinwiAboutUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/pinwi_logo2" />
+
+            <TextView
+                android:id="@+id/text_heading1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_pinwiAboutUs"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="5dip"
+                android:text="@string/heading1_text"
+                android:textColor="@color/black_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_aboutHeading1Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/text_heading1"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="5dip"
+                android:text="@string/about_heading1_text"
+                android:textColor="@color/black_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/text_heading2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_aboutHeading1Text"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="15dip"
+                android:text="@string/heading2_text"
+                android:textColor="@color/black_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_aboutHeading2Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/text_heading2"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="5dip"
+                android:text="@string/about_heading2_text"
+                android:textColor="@color/black_color"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/button_viewTermsAndConditions"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:layout_below="@id/text_aboutHeading2Text"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="25dip"
+                android:background="@drawable/rectangular_btnrelation"
+                android:gravity="center"
+                android:text="@string/terms_conditions_text"
+                android:textColor="@color/font_blue_color"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/button_viewTermsAndConditions"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dip"
+                android:text="@string/version_text"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_copyRight"
+                android:layout_width="wrap_content"   
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_version"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dip"
+                android:text="@string/copyright_text"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_hiddenAboutUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_copyRight"
+                android:layout_marginTop="10dip"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

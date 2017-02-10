@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <LinearLayout
+        android:id="@+id/layout_displayallListAfterSchool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal"
+        android:weightSum="1.0" >
+
+        <TextView
+            android:id="@+id/subjectNameAfterSchool_textDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/textLarge" />
+
+        <RelativeLayout
+            android:id="@+id/layout_SpecialPrivateAfterSchoolDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/afterSchool_private_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dip"
+                android:layout_toLeftOf="@+id/afterSchool_special_image"
+                android:gravity="center"
+                android:src="@drawable/private_afterschool"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/afterSchool_special_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/afterSchool_verified_nonverified_image"
+                android:gravity="center"
+                android:src="@drawable/special"
+                android:visibility="invisible" />
+
+           <ImageView
+                android:id="@+id/afterSchool_verified_nonverified_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/afterSchool_emptyview"
+                android:gravity="center"
+                android:src="@drawable/nonverified"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/afterSchool_emptyview"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:src="@drawable/nonverified"
+                android:visibility="invisible" />
+            
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_displayAfterSchoolSpecialPrivate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_displayallListAfterSchool"
+        android:layout_marginTop="5dip"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="1.0" >
+
+        <LinearLayout
+            android:id="@+id/layout_allDaysInAfterSchoolDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_weight="0.45"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/afterSchool_sunday_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dot_gray"
+                android:gravity="center"
+                android:text="@string/sunday_text"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/afterSchool_monday_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:background="@drawable/dot_gray"
+                android:gravity="center"
+                android:text="@string/monday_text"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/afterSchool_tuesday_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:background="@drawable/dot_gray"
+                android:gravity="center"
+                android:text="@string/tuesday_text"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/afterSchool_wednesday_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:background="@drawable/dot_gray"
+                android:gravity="center"
+                android:text="@string/wednesday_text"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/afterSchool_thursday_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:background="@drawable/dot_gray"
+                android:gravity="center"
+                android:text="@string/thursday_text"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/afterSchool_friday_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:background="@drawable/dot_gray"
+                android:gravity="center"
+                android:text="@string/friday_text"
+                android:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/afterSchool_saturday_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:background="@drawable/dot_gray"
+                android:gravity="center"
+                android:text="@string/saturday_text"
+                android:textColor="@color/black_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_timeAfterSchoolDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_weight="0.55"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/starttimeAfterSchool_textDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSmallTwo" />
+
+            <TextView
+                android:id="@+id/dash_textDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSmallTwo" />
+
+            <TextView
+                android:id="@+id/endtimeAfterSchool_textDisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textSmallTwo" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/layout_displayAfterSchoolSpecialPrivate"
+        android:layout_margin="10dip" />
+
+</RelativeLayout>

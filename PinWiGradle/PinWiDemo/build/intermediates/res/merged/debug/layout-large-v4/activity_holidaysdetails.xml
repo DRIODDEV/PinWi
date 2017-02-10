@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/layout_holiday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/titleaddNewHoliday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="5dp"
+                    android:text="ADD NEW HOLIDAY"
+                    android:textColor="@color/black_color"
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/text_informAllyLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_holidayDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_holiday"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1.0" >
+
+                <TextView
+                    android:id="@+id/holidayNamelabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.348"
+                    android:text="Holiday Name"
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/holidayNamedata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.652"
+                    android:background="@color/transparent"
+                    android:gravity="left"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/text_allyInform_Name1"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_below="@id/layout_holidayDesc"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/layout_startdateHoliday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_allyInform_Name1"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:orientation="horizontal"
+                android:weightSum="1.0" >
+
+                <TextView
+                    android:id="@+id/setdate_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
+                    android:text="Start Date"
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/setdateValueHoliday_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:gravity="left"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/text_allyInform_invi2"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_below="@id/layout_startdateHoliday"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:id="@+id/layout_enddateholidaydate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_allyInform_invi2"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:orientation="horizontal"
+                android:weightSum="1.0" >
+
+                <TextView
+                    android:id="@+id/setendate_textlabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.35"
+                    android:text="End Date"
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/setendate_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.65"
+                    android:gravity="left"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/text_allyInform_invi3"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_below="@id/layout_enddateholidaydate"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@color/gray" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutButtonHolidays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/buttonDone"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="20dip"
+            android:layout_weight=".5"
+            android:background="@drawable/rectangular_btn"
+            android:text="@string/done_text"
+            android:textColor="@color/black_color"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="15dip"
+            android:layout_weight=".5"
+            android:background="@drawable/rectangular_btn_redcolor"
+            android:text="@string/delete_text"
+            android:textColor="@color/font_red_color"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

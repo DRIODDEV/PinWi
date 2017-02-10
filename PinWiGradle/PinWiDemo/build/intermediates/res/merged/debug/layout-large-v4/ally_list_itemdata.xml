@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color" >
+
+    <RelativeLayout
+        android:id="@+id/layout_displayallynameanddate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       	android:paddingRight="10dip"
+        android:paddingTop="5dip" >
+
+        <TextView
+            android:id="@+id/allyname_textDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textColor="@color/black_color"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/datetodisplay_ally"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:text=""
+            android:textColor="@color/black_color"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_displayallypickandtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_displayallynameanddate"
+        android:paddingRight="10dip"
+        android:paddingTop="5dip" >
+
+        <TextView
+            android:id="@+id/allypickdrop_textDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+           	android:text=""
+            android:textColor="@color/black_color"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/allytime_textDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:text=""
+            android:textColor="@color/black_color"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/layout_displayallypickandtime"
+        android:layout_margin="10dip" />
+
+</RelativeLayout>

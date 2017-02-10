@@ -1,0 +1,928 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:2:1-315:12
+	package
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:3:5-34
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+	android:versionName
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:5:5-30
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+	android:versionCode
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:4:5-29
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:2:11-69
+uses-sdk
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:7:5-9:41
+MERGED from [PinWiGradle:android-support-v7-appcompat:unspecified] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\PinWiGradle\android-support-v7-appcompat\unspecified\AndroidManifest.xml:20:5-43
+MERGED from [PinWiGradle:MPChartLib:unspecified] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\PinWiGradle\MPChartLib\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tagmanager-v4-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-v4-impl\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.firebase:firebase-core:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-core\10.0.1\AndroidManifest.xml:4:5-42
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:3:5-42
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:17:5-42
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.facebook.android:facebook-android-sdk:4.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.0.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.clevertap.android:clevertap-android-sdk:3.1.2] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.clevertap.android\clevertap-android-sdk\3.1.2\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:9:9-38
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:8:9-35
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
+uses-permission#com.android.launcher.action.INSTALL_SHORTCUT
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:12:5-84
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:12:22-81
+uses-permission#com.android.launcher.permission.UNINSTALL_SHORTCUT
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:13:5-90
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:13:22-87
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:14:5-75
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:14:22-72
+uses-permission#com.sec.android.provider.badge.permission.READ
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:16:5-86
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:16:22-83
+uses-permission#com.sec.android.provider.badge.permission.WRITE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:17:5-87
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:17:22-84
+uses-permission#com.htc.launcher.permission.READ_SETTINGS
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:20:5-81
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:20:22-78
+uses-permission#com.htc.launcher.permission.UPDATE_SHORTCUT
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:21:5-83
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:21:22-80
+uses-permission#com.sonyericsson.home.permission.BROADCAST_BADGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:24:5-88
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:24:22-85
+uses-permission#com.sonymobile.home.permission.PROVIDER_INSERT_BADGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:25:5-92
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:25:22-89
+uses-permission#com.anddoes.launcher.permission.UPDATE_COUNT
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:28:5-84
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:28:22-81
+uses-permission#com.majeur.launcher.permission.UPDATE_BADGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:31:5-83
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:31:22-80
+uses-permission#com.huawei.android.launcher.permission.CHANGE_BADGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:34:5-91
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:34:22-88
+uses-permission#com.huawei.android.launcher.permission.READ_SETTINGS
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:35:5-92
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:35:22-89
+uses-permission#com.huawei.android.launcher.permission.WRITE_SETTINGS
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:36:5-93
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:36:22-90
+uses-permission#android.permission.READ_APP_BADGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:39:5-73
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:39:22-70
+uses-permission#com.oppo.launcher.permission.READ_SETTINGS
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:42:5-82
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:42:22-79
+uses-permission#com.oppo.launcher.permission.WRITE_SETTINGS
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:43:5-83
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:43:22-80
+uses-permission#com.android.vending.BILLING
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:45:5-67
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:45:22-64
+uses-permission#android.permission.INTERNET
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:46:5-67
+MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:46:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:47:5-79
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:47:22-76
+uses-permission#android.permission.CAMERA
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:48:5-65
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:48:22-62
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:49:5-71
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:49:22-68
+uses-feature#android.hardware.camera
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:51:5-60
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:51:19-57
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:53:5-81
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:53:22-78
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:54:5-73
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:54:22-70
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:56:5-68
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:21:5-67
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:56:22-65
+permission#com.hatchtact.pinwi.permission.C2D_MESSAGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:58:5-60:47
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:24:5-109
+	android:protectionLevel
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:60:9-44
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:59:9-66
+uses-permission#com.hatchtact.pinwi.permission.C2D_MESSAGE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:62:5-82
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:26:5-78
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:62:22-79
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:63:5-82
+MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:20:5-81
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:20:5-81
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:63:22-79
+uses-permission#android.permission.VIBRATE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:64:5-66
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:64:22-63
+uses-feature#0x00020000
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:67:5-69:35
+	android:glEsVersion
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:68:9-41
+	android:required
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:69:9-32
+application
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:71:5-313:19
+MERGED from [PinWiGradle:android-support-v7-appcompat:unspecified] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\PinWiGradle\android-support-v7-appcompat\unspecified\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:23:5-19
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:23:5-19
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\10.0.1\AndroidManifest.xml:26:5-19
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:26:5-19
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tagmanager-v4-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-v4-impl\10.0.1\AndroidManifest.xml:19:5-19
+MERGED from [com.google.android.gms:play-services-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\10.0.1\AndroidManifest.xml:26:5-19
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.firebase:firebase-core:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-core\10.0.1\AndroidManifest.xml:5:5-20
+MERGED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:24:5-33:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:24:5-28:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:28:5-50:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-tasks:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.facebook.android:facebook-android-sdk:4.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.0.0\AndroidManifest.xml:28:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:24.0.0] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:77:9-45
+	android:label
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:75:9-41
+	android:allowBackup
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:73:9-35
+	android:icon
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:74:9-42
+	android:largeHeap
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:76:9-33
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:78:9-40
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:72:9-41
+activity#com.hatchtact.pinwi.SplashActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:79:9-89:20
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:82:13-49
+	android:label
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:81:13-45
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:83:13-44
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:80:13-62
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:84:13-88:29
+action#android.intent.action.MAIN
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:85:17-69
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:85:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:87:17-77
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:87:27-74
+provider#com.hatchtact.pinwi.calendar.CalendarProvider
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:91:9-93:83
+	android:authorities
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:93:13-80
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:92:13-73
+activity#com.hatchtact.pinwi.SignUpActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:95:9-97:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:97:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:96:13-62
+activity#com.hatchtact.pinwi.LoginActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:98:9-100:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:100:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:99:13-61
+activity#com.hatchtact.pinwi.ParentRegistrationActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:101:9-104:50
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:103:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:104:13-47
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:102:13-74
+activity#com.hatchtact.pinwi.ConfirmationActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:105:9-108:50
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:107:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:108:13-47
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:106:13-68
+activity#com.hatchtact.pinwi.ChildRegistrationActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:109:9-112:50
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:111:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:112:13-47
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:110:13-73
+activity#com.hatchtact.pinwi.AllyRegistrationActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:113:9-116:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:115:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:116:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:114:13-72
+activity#com.hatchtact.pinwi.GetStartedActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:117:9-120:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:119:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:120:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:118:13-66
+activity#com.hatchtact.pinwi.AccessProfileActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:121:9-124:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:123:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:124:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:122:13-69
+activity#com.hatchtact.pinwi.PasswordUnLockActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:125:9-128:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:127:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:128:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:126:13-70
+activity#com.hatchtact.pinwi.PasswordUnLockActivityChild
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:129:9-132:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:131:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:132:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:130:13-75
+activity#com.hatchtact.pinwi.AddPasscordActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:133:9-136:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:135:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:136:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:134:13-67
+activity#com.hatchtact.pinwi.ParentProfileInformationActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:137:9-140:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:139:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:140:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:138:13-80
+activity#com.hatchtact.pinwi.TabChildActivities
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:141:9-144:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:143:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:144:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:142:13-66
+activity#com.hatchtact.pinwi.ActivityAboutUS
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:146:9-149:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:148:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:149:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:147:13-63
+activity#com.hatchtact.pinwi.ActivitySupport
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:150:9-153:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:152:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:153:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:151:13-63
+activity#com.hatchtact.pinwi.ActivityTutorial
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:154:9-157:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:156:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:157:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:155:13-64
+activity#com.hatchtact.pinwi.TutorialPageActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:158:9-161:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:160:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:161:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:159:13-68
+activity#com.hatchtact.pinwi.child.ChildSetStarRatingActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:162:9-164:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:164:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:163:13-80
+activity#com.hatchtact.pinwi.child.ChildStarEarnedPointActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:165:9-167:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:167:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:166:13-82
+activity#com.hatchtact.pinwi.child.ChildMainDashboardActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:169:9-171:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:171:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:170:13-80
+activity#com.hatchtact.pinwi.child.ChildPendingPointActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:172:9-174:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:174:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:173:13-79
+activity#com.hatchtact.pinwi.child.ChildBuddiesActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:175:9-177:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:177:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:176:13-74
+activity#com.hatchtact.pinwi.child.ChildBuddiesDetailActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:178:9-180:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:180:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:179:13-80
+activity#com.hatchtact.pinwi.child.ChildBuddiesListActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:181:9-183:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:183:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:182:13-78
+activity#com.hatchtact.pinwi.child.ChildWishListActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:184:9-186:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:186:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:185:13-75
+activity#com.hatchtact.pinwi.child.ChildWishListDetailActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:187:9-189:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:189:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:188:13-81
+activity#com.hatchtact.pinwi.child.ChildAlertActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:190:9-192:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:192:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:191:13-72
+activity#com.hatchtact.pinwi.child.postcard.ChildPostcardActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:193:9-195:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:195:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:194:13-84
+activity#com.hatchtact.pinwi.child.postcard.ChildPostcardDetailingTextActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:196:9-199:77
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:198:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:199:13-74
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:197:13-97
+activity#com.hatchtact.pinwi.child.postcard.ChildPostcardDetailingImageActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:200:9-202:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:202:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:201:13-98
+activity#com.hatchtact.pinwi.child.postcard.ChildPostcardDetailingAudioActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:203:9-206:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:206:13-49
+	android:hardwareAccelerated
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:205:13-48
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:204:13-98
+activity#com.hatchtact.pinwi.child.playwall.ChildPlayWallActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:207:9-209:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:209:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:208:13-84
+activity#com.hatchtact.pinwi.child.playwall.ChildEmoticonDetailActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:210:9-212:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:212:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:211:13-90
+activity#com.hatchtact.pinwi.child.playwall.ChildPlayWallDetailActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:213:9-215:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:215:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:214:13-90
+activity#com.hatchtact.pinwi.child.ChildTutorialActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:216:9-218:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:218:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:217:13-75
+activity#com.hatchtact.pinwi.ActivityInvite
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:219:9-222:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:221:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:222:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:220:13-62
+activity#com.hatchtact.pinwi.TakePicture
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:223:9-225:80
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:225:13-77
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:224:13-59
+activity#com.hatchtact.pinwi.SettingsActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:226:9-229:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:228:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:229:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:227:13-64
+activity#com.hatchtact.pinwi.ChildListActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:230:9-233:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:232:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:233:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:231:13-65
+activity#com.hatchtact.pinwi.AllyListActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:234:9-237:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:236:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:237:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:235:13-64
+activity#com.hatchtact.pinwi.fragment.network.ZoomScreenActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:238:9-241:60
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:240:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:241:13-57
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:239:13-83
+activity#com.hatchtact.pinwi.ForgotPasswordActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:242:9-244:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:244:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:243:13-70
+activity#com.hatchtact.pinwi.ForgotPasswordActivityForCode
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:245:9-247:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:247:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:246:13-77
+activity#com.hatchtact.pinwi.ExitActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:248:9-250:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:250:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:249:13-60
+activity#com.hatchtact.pinwi.UpdatePasswordActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:251:9-253:52
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:253:13-49
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:252:13-70
+meta-data#com.google.android.gms.version
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:255:9-257:69
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+MERGED from [com.google.android.gms:play-services-basement:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\AndroidManifest.xml:20:9-121
+	android:value
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:257:13-66
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:256:13-58
+receiver#com.hatchtact.pinwi.utility.FutureNotificationAlarmForMe
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:259:9-93
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:259:19-90
+receiver#com.hatchtact.pinwi.gcm.GcmBroadcastReceiver
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:262:9-271:20
+	android:permission
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:264:13-73
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:263:13-72
+intent-filter#com.google.android.c2dm.intent.RECEIVE+com.google.android.c2dm.intent.REGISTRATION+com.hatchtact.pinwi
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:265:13-270:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:266:17-81
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:266:25-78
+action#com.google.android.c2dm.intent.REGISTRATION
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:267:17-86
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:267:25-83
+category#com.hatchtact.pinwi
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:269:17-64
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:269:27-61
+service#com.hatchtact.pinwi.gcm.GCMNotificationIntentService
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:273:9-88
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:273:18-85
+activity#com.facebook.FacebookActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:276:9-279:75
+	android:label
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:278:13-45
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:279:13-72
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:277:13-57
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:281:9-283:46
+	android:value
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:283:13-43
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:282:13-58
+provider#com.facebook.FacebookContentProvider
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:285:9-288:39
+	android:authorities
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:287:13-91
+	android:exported
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:288:13-36
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:286:13-64
+service#com.hatchtact.pinwi.OnClearFromService
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:290:9-292:44
+	android:stopWithTask
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:292:13-41
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:291:13-66
+activity#com.hatchtact.pinwi.GuideSlideActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:294:9-297:62
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:296:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:297:13-59
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:295:13-66
+activity#com.hatchtact.pinwi.NotificationDetailActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:298:9-301:62
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:300:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:301:13-59
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:299:13-74
+activity#com.hatchtact.pinwi.WhyAmIDoingThisActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:302:9-305:75
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:304:13-49
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:305:13-72
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:303:13-71
+meta-data#CLEVERTAP_ACCOUNT_ID
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:307:9-309:44
+	android:value
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:309:13-41
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:308:13-48
+meta-data#CLEVERTAP_TOKEN
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:310:9-312:39
+	android:value
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:312:13-36
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:311:13-43
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
+MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:19-85
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:25:7-26:18
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:25:7-26:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:25:90-112
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:25:113-137
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:25:17-89
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:27:7-31:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:27:162-184
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:27:105-161
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:27:17-104
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:28:11-30:27
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:29:15-76
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:29:23-74
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:32:7-137
+MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:27:7-137
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:32:88-110
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:32:111-135
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:32:16-87
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:6:9-194
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:6:9-194
+MERGED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:6:9-194
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:6:19-78
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:6:144-168
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:6:169-192
+	android:name
+		ADDED from [com.google.firebase:firebase-common:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\AndroidManifest.xml:6:79-143
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:30:9-36:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:30:85-108
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:30:109-169
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:30:19-84
+intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE+com.google.android.c2dm.intent.REGISTRATION
+ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:31:13-35:29
+category#${applicationId}
+ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:34:17-60
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:34:27-58
+receiver#com.google.firebase.iid.FirebaseInstanceIdInternalReceiver
+ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:40:9-119
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:40:93-117
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:40:19-92
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:44:9-48:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:44:83-106
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:44:18-82
+intent-filter#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:45:13-47:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:45:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:46:17-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\AndroidManifest.xml:46:25-77

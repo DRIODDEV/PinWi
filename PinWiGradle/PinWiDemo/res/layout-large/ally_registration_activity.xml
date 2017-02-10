@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color" >
+
+    <LinearLayout
+        android:id="@+id/layout_save_later"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/button_continueAlly"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="@drawable/rectangular_btn"
+            android:gravity="center"
+            android:text="@string/save_continue_text"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/textLarge" />
+
+        <Button
+            android:id="@+id/button_later"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="@drawable/rectangular_btnrelation"
+            android:gravity="center"
+            android:text="@string/later_text"
+            android:textColor="@color/btnrelationselection_color"
+            android:textSize="@dimen/textLarge" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_save_later"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="15dip" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip" >
+
+            <LinearLayout
+                android:id="@+id/layout_AllyProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dip"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <TextView
+                    android:id="@+id/text_ProfileText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.4"
+                    android:text="@string/camera_text"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/textLarge" />
+
+                <ImageView
+                    android:id="@+id/image_camera_ally"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1.6"
+                    android:src="@drawable/camera_icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_AllyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_AllyProfile"
+                android:layout_marginTop="5dip"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <EditText
+                    android:id="@+id/ally_Firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="First Name"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:textSize="@dimen/textLarge" />
+
+                <EditText
+                    android:id="@+id/ally_Lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Last Name"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:textSize="@dimen/textLarge" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_Allyrelationship"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_AllyName"
+                android:orientation="horizontal" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/text_relationship"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dip"
+                    android:focusable="false"
+                    android:hint="Relationship"
+                    android:singleLine="true"
+                    android:textSize="@dimen/textLarge" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/text_allyemailId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_Allyrelationship"
+                android:layout_marginTop="8dip"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textSize="@dimen/textLarge" />
+
+            <EditText
+                android:id="@+id/text_allyPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_allyemailId"
+                android:layout_marginTop="8dip"
+                android:digits="0123456789"
+                android:hint="Phone"
+                android:inputType="number"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:textSize="@dimen/textLarge" />
+
+            <LinearLayout
+                android:id="@+id/layout_addAnotherAlly"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:layout_below="@id/text_allyPhone"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="25dip"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/image_addAlly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.9"
+                    android:src="@drawable/add_new" />
+
+                <TextView
+                    android:id="@+id/text_addally"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="0.1"
+                    android:focusable="false"
+                    android:text="@string/addally_text"
+                    android:textColor="@color/font_blue_color"
+                    android:textSize="@dimen/textLarge" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_saveAlly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_allyPhone"
+                android:layout_marginTop="30dip"
+                android:background="@drawable/rectangular_btn"
+                android:text="@string/saveAlly_text"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textxLarge"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

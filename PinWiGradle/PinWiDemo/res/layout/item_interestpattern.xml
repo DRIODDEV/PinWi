@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainlayoutinsioghtinterestpattern"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp" >
+
+    <ImageView
+        android:id="@+id/imageinterstdrivers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+       android:layout_centerVertical="true"
+        android:paddingRight="5dp"
+        android:src="@drawable/gray_arrow" />
+
+    <LinearLayout
+        android:id="@+id/layoutlinearpattern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/imageinterstdrivers"
+        android:orientation="horizontal"
+        android:weightSum="1.0" >
+
+        <ImageView
+            android:id="@+id/imagepattern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".41"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/texttypesinsightinterestdriversname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.37"
+            android:text="Long Held"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/drawCircleInterestpattern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.22"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lining_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_below="@id/layoutlinearpattern"
+        android:layout_marginTop="10dip"
+        android:background="@color/gray" />
+
+</RelativeLayout>

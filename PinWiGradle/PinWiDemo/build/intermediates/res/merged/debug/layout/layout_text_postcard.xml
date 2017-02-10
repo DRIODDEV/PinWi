@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/layout_mid_postcard_detail_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/postcard_detail_word_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:gravity="center"
+            android:text="Word Limit - 500"
+            android:textSize="@dimen/search_text" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_marginBottom="80dip" >
+        <TextView
+            android:id="@+id/postcard_detail_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:maxLength="500"
+            android:scrollHorizontally="true"
+            android:text="Word Limit - 500"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/large_text"
+            android:visibility="invisible" />
+        </ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_bottomlayer_postcard_typing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/font_white_color" >
+
+        <ImageView
+            android:id="@+id/msgDoneBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dip"
+            android:background="@drawable/done_gray_i" />
+
+        <EditText
+            android:id="@+id/msgEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_toLeftOf="@id/msgDoneBtn"
+            android:background="@drawable/message_background"
+            android:inputType="text|textCapSentences|textMultiLine"
+            android:maxLength="500"
+            android:maxLines="4"
+            android:padding="7dip"
+            android:scrollHorizontally="true"
+            android:focusable="true"
+            android:textSize="@dimen/normal_text" >
+            <requestFocus />
+            </EditText>
+    </RelativeLayout>
+
+</RelativeLayout>

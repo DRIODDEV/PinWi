@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/font_white_color" >
+
+    <ImageView
+        android:id="@+id/image_bottom_bg1_passcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/below_header" />
+
+    <TextView
+        android:id="@+id/txt_forgetPassword_unlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/image_bottom_bg1_passcode"
+        android:layout_centerHorizontal="true"
+        android:text="@string/forgotPasscodetext"
+        android:textColor="@color/font_blue_color"
+        android:textSize="@dimen/textBig" />
+    
+      <TextView
+            android:id="@+id/top_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="25dip"
+            android:text="@string/passcode_text"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/textLarge" />
+
+    <RelativeLayout
+        android:id="@+id/pin_code_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dip" >
+
+        <TextView
+            android:id="@+id/txtcenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="."
+            android:textSize="20dip"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/pincode_2"
+            style="@style/PasscodeInputItemStyle"
+            android:layout_margin="5dip"
+            android:layout_toLeftOf="@id/txtcenter"
+            android:textColor="@color/font_white_color" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/pincode_1"
+            style="@style/PasscodeInputItemStyle"
+            android:layout_margin="5dip"
+            android:layout_toLeftOf="@id/pincode_2"
+            android:textColor="@color/font_white_color" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/pincode_3"
+            style="@style/PasscodeInputItemStyle"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/font_white_color"
+            android:layout_toRightOf="@id/txtcenter" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/pincode_4"
+            style="@style/PasscodeInputItemStyle"
+            android:layout_margin="5dip"
+            android:textColor="@color/font_white_color"
+            android:layout_toRightOf="@id/pincode_3" >
+        </EditText>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tablelayoutUpper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/txt_forgetPassword_unlock"
+        android:layout_below="@id/pin_code_row" >
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" >
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/button1"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/button2"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="2" />
+
+                <Button
+                    android:id="@+id/button3"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="3" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/button4"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="4" />
+
+                <Button
+                    android:id="@+id/button5"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="5" />
+
+                <Button
+                    android:id="@+id/button6"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="6" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/button7"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="7" />
+
+                <Button
+                    android:id="@+id/button8"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="8" />
+
+                <Button
+                    android:id="@+id/button9"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="9" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/button_cancel"
+                    android:layout_gravity="center"
+                    android:text="@string/cancel_text"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button0"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/button_delete"
+                    android:layout_gravity="center"
+                    android:src="@drawable/delete_icon" />
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
