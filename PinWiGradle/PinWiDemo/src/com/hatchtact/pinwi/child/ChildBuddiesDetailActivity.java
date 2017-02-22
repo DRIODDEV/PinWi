@@ -27,6 +27,7 @@ import com.hatchtact.pinwi.classmodel.GetChildDetailsOnBuddiesByChildIDOnCIList;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -62,6 +63,8 @@ public class ChildBuddiesDetailActivity extends Activity
 	private ImageView noconnectionimage;
 	private TextView noconnectiontext;
 	private ImageView imgArrow;
+	private CustomLoader customProgressLoader;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -69,11 +72,12 @@ public class ChildBuddiesDetailActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_buddies_detail);
+		customProgressLoader=new CustomLoader(this);
 		isButtonClicked=false;
 		typeFace = new TypeFace(ChildBuddiesDetailActivity.this);
 		sharepref = new SharePreferenceClass(ChildBuddiesDetailActivity.this);
 
-	
+
 		setHeaderItems();
 		initSoundData();
 		initialiseData();
@@ -97,11 +101,11 @@ public class ChildBuddiesDetailActivity extends Activity
 		new GetChildDetailsByChildIDOnCITask(Integer.parseInt(StaticVariables.childIdBuddiesDetail)).execute();
 	}
 
-	private void initSoundData() 
+	private void initSoundData()
 	{
 		// TODO Auto-generated method stub
 		//soundEffectTransition = new SoundEffect(ChildDashboardActivity.this, R.raw.pageflip);
-		soundEffectButtonClicks = new SoundEffect(ChildBuddiesDetailActivity.this, R.raw.two_tone_nav);		
+		soundEffectButtonClicks = new SoundEffect(ChildBuddiesDetailActivity.this, R.raw.two_tone_nav);
 	}
 
 	private void playSound(SoundEffect sound)
@@ -239,27 +243,27 @@ public class ChildBuddiesDetailActivity extends Activity
 	private void setVoiceOverIcon() {
 		if(isMusicStop)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceover));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceover));
 
-			}	
+			}
 		}
 	}
 
@@ -267,27 +271,27 @@ public class ChildBuddiesDetailActivity extends Activity
 	private void setVolumeIcon() {
 		if(isMute)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_mute));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_mute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_volume));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_volume));
 
-			}	
+			}
 		}
 	}
 
@@ -332,7 +336,7 @@ public class ChildBuddiesDetailActivity extends Activity
 		citylabel.setAlpha(.7f);
 		buddieslabel.setAlpha(.7f);
 		imgArrow.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -385,7 +389,7 @@ public class ChildBuddiesDetailActivity extends Activity
 
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class GetChildDetailsByChildIDOnCITask extends AsyncTask<Void, Void, Integer>
 	{
@@ -401,9 +405,12 @@ public class ChildBuddiesDetailActivity extends Activity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(ChildBuddiesDetailActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(ChildBuddiesDetailActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -416,7 +423,7 @@ public class ChildBuddiesDetailActivity extends Activity
 			{
 				getChildDetails = serviceMethod.getChildDetailsBuddies(childID);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -429,9 +436,10 @@ public class ChildBuddiesDetailActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
+				customProgressLoader.removeCallbacksHandler();
+			/*	if (progressDialog.isShowing())
 					progressDialog.cancel();
-
+*/
 				if(result==-1)
 				{
 					showMessage.showToastMessage("Please check your network connection");
@@ -451,13 +459,13 @@ public class ChildBuddiesDetailActivity extends Activity
 						child_buddies_detail_item.startAnimation(shake);
 
 						child_buddies_detail_item.setVisibility(View.VISIBLE);
-						fillData();	
+						fillData();
 					}
 					else
-					{	
+					{
 						getError();
-					}	
-				}	
+					}
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -465,7 +473,7 @@ public class ChildBuddiesDetailActivity extends Activity
 
 		}
 
-		private void fillData() 
+		private void fillData()
 		{
 			// TODO Auto-generated method stub
 
@@ -474,7 +482,7 @@ public class ChildBuddiesDetailActivity extends Activity
 			try
 			{
 				if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>100)
-				{	
+				{
 					byte[] imageByteParent=Base64.decode(model.getProfileImage(), 0);
 					if(imageByteParent!=null)
 					{
@@ -496,7 +504,7 @@ public class ChildBuddiesDetailActivity extends Activity
 				// TODO: handle exception
 			}
 
-			
+
 			text_nameChild.setText(model.getChidName());
 			dobdata.setText(model.getDateOfBirth());
 			schooldata.setText(model.getSchoolName());
@@ -511,13 +519,13 @@ public class ChildBuddiesDetailActivity extends Activity
 		private void getError()
 		{
 			layout_nodata.setVisibility(View.VISIBLE);
-			com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();	
+			com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();
 			//showMessage.showAlert("Warning", err.getErrorDesc());
 			noconnectionimage.setVisibility(View.VISIBLE);
 			noconnectionimage.setImageResource(R.drawable.not_found);
 			noconnectiontext.setVisibility(View.VISIBLE);
 			noconnectiontext.setText(err.getErrorDesc());
-		} 
+		}
 
 	}
 	private int dp2px(int dp) {
@@ -560,27 +568,27 @@ public class ChildBuddiesDetailActivity extends Activity
 	private boolean isActivityFinished=false;
 
 	/**
-	 * 
+	 *
 	 */
 	private void finishActivity() {
 		if(!isActivityFinished)
 		{
 			isActivityFinished=true;
-		playSound(soundEffectButtonClicks);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		disposeSound();
-		Intent intent = new Intent(ChildBuddiesDetailActivity.this, ChildBuddiesActivity.class);
+			playSound(soundEffectButtonClicks);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			disposeSound();
+			Intent intent = new Intent(ChildBuddiesDetailActivity.this, ChildBuddiesActivity.class);
 
-		startActivity(intent);
-		ChildBuddiesDetailActivity.this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+			startActivity(intent);
+			ChildBuddiesDetailActivity.this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 
 
-		finish();
+			finish();
 		}
 	}
 }

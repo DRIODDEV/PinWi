@@ -442,4 +442,15 @@ public class SharePreferenceClass
 	{		
 		return sharedPreferences.getString("BadgeScore","0");
 	}
+
+	public void setNetworkTableCreated(boolean networkTableCreated)
+	{
+		editor = sharedPreferences.edit();
+		editor.putBoolean("networkTableCreated", networkTableCreated);
+		editor.commit();
+	}
+	public boolean isNetworkTableCreated()
+	{
+		return sharedPreferences.getBoolean("networkTableCreated",false);
+	}
 }

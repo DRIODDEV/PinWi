@@ -41,6 +41,7 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.fragment.insights.OnFragmentAttachedListener;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.FutureNotificationAlarmForMe;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
@@ -82,9 +83,10 @@ public class SettingsFragment extends Fragment implements OnClickListener
 	private Button button_save;
 	private TextView text_settingreminerOff;
 	private Switch reminder_switch;
+	private CustomLoader customProgressLoader;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
+	public void onCreate(Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -106,10 +108,11 @@ public class SettingsFragment extends Fragment implements OnClickListener
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		view=inflater.inflate(R.layout.setting_layout, container, false);
 		mListener.onFragmentAttached(true,"  Settings");
+		customProgressLoader=new CustomLoader(getActivity());
 
 		arrayTxtView.clear();
 
@@ -125,7 +128,7 @@ public class SettingsFragment extends Fragment implements OnClickListener
 				// TODO Auto-generated method stub
 				sharePref.setReminder(reminder_switch.isChecked());
 				//if(reminder_switch.isChecked())
-					new SetReminderAsync().execute();
+				new SetReminderAsync().execute();
 				/*else
 				{
 					
@@ -255,7 +258,7 @@ public class SettingsFragment extends Fragment implements OnClickListener
 			menu.getItem(i).setVisible(false);
 		}
 		super.onCreateOptionsMenu(menu, inflater);
-	} 
+	}
 
 	private void setTextViewId(int id,int i)
 	{
@@ -275,62 +278,62 @@ public class SettingsFragment extends Fragment implements OnClickListener
 
 	@SuppressLint("Recycle")
 	@Override
-	public void onClick(View v) 
+	public void onClick(View v)
 	{
 		// TODO Auto-generated method stub
 		switch (v.getId())
 		{
-		case R.id.text_setting1:
+			case R.id.text_setting1:
 
-			Intent parentIntent=new Intent(getActivity(),ParentRegistrationActivity.class);
-			Bundle bundle=new Bundle();
-			bundle.putBoolean("ToParentScreen", true);
-			parentIntent.putExtras(bundle);
-			startActivity(parentIntent);
-			break;
-		case R.id.text_setting2:
+				Intent parentIntent=new Intent(getActivity(),ParentRegistrationActivity.class);
+				Bundle bundle=new Bundle();
+				bundle.putBoolean("ToParentScreen", true);
+				parentIntent.putExtras(bundle);
+				startActivity(parentIntent);
+				break;
+			case R.id.text_setting2:
 			/*Intent locationIntent=new Intent(getActivity(),LocationActivity.class);
 			Bundle bundleLocation=new Bundle();
 			bundleLocation.putBoolean("ToLocationScreen", true);
 			locationIntent.putExtras(bundleLocation);
 			startActivity(locationIntent);*/
-			break;
-		case R.id.text_setting3:
-			Intent childIntent=new Intent(getActivity(),ChildListActivity.class);
-			startActivity(childIntent);
-			break;
+				break;
+			case R.id.text_setting3:
+				Intent childIntent=new Intent(getActivity(),ChildListActivity.class);
+				startActivity(childIntent);
+				break;
 			/*case R.id.text_setting4:
 			Intent allyIntent=new Intent(getActivity(),AllyListActivity.class);
 			startActivity(allyIntent);
 			break;*/
-		case R.id.text_setting5:
-			StaticVariables.fragmentIndexCurrentTabSettings=200;
-			switchingFragments(new NotificationScreenFragment());
-			break;
-		case R.id.text_setting6:
-			StaticVariables.isFromSettingsScreen=true;
-			StaticVariables.fragmentIndexCurrentTabSettings=201;
-			//switchingFragments(new HolidayCalenderFragment());
-			switchingFragments(new HolidayListFragment());
-			break;
-		case R.id.text_setting7:
+			case R.id.text_setting5:
+				StaticVariables.fragmentIndexCurrentTabSettings=200;
+				switchingFragments(new NotificationScreenFragment());
+				break;
+			case R.id.text_setting6:
+				StaticVariables.isFromSettingsScreen=true;
+				StaticVariables.fragmentIndexCurrentTabSettings=201;
+				//switchingFragments(new HolidayCalenderFragment());
+				switchingFragments(new HolidayListFragment());
+				break;
+			case R.id.text_setting7:
 
-			break;
-		case R.id.text_setting8:
+				break;
+			case R.id.text_setting8:
 
-			break;
-		case R.id.text_setting9:
+				break;
+			case R.id.text_setting9:
 
-			break;
-		case R.id.text_setting10:
+				break;
+			case R.id.text_setting10:
 
-			break;
-		case R.id.text_setting11:
+				break;
+			case R.id.text_setting11:
 
-			break;
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
@@ -460,7 +463,7 @@ public class SettingsFragment extends Fragment implements OnClickListener
 
 	}
 
-	private void generatePendingIntent() 
+	private void generatePendingIntent()
 	{
 		Intent alarmIntent = new Intent(getActivity(), FutureNotificationAlarmForMe.class);
 		alarmIntent.putExtra("RepeatingType", sharePref.getFrequency());
@@ -479,7 +482,7 @@ public class SettingsFragment extends Fragment implements OnClickListener
 		else if(sharePref.getFrequency().equalsIgnoreCase("Monthly"))
 		{
 			intervalMillis = c.getActualMaximum(Calendar.DAY_OF_MONTH)*24*60*60*1000;
-			c.add(Calendar.MONTH, 1);		
+			c.add(Calendar.MONTH, 1);
 		}
 		else
 		{
@@ -488,7 +491,7 @@ public class SettingsFragment extends Fragment implements OnClickListener
 		}
 
 
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(),0, alarmIntent,PendingIntent.FLAG_UPDATE_CURRENT);                        
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(),0, alarmIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 		AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 		alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(), intervalMillis, pendingIntent);
 
@@ -499,12 +502,12 @@ public class SettingsFragment extends Fragment implements OnClickListener
 	{
 
 		getFragmentManager().beginTransaction().replace(R.id.framelayout1,
-				toFragment).commit();  
+				toFragment).commit();
 		getFragmentManager().executePendingTransactions();      // <----- This is the key 
 	}
 
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class SetReminderAsync extends AsyncTask<Void, Void, Integer>
 	{
@@ -527,8 +530,12 @@ public class SettingsFragment extends Fragment implements OnClickListener
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 		int ErrorCode=0;
 
@@ -547,7 +554,7 @@ public class SettingsFragment extends Fragment implements OnClickListener
 				}
 				else if(sharePref.getFrequency().equalsIgnoreCase("Monthly"))
 				{
-					day=30;	
+					day=30;
 				}
 				else
 				{
@@ -555,13 +562,13 @@ public class SettingsFragment extends Fragment implements OnClickListener
 				}
 				//if(reminder_switch.isChecked())
 				if(sharePref.isReminderOn())
-				err=new ServiceMethod().setRemainderByProfileID(StaticVariables.currentParentId, day,sharePref.getTime24Hour(),1);
+					err=new ServiceMethod().setRemainderByProfileID(StaticVariables.currentParentId, day,sharePref.getTime24Hour(),1);
 				else
 				{
 					err=new ServiceMethod().setRemainderByProfileID(StaticVariables.currentParentId, day,sharePref.getTime24Hour(),0);
 				}
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -574,9 +581,9 @@ public class SettingsFragment extends Fragment implements OnClickListener
 			super.onPostExecute(result);
 
 			try {
-
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 
 				if(result==-1)
 				{

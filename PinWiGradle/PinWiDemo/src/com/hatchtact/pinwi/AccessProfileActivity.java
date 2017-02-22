@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -61,6 +60,7 @@ import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.SocialConstants;
@@ -107,12 +107,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	private String txtDummyData="Access your profile to schedule activities, view insights, see what to do and network. ";
 	private View layout_parentcard;
 
-	private DataSource source;//initializing  database 
+	private DataSource source;//initializing  database
 	private AppUtils appUtils;
 	private final int BACKGROUNDSYNCFLAG=1;
 	private final int FIRSTTIMESYNCFLAG=2;
 	private SocialConstants social;
 	private TextView textViewtab_notification;
+	private CustomLoader customProgressLoader;
 
 
 	@Override
@@ -123,6 +124,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.accessprofile_activity);
 		social=new SocialConstants(this);
+		customProgressLoader=new CustomLoader(AccessProfileActivity.this);
 		initializeData();//initialize access profile data
 		clickListeners();//click events
 		getParentProfileData();	//get parent data for the logged in parent
@@ -405,7 +407,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 
 
 
-	private ProgressDialog progressDialogdeAccessProfile=null;
+	//private ProgressDialog progressDialogdeAccessProfile=null;
 
 	private class GetAccessProfile extends AsyncTask<Void, Void, Integer>
 	{
@@ -426,8 +428,9 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 
 			if(isNeedToShowProgress)
 			{
-				progressDialogdeAccessProfile = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialogdeAccessProfile.setCancelable(false);
+				customProgressLoader.startHandler();
+			/*	progressDialogdeAccessProfile = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialogdeAccessProfile.setCancelable(false);*/
 			}
 		}
 
@@ -457,9 +460,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-
 						}
-
 						source.addAccessProfile(modelAccesssProfile);
 					}
 					source.close();
@@ -480,8 +481,9 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			try {
 				if(isNeedToShowProgress)
 				{
-					if (progressDialogdeAccessProfile.isShowing())
-						progressDialogdeAccessProfile.cancel();
+					customProgressLoader.removeCallbacksHandler();
+					/*if (progressDialogdeAccessProfile.isShowing())
+						progressDialogdeAccessProfile.cancel();*/
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -715,8 +717,9 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			customProgressLoader.startHandler();
+			/*progressDialog = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 
 
 		}
@@ -755,8 +758,9 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			{
 				showMessage.showToastMessage("Please check your network connection");
 				try {
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.removeCallbacksHandler();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -900,8 +904,9 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+			/*	if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1142,7 +1147,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 
 
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class RequestAddOnVersionTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -1158,8 +1163,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			//progressDialog = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
+			//progressDialog.setCancelable(false);
 		}
 
 		@Override
@@ -1185,8 +1190,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

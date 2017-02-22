@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hatchtact.pinwi.AccessProfileActivity;
 import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
@@ -17,6 +19,7 @@ public class ParentFragment extends Fragment
 	protected OnFragmentAttachedListener mListener;
 	protected TypeFace typeFace=null;
 	protected SocialConstants social;
+	protected CustomLoader customProgressLoader;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,6 +35,7 @@ public class ParentFragment extends Fragment
 		super.onAttach(activity);
 		typeFace=new TypeFace(getActivity());
 		social=new SocialConstants(getActivity());
+		customProgressLoader=new CustomLoader(getActivity());
 
 		try {	
 			mListener = (OnFragmentAttachedListener) activity;
@@ -47,13 +51,15 @@ public class ParentFragment extends Fragment
 		super.onDetach();
 		mListener=null;
 		typeFace=null;
+		customProgressLoader.removeCallbacksHandler();
 	}
 
 	protected void switchingFragments(Fragment toFragment)
 	{
 		System.out.println("In fragment: "+StaticVariables.fragmentIndexCurrentTabSchedular);
 		getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
-				toFragment).commit();  
+				toFragment).commit();
+		getFragmentManager().popBackStack();
 		getFragmentManager().executePendingTransactions();      // <----- This is the key 
 	}
 }

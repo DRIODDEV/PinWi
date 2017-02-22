@@ -38,6 +38,7 @@ import com.hatchtact.pinwi.classmodel.SubjectActivities;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -75,7 +76,7 @@ public class ChildPendingPointActivity extends Activity
 
 	private Bitmap bitmap;
 
-	private SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy"); 
+	private SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 	private SimpleDateFormat initialFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 	private SimpleDateFormat newFormat;
 
@@ -101,7 +102,7 @@ public class ChildPendingPointActivity extends Activity
 	/** The runnable1. */
 	private Runnable runnable1;
 	private boolean isTimerRunning=false;
-
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class ChildPendingPointActivity extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_child_pending_points);
+		customProgressLoader=new CustomLoader(this);
 		isTimerRunning=false;
 
 		typeFace = new TypeFace(ChildPendingPointActivity.this);
@@ -127,7 +129,7 @@ public class ChildPendingPointActivity extends Activity
 		new GetPastDaysRatingStatus(StaticVariables.currentChild.getChildID()).execute();
 	}
 
-	private void initSoundData() 
+	private void initSoundData()
 	{
 		// TODO Auto-generated method stub
 		soundEffectButtonClicks = new SoundEffect(ChildPendingPointActivity.this, R.raw.two_tone_nav);
@@ -276,27 +278,27 @@ public class ChildPendingPointActivity extends Activity
 	private void setVoiceOverIcon() {
 		if(isMusicStop)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceover));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceover));
 
-			}	
+			}
 		}
 	}
 
@@ -305,27 +307,27 @@ public class ChildPendingPointActivity extends Activity
 	private void setVolumeIcon() {
 		if(isMute)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_mute));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_mute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_volume));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_volume));
 
-			}	
+			}
 		}
 	}
 
@@ -363,14 +365,14 @@ public class ChildPendingPointActivity extends Activity
 		int colorDate = Color.argb(50,255, 255, 255);
 
 
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
 		{
 			child_star_pending_points_date_layout.setBackgroundDrawable(new CustomDrawable(new int[] {
 					colorDate, colorDate }, dp2px(5),false));
 			child_star_pending_points_day_layout.setBackgroundDrawable(new CustomDrawable(new int[] {
 					colorDay, colorDay }, dp2px(5),true));
 
-		} else 
+		} else
 		{
 			child_star_pending_points_date_layout.setBackground(new CustomDrawable(new int[] {
 					colorDate, colorDate}, dp2px(5),false));
@@ -550,12 +552,12 @@ public class ChildPendingPointActivity extends Activity
 	{
 		String hexColor = String.format("#%08X", (0x50FFFFFF & Color.argb(30,255, 255, 255)));;
 
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
 		{
 			viewToChange.setBackgroundDrawable(new CustomDrawable(new int[] {
 					Color.TRANSPARENT, Color.TRANSPARENT },hexColor));
 
-		} else 
+		} else
 		{
 
 			viewToChange.setBackground(new CustomDrawable(new int[] {
@@ -598,7 +600,7 @@ public class ChildPendingPointActivity extends Activity
 				e.printStackTrace();
 			}
 
-			setBackgroundOfViews(view);	  
+			setBackgroundOfViews(view);
 
 		}
 		else if(getPastDaysRatingStatusModel.getStatus().equalsIgnoreCase("0")) //if it has pending points
@@ -623,7 +625,7 @@ public class ChildPendingPointActivity extends Activity
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}		
+			}
 
 			item_child_pending_points_left_points.setText(getPastDaysRatingStatusModel.getPointsValue()+"");
 
@@ -763,7 +765,7 @@ public class ChildPendingPointActivity extends Activity
 				e.printStackTrace();
 			}
 
-			setBackgroundOfViews(view);	  
+			setBackgroundOfViews(view);
 
 
 
@@ -804,10 +806,10 @@ public class ChildPendingPointActivity extends Activity
 	{
 		typeFace.setTypefaceGotham(date);
 		date.setTextColor(Color.WHITE);
-		date.setAlpha(0.4f);		
+		date.setAlpha(0.4f);
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class GetPastDaysRatingStatus extends AsyncTask<Void, Void, Integer>
 	{
@@ -824,8 +826,12 @@ public class ChildPendingPointActivity extends Activity
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(ChildPendingPointActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(ChildPendingPointActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -838,7 +844,7 @@ public class ChildPendingPointActivity extends Activity
 			{
 				getPastDaysRatingStatusModelList = serviceMethod.getPastDaysRatingStatusForChildModule(childID);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -851,8 +857,9 @@ public class ChildPendingPointActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 
 				if(result==-1)
 				{
@@ -867,13 +874,13 @@ public class ChildPendingPointActivity extends Activity
 					{
 
 						fillBarData();
-						fillData();	
+						fillData();
 					}
 					else
-					{	
+					{
 						getError();
-					}	
-				}	
+					}
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -883,7 +890,7 @@ public class ChildPendingPointActivity extends Activity
 
 
 
-		private void fillData() 
+		private void fillData()
 		{
 			// TODO Auto-generated method stub
 
@@ -910,7 +917,7 @@ public class ChildPendingPointActivity extends Activity
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void playMusic(ChildMusicPlayer childMusicPlayer) {
 		if(childMusicPlayer !=null )
@@ -931,7 +938,7 @@ public class ChildPendingPointActivity extends Activity
 	{/*
 		Error err = serviceMethod.getError();	
 		showMessage.showAlert("Warning", err.getErrorDesc());
-	 */} 
+	 */}
 
 	private int dp2px(int dp) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
@@ -1007,9 +1014,10 @@ public class ChildPendingPointActivity extends Activity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(ChildPendingPointActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+				customProgressLoader.showProgressBar();
+			/*progressDialog = ProgressDialog.show(ChildPendingPointActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -1022,7 +1030,7 @@ public class ChildPendingPointActivity extends Activity
 			{
 				ErrorCode = serviceMethod.getChildAfterSchoolActiviesByDayForChildModule(childID,daysAgo);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -1046,8 +1054,9 @@ public class ChildPendingPointActivity extends Activity
 			{
 				showMessage.showToastMessage("Please check your network connection");
 				try {
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.dismissProgressBar();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1060,7 +1069,7 @@ public class ChildPendingPointActivity extends Activity
 				new GetChildSubjectActiviesByDayForChildModule(childID,daysAgo).execute();
 			}
 
-		}	
+		}
 	}
 
 	private class GetChildSubjectActiviesByDayForChildModule extends AsyncTask<Void, Void, Integer>
@@ -1095,7 +1104,7 @@ public class ChildPendingPointActivity extends Activity
 			{
 				ErrorCode = serviceMethod.getChildSubjectActiviesByDayForChildModule(childID,daysAgo);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -1108,8 +1117,9 @@ public class ChildPendingPointActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1179,7 +1189,7 @@ public class ChildPendingPointActivity extends Activity
 					getError();
 			}
 
-		}	
+		}
 	}
 
 
@@ -1192,7 +1202,7 @@ public class ChildPendingPointActivity extends Activity
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void finishActivity() {
 		playSound(soundEffectButtonClicks);
@@ -1205,7 +1215,7 @@ public class ChildPendingPointActivity extends Activity
 		}
 
 		disposeSound();
-	//	Intent intent = new Intent(ChildPendingPointActivity.this, ChildDashboardActivity.class);
+		//	Intent intent = new Intent(ChildPendingPointActivity.this, ChildDashboardActivity.class);
 		Intent intent = new Intent(ChildPendingPointActivity.this, ChildMainDashboardActivity.class);
 
 		/*Bundle bundle = new Bundle();
@@ -1213,7 +1223,7 @@ public class ChildPendingPointActivity extends Activity
 		intent.putExtras(bundle);*/
 		startActivity(intent);
 
-		if (handler != null) 
+		if (handler != null)
 		{
 			handler.removeCallbacks(runnable1);
 			handler = null;
@@ -1224,7 +1234,7 @@ public class ChildPendingPointActivity extends Activity
 	}
 	String reducedTimeString;
 
-	private void fillBarData() 
+	private void fillBarData()
 	{
 		// TODO Auto-generated method stub
 
@@ -1249,7 +1259,7 @@ public class ChildPendingPointActivity extends Activity
 			{
 				startTimerForRefresh(MILLISECONDS_IN_ONE_MIN,true);
 			}
-		} 
+		}
 		else if(StaticVariables.statusChild==0 )
 		{
 
@@ -1267,18 +1277,18 @@ public class ChildPendingPointActivity extends Activity
 	private void startTimerForRefresh(final long refresh, final boolean isTimer)
 	{
 		// TODO Auto-generated method stub
-		if (handler != null) 
+		if (handler != null)
 		{
 			handler.removeCallbacks(runnable1);
 			handler = null;
 		}
 
-		runnable1 = new Runnable() 
+		runnable1 = new Runnable()
 		{
-			public void run() 
+			public void run()
 			{
 
-				try 
+				try
 				{
 					refreshTimerData(isTimer);
 
@@ -1335,7 +1345,7 @@ public class ChildPendingPointActivity extends Activity
 				displayedText+= "0" + " h " + "0" +" m";
 				isTimerRunning=true;
 				callingWebServiceForChildData("0");
-				if (handler != null) 
+				if (handler != null)
 				{
 					handler.removeCallbacks(runnable1);
 					handler = null;

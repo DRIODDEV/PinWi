@@ -455,7 +455,7 @@ public  class ActivityListFragment extends ParentFragment
 		return super.onOptionsItemSelected(item);
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class fetchActivityList extends AsyncTask<Void, Void, Integer>
 	{
@@ -471,9 +471,12 @@ public  class ActivityListFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -514,8 +517,9 @@ public  class ActivityListFragment extends ParentFragment
 
 			try {
 				hideKeyBoard();
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -582,7 +586,7 @@ public  class ActivityListFragment extends ParentFragment
 	}
 
 
-	private ProgressDialog progressDialogSearch=null;	
+	//private ProgressDialog progressDialogSearch=null;
 
 	private class searchActivityListGlobally extends AsyncTask<Void, Void, Integer>
 	{
@@ -597,9 +601,12 @@ public  class ActivityListFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogSearch.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogSearch.setCancelable(false);*/
 		}
 
 		@Override
@@ -639,8 +646,9 @@ public  class ActivityListFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogSearch.isShowing())
-					progressDialogSearch.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialogSearch.isShowing())
+					progressDialogSearch.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

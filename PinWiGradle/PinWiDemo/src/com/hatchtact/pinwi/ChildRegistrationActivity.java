@@ -15,7 +15,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
@@ -78,6 +77,7 @@ import com.hatchtact.pinwi.classmodel.SchoolList;
 import com.hatchtact.pinwi.classmodel.UpdateChildProfile;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -153,6 +153,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	private TextView textchild_passcode;
 	private boolean isPasscodeTouched=false;//need to use this flag
 	private TextView header_text,header_help;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -163,6 +164,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.child_registration_activity);
+		customProgressLoader=new CustomLoader(ChildRegistrationActivity.this);
+
 		isLockDialogClicked=false;
 		Bundle bundle = getIntent().getExtras();
 
@@ -537,7 +540,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 	private GetChildDetails getChildDetail=null;
 
-	private ProgressDialog progressDialog2=null;
+//	private ProgressDialog progressDialog2=null;
 	private int countDialog=0;
 
 	private class GetChildDetailFromServer extends AsyncTask<Void, Void, Integer>
@@ -556,8 +559,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog2 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog2.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog2 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog2.setCancelable(false);*/
 		}
 
 		@Override
@@ -583,8 +590,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog2.isShowing())
-					progressDialog2.cancel();
+				customProgressLoader.dismissProgressBar();
+			/*	if (progressDialog2.isShowing())
+					progressDialog2.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1020,7 +1028,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		}
 	}
 
-	private ProgressDialog progressDialog3=null;	
+	//private ProgressDialog progressDialog3=null;
 
 	private class UpdateChildInformationOnServer extends AsyncTask<Void, Void, Integer>
 	{
@@ -1029,8 +1037,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog3 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog3.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog3 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog3.setCancelable(false);*/
 		}
 
 		@Override
@@ -1056,8 +1068,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog3.isShowing())
-					progressDialog3.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog3.isShowing())
+					progressDialog3.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1545,7 +1558,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		showMessage.showAlert("Warning", err.getErrorDesc());
 	 */}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class RegisterChildTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -1562,9 +1575,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -1608,8 +1624,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			super.onPostExecute(result); 
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

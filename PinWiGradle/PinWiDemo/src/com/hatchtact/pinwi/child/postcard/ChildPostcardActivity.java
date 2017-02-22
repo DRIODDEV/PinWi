@@ -37,6 +37,7 @@ import com.hatchtact.pinwi.classmodel.GetListOfMessageTempletesList;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -65,27 +66,28 @@ public class ChildPostcardActivity extends FragmentActivity {
 	private ChildPostcardTemplateAdapter childPostcardTemplateAdapter;
 	public static ArrayList<String> templateArray;
 	public static ArrayList<TemplateColorModel> colorArray;
-	
+
 	private String[] outerColor = {"#8850be","#f9a94a","#fdc642","#83bd45","#bdcd60","#f58d89","#7cb1e4","#b54fa5"};
 	private String[] innerColor = {"#6a24ae","#f7941d","#fdb813","#64ad17","#acc138","#f2716c","#5b9ddd","#a3238e"};
-	
+
 	private int previousColorIndex = 0;
 	private Random random;
 	private GetListOfMessageTempletesList getListOfMessageTempletesList;
 	private RelativeLayout layout_alphabetical;
-
+	private CustomLoader customProgressLoader;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_postcard);
+		customProgressLoader=new CustomLoader(this);
 		typeFace = new TypeFace(ChildPostcardActivity.this);
 		sharepref = new SharePreferenceClass(ChildPostcardActivity.this);
 		hideKeyBoard();
 		setHeaderItems();
 		initSoundData();
 		initialiseData();
-		
+
 		if(AccessProfileActivity.soundEffectTransition==null){
 			AccessProfileActivity.soundEffectTransition = new SoundEffect(this, R.raw.pageflip);
 		}
@@ -101,13 +103,13 @@ public class ChildPostcardActivity extends FragmentActivity {
 		}
 		getListOfMessageTempletesList=new GetListOfMessageTempletesList();
 		getListOfMessageTempletesList.getListOfMessageTempletesList().clear();
-	    overridePendingTransition(R.anim.activity_open_translate,R.anim.activity_close_scale);
-	    new GetListOfMessageTempletesListAsync().execute();
+		overridePendingTransition(R.anim.activity_open_translate,R.anim.activity_close_scale);
+		new GetListOfMessageTempletesListAsync().execute();
 	}
 
 	private void initSoundData() {
 		//soundEffectTransition = new SoundEffect(ChildDashboardActivity.this, R.raw.pageflip);
-		soundEffectButtonClicks = new SoundEffect(ChildPostcardActivity.this, R.raw.two_tone_nav);		
+		soundEffectButtonClicks = new SoundEffect(ChildPostcardActivity.this, R.raw.two_tone_nav);
 	}
 
 	private void playSound(SoundEffect sound){
@@ -168,7 +170,7 @@ public class ChildPostcardActivity extends FragmentActivity {
 		}
 
 		child_header_music = (ImageView) findViewById(R.id.child_header_music);
-		
+
 		if(StaticVariables.currentChild!=null){
 			isMute = sharepref.isSound(StaticVariables.currentChild.getChildID() + "");
 			isMusicStop = sharepref.isVoiceOver(StaticVariables.currentChild.getChildID() + "");
@@ -232,39 +234,39 @@ public class ChildPostcardActivity extends FragmentActivity {
 	@SuppressLint("NewApi")
 	private void setVoiceOverIcon() {
 		if(isMusicStop){
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceovermute));
 			} else {
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceovermute));
-			}			
+			}
 		}else{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceover));
 			} else {
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceover));
-			}	
+			}
 		}
 	}
 
 	@SuppressLint("NewApi")
 	private void setVolumeIcon() {
 		if(isMute){
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_mute));
 			} else {
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_mute));
-			}			
+			}
 		}else{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_volume));
 			} else {
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_volume));
-			}	
+			}
 		}
 	}
 
 	private void initialiseData() {
-		
+
 		checkNetwork=new CheckNetwork();
 		showMessage=new ShowMessages(ChildPostcardActivity.this);
 		serviceMethod=new ServiceMethod();
@@ -276,15 +278,15 @@ public class ChildPostcardActivity extends FragmentActivity {
 		child_postcard_rightarrow = (ImageView) findViewById(R.id.child_postcard_rightarrow);
 		layout_alphabetical = (RelativeLayout) findViewById(R.id.layout_alphabetical);
 		layout_alphabetical.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-			finishActivity();	
+				finishActivity();
 			}
 		});
-		
+
 		child_postcard_leftarrow.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				if(postcard_templates.getCurrentItem()>0){
@@ -294,53 +296,53 @@ public class ChildPostcardActivity extends FragmentActivity {
 				}
 			}
 		});
-		
+
 		child_postcard_rightarrow.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				if (postcard_templates.getCurrentItem() == ChildPostcardTemplateAdapter.NUM_PAGES-1) {
 					postcard_templates.setCurrentItem(0,true);
-			    }else if(postcard_templates.getCurrentItem() < (ChildPostcardTemplateAdapter.NUM_PAGES)){
+				}else if(postcard_templates.getCurrentItem() < (ChildPostcardTemplateAdapter.NUM_PAGES)){
 					postcard_templates.setCurrentItem(postcard_templates.getCurrentItem()+1,true);
-				}	
+				}
 			}
 		});
-		
+
 		postcard_templates = (TemplateViewPager) findViewById(R.id.postcard_templates);
 		postcard_templates.setOnPageChangeListener(onPageChangeListener);
-				
+
 		//fillData();
-		
+
 	}
-	
-	 private int previousState, currentState;
+
+	private int previousState, currentState;
 
 	private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
 
-		  @Override
-		  public void onPageSelected(int pageSelected) {
-		  }
+		@Override
+		public void onPageSelected(int pageSelected) {
+		}
 
-		  @Override
-		  public void onPageScrolled(int pageSelected, float positionOffset,
-		    int positionOffsetPixel) {
-		  }
+		@Override
+		public void onPageScrolled(int pageSelected, float positionOffset,
+								   int positionOffsetPixel) {
+		}
 
-		  @Override
-		  public void onPageScrollStateChanged(int state) {
-		   int currentPage = postcard_templates.getCurrentItem();
-		   if (currentPage == (ChildPostcardTemplateAdapter.NUM_PAGES-1) || currentPage == 0) {
-		    previousState = currentState;
-		    currentState = state;
-		    if (previousState == 1 && currentState == 0) {
-		    	postcard_templates.setCurrentItem(currentPage == 0 ?  (ChildPostcardTemplateAdapter.NUM_PAGES-1) : 0,true);
-		    }
-		   }
-		  }
-		 };
+		@Override
+		public void onPageScrollStateChanged(int state) {
+			int currentPage = postcard_templates.getCurrentItem();
+			if (currentPage == (ChildPostcardTemplateAdapter.NUM_PAGES-1) || currentPage == 0) {
+				previousState = currentState;
+				currentState = state;
+				if (previousState == 1 && currentState == 0) {
+					postcard_templates.setCurrentItem(currentPage == 0 ?  (ChildPostcardTemplateAdapter.NUM_PAGES-1) : 0,true);
+				}
+			}
+		}
+	};
 
-	
+
 	private void colorIndexSelected(){
 		int randomNumber = random.nextInt(outerColor.length - 1);
 		if(randomNumber == previousColorIndex){
@@ -349,7 +351,7 @@ public class ChildPostcardActivity extends FragmentActivity {
 			previousColorIndex = randomNumber;
 		}
 	}
-	
+
 	private int dp2px(int dp) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
 				getResources().getDisplayMetrics());
@@ -389,29 +391,33 @@ public class ChildPostcardActivity extends FragmentActivity {
 		if(!isActivityFinished)
 		{
 			isActivityFinished=true;
-		playSound(soundEffectButtonClicks);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		disposeSound();
-		Intent intent = new Intent(ChildPostcardActivity.this, ChildMainDashboardActivity.class);
-		startActivity(intent);
-	   // overridePendingTransition(R.anim.activity_close_translate,R.anim.activity_close_scale);
-		finish();
+			playSound(soundEffectButtonClicks);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			disposeSound();
+			Intent intent = new Intent(ChildPostcardActivity.this, ChildMainDashboardActivity.class);
+			startActivity(intent);
+			// overridePendingTransition(R.anim.activity_close_translate,R.anim.activity_close_scale);
+			finish();
 		}
 	}
-	
-	private ProgressDialog progressDialog=null;
+
+	//private ProgressDialog progressDialog=null;
 
 	private class GetListOfMessageTempletesListAsync extends AsyncTask<Void, Void, Integer>
 	{
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(ChildPostcardActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(ChildPostcardActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -428,7 +434,7 @@ public class ChildPostcardActivity extends FragmentActivity {
 					ErrorCode=-1;
 				}
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -439,8 +445,9 @@ public class ChildPostcardActivity extends FragmentActivity {
 		protected void onPostExecute(Integer  result) {
 			super.onPostExecute(result);
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 
 				if(result==-1)
 				{
@@ -453,46 +460,46 @@ public class ChildPostcardActivity extends FragmentActivity {
 				{
 					if(getListOfMessageTempletesList!=null && getListOfMessageTempletesList.getListOfMessageTempletesList().size()>0)
 					{
-						fillData();	
+						fillData();
 					}
 					else
-					{	
+					{
 						//getError();
-					}	
-				 }	
+					}
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
 		private void getError(){
-			Error err = serviceMethod.getError();	
+			Error err = serviceMethod.getError();
 			showMessage.showAlert("Warning", err.getErrorDesc());
-		} 
+		}
 	}
-	
-	private void fillData() 
+
+	private void fillData()
 	{
 		if(templateArray == null){
 			templateArray = new ArrayList<String>();
 		}else{
 			templateArray.clear();
 		}
-		
+
 		if(colorArray == null){
 			colorArray = new ArrayList<TemplateColorModel>();
 		}else{
 			colorArray.clear();
 		}
-		
+
 
 		for(int i=0;i<getListOfMessageTempletesList.getListOfMessageTempletesList().size();i++){
 			templateArray.add(getListOfMessageTempletesList.getListOfMessageTempletesList().get(i).getMessage());
-		}	
-		
+		}
+
 		random = new Random();
 		previousColorIndex = 0;
-		
+
 		for(int i=0;i<templateArray.size();i++){
 			colorIndexSelected();
 			TemplateColorModel templateColorModel = new TemplateColorModel();
@@ -500,9 +507,9 @@ public class ChildPostcardActivity extends FragmentActivity {
 			templateColorModel.setOuterColor(innerColor[previousColorIndex]);
 			colorArray.add(templateColorModel);
 		}
-		
+
 		//Collections.shuffle(colorArray);
-		
+
 		childPostcardTemplateAdapter = new ChildPostcardTemplateAdapter(getSupportFragmentManager(),new SwipeCallback() {
 			@Override
 			public void isSwipeEnable(boolean isSwipeEnable) {
@@ -518,18 +525,18 @@ public class ChildPostcardActivity extends FragmentActivity {
 		});
 		ChildPostcardTemplateAdapter.NUM_PAGES = templateArray.size();
 		postcard_templates.setAdapter(childPostcardTemplateAdapter);
-		
+
 		if(StaticVariables.selectedPostcardIndex <= (ChildPostcardTemplateAdapter.NUM_PAGES - 1)){
 			postcard_templates.setCurrentItem(StaticVariables.selectedPostcardIndex, true);
 		}
 	}
 
 	private void hideKeyBoard() {
-		
-		
-		
+
+
+
 		try {
-			 ChildPostcardActivity.this.getWindow().setSoftInputMode(
+			ChildPostcardActivity.this.getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 			InputMethodManager inputManager = (InputMethodManager) ChildPostcardActivity.this
 					.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -539,7 +546,7 @@ public class ChildPostcardActivity extends FragmentActivity {
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		} catch (Exception e) {
 		}
-		
+
 	}
 
 }

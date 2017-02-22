@@ -57,7 +57,8 @@ public class SocialConstants
 	public static final String  Insights_Activated="Insights_Activated";
 	public static final String  Insights_Subscribed="Insights_Subscribed";
 	public static final String  Subscribe_Button_Clicked="Subscribe_Button_Clicked";
-	public static final String  CATEGORY_MOBILE="MobileProduction";
+	public static final String  CATEGORY_MOBILE="Mobile";
+	//public static final String  CATEGORY_MOBILE="MobileProduction";
 
 	private FirebaseAnalytics mFirebaseAnalytics;
 

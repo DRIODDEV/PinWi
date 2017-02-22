@@ -23,10 +23,12 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.SplashActivity;
 import com.hatchtact.pinwi.classmodel.GetListOfPendingRequestsByLoggedID;
 import com.hatchtact.pinwi.classmodel.GetListOfPendingRequestsByLoggedIDList;
+import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.fragment.network.CustomAsyncTask;
 import com.hatchtact.pinwi.fragment.network.NetworkRequestFragment;
 import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.fragment.network.ZoomScreenActivity;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
@@ -42,6 +44,7 @@ public class NetworkRequestListAdapter extends BaseAdapter
 	private Context context;
 	private ShowMessages showMessage;
 	private NetworkRequestFragment fragmentContext;
+	private final DataSource source;
 
 	public NetworkRequestListAdapter(Context context, GetListOfPendingRequestsByLoggedIDList list, NetworkRequestFragment networkRequestFragment)
 	{
@@ -52,6 +55,7 @@ public class NetworkRequestListAdapter extends BaseAdapter
 		typeFace=new TypeFace(context);
 		showMessage=new ShowMessages(context);
 		fragmentContext=networkRequestFragment;
+		source=new DataSource(context);
 
 	}
 
@@ -97,13 +101,31 @@ public class NetworkRequestListAdapter extends BaseAdapter
 
 
 		GetListOfPendingRequestsByLoggedID model=getListOfPendingRequestsByLoggedIDList.getListOfPendingRequestsByLoggedID().get(position);
-		if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>100)
+
+		if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>10 && model.getProfileImage().trim().length()<100)
+		{
+			String imagePath= AppUtils.PATHNETWORKIMAGES+model.getFriendID()+".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+			Bitmap imageProfile=null;
+			try {
+				imageProfile = new AppUtils(context).getImagefromSDCard(imagePath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if(imageProfile!=null)
+			{
+				holder.imgUser.setBackgroundResource(0);
+				holder.imgUser.setImageBitmap(getRoundedRectBitmap(imageProfile));
+			}
+
+		}
+		else if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>100)
 		{
 			byte[] imageByteParent=Base64.decode(model.getProfileImage(), 0);
 			if(imageByteParent!=null)
 			{
-				holder.imgUser.setBackgroundResource(0);	
-
+				holder.imgUser.setBackgroundResource(0);
 				holder.imgUser.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeByteArray(imageByteParent, 0, imageByteParent.length)));	
 			}
 		}
@@ -160,9 +182,11 @@ public class NetworkRequestListAdapter extends BaseAdapter
 								public void onSuccess(String object) 
 								{
 									// TODO Auto-generated method stub
-
 									getListOfPendingRequestsByLoggedIDList.getListOfPendingRequestsByLoggedID().remove(model);
 									notifyDataSetChanged();
+									source.open();
+									source.deleteNetworkRequestRow(model.getFriendID());
+									source.close();
 
 								}
 
@@ -193,7 +217,7 @@ public class NetworkRequestListAdapter extends BaseAdapter
 						public void onSuccess(String object) 
 						{
 							// TODO Auto-generated method stub
-							
+
 							getListOfPendingRequestsByLoggedIDList.getListOfPendingRequestsByLoggedID().remove(model);
 							notifyDataSetChanged();
 
@@ -201,7 +225,9 @@ public class NetworkRequestListAdapter extends BaseAdapter
 							{
 								fragmentContext.setInviteButton();
 							}
-
+							source.open();
+							source.deleteNetworkRequestRow(model.getFriendID());
+							source.close();
 							/*model.setFStatus("1");
 							getListOfPendingRequestsByLoggedIDList.getListOfPendingRequestsByLoggedID().set(position, model);
 							notifyDataSetChanged();*/

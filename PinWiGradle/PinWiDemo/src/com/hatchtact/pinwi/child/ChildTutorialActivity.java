@@ -20,6 +20,7 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.classmodel.SubjectActivities;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -63,7 +64,7 @@ public class ChildTutorialActivity extends FragmentActivity
 
 	private boolean isMusicStop = false;
 	private TextView btnNext;
-
+private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -74,6 +75,7 @@ public class ChildTutorialActivity extends FragmentActivity
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		sharePreferenceClass=new SharePreferenceClass(ChildTutorialActivity.this);
+		customProgressLoader=new CustomLoader(this);
 		checkNetwork=new CheckNetwork();
 		showMessage=new ShowMessages(ChildTutorialActivity.this);
 		serviceMethod=new ServiceMethod();
@@ -287,7 +289,7 @@ public class ChildTutorialActivity extends FragmentActivity
 
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 	private class GetChildAfterSchoolActiviesByDayForChildModule extends AsyncTask<Void, Void, Integer>
 	{
 		private int childID;
@@ -304,9 +306,12 @@ public class ChildTutorialActivity extends FragmentActivity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(ChildTutorialActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(ChildTutorialActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -344,8 +349,9 @@ public class ChildTutorialActivity extends FragmentActivity
 				showMessage.showToastMessage("Please check your network connection");
 
 				try {
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.dismissProgressBar();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -407,8 +413,9 @@ public class ChildTutorialActivity extends FragmentActivity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

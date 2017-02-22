@@ -32,6 +32,7 @@ import com.hatchtact.pinwi.classmodel.GetNotificationListByChildIDOnCIList;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -70,6 +71,7 @@ public class ChildAlertActivity extends Activity
 	private TextView noconnectiontext,text_alert;
 	private ImageView child_alerts_imageview;
 	private String newAlertCount;
+	private CustomLoader customProgressLoader;
 
 
 	@Override
@@ -79,6 +81,7 @@ public class ChildAlertActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_alerts);
+		customProgressLoader=new CustomLoader(this);
 		newAlertCount=String.valueOf(getIntent().getExtras().getInt("count"));
 		isButtonClicked=false;
 		typeFace = new TypeFace(ChildAlertActivity.this);
@@ -399,7 +402,7 @@ public class ChildAlertActivity extends Activity
 
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 	private boolean isActivityFinished=false;
 
 	private class GetNotificationsByChildIdAsync extends AsyncTask<Void, Void, Integer>
@@ -421,8 +424,12 @@ public class ChildAlertActivity extends Activity
 
 			if(pageIndex==1)
 			{
-				progressDialog = ProgressDialog.show(ChildAlertActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.startHandler();
+				}
+				/*progressDialog = ProgressDialog.show(ChildAlertActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			}
 			else
 			{
@@ -471,8 +478,9 @@ public class ChildAlertActivity extends Activity
 
 				if(pageIndex==1)
 				{
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.removeCallbacksHandler();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				}
 				else
 				{

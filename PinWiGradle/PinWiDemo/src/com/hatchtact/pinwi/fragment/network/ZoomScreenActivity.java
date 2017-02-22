@@ -4,6 +4,7 @@
 package com.hatchtact.pinwi.fragment.network;
 
 import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 import android.app.Activity;
@@ -25,6 +26,7 @@ public class ZoomScreenActivity extends Activity
 {
 	public static ZoomScreenActivity instance;
 	private Bitmap bitmap = null;
+	byte[] imageByteParent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,12 +34,42 @@ public class ZoomScreenActivity extends Activity
 		//if (getIntent().hasExtra("byteArray"))
 		{
 			try {
-				//byte[] imageByteParent=Base64.decode(getIntent().getStringExtra("byteArray"), 0);
-				byte[] imageByteParent=Base64.decode(StaticVariables.byteArray,0);
-				if(imageByteParent!=null)
+				ImageView imageView = new ImageView(ZoomScreenActivity.this);
+				try {
+					imageByteParent=Base64.decode(StaticVariables.byteArray,0);
+				}
+				catch (Exception e)
 				{
 
-					ImageView imageView = new ImageView(ZoomScreenActivity.this);
+				}
+				if(StaticVariables.byteArray.trim().length()>10 && StaticVariables.byteArray.length()<100)
+				{
+					Bitmap imageProfile=null;
+					try {
+						imageProfile = new AppUtils(this).getImagefromSDCard(StaticVariables.byteArray);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					if(imageProfile!=null)
+					{
+						imageView.setImageBitmap(imageProfile);
+					}
+					imageView.setBackgroundColor(Color.BLACK);
+					imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+					setContentView(imageView);
+					imageView.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							finish();
+							onBackPressed();
+						}
+					});
+				}
+				else if(imageByteParent!=null)
+				{
+
 					if((StaticVariables.byteArray.length()>100))
 					{
 						imageView.setImageBitmap(BitmapFactory.decodeByteArray(imageByteParent, 0, imageByteParent.length));
@@ -61,8 +93,9 @@ public class ZoomScreenActivity extends Activity
 				else
 				{
 
-
+/*
 					ImageView imageView = new ImageView(ZoomScreenActivity.this);
+*/
 					imageView.setImageResource(R.drawable.parent_image);
 					imageView.setBackgroundColor(Color.BLACK);
 					imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);

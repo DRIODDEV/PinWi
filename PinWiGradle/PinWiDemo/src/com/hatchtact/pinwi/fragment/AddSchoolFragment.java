@@ -365,7 +365,7 @@ public class AddSchoolFragment extends ParentFragment
 		return addSchoolFragment;
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	OnClickListener weeksClicks = new OnClickListener() {
 
@@ -807,8 +807,12 @@ public class AddSchoolFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 		int Errorcode=0;
 
@@ -834,8 +838,9 @@ public class AddSchoolFragment extends ParentFragment
 			super.onPostExecute(result); 
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -900,9 +905,12 @@ public class AddSchoolFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -928,8 +936,9 @@ public class AddSchoolFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1166,9 +1175,12 @@ public class AddSchoolFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		String status;
@@ -1197,8 +1209,9 @@ public class AddSchoolFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

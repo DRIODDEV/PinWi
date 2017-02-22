@@ -21,6 +21,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,12 +56,12 @@ import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 @SuppressLint("DefaultLocale")
-public class TypesInsightsFragment extends ParentFragment implements View.OnClickListener 
+public class TypesInsightsFragment extends ParentFragment implements View.OnClickListener
 {
 
 	private View view;
 	public static TypesInsightsFragment typesinsightfragment;
-	private ShowMessages showMessage=null;  
+	private ShowMessages showMessage=null;
 	private ServiceMethod serviceMethod=null;
 	private CheckNetwork checkNetwork=null;
 
@@ -108,14 +110,14 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			"Steady as you go!\nBased on the consistency and quality of rating data, this report is currently at Level 2. Level 5 reports are most realistic and reliable.",
 			"Half Way There!\nBased on the consistency and quality of rating data, this report is currently at Level 3. Level 5 reports are the most realistic and reliable.",
 			"The Last Mile!\nBased on the consistency and frequency of rating data, this report is currently at Level 4. Level 5 reports are the most realistic and reliable.",
-	"Isn't this Awesome!!\nBased on the consistency and quality of rating data, this report is now at Level 5. It doesn't get any better than this. "};
+			"Isn't this Awesome!!\nBased on the consistency and quality of rating data, this report is now at Level 5. It doesn't get any better than this. "};
 
 
 	private SharePreferenceClass sharePref;
 	private ScrollView mainscroll;
 	private LinearLayout linearlayoutinsightsubscribe;
 	public static GetInterestPatternByChildIDOnInsightList getInterestPatternByChildIDOnInsightList;
-
+	private Animation animationAlpha;
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -142,7 +144,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		getInterestPatternByChildIDOnInsightList=new GetInterestPatternByChildIDOnInsightList();
 
 		sharePref=new SharePreferenceClass(getActivity());
-
+		animationAlpha= AnimationUtils.loadAnimation(getActivity(),R.anim.grow_from_top);
 		//sharePref.setInsightsTutorial(false);
 		if(!sharePref.isinsightsTutorial())
 		{
@@ -188,7 +190,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 
 		view=inflater.inflate(R.layout.insights_typesfragment, container, false);
@@ -240,7 +242,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		instructionInterestPattern.setOnClickListener(this);
 		instructionPointsSummary.setOnClickListener(this);
 
-		typeFace.setTypefaceRegular(textinsightmoreinsight);	
+		typeFace.setTypefaceRegular(textinsightmoreinsight);
 		typeFace.setTypefaceRegular(txtQualityBadge);
 		typeFace.setTypefaceRegular(txtInterestDrivers);
 		typeFace.setTypefaceRegular(txtInterestPatterns);
@@ -259,7 +261,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 				StaticVariables.fragmentIndexCurrentTabInsight=4;
 				StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
-				StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");				
+				StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");
 				StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
 				social.Subscribe_Button_ClickedFacebookLog();
 				social.Subscribe_Button_ClickedGoogleAnalyticsLog();
@@ -277,13 +279,13 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		/*............................................setting data........................................*/
 
 
-		return view;		
+		return view;
 	}
 
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void setRetainedDataInsights()
 	{
@@ -342,7 +344,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 				StaticVariables.fragmentIndexCurrentTabInsight=4;
 				StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
-				StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");				
+				StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");
 				StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
 				switchingFragments(new SubscribeFragment());
 			}
@@ -362,7 +364,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				{
 					StaticVariables.fragmentIndexCurrentTabInsight=4;
 					StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
-					StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");				
+					StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");
 					StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
 					switchingFragments(new SubscribeFragment());
 				}
@@ -432,7 +434,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 
-	private ProgressDialog progressDialogBadgeDetails=null;	
+	//private ProgressDialog progressDialogBadgeDetails=null;
 
 	private class GetBadgeDetailsByChildIDOnInsightListAsync extends AsyncTask<Void, Void, Integer>
 	{
@@ -440,9 +442,12 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialogBadgeDetails = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogBadgeDetails.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialogBadgeDetails = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogBadgeDetails.setCancelable(false);*/
 		}
 
 		@Override
@@ -451,13 +456,16 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				getBadgeDetailsByChildIDOnInsightList =serviceMethod.getBadgeDetailsByChildIDOnInsightList(StaticVariables.currentChild.getChildID());
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					getBadgeDetailsByChildIDOnInsightList = serviceMethod.getBadgeDetailsByChildIDOnInsightList(StaticVariables.currentChild.getChildID());
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -468,33 +476,34 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogBadgeDetails.isShowing())
-					progressDialogBadgeDetails.cancel();
+//				if (progressDialogBadgeDetails.isShowing())
+//					progressDialogBadgeDetails.cancel();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			try {
 
-			if(result==-1)
+
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
+
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new GetBadgeDetailsByChildIDOnInsightListAsync().execute();
+
+				} else {
+					if (getBadgeDetailsByChildIDOnInsightList != null && getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().size() > 0) {
+						//setBadgeFrameData();
+					} else {
+						getError();
+					}
+				}
+			}
+			catch (Exception e)
 			{
-				showMessage.showToastMessage("Please check your network connection");
-
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new GetBadgeDetailsByChildIDOnInsightListAsync().execute();
 
 			}
-			else
-			{
-				if(getBadgeDetailsByChildIDOnInsightList!=null && getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().size()>0)
-				{
-					setBadgeFrameData();
-				}
-				else
-				{	
-					getError();
-				}	
-			}	
-		}	
+		}
 	}
 
 	private void getError()
@@ -511,10 +520,11 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 
-	public void setBadgeFrameData() 
+	public void setBadgeFrameData()
 	{
 		// TODO Auto-generated method stub
-		imgBadge.setVisibility(View.VISIBLE);  	
+		imgBadge.setVisibility(View.VISIBLE);
+		imgBadge.startAnimation(animationAlpha);
 
 		txtBadge.setMovementMethod(ScrollingMovementMethod.getInstance());
 
@@ -559,7 +569,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 
-	private ProgressDialog progressDialogInsigts=null;	
+	//private ProgressDialog progressDialogInsigts=null;
 
 	private class AsyncTaskInterestDrivers extends AsyncTask<Void, Void, Integer>
 	{
@@ -568,8 +578,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialogInsigts = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogInsigts.setCancelable(false);
+			/*progressDialogInsigts = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogInsigts.setCancelable(false);*/
 		}
 
 		@Override
@@ -578,13 +588,16 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				getInterestTraitsByChildIDOnInsightList =serviceMethod.getInterestTraitsByChildIDOnInsight(StaticVariables.currentChild.getChildID());
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					getInterestTraitsByChildIDOnInsightList = serviceMethod.getInterestTraitsByChildIDOnInsight(StaticVariables.currentChild.getChildID());
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -595,37 +608,37 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogInsigts.isShowing())
-					progressDialogInsigts.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialogInsigts.isShowing())
+					progressDialogInsigts.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-			if(result==-1)
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new AsyncTaskInterestDrivers().execute();
+
+				} else {
+					if (getInterestTraitsByChildIDOnInsightList != null && getInterestTraitsByChildIDOnInsightList.getGetInterestTraitsByChildIDOnInsight().size() > 0) {
+						//setInterestDriversFrameData();
+					} else {
+						getError();
+					}
+				}
+			}
+			catch (Exception e)
 			{
-				showMessage.showToastMessage("Please check your network connection");
-
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new AsyncTaskInterestDrivers().execute();
 
 			}
-			else
-			{
-				if(getInterestTraitsByChildIDOnInsightList!=null && getInterestTraitsByChildIDOnInsightList.getGetInterestTraitsByChildIDOnInsight().size()>0)
-				{
-					setInterestDriversFrameData();
-				}
-				else
-				{	
-					getError();
-				}	
-			}	
-		}	
+		}
 	}
 
 
-	public void setInterestDriversFrameData() 
+	public void setInterestDriversFrameData()
 	{
 		// TODO Auto-generated method stub
 
@@ -635,7 +648,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				"Amusers        ",
 				"Unexciting     ",
 				"Non-Influencers",
-		"Unexplored     "};
+				"Unexplored     "};
 
 		String[] backgroundColorInterestDrivers={"#6a18b6","#ff6c00","#ffae00","#90b316","#7f7f7f"};
 
@@ -696,9 +709,9 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 					// TODO Auto-generated method stub
 					StaticVariables.fragmentIndexCurrentTabInsight=4;
 					StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
-					StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");				
+					StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");
 					StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
-					switchingFragments(new SubscribeFragment());	
+					switchingFragments(new SubscribeFragment());
 				}
 			});
 			//circleLinearLayout.removeAllViews();
@@ -721,7 +734,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 					{
 						StaticVariables.fragmentIndexCurrentTabInsight=4;
 						StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
-						StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");				
+						StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");
 						StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
 						switchingFragments(new SubscribeFragment());
 					}
@@ -748,6 +761,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 					ImageView arrowInsight=(ImageView) viewInsightsCircle.findViewById(R.id.imageInterestTrendsCircle);
 					ImageView imageInterestImageId=(ImageView) viewInsightsCircle.findViewById(R.id.viewInterestTrendsCircle);
 					GetInterestTraitsByChildIDOnInsight model=getInterestTraitsByChildIDOnInsightList.getGetInterestTraitsByChildIDOnInsight().get(j);
+					imageInterestImageId.startAnimation(animationAlpha);
 
 					//getInterestTraits.add(model);
 
@@ -815,7 +829,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 
-	private ProgressDialog progressDialogDelightTrends=null;	
+	//private ProgressDialog progressDialogDelightTrends=null;
 
 	private class AsyncTaskDelightTrends extends AsyncTask<Void, Void, Integer>
 	{
@@ -824,8 +838,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialogDelightTrends = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogDelightTrends.setCancelable(false);
+			/*progressDialogDelightTrends = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogDelightTrends.setCancelable(false);*/
 		}
 
 		@Override
@@ -834,13 +848,16 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				getDelightTraitsByChildIDOnInsightList =serviceMethod.getDelightTraitsByChildIDOnInsightList(StaticVariables.currentChild.getChildID());
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					getDelightTraitsByChildIDOnInsightList = serviceMethod.getDelightTraitsByChildIDOnInsightList(StaticVariables.currentChild.getChildID());
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -851,33 +868,33 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogDelightTrends.isShowing())
-					progressDialogDelightTrends.cancel();
+				/*if (progressDialogDelightTrends.isShowing())
+					progressDialogDelightTrends.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			if(result==-1)
-			{
-				showMessage.showToastMessage("Please check your network connection");
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new AsyncTaskDelightTrends().execute();
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new AsyncTaskDelightTrends().execute();
+
+				} else {
+					if (getDelightTraitsByChildIDOnInsightList != null && getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().size() > 0) {
+						//setDelightTrendsFrameData();
+					} else {
+						getError();
+					}
+				}
+			}
+			catch (Exception e)
+			{
 
 			}
-			else
-			{
-				if(getDelightTraitsByChildIDOnInsightList!=null && getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().size()>0)
-				{
-					setDelightTrendsFrameData();
-				}
-				else
-				{	
-					getError();
-				}	
-			}	
-		}	
+		}
 	}
 
 	public void setDelightTrendsFrameData()
@@ -975,7 +992,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 
-	private ProgressDialog progressDialogPointsSummary=null;	
+	//private ProgressDialog progressDialogPointsSummary=null;
 
 	private class AsyncTaskPointsSummary extends AsyncTask<Void, Void, Integer>
 	{
@@ -984,8 +1001,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialogPointsSummary = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogPointsSummary.setCancelable(false);
+			/*progressDialogPointsSummary = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogPointsSummary.setCancelable(false);*/
 		}
 
 		@Override
@@ -993,14 +1010,16 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		{
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
-
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				getPointsInfoByChildIDOnInsightsList =serviceMethod.getPointsInfoByChildIDOnInsightsList(StaticVariables.currentChild.getChildID());
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					getPointsInfoByChildIDOnInsightsList = serviceMethod.getPointsInfoByChildIDOnInsightsList(StaticVariables.currentChild.getChildID());
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -1011,38 +1030,39 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogPointsSummary.isShowing())
-					progressDialogPointsSummary.cancel();
+				/*if (progressDialogPointsSummary.isShowing())
+					progressDialogPointsSummary.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-			if(result==-1)
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new AsyncTaskDelightTrends().execute();
+
+				} else {
+					if (getPointsInfoByChildIDOnInsightsList != null && getPointsInfoByChildIDOnInsightsList.getGetPointsInfoByChildIDOnInsights().size() > 0) {
+						//setPointsSummaryFrameData();
+						setRetainedDataInsights();
+					} else {
+						getError();
+					}
+				}
+			}
+			catch (Exception e)
 			{
-				showMessage.showToastMessage("Please check your network connection");
-
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new AsyncTaskDelightTrends().execute();
 
 			}
-			else
-			{
-				if(getPointsInfoByChildIDOnInsightsList!=null && getPointsInfoByChildIDOnInsightsList.getGetPointsInfoByChildIDOnInsights().size()>0)
-				{
-					setPointsSummaryFrameData();
-				}
-				else
-				{	
-					getError();
-				}	
-			}	
-		}	
+		}
+
 	}
 
 	private PieChart mChart;
 	@SuppressLint("DefaultLocale")
-	public void setPointsSummaryFrameData() 
+	public void setPointsSummaryFrameData()
 	{
 		// TODO Auto-generated method stub
 
@@ -1148,11 +1168,13 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		mChart.setHoleRadius(58f);
 		mChart.setTransparentCircleRadius(61f);
 
-		mChart.setDrawCenterText(true);   
+		mChart.setDrawCenterText(true);
 
 		mChart.setRotationAngle(0);
 		// enable rotation of the chart by touch
 		mChart.setRotationEnabled(true);
+		mChart.animateY(2000);
+
 
 		// mChart.setUnit(" €");
 		// mChart.setDrawUnitsInChart(true);
@@ -1287,7 +1309,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		menu.getItem(0).setTitle(spanString);*/
 
 		super.onCreateOptionsMenu(menu, inflater);
-	}  
+	}
 
 
 	@Override
@@ -1315,7 +1337,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 			pointSummaryLayout.removeAllViews();
 			try {
-				imgBadge.setVisibility(View.INVISIBLE);  		
+				imgBadge.setVisibility(View.INVISIBLE);
 				txtBadge.setText("Interest report is being generated");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -1432,55 +1454,55 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 	public void onClick(View v)
 	{
 		// TODO Auto-generated method stub
-		switch (v.getId()) 
+		switch (v.getId())
 		{
-		case R.id.layoutOne:
-			showMessage.showAlertInsights("Data Quality Badge",getString(R.string.namesBadges));
-			break;
+			case R.id.layoutOne:
+				showMessage.showAlertInsights("Data Quality Badge",getString(R.string.namesBadges));
+				break;
 
-		case R.id.layoutTwo:
-			showMessage.showAlertInsights("Interest Drivers",getString(R.string.namesInterestDrivers));
+			case R.id.layoutTwo:
+				showMessage.showAlertInsights("Interest Drivers",getString(R.string.namesInterestDrivers));
 
-			break;
+				break;
 
-		case R.id.layoutThree:
-			showMessage.showAlertInsights("Activity Rating",getString(R.string.namesDelightTrends));
+			case R.id.layoutThree:
+				showMessage.showAlertInsights("Activity Rating",getString(R.string.namesDelightTrends));
 
-			break;
-		case R.id.layoutFour:
-			showMessage.showAlertInsights("Points Summary",getString(R.string.namesPointsSummary));
+				break;
+			case R.id.layoutFour:
+				showMessage.showAlertInsights("Points Summary",getString(R.string.namesPointsSummary));
 
-			break;
-		case R.id.layoutInterestPattern:
-			showMessage.showAlertInsights("Interest Pattern",getString(R.string.namesInterestPattern));
-			break;
-		case R.id.imageQualityBadgeInstruction:
-			showMessage.showAlertInsights("Data Quality Badge",getString(R.string.namesBadges));
+				break;
+			case R.id.layoutInterestPattern:
+				showMessage.showAlertInsights("Interest Pattern",getString(R.string.namesInterestPattern));
+				break;
+			case R.id.imageQualityBadgeInstruction:
+				showMessage.showAlertInsights("Data Quality Badge",getString(R.string.namesBadges));
 
-			break;
-		case R.id.imageinsightInterestDriversInstruction:
-			showMessage.showAlertInsights("Interest Drivers",getString(R.string.namesInterestDrivers));
+				break;
+			case R.id.imageinsightInterestDriversInstruction:
+				showMessage.showAlertInsights("Interest Drivers",getString(R.string.namesInterestDrivers));
 
-			break;
-		case R.id.imageinsightdelightTrendsInstruction:
-			showMessage.showAlertInsights("Activity Rating",getString(R.string.namesDelightTrends));
+				break;
+			case R.id.imageinsightdelightTrendsInstruction:
+				showMessage.showAlertInsights("Activity Rating",getString(R.string.namesDelightTrends));
 
-			break;
+				break;
 
-		case R.id.imageinsightPointsSummaryInstruction:
-			showMessage.showAlertInsights("Points Summary",getString(R.string.namesPointsSummary));
+			case R.id.imageinsightPointsSummaryInstruction:
+				showMessage.showAlertInsights("Points Summary",getString(R.string.namesPointsSummary));
 
-			break;
-		case R.id.imageinsightInterestPatternInstruction:
-			showMessage.showAlertInsights("Interest Pattern",getString(R.string.namesInterestPattern));
-			break;
+				break;
+			case R.id.imageinsightInterestPatternInstruction:
+				showMessage.showAlertInsights("Interest Pattern",getString(R.string.namesInterestPattern));
+				break;
 		}
 
 	}
 
 
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 	private int reportStatus;
 	private ResultIsSubscribed modelSubscribe;
 
@@ -1502,8 +1524,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			//progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			//progressDialog.setCancelable(false);
 		}
 
 		@Override
@@ -1512,19 +1534,22 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				reportStatus =serviceMethod.getinsightReportActiveStatus(parentId, childId);
-				try {
-					modelSubscribe=serviceMethod.isSubscribed(StaticVariables.currentParentId, 1).getIsSubscribed().get(0);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					reportStatus = serviceMethod.getinsightReportActiveStatus(parentId, childId);
+					try {
+						modelSubscribe = serviceMethod.isSubscribed(StaticVariables.currentParentId, 1).getIsSubscribed().get(0);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else {
+					ErrorCode = -1;
 				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -1535,58 +1560,54 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			if(result==-1)
-			{
-				showMessage.showToastMessage("Please check your network connection");
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-				StaticVariables.fragmentIndexCurrentTabInsight=7;
+					StaticVariables.fragmentIndexCurrentTabInsight = 7;
 				/*getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
 						new InsightsErrorFragment()).commit(); */
-				getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
-						new InsightsErrorFragment()).commitAllowingStateLoss(); 
+					getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
+							new InsightsErrorFragment()).commitAllowingStateLoss();
 				/*if(checkNetwork.checkNetworkConnection(getActivity()))
 					new GetInsightsReportStatusByParentAndChildId(parentId,childId).execute();*/
 
-			}
-			else
-			{
-				if(result!=-1)
-				{
+				} else {
+					if (result != -1) {
 
-					if(reportStatus==0)
-					{
-						StaticVariables.fragmentIndexCurrentTabInsight=7;
+						if (reportStatus == 0) {
+							StaticVariables.fragmentIndexCurrentTabInsight = 7;
 						/*getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
 								new InsightsErrorFragment()).commit(); */
-						getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
-								new InsightsErrorFragment()).commitAllowingStateLoss(); 
+							getFragmentManager().beginTransaction().replace(R.id.tabcontent_frame_layout,
+									new InsightsErrorFragment()).commitAllowingStateLoss();
+						} else if (reportStatus == 1) {
+							//mainscroll.setAlpha(1f);
+
+							refreshDataAccordingToChild();
+
+						}
+					} else {
+
 					}
-					else if(reportStatus==1)
-					{
-						//mainscroll.setAlpha(1f);
-
-						refreshDataAccordingToChild();
-
-					}
-				}	
-				else
-				{
-
 				}
 			}
+			catch (Exception e)
+			{
 
-		}	
+			}
+		}
 	}
 
 
-	private ProgressDialog progressPatterns;
+	//private ProgressDialog progressPatterns;
 
 	private class GetInterestPatternAsync extends AsyncTask<Void, Void, Integer>
 	{
@@ -1595,8 +1616,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressPatterns = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressPatterns.setCancelable(false);
+			/*progressPatterns = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressPatterns.setCancelable(false);*/
 		}
 
 		@Override
@@ -1605,13 +1626,16 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				getInterestPatternByChildIDOnInsightList =serviceMethod.getInterestPatternByChildIDOnInsightList(StaticVariables.currentChild.getChildID());
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					getInterestPatternByChildIDOnInsightList = serviceMethod.getInterestPatternByChildIDOnInsightList(StaticVariables.currentChild.getChildID());
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -1622,48 +1646,46 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			super.onPostExecute(result);
 
 			try {
-				if (progressPatterns.isShowing())
-					progressPatterns.cancel();
+				/*if (progressPatterns.isShowing())
+					progressPatterns.cancel();*/
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			if(result==-1)
-			{
-				showMessage.showToastMessage("Please check your network connection");
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new GetBadgeDetailsByChildIDOnInsightListAsync().execute();
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new GetBadgeDetailsByChildIDOnInsightListAsync().execute();
+
+				} else {
+					if (getInterestPatternByChildIDOnInsightList != null && getInterestPatternByChildIDOnInsightList.getInterestPatternByChildIDList().size() > 0) {
+						//setBadgeFrameData();
+						linearlayoutinsightinterestpattern.setVisibility(View.VISIBLE);
+						layoutInterestPattern.setVisibility(View.VISIBLE);
+						setInterestPatternData();
+					} else {
+						linearlayoutinsightinterestpattern.setVisibility(View.VISIBLE);
+						layoutInterestPattern.setVisibility(View.VISIBLE);
+						setInterestPatternNodata();
+						getError();
+					}
+				}
+
+			} catch (Exception e) {
 
 			}
-			else
-			{
-				if(getInterestPatternByChildIDOnInsightList!=null && getInterestPatternByChildIDOnInsightList.getInterestPatternByChildIDList().size()>0)
-				{
-					//setBadgeFrameData();
-					linearlayoutinsightinterestpattern.setVisibility(View.VISIBLE);
-					layoutInterestPattern.setVisibility(View.VISIBLE);
-					setInterestPatternData();
-				}
-				else
-				{	
-					linearlayoutinsightinterestpattern.setVisibility(View.VISIBLE);
-					layoutInterestPattern.setVisibility(View.VISIBLE);
-					setInterestPatternNodata();
-					getError();
-				}	
-			}	
 		}
-
 		/**
-		 * 
+		 *
 		 */
 		private void setInterestPatternNodata() {
 			String[] arrayInterestPattern={"Long Held",
 					"New Found",
-			"SEE-SAW"};
+					"SEE-SAW"};
 
 			Integer[] arrayInterestPatternImages={R.drawable.logn_held,R.drawable.new_found,R.drawable.see_saw};
 
@@ -1730,17 +1752,17 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 				switch (i) {
-				case 0:
-					texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_greenpiechart));
-					break;
-				case 1:
-					texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_red_color));
-					break;
-				case 2:
-					texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_blue_color));
-					break;
-				default:
-					break;
+					case 0:
+						texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_greenpiechart));
+						break;
+					case 1:
+						texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_red_color));
+						break;
+					case 2:
+						texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_blue_color));
+						break;
+					default:
+						break;
 				}
 
 				imagepattern.setImageResource(arrayInterestPatternImages[i]);
@@ -1750,12 +1772,12 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				linearlayoutinsightinterestpattern.addView(viewInsights);
 
 			}
-		}	
+		}
 	}
 
 
 
-	public void setInterestPatternData() 
+	public void setInterestPatternData()
 	{
 		// TODO Auto-generated method stub
 
@@ -1763,7 +1785,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 		String[] arrayInterestPattern={"Long Held",
 				"New Found",
-		"SEE-SAW"};
+				"SEE-SAW"};
 
 		Integer[] arrayInterestPatternImages={R.drawable.logn_held,R.drawable.new_found,R.drawable.see_saw};
 
@@ -1913,17 +1935,17 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 			switch (i) {
-			case 0:
-				texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_greenpiechart));
-				break;
-			case 1:
-				texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_red_color));
-				break;
-			case 2:
-				texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_blue_color));
-				break;
-			default:
-				break;
+				case 0:
+					texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_greenpiechart));
+					break;
+				case 1:
+					texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_red_color));
+					break;
+				case 2:
+					texttypesinsightinterestdriversname.setTextColor(getActivity().getResources().getColor(R.color.font_blue_color));
+					break;
+				default:
+					break;
 			}
 
 			imagepattern.setImageResource(arrayInterestPatternImages[i]);

@@ -39,6 +39,7 @@ import com.hatchtact.pinwi.classmodel.GetDetailByMapEmoticIDList;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -90,6 +91,8 @@ public class ChildEmoticonDetailActivity extends Activity
 	private String actiontype="";
 	ArrayList<Integer> emoticIdIntegerArray=new ArrayList<Integer>();
 	private int currentSelectedEmoticId=0;
+	private CustomLoader customProgressLoader;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -97,6 +100,8 @@ public class ChildEmoticonDetailActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_emoticondetail);
+
+		customProgressLoader=new CustomLoader(this);
 		isButtonClicked=false;
 
 		screen=getIntent().getExtras().getInt("screen");
@@ -136,11 +141,11 @@ public class ChildEmoticonDetailActivity extends Activity
 		new GetDetailByMapEmoticIDAsync(1,currentSelectedEmoticId).execute();
 	}
 
-	private void initSoundData() 
+	private void initSoundData()
 	{
 		// TODO Auto-generated method stub
 		//soundEffectTransition = new SoundEffect(ChildDashboardActivity.this, R.raw.pageflip);
-		soundEffectButtonClicks = new SoundEffect(ChildEmoticonDetailActivity.this, R.raw.two_tone_nav);		
+		soundEffectButtonClicks = new SoundEffect(ChildEmoticonDetailActivity.this, R.raw.two_tone_nav);
 	}
 
 	private void playSound(SoundEffect sound)
@@ -278,27 +283,27 @@ public class ChildEmoticonDetailActivity extends Activity
 	private void setVoiceOverIcon() {
 		if(isMusicStop)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceover));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceover));
 
-			}	
+			}
 		}
 	}
 
@@ -306,27 +311,27 @@ public class ChildEmoticonDetailActivity extends Activity
 	private void setVolumeIcon() {
 		if(isMute)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_mute));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_mute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_volume));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_volume));
 
-			}	
+			}
 		}
 	}
 
@@ -349,46 +354,46 @@ public class ChildEmoticonDetailActivity extends Activity
 		txtemojifour.setTextColor(getResources().getColor(R.color.black_color));
 		txtemojifive.setTextColor(getResources().getColor(R.color.black_color));
 
-		switch (StaticVariables.emooticionNo) 
+		switch (StaticVariables.emooticionNo)
 		{
-		case 1:
-			txtemojione.setAlpha(1f);
-			txtemojitwo.setAlpha(.7f);
-			txtemojithree.setAlpha(.7f);
-			txtemojifour.setAlpha(.7f);
-			txtemojifive.setAlpha(.7f);
-			break;
-		case 2:
-			txtemojione.setAlpha(.7f);
-			txtemojitwo.setAlpha(1f);
-			txtemojithree.setAlpha(.7f);
-			txtemojifour.setAlpha(.7f);
-			txtemojifive.setAlpha(.7f);
-			break;
-		case 3:
-			txtemojione.setAlpha(.7f);
-			txtemojitwo.setAlpha(.7f);
-			txtemojithree.setAlpha(1f);
-			txtemojifour.setAlpha(.7f);
-			txtemojifive.setAlpha(.7f);
-			break;
-		case 4:
-			txtemojione.setAlpha(.7f);
-			txtemojitwo.setAlpha(.7f);
-			txtemojithree.setAlpha(.7f);
-			txtemojifour.setAlpha(1f);
-			txtemojifive.setAlpha(.7f);
-			break;
-		case 5:
-			txtemojione.setAlpha(.7f);
-			txtemojitwo.setAlpha(.7f);
-			txtemojithree.setAlpha(.7f);
-			txtemojifour.setAlpha(.7f);
-			txtemojifive.setAlpha(1f);
-			break;
+			case 1:
+				txtemojione.setAlpha(1f);
+				txtemojitwo.setAlpha(.7f);
+				txtemojithree.setAlpha(.7f);
+				txtemojifour.setAlpha(.7f);
+				txtemojifive.setAlpha(.7f);
+				break;
+			case 2:
+				txtemojione.setAlpha(.7f);
+				txtemojitwo.setAlpha(1f);
+				txtemojithree.setAlpha(.7f);
+				txtemojifour.setAlpha(.7f);
+				txtemojifive.setAlpha(.7f);
+				break;
+			case 3:
+				txtemojione.setAlpha(.7f);
+				txtemojitwo.setAlpha(.7f);
+				txtemojithree.setAlpha(1f);
+				txtemojifour.setAlpha(.7f);
+				txtemojifive.setAlpha(.7f);
+				break;
+			case 4:
+				txtemojione.setAlpha(.7f);
+				txtemojitwo.setAlpha(.7f);
+				txtemojithree.setAlpha(.7f);
+				txtemojifour.setAlpha(1f);
+				txtemojifive.setAlpha(.7f);
+				break;
+			case 5:
+				txtemojione.setAlpha(.7f);
+				txtemojitwo.setAlpha(.7f);
+				txtemojithree.setAlpha(.7f);
+				txtemojifour.setAlpha(.7f);
+				txtemojifive.setAlpha(1f);
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 
 		typeFace.setTypefaceGotham(txtemojione);
@@ -409,7 +414,7 @@ public class ChildEmoticonDetailActivity extends Activity
 		layoutemojithree=(LinearLayout) findViewById(R.id.layoutemojithree);
 		layoutemojifour=(LinearLayout) findViewById(R.id.layoutemojifour);
 		layoutemojifive=(LinearLayout) findViewById(R.id.layoutemojifive);
-		
+
 		emojiviewone=(View)findViewById(R.id.viewemojione);
 		emojiviewtwo=(View)findViewById(R.id.viewemojitwo);
 		emojiviewthree=(View)findViewById(R.id.viewemojithree);
@@ -442,35 +447,35 @@ public class ChildEmoticonDetailActivity extends Activity
 
 
 
-			public void onScrollStateChanged(AbsListView view, int scrollState) 
-			{
+											  public void onScrollStateChanged(AbsListView view, int scrollState)
+											  {
 
-			}
+											  }
 
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
+											  public void onScroll(AbsListView view, int firstVisibleItem,
+																   int visibleItemCount, int totalItemCount) {
 
-				if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0 && totalItemCount>=8)
-				{
-					if(flag_loading == false)
-					{
-						flag_loading = true;
-						//additems();//here we have to add items on scroll in search list and  
+												  if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0 && totalItemCount>=8)
+												  {
+													  if(flag_loading == false)
+													  {
+														  flag_loading = true;
+														  //additems();//here we have to add items on scroll in search list and
 
-						//if(!isSearchList)
-						{
-							if(totalItemCount% 8==0)
-							{
-								new GetDetailByMapEmoticIDAsync((totalItemCount/8)+1,currentSelectedEmoticId).execute();	
-							}
+														  //if(!isSearchList)
+														  {
+															  if(totalItemCount% 8==0)
+															  {
+																  new GetDetailByMapEmoticIDAsync((totalItemCount/8)+1,currentSelectedEmoticId).execute();
+															  }
 
-						}
-					}
+														  }
+													  }
 
-				}
-			}
-		}
-				);
+												  }
+											  }
+										  }
+		);
 
 
 	}
@@ -510,7 +515,7 @@ public class ChildEmoticonDetailActivity extends Activity
 
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class GetDetailByMapEmoticIDAsync extends AsyncTask<Void, Void, Integer>
 	{
@@ -537,8 +542,12 @@ public class ChildEmoticonDetailActivity extends Activity
 			super.onPreExecute();
 			if(pageIndex==1)
 			{
-				progressDialog = ProgressDialog.show(ChildEmoticonDetailActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.showProgressBar();
+				}
+				/*progressDialog = ProgressDialog.show(ChildEmoticonDetailActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			}
 			else
 			{
@@ -570,7 +579,7 @@ public class ChildEmoticonDetailActivity extends Activity
 					}
 				}
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -585,8 +594,12 @@ public class ChildEmoticonDetailActivity extends Activity
 			try {
 				if(pageIndex==1)
 				{
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					if(customProgressLoader!=null)
+					{
+						customProgressLoader.dismissProgressBar();
+					}
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				}
 				else
 				{
@@ -683,7 +696,7 @@ public class ChildEmoticonDetailActivity extends Activity
 					else
 					{
 						getError();
-					}	
+					}
 				}
 			}catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -703,12 +716,12 @@ public class ChildEmoticonDetailActivity extends Activity
 		layout_nodata.setVisibility(View.VISIBLE);*/
 		layout_nodata.setVisibility(View.VISIBLE);
 		childListView.setVisibility(View.GONE);
-		com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();	
+		com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();
 		//showMessage.showAlert("Warning", err.getErrorDesc());
 		noconnectionimage.setVisibility(View.VISIBLE);
 		noconnectiontext.setVisibility(View.VISIBLE);
 		noconnectiontext.setText(err.getErrorDesc());
-	} 
+	}
 	private int dp2px(int dp) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
 				getResources().getDisplayMetrics());
@@ -750,7 +763,7 @@ public class ChildEmoticonDetailActivity extends Activity
 	private boolean isActivityFinished=false;
 
 	/**
-	 * 
+	 *
 	 */
 	private void finishActivity() {
 		if(!isActivityFinished)
@@ -890,7 +903,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			emojiviewone.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			layoutemojitwo.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			emojiviewtwo.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
-			
+
 			layoutemojifour.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			emojiviewfour.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			layoutemojifive.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
@@ -908,7 +921,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			emojiviewtwo.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			layoutemojithree.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			emojiviewthree.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
-	
+
 			layoutemojifive.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			emojiviewfive.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 		}
@@ -924,7 +937,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			emojiviewthree.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			layoutemojifour.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
 			emojiviewfour.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));
-			
+
 		}
 
 		if(emoticountArray.get(0).equalsIgnoreCase("0")||emoticountArray.get(0).equalsIgnoreCase(""))
@@ -934,7 +947,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			layoutemojione.setEnabled(false);
 			layoutemojione .setClickable(false);
 		}
-		else 
+		else
 		{
 			txtemojione.setVisibility(View.VISIBLE);
 			emojilayoutimageone.setAlpha(1f);
@@ -950,7 +963,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			layoutemojitwo .setClickable(false);
 
 		}
-		else 
+		else
 		{
 			txtemojitwo.setVisibility(View.VISIBLE);
 			emojilayoutimagetwo.setAlpha(1f);
@@ -965,7 +978,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			layoutemojithree.setEnabled(false);
 			layoutemojithree.setClickable(false);
 		}
-		else 
+		else
 		{
 			txtemojithree.setVisibility(View.VISIBLE);
 			emojilayoutimagethree.setAlpha(1f);
@@ -980,7 +993,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			layoutemojifour.setEnabled(false);
 			layoutemojifour .setClickable(false);
 		}
-		else 
+		else
 		{
 			txtemojifour.setVisibility(View.VISIBLE);
 			emojilayoutimagefour.setAlpha(1f);
@@ -995,7 +1008,7 @@ public class ChildEmoticonDetailActivity extends Activity
 			layoutemojifive.setEnabled(false);
 			layoutemojifive .setClickable(false);
 		}
-		else 
+		else
 		{
 			txtemojifive.setVisibility(View.VISIBLE);
 			emojilayoutimagefive.setAlpha(1f);
@@ -1019,7 +1032,7 @@ public class ChildEmoticonDetailActivity extends Activity
 						childList=new GetDetailByMapEmoticIDList();
 					childList.getDetailByMapEmoticID().clear();
 					currentSelectedEmoticId=emoticIdIntegerArray.get(0);
-					
+
 					setBackgroundEmoji();
 					layoutemojione.setBackgroundColor(getResources().getColor(R.color.font_white_color));
 					emojiviewone.setBackgroundColor(getResources().getColor(R.color.font_white_color));
@@ -1119,7 +1132,7 @@ public class ChildEmoticonDetailActivity extends Activity
 	 * @param model
 	 * @return
 	 */
-	private ArrayList<String> getEmoticCountArray(GetDetailByMapEmoticID model) 
+	private ArrayList<String> getEmoticCountArray(GetDetailByMapEmoticID model)
 	{
 		ArrayList<String> emoticountArray=new ArrayList<String>();
 		if(model.getEmoticCount()==null||model.getEmoticCount().equalsIgnoreCase(""))
@@ -1147,7 +1160,7 @@ public class ChildEmoticonDetailActivity extends Activity
 		}
 		return emoticountArray;
 	}
-	
+
 	private void setBackgroundEmoji()
 	{
 		layoutemojifive.setBackgroundColor(getResources().getColor(R.color.emoticon_gray));

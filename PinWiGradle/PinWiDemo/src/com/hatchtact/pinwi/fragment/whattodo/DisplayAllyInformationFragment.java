@@ -139,7 +139,7 @@ public class DisplayAllyInformationFragment extends ParentFragment implements On
 		}
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class GetAllyDataByChildIdAndActivityId extends AsyncTask<Void, Void, Integer>
 	{
@@ -157,9 +157,12 @@ public class DisplayAllyInformationFragment extends ParentFragment implements On
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -185,8 +188,9 @@ public class DisplayAllyInformationFragment extends ParentFragment implements On
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

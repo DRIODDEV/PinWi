@@ -300,7 +300,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		checkNetwork=new CheckNetwork();
 		serviceMethod=new ServiceMethod();
 		requestaddonVersion=new RequestAddOnVersionModel();
-		new AsyncNotificationCountByParentID().execute();
+		//new AsyncNotificationCountByParentID().execute();
 
 		tab_notification = (ImageView) findViewById(R.id.tab_notification);
 		tab_scheduler = (ImageView) findViewById(R.id.tab_scheduler);
@@ -310,6 +310,15 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		textViewtab_notification=(TextView) findViewById(R.id.textViewtab_notification);
 		typeFace.setTypefaceRegular(textViewtab_notification);
 		textViewtab_notification.setVisibility(View.GONE);
+		if(StaticVariables.notificationCount>0)
+		{
+			textViewtab_notification.setVisibility(View.VISIBLE);
+			textViewtab_notification.setText(StaticVariables.notificationCount + "");
+		}
+		else
+		{
+			textViewtab_notification.setVisibility(View.GONE);
+		}
 		/*textViewtab_notification.setVisibility(View.GONE);
 		textViewtab_notification.setText(StaticVariables.notificationCount + "");*/
 
@@ -1935,7 +1944,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.tabcontent_frame_layout, toFragment, "");
 		fragmentTransaction.commit();	
-		//  getFragmentManager().executePendingTransactions();      // <----- This is the key 
+		getFragmentManager().executePendingTransactions();      // <----- This is the key
 	}
 
 
@@ -1952,62 +1961,72 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		switch (v.getId()) 
 		{
 		case R.id.tab_notification:
-			currentTab = 0;
-			StaticVariables.fragmentIndexCurrentTabNotification=notificationFragmentOne;
-			tab_notification.setSelected(true);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(false);
-			sharePref.setBadgeScore("0");
-			textViewtab_notification.setVisibility(View.GONE);
-			switchingFragments(new NotificationFragment());	
+			if(currentTab!=0) {
+				currentTab = 0;
+				StaticVariables.fragmentIndexCurrentTabNotification = notificationFragmentOne;
+				tab_notification.setSelected(true);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(false);
+				sharePref.setBadgeScore("0");
+				textViewtab_notification.setVisibility(View.GONE);
+				ShortcutBadger.removeCount(TabChildActivities.this);
+				switchingFragments(new NotificationFragment());
+			}
 			break;
 		case R.id.tab_scheduler:
-			currentTab = 1;
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(true);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(false);
-			StaticVariables.fragmentIndexCurrentTabSchedular=schoolFragmentScheduler;
-			switchingFragments(SubjectActivityByChildIDFragment.getInstance());
-
+			if(currentTab!=1) {
+				currentTab = 1;
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(true);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(false);
+				StaticVariables.fragmentIndexCurrentTabSchedular = schoolFragmentScheduler;
+				switchingFragments(SubjectActivityByChildIDFragment.getInstance());
+			}
 			//StaticVariables.fragmentIndexCurrentTabSchedular=calenderFragmentScheduler;
 			//switchingFragments(CalenderFragment.getInstance());
 			break;
 
 		case R.id.tab_insight:
-			currentTab = 2;
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(true);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(false);
-			StaticVariables.fragmentIndexCurrentTabInsight=typesInsightFragment;
-			switchingFragments(TypesInsightsFragment.getInstance());
+			if(currentTab!=2) {
+				currentTab = 2;
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(true);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(false);
+				StaticVariables.fragmentIndexCurrentTabInsight = typesInsightFragment;
+				switchingFragments(TypesInsightsFragment.getInstance());
+			}
 			break;
 		case R.id.tab_activity:
-			currentTab = 3;
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(true);
-			//switchingFragments(new WhatToDoFragment());
-			StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentRecommended;
-			switchingFragments(new WhatToDoRecommendedFragment());
+			if(currentTab!=3) {
+				currentTab = 3;
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(true);
+				//switchingFragments(new WhatToDoFragment());
+				StaticVariables.fragmentIndexCurrentTabWhatToDo = whattodoFragmentRecommended;
+				switchingFragments(new WhatToDoRecommendedFragment());
+			}
 			break;
 		case R.id.tab_network:
-			currentTab = 4;
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(true);
-			tab_activity.setSelected(false);
-			//switchingFragments(new NetworkFragment());
-			StaticVariables.fragmentIndexCurrentTabNetwork=networkFragmentConnections;
-			switchingFragments(new NetworkConnectionsFragment());
+			if(currentTab!=4) {
+				currentTab = 4;
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(true);
+				tab_activity.setSelected(false);
+				//switchingFragments(new NetworkFragment());
+				StaticVariables.fragmentIndexCurrentTabNetwork = networkFragmentConnections;
+				switchingFragments(new NetworkConnectionsFragment());
+			}
 			break;
 		}
 	}

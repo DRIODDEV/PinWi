@@ -231,7 +231,7 @@ public  class FriendDetailFragment extends ParentFragment
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class fetchFriendsDetailList extends AsyncTask<Void, Void, Integer>
 	{
@@ -239,8 +239,12 @@ public  class FriendDetailFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -265,8 +269,9 @@ public  class FriendDetailFragment extends ParentFragment
 			super.onPostExecute(result);
 			try {
 				hideKeyBoard();
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

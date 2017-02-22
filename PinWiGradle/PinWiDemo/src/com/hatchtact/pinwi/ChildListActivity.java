@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.adapter.ChildListAdapter;
 import com.hatchtact.pinwi.classmodel.ChildModel;
 import com.hatchtact.pinwi.classmodel.ChildProfile;
@@ -23,6 +22,7 @@ import com.hatchtact.pinwi.classmodel.GetListofChildsByParentIDList;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -50,7 +50,8 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 	private TextView addchild_text=null;
 	private TextView updatechild_text;
 
-	private TypeFace typeFace=null; 
+	private TypeFace typeFace=null;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -60,6 +61,7 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_childlist);
+		customProgressLoader=new CustomLoader(ChildListActivity.this);
 
 		getListofChildsByParentIDList=new GetListofChildsByParentIDList();
 		serviceMethod=new ServiceMethod();
@@ -124,8 +126,12 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(ChildListActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(ChildListActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -151,8 +157,9 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -249,8 +256,12 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(ChildListActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(ChildListActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		String status;
@@ -277,8 +288,9 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

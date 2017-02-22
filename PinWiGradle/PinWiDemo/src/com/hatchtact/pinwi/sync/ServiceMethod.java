@@ -122,8 +122,8 @@ public class ServiceMethod
 	//private final String URL = "http://api.pinwi.in:2015/PinWiService.asmx";
 	//private final String URL = "http://api.pinwi.in:2016/PinWiService.asmx";
 	//private final String URL = "http://pinwi.staging4.nz-technologies.com/PinWiService.asmx";
-	private final String URL = "http://166.78.47.124:2016/pinwiservice.asmx";
-	//private final String URL = "http://166.78.47.124:2015/pinwiservice.asmx";
+	//private final String URL = "http://166.78.47.124:2016/pinwiservice.asmx";
+	private final String URL = "http://166.78.47.124:2015/pinwiservice.asmx";
 
 
 	/** The Constant NAMESPACE. */

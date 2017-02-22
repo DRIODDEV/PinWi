@@ -7,6 +7,7 @@ import java.util.Date;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,7 +35,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
-public class InsightsErrorFragment extends ParentFragment implements OnClickListener 
+public class InsightsErrorFragment extends ParentFragment implements OnClickListener
 {
 
 	private View view;
@@ -46,12 +48,12 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 	private ServiceMethod serviceMethod;
 	private LinearLayout layoutText;
 	private String textBadge="Gain Insights into your child's interests. Know how you can unlock this report faster.";
-
+	private ImageView imgArrow;
 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		view=inflater.inflate(R.layout.insights_error_fragment, container, false);
 		mListener.onFragmentAttached(false,"  Insights");
@@ -64,8 +66,19 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 		layoutText=(LinearLayout) view.findViewById(R.id.layoutText);
 		headerText=(TextView) view.findViewById(R.id.headerBadge);
 		texttypesinsightbadge=(TextView) view.findViewById(R.id.texttypesinsightbadge);
+		imgArrow=(ImageView) view.findViewById(R.id.imgArrow);
 		layoutText.setOnClickListener(new View.OnClickListener() {
-			
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				StaticVariables.fragmentIndexErrorDetailPage=2000;
+				switchingFragments(new InsightsErrorDetailFragment());
+
+			}
+		});
+		imgArrow.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -93,7 +106,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 			e.printStackTrace();
 		}
 
-		return view;		
+		return view;
 	}
 
 
@@ -113,17 +126,17 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 	{
 
 		switch (v.getId()) {
-		case R.id.texterrorinsightfragment:
-			StaticVariables.webUrl="http://www.pinwi.in/blog/";
-			Intent intentAboutUs =new Intent(getActivity(), ActivityAboutUS.class);
-			startActivity(intentAboutUs);
-			break;
+			case R.id.texterrorinsightfragment:
+				StaticVariables.webUrl="http://www.pinwi.in/blog/";
+				Intent intentAboutUs =new Intent(getActivity(), ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+				break;
 
-		case R.id.btndashboard:
-			StaticVariables.webUrl="http://demo.pinwi.in/Insight_Report.pdf";
-			Intent intentAboutUsPdf =new Intent(getActivity(), ActivityAboutUS.class);
-			startActivity(intentAboutUsPdf);
-			break;
+			case R.id.btndashboard:
+				StaticVariables.webUrl="http://demo.pinwi.in/Insight_Report.pdf";
+				Intent intentAboutUsPdf =new Intent(getActivity(), ActivityAboutUS.class);
+				startActivity(intentAboutUsPdf);
+				break;
 		}
 		
 		/*if (getFragmentManager().getBackStackEntryCount() > 0) {
@@ -137,7 +150,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 
 	// the create options menu with a MenuInflater to have the menu from your fragment
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) 
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
 		for(int i=0;i<menu.size();i++)
 		{
@@ -151,7 +164,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 			}
 		}
 		super.onCreateOptionsMenu(menu, inflater);
-	} 
+	}
 
 
 
@@ -191,7 +204,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 		mChart.setHoleRadius(30f);
 		mChart.setTransparentCircleRadius(33f);
 
-		mChart.setDrawCenterText(true);  
+		mChart.setDrawCenterText(true);
 		mChart.setCenterText("  "+modelPercentage.getGetPercentageCountOnCI());
 
 		mChart.setRotationAngle(0);
@@ -338,7 +351,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private com.hatchtact.pinwi.classmodel.GetPercentageCount modelPercentage;
 	private class GetPercentageCount extends AsyncTask<Void, Void, Integer>
@@ -356,9 +369,12 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -371,7 +387,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 			{
 				modelPercentage =serviceMethod.getPercentageCountOnCI(childId);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -384,8 +400,9 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+			/*	if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -400,10 +417,10 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 			{
 				headerText.setText(modelPercentage.getGetPercentageCountOnCI()+" Unlocked");
 				texttypesinsightbadge.setText(textBadge);
-				initializePieChart();	
+				initializePieChart();
 			}
 
-		}	
+		}
 	}
 
 

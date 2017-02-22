@@ -45,6 +45,7 @@ import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.ComparatorName;
 import com.hatchtact.pinwi.utility.ComparatorNameWishlist;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -97,6 +98,7 @@ public class ChildWishListActivity extends Activity
 	private ImageView child_alphabetical_imageview,child_search_imageview;
 	private boolean isMyWishList=false;
 	private TextView text_alphabetical,text_buddies,text_search;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +107,7 @@ public class ChildWishListActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_wishlist);
+		customProgressLoader=new CustomLoader(this);
 		isAlphabetical=false;
 
 		isButtonClicked=false;
@@ -677,7 +680,7 @@ public class ChildWishListActivity extends Activity
 		});
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class GetListOfWishListsByChildIDAsync extends AsyncTask<Void, Void, Integer>
 	{
@@ -699,8 +702,12 @@ public class ChildWishListActivity extends Activity
 			super.onPreExecute();
 			if(pageIndex==1)
 			{
-				progressDialog = ProgressDialog.show(ChildWishListActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.startHandler();
+				}
+				/*progressDialog = ProgressDialog.show(ChildWishListActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			}
 			else
 			{
@@ -746,8 +753,9 @@ public class ChildWishListActivity extends Activity
 			try {
 				if(pageIndex==1)
 				{
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.removeCallbacksHandler();
+				/*	if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				}
 				else
 				{
@@ -849,7 +857,7 @@ public class ChildWishListActivity extends Activity
 	}
 
 
-	private ProgressDialog progressDialogSearch=null;	
+	//private ProgressDialog progressDialogSearch=null;
 
 	private class searchBuddies extends AsyncTask<Void, Void, Integer>
 	{
@@ -867,8 +875,8 @@ public class ChildWishListActivity extends Activity
 
 			if(pageIndexSearch==1)
 			{
-				progressDialog = ProgressDialog.show(ChildWishListActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				/*progressDialog = ProgressDialog.show(ChildWishListActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			}
 			else
 			{
@@ -919,8 +927,8 @@ public class ChildWishListActivity extends Activity
 			try {
 				if(pageIndexSearch==1)
 				{
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				}
 				else
 				{

@@ -43,6 +43,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.ComparatorName;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -95,6 +96,7 @@ public class ChildBuddiesActivity extends Activity
 	private TextView text_alphabetical,text_buddies,text_search;
 	private boolean isMyBuddies=false;
 	private boolean isAlphabetical=false;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,7 @@ public class ChildBuddiesActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_buddies);
+		customProgressLoader=new CustomLoader(this);
 		isAlphabetical=false;
 		isButtonClicked=false;
 		typeFace = new TypeFace(ChildBuddiesActivity.this);
@@ -683,7 +686,7 @@ public class ChildBuddiesActivity extends Activity
 
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class GetBuddiesListByChildID extends AsyncTask<Void, Void, Integer>
 	{
@@ -706,8 +709,12 @@ public class ChildBuddiesActivity extends Activity
 
 			if(pageIndex==1)
 			{
-				progressDialog = ProgressDialog.show(ChildBuddiesActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.startHandler();
+				}
+				/*progressDialog = ProgressDialog.show(ChildBuddiesActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			}
 			else
 			{
@@ -757,8 +764,9 @@ public class ChildBuddiesActivity extends Activity
 
 				if(pageIndex==1)
 				{
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.removeCallbacksHandler();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				}
 				else
 				{
@@ -867,7 +875,7 @@ public class ChildBuddiesActivity extends Activity
 	}
 
 
-	private ProgressDialog progressDialogSearch=null;	
+	//private ProgressDialog progressDialogSearch=null;
 
 	private class searchBuddies extends AsyncTask<Void, Void, Integer>
 	{
@@ -882,9 +890,12 @@ public class ChildBuddiesActivity extends Activity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialogSearch = ProgressDialog.show(ChildBuddiesActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialogSearch.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+		/*	progressDialogSearch = ProgressDialog.show(ChildBuddiesActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialogSearch.setCancelable(false);*/
 			if(searchList==null)
 			{
 				searchList=new SearchListOfBuddiesOnCIList();
@@ -928,8 +939,9 @@ public class ChildBuddiesActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogSearch.isShowing())
-					progressDialogSearch.cancel();
+				customProgressLoader.dismissProgressBar();
+			/*	if (progressDialogSearch.isShowing())
+					progressDialogSearch.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
