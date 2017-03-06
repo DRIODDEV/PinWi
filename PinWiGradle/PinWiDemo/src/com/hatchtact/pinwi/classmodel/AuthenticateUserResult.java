@@ -16,6 +16,7 @@ public class AuthenticateUserResult implements Serializable
 		LastName = lastName;
 	}
 	private int ProfileStatus;
+	private int PaymentStatus;
 
 	public int getProfileStatus() {
 		return ProfileStatus;
@@ -37,4 +38,7 @@ public class AuthenticateUserResult implements Serializable
 		FirstName = firstName;
 	}
 
+	public int getPaymentStatus() {
+		return PaymentStatus;
+	}
 }

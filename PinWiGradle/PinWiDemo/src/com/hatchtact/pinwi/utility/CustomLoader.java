@@ -12,7 +12,11 @@ public class CustomLoader
 	private ProgressDialog progressDialog=null;
 	Handler handler = null;
 	private Context mContext;
-	private String[] messagesArray = {"Please Wait...","Hold On...","Wait..."};
+	private String[] messagesArray = {"While this loads, think about what makes you happy!!",
+			"This is not us. Its the network, the wifi or what have you...",
+			"This shouldn't take too long...",
+			"Good things happen to those who wait!",
+			"In progress…getting there any second…"};
 	private static int previousIndex=0;
 
 	public CustomLoader(Context context)

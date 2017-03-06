@@ -260,7 +260,7 @@ public class SplashActivity extends Activity
 							finish();
 						/*Intent intent3 = new Intent(SplashActivity.this, GetStartedActivity.class);
 						startActivity(intent3);*/
-							Intent intent3 = new Intent(SplashActivity.this, AccessProfileActivity.class);
+							Intent intent3 = new Intent(SplashActivity.this, GetStartedActivity.class);
 							startActivity(intent3);
 							break;
 

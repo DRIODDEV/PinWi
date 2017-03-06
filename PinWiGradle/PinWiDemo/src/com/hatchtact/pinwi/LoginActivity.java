@@ -108,6 +108,7 @@ public class LoginActivity extends Activity
 		}
 
 		sharePreferenceClass=new SharePreferenceClass(LoginActivity.this);
+		sharePreferenceClass.setChildAdded(false);
 		StaticVariables.isSignUpClicked=false;
 		getDisplayWidth(LoginActivity.this);
 		checkValidation = new Validation();
@@ -308,6 +309,7 @@ public class LoginActivity extends Activity
 					parentCompleteInformation.setParentID(userres.getProfileID());
 					parentCompleteInformation.setFirstName(userres.getFirstName());
 					parentCompleteInformation.setLastName(userres.getLastName());
+					parentCompleteInformation.setEmailAddress(userName_editText.getText().toString());
 
 					sharePref.setIsLogin(true);
 					sharePref.setIsLogout(false);
@@ -327,16 +329,34 @@ public class LoginActivity extends Activity
 					else if(userres.getProfileStatus()==1)
 					{
 						LoginActivity.this.finish();
-						sharePref.setCurrentScreen(4);
-						Intent intent=new Intent(LoginActivity.this, AccessProfileActivity.class);
+						Intent intent=null;
+						if(userres.getPaymentStatus()==1)
+						{
+							sharePref.setCurrentScreen(4);
+							intent = new Intent(LoginActivity.this, AccessProfileActivity.class);
+						}
+						else
+						{
+							sharePref.setCurrentScreen(3);
+							intent = new Intent(LoginActivity.this, GetStartedActivity.class);
+						}
 
 						startActivity(intent);
 					}
 					else if(userres.getProfileStatus()==2)
 					{
 						LoginActivity.this.finish();
-						sharePref.setCurrentScreen(4);
-						Intent intent=new Intent(LoginActivity.this, AccessProfileActivity.class);
+						Intent intent=null;
+						if(userres.getPaymentStatus()==1)
+						{
+							sharePref.setCurrentScreen(4);
+							intent = new Intent(LoginActivity.this, AccessProfileActivity.class);
+						}
+						else
+						{
+							sharePref.setCurrentScreen(3);
+							intent = new Intent(LoginActivity.this, GetStartedActivity.class);
+						}
 						startActivity(intent);
 					}
 				}

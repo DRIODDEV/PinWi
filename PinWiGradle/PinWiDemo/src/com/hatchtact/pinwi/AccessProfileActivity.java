@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -15,6 +17,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -28,6 +31,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.TypefaceSpan;
 import android.util.Base64;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -114,7 +118,19 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	private SocialConstants social;
 	private TextView textViewtab_notification;
 	private CustomLoader customProgressLoader;
+	private void getDisplayWidth(Activity a)
+	{
 
+		Display display = a.getWindowManager().getDefaultDisplay();
+
+		// creating an empty Point so that the compiler
+		// does not complain about null reference
+		Point displaySize = new Point();
+		display.getSize(displaySize);
+		SplashActivity.ScreenWidth =  displaySize.x;
+		SplashActivity.ScreenHeight =  displaySize.y;
+
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -125,6 +141,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		setContentView(R.layout.accessprofile_activity);
 		social=new SocialConstants(this);
 		customProgressLoader=new CustomLoader(AccessProfileActivity.this);
+		getDisplayWidth(AccessProfileActivity.this);
 		initializeData();//initialize access profile data
 		clickListeners();//click events
 		getParentProfileData();	//get parent data for the logged in parent
@@ -163,8 +180,21 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		parentCompleteInformation = gsonRegistration.fromJson(sharePreferenceClass.getParentProfile(), ParentProfile.class);
 		parentId=parentCompleteInformation.getParentID();
         /*If like bell*/
-		new AsyncNotificationCountByParentID().execute();
+		try {
+			new AsyncNotificationCountByParentID().execute();
+		}
+		catch (Exception e)
+		{
+
+		}
          /*If like bell*/
+		try {
+			new UpdateAppVersionAsyncTask().execute();
+		}
+		catch (Exception e)
+		{
+
+		}
 		try
 		{
 			StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
@@ -328,6 +358,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -352,6 +383,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		source = new DataSource(AccessProfileActivity.this);
 		appUtils=new AppUtils(AccessProfileActivity.this);
 		sharePreferenceClass=new SharePreferenceClass(AccessProfileActivity.this);
+		sharePreferenceClass.setCurrentScreen(4);
+		sharePreferenceClass.setChildAdded(false);
 		accessProfileList=new AccessProfileList();
 		checkNetwork=new CheckNetwork();
 		showMessage=new ShowMessages(AccessProfileActivity.this);
@@ -1058,10 +1091,10 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	private void displayView(int position) {
 		// update the main content by replacing fragments
 		switch (position) {
-			case 0:
+			/*case 0:
 				mDrawerLayout.closeDrawers();
-				break;
-			case 1:
+				break;*/
+			case 0:
 				Intent intentAboutUs =new Intent(AccessProfileActivity.this, ActivityAboutUS.class);
 				startActivity(intentAboutUs);
 				StaticVariables.webUrl="http://pinwi.in/aboutus.html";
@@ -1073,7 +1106,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivitySupport.class);
 			startActivity(intentSupport);
 			break;*/
-			case 2:
+			case 5:
 				Intent intentTutorial =new Intent(AccessProfileActivity.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
 				break;
@@ -1081,17 +1114,17 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			Intent intentInvite =new Intent(AccessProfileActivity.this, ActivityInvite.class);
 			startActivity(intentInvite);
 			break;*/
-			case 3:
+			case 4:
 				Intent intentInvite =new Intent(AccessProfileActivity.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
-			case 4:
+			case 6:
 				Intent intentContactus =new Intent(AccessProfileActivity.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
 
 				break;
-			case 5:
+			case 1:
 				mDrawerLayout.closeDrawers();
 				if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
 				{
@@ -1115,11 +1148,23 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 
 
 				break;
-
+			case 2:
+				mDrawerLayout.closeDrawers();
+				Intent childIntent=new Intent(AccessProfileActivity.this,ChildListActivity.class);
+				startActivity(childIntent);
+				break;
+			case 3:
+				mDrawerLayout.closeDrawers();
+				Intent parentIntent=new Intent(AccessProfileActivity.this,ParentRegistrationActivity.class);
+				Bundle bundle=new Bundle();
+				bundle.putBoolean("ToParentScreen", true);
+				parentIntent.putExtras(bundle);
+				startActivity(parentIntent);
+				break;
 			/*case 7:
 			new RequestAddOnVersionTask(parentId).execute();
 			break;*/
-			case 6:
+			case 7:
 				sharePreferenceClass.setIsLogin(false);
 				sharePreferenceClass.setIsLogout(true);
 				sharePreferenceClass.setParentProfile("");
@@ -1544,6 +1589,81 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 					//getError();
 				}
 			}
+		}
+	}
+
+
+	private String versionName="";
+
+	private class UpdateAppVersionAsyncTask extends AsyncTask<Void, Void, Integer>
+	{
+
+
+		public UpdateAppVersionAsyncTask()
+		{
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			PackageManager manager = getPackageManager();
+			PackageInfo info = null;
+			try {
+				info = manager.getPackageInfo( getPackageName(), 0);
+				//"Version 3.0"
+				versionName=info.versionName;
+			} catch (PackageManager.NameNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		protected Integer doInBackground(Void... params)
+		{
+			// TODO Auto-generated method stub
+			int ErrorCode=0;
+
+			if(new CheckNetwork().checkNetworkConnection(AccessProfileActivity.this))
+			{
+				ErrorCode =serviceMethod.updateAppVersion(sharePreferenceClass.getDeviceId(),parentId,versionName);
+			}
+			else
+			{
+				ErrorCode=-1;
+			}
+			return ErrorCode;
+		}
+
+		@Override
+		protected void onPostExecute(Integer  result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+
+			try {
+				customProgressLoader.removeCallbacksHandler();
+			/*	if (progressDialog.isShowing())
+					progressDialog.cancel();*/
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if(result==-1)
+			{
+
+
+			}
+			else
+			{
+
+			}
+
 		}
 	}
 }

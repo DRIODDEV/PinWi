@@ -84,6 +84,7 @@ import com.hatchtact.pinwi.classmodel.GetNotificationListByChildIDOnCIList;
 import com.hatchtact.pinwi.classmodel.GetNotificationListByParentIDList;
 import com.hatchtact.pinwi.classmodel.GetParentDetails;
 import com.hatchtact.pinwi.classmodel.GetPastDaysRatingStatusModelList;
+import com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck;
 import com.hatchtact.pinwi.classmodel.GetPeopleYouMayKnowListByLoggedIDList;
 import com.hatchtact.pinwi.classmodel.GetPercentageCount;
 import com.hatchtact.pinwi.classmodel.GetPointsInfoByChildIDModel;
@@ -116,14 +117,14 @@ import com.hatchtact.pinwi.classmodel.UpdateParentProfile;
 import com.hatchtact.pinwi.utility.GetValidJson;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
-public class ServiceMethod 
+public class ServiceMethod
 {
 	/** The url. */
 	//private final String URL = "http://api.pinwi.in:2015/PinWiService.asmx";
 	//private final String URL = "http://api.pinwi.in:2016/PinWiService.asmx";
 	//private final String URL = "http://pinwi.staging4.nz-technologies.com/PinWiService.asmx";
-	//private final String URL = "http://166.78.47.124:2016/pinwiservice.asmx";
-	private final String URL = "http://166.78.47.124:2015/pinwiservice.asmx";
+	private final String URL = "http://166.78.47.124:2016/pinwiservice.asmx";
+	//private final String URL = "http://166.78.47.124:2015/pinwiservice.asmx";
 
 
 	/** The Constant NAMESPACE. */
@@ -198,7 +199,7 @@ public class ServiceMethod
 
 		try {
 			httpTransport.call(SOAP_ACTION, envelope);
-		} 
+		}
 		catch (IOException e) {
 
 			e.printStackTrace();
@@ -214,7 +215,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -233,12 +234,12 @@ public class ServiceMethod
 
 			Gson gson = new Gson();
 
-			countryList = gson.fromJson(onj.toString(), CountryList.class);	
+			countryList = gson.fromJson(onj.toString(), CountryList.class);
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -301,7 +302,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -383,7 +384,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -406,7 +407,7 @@ public class ServiceMethod
 		return userResult;
 	}
 
-	public int createParentProfile(ParentProfile parentProfie)
+	public int createParentProfile(ParentProfile parentProfie,String AppVersion)
 	{
 		int parentId =0;
 
@@ -450,6 +451,8 @@ public class ServiceMethod
 		request.addProperty("Longitude",parentProfie.getLongitude());
 		request.addProperty("Latitude",parentProfie.getLatitude());
 		request.addProperty("NeighbourhoodRadius",parentProfie.getNeighbourhoodID()+"");
+		request.addProperty("App_Version",AppVersion);
+
 
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
@@ -487,7 +490,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -570,7 +573,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -640,7 +643,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -727,7 +730,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -807,7 +810,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -892,7 +895,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -946,7 +949,7 @@ public class ServiceMethod
 
 		try {
 			httpTransport.call(SOAP_ACTION, envelope);
-		} 
+		}
 		catch (IOException e) {
 
 			e.printStackTrace();
@@ -962,7 +965,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -981,12 +984,12 @@ public class ServiceMethod
 
 			Gson gson = new Gson();
 
-			allyList = gson.fromJson(onj.toString(), AllyList.class);	
+			allyList = gson.fromJson(onj.toString(), AllyList.class);
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -1042,7 +1045,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1123,7 +1126,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1178,7 +1181,7 @@ public class ServiceMethod
 
 		try {
 			httpTransport.call(SOAP_ACTION, envelope);
-		} 
+		}
 		catch (IOException e) {
 
 			e.printStackTrace();
@@ -1194,7 +1197,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1213,12 +1216,12 @@ public class ServiceMethod
 
 			Gson gson = new Gson();
 
-			getAutolockTimeList = gson.fromJson(onj.toString(), GetAutolockTimeList.class);	
+			getAutolockTimeList = gson.fromJson(onj.toString(), GetAutolockTimeList.class);
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -1257,7 +1260,7 @@ public class ServiceMethod
 
 		try {
 			httpTransport.call(SOAP_ACTION, envelope);
-		} 
+		}
 		catch (IOException e) {
 
 			e.printStackTrace();
@@ -1273,7 +1276,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1292,12 +1295,12 @@ public class ServiceMethod
 
 			Gson gson = new Gson();
 
-			getNeighbourhoodRadiusList = gson.fromJson(onj.toString(), GetNeighbourhoodRadiusList.class);	
+			getNeighbourhoodRadiusList = gson.fromJson(onj.toString(), GetNeighbourhoodRadiusList.class);
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -1352,7 +1355,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1428,7 +1431,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1514,7 +1517,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1600,7 +1603,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1685,7 +1688,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1770,7 +1773,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1855,7 +1858,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1940,7 +1943,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2043,7 +2046,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2052,10 +2055,10 @@ public class ServiceMethod
 		errorMessage  = returnString;
 		Error err = null ;
 		try {
-			err = getError();	
+			err = getError();
 			errorcode=Integer.parseInt(err.getErrorCode());
 
-		} catch (Exception e) 
+		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -2130,7 +2133,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2208,7 +2211,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2285,7 +2288,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2347,7 +2350,7 @@ public class ServiceMethod
 
 		try {
 			httpTransport.call(SOAP_ACTION, envelope);
-		} 
+		}
 		catch (IOException e) {
 
 			e.printStackTrace();
@@ -2363,7 +2366,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2382,12 +2385,12 @@ public class ServiceMethod
 
 			Gson gson = new Gson();
 
-			subjectActivitiesList = gson.fromJson(onj.toString(), SubjectActivitiesList.class);	
+			subjectActivitiesList = gson.fromJson(onj.toString(), SubjectActivitiesList.class);
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -2447,7 +2450,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2456,10 +2459,10 @@ public class ServiceMethod
 		errorMessage  = returnString;
 		Error err = null ;
 		try {
-			err = getError();	
+			err = getError();
 			errorcode=Integer.parseInt(err.getErrorCode());
 
-		} catch (Exception e) 
+		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -2532,7 +2535,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2613,7 +2616,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2687,7 +2690,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2754,7 +2757,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2823,7 +2826,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2893,7 +2896,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2958,7 +2961,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -2969,10 +2972,10 @@ public class ServiceMethod
 
 		String returnStringvalue = null;
 
-		try 
-		{	
+		try
+		{
 			returnStringvalue = userString.substring(2, userString.length()-2);
-		} 
+		}
 		catch (Exception e)
 		{
 			// TODO Auto-generated catch block
@@ -3036,7 +3039,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3068,7 +3071,7 @@ public class ServiceMethod
 	}
 
 	public Error getError()
-	{	
+	{
 		Error er = getValidJson.getError(errorMessage);
 
 		if(er==null)
@@ -3136,7 +3139,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3224,7 +3227,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3311,7 +3314,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3400,7 +3403,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3487,7 +3490,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3579,7 +3582,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3663,7 +3666,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3677,7 +3680,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -3740,7 +3743,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3814,7 +3817,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3896,7 +3899,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -3977,7 +3980,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4054,7 +4057,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4127,7 +4130,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4206,7 +4209,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4300,7 +4303,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4402,7 +4405,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4482,7 +4485,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4574,7 +4577,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4653,7 +4656,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4734,7 +4737,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4820,7 +4823,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4904,7 +4907,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -4976,7 +4979,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5048,7 +5051,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5103,7 +5106,7 @@ public class ServiceMethod
 
 		try {
 			httpTransport.call(SOAP_ACTION, envelope);
-		} 
+		}
 		catch (IOException e) {
 
 			e.printStackTrace();
@@ -5119,7 +5122,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5138,12 +5141,12 @@ public class ServiceMethod
 
 			Gson gson = new Gson();
 
-			getListofChildsByParentIDList = gson.fromJson(onj.toString(), GetListofChildsByParentIDList.class);	
+			getListofChildsByParentIDList = gson.fromJson(onj.toString(), GetListofChildsByParentIDList.class);
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -5183,7 +5186,7 @@ public class ServiceMethod
 
 		try {
 			httpTransport.call(SOAP_ACTION, envelope);
-		} 
+		}
 		catch (IOException e) {
 
 			e.printStackTrace();
@@ -5199,7 +5202,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5218,12 +5221,12 @@ public class ServiceMethod
 
 			Gson gson = new Gson();
 
-			getListofAllysByParentIDList = gson.fromJson(onj.toString(), GetListofAllysByParentIDList.class);	
+			getListofAllysByParentIDList = gson.fromJson(onj.toString(), GetListofAllysByParentIDList.class);
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -5280,7 +5283,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5362,7 +5365,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5452,7 +5455,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5540,7 +5543,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5619,7 +5622,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5695,7 +5698,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5709,7 +5712,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -5777,7 +5780,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5791,7 +5794,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -5852,7 +5855,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5866,7 +5869,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -5928,7 +5931,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -5942,7 +5945,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -6008,7 +6011,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6091,7 +6094,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6175,7 +6178,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6263,7 +6266,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6342,7 +6345,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6355,7 +6358,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 
 		} catch (Exception e) {
@@ -6418,7 +6421,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6432,7 +6435,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -6467,7 +6470,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -6507,7 +6510,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6605,7 +6608,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6691,7 +6694,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6705,7 +6708,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -6766,7 +6769,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6780,7 +6783,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -6811,7 +6814,7 @@ public class ServiceMethod
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 		envelope.dotNet = true;
 
 		envelope.setAddAdornments(false);
@@ -6851,7 +6854,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6905,7 +6908,7 @@ public class ServiceMethod
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 		envelope.dotNet = true;
 
 		envelope.setAddAdornments(false);
@@ -6945,7 +6948,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -6999,7 +7002,7 @@ public class ServiceMethod
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 		envelope.dotNet = true;
 
 		envelope.setAddAdornments(false);
@@ -7039,7 +7042,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7094,7 +7097,7 @@ public class ServiceMethod
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 		envelope.dotNet = true;
 
 		envelope.setAddAdornments(false);
@@ -7134,7 +7137,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7188,7 +7191,7 @@ public class ServiceMethod
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 		envelope.dotNet = true;
 
 		envelope.setAddAdornments(false);
@@ -7228,7 +7231,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7279,7 +7282,7 @@ public class ServiceMethod
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 		envelope.dotNet = true;
 
 		envelope.setAddAdornments(false);
@@ -7319,7 +7322,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7377,7 +7380,7 @@ public class ServiceMethod
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 		envelope.dotNet = true;
 
 		envelope.setAddAdornments(false);
@@ -7417,7 +7420,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7475,7 +7478,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -7515,7 +7518,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7579,7 +7582,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -7619,7 +7622,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7681,7 +7684,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -7721,7 +7724,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7781,7 +7784,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -7821,7 +7824,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7883,7 +7886,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -7923,7 +7926,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -7981,7 +7984,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -8021,7 +8024,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8081,7 +8084,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -8121,7 +8124,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8177,7 +8180,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -8217,7 +8220,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8275,7 +8278,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -8315,7 +8318,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8374,7 +8377,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -8414,7 +8417,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8498,7 +8501,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8573,7 +8576,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8587,7 +8590,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -8648,7 +8651,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8662,7 +8665,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -8723,7 +8726,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8737,7 +8740,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -8767,7 +8770,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -8807,7 +8810,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8865,7 +8868,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -8905,7 +8908,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -8965,7 +8968,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9005,7 +9008,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9058,7 +9061,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9098,7 +9101,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9184,7 +9187,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9198,7 +9201,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -9232,7 +9235,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9272,7 +9275,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9400,7 +9403,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9440,7 +9443,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9508,7 +9511,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9548,7 +9551,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9600,7 +9603,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9640,7 +9643,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9708,7 +9711,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9748,7 +9751,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9814,7 +9817,7 @@ public class ServiceMethod
 
 		envelope.dotNet = true;
 
-		System.setProperty("http.keepAlive", "false"); 
+		System.setProperty("http.keepAlive", "false");
 
 
 		envelope.setAddAdornments(false);
@@ -9854,7 +9857,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9940,7 +9943,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -9954,7 +9957,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -10014,7 +10017,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10085,7 +10088,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10158,7 +10161,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10237,7 +10240,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10247,7 +10250,7 @@ public class ServiceMethod
 		Error err = null ;
 		try {
 
-			err = getError();	
+			err = getError();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -10331,7 +10334,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10420,7 +10423,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10511,7 +10514,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10603,7 +10606,7 @@ public class ServiceMethod
 			result = (SoapObject) envelope.bodyIn;
 			for (int i = 0; i < result.getPropertyCount(); i++) {
 				returnString = result.getProperty(i).toString();
-			}	
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -10636,6 +10639,230 @@ public class ServiceMethod
 
 
 
+	public GetPaymentStatusCheck getPaymentStatusCheck(int ParentID,String EmailAddress)
+	{
+		GetPaymentStatusCheck getPaymentStatusCheck =null;
+
+		String METHOD_NAME = "GetPaymentstatusCheck";
+		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request.addProperty(WSIDKEY, WSID);
+		request.addProperty(WSPWDKEY,WSPWD);
+		request.addProperty("ParentID",ParentID);
+		request.addProperty("EmailAddress",EmailAddress);
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+				SOAP_VERSION); // put
+
+		envelope.dotNet = true;
+
+		envelope.setAddAdornments(false);
+		envelope.implicitTypes = false;
+		envelope.setOutputSoapObject(request); // prepare request
+
+		HttpTransportSE httpTransport = new HttpTransportSE(URL, TIMEOUT);
+
+		httpTransport.debug = DEBUG; // this is optional, use it if you don't
+
+		// want to use a packet sniffer to check
+		// what the sent
+		// message was (httpTransport.requestDump)
+		httpTransport.setXmlVersionTag(HEADER);
+
+		try {
+
+			httpTransport.call(SOAP_ACTION, envelope);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		// send request
+		Log.d("RAM RAM3", "XML: " + httpTransport.requestDump);
+
+		SoapObject result = null;
+		String returnString = "";
+		try {
+			envelope.getResponse();
+			result = (SoapObject) envelope.bodyIn;
+			for (int i = 0; i < result.getPropertyCount(); i++) {
+				returnString = result.getProperty(i).toString();
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 
 
+		errorMessage  = returnString;
+
+		String getNewNotificationCountString = getValidJson.getValidJsonObject(returnString);
+		try {
+
+			JSONObject  onj = new JSONObject(getNewNotificationCountString);
+			getPaymentStatusCheck=new GetPaymentStatusCheck();
+			getPaymentStatusCheck.setPaymentStatus(onj.getInt("PaymentStatus"));
+
+
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return getPaymentStatusCheck;
+	}
+
+
+	public String addInAppPurchase(int ParentID,String PaymentStatus)
+	{
+
+		String METHOD_NAME = "PaymentUpdateAPI";
+		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request.addProperty(WSIDKEY, WSID);
+		request.addProperty(WSPWDKEY,WSPWD);
+		request.addProperty("ParentID",ParentID);
+		request.addProperty("PaymentStatus",PaymentStatus);
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+				SOAP_VERSION); // put
+
+		envelope.dotNet = true;
+
+		envelope.setAddAdornments(false);
+		envelope.implicitTypes = false;
+		envelope.setOutputSoapObject(request); // prepare request
+
+		HttpTransportSE httpTransport = new HttpTransportSE(URL, TIMEOUT);
+
+		httpTransport.debug = DEBUG; // this is optional, use it if you don't
+		// want to use a packet sniffer to check
+		// what the sent
+		// message was (httpTransport.requestDump)
+		httpTransport.setXmlVersionTag(HEADER);
+
+		try {
+
+			httpTransport.call(SOAP_ACTION, envelope);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} // send request
+		Log.d("RAM RAM3", "XML: " + httpTransport.requestDump);
+
+		SoapObject result = null;
+		String returnString = "";
+		try {
+			envelope.getResponse();
+			result = (SoapObject) envelope.bodyIn;
+			for (int i = 0; i < result.getPropertyCount(); i++) {
+				returnString = result.getProperty(i).toString();
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+
+
+		errorMessage  = returnString;
+		//String userString = getValidJson.getValidJsonObject(returnString);
+		Error err = null ;
+		try {
+
+			err = getError();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return err.getErrorCode();
+	}
+
+
+	public int updateAppVersion(String DeviceID,int parentId,String appVersion)
+	{
+		int errorcode = 0;
+
+		String METHOD_NAME = "UpdateAppVersion";
+		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request.addProperty(WSIDKEY, WSID);
+		request.addProperty(WSPWDKEY,WSPWD);
+		request.addProperty("ParentID",parentId);
+		request.addProperty("DeviceID",DeviceID);
+		request.addProperty("DeviceType","1");
+		request.addProperty("App_Version",appVersion);
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+				SOAP_VERSION); // put
+
+		envelope.dotNet = true;
+
+		envelope.setAddAdornments(false);
+		envelope.implicitTypes = false;
+		envelope.setOutputSoapObject(request); // prepare request
+
+		HttpTransportSE httpTransport = new HttpTransportSE(URL, TIMEOUT);
+
+		httpTransport.debug = DEBUG; // this is optional, use it if you don't
+		// want to use a packet sniffer to check
+		// what the sent
+		// message was (httpTransport.requestDump)
+		httpTransport.setXmlVersionTag(HEADER);
+
+		try {
+
+			httpTransport.call(SOAP_ACTION, envelope);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} // send request
+		Log.d("RAM RAM3", "XML: " + httpTransport.requestDump);
+
+		SoapObject result = null;
+		String returnString = "";
+		try {
+			envelope.getResponse();
+			result = (SoapObject) envelope.bodyIn;
+			for (int i = 0; i < result.getPropertyCount(); i++) {
+				returnString = result.getProperty(i).toString();
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		errorMessage  = returnString;
+		/*String userString = getValidJson.getValidJsonObject(returnString);
+		try {
+
+			JSONObject object = new JSONObject(userString);
+			errorcode = object.getInt("ErrorCode");
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		return errorcode;
+	}
 }

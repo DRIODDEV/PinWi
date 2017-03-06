@@ -234,7 +234,7 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 			public void onScroll(AbsListView view, int firstVisibleItem,
 								 int visibleItemCount, int totalItemCount) {
-
+              //if needed need to update total item check when removing items
 				if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0 && totalItemCount>=8)
 				{
 					if(flag_loading == false)

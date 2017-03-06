@@ -171,7 +171,7 @@ public class AddSchoolFragment extends ParentFragment
 		{
 			activity_doneImage.setVisibility(View.VISIBLE);
 			button_deleteSchool.setVisibility(View.VISIBLE);
-			button_deleteSchool.setOnClickListener(new View.OnClickListener() {
+			button_deleteSchool.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {

@@ -86,7 +86,7 @@ import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 public class TabChildActivities extends FragmentActivity implements OnFragmentAttachedListener, OnClickListener
-{ 
+{
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 
@@ -193,7 +193,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 	private final int informAllyByAllyDropPick4=74;
 	private final int informAllyByAllyDropPick5=75;
 	private final int holidaylistfragmentbyCalenderFragment=80;
-	private final int holidayDetailFragmentbyHolidayListFragment=81;	
+	private final int holidayDetailFragmentbyHolidayListFragment=81;
 	private final int searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromAfterSchoolByChildIdFragment=82;
 	private final int searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromCalenderFragment=83;
 	private final int searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromGetByCalenderFragment=84;
@@ -274,7 +274,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 
 	@SuppressLint("NewApi")
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -285,7 +285,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		try {
 			ViewConfiguration config = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-			if(menuKeyField != null) 
+			if(menuKeyField != null)
 			{
 				menuKeyField.setAccessible(true);
 				menuKeyField.setBoolean(config, false);
@@ -354,65 +354,65 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 
 		switch (currentTab)
 		{
-		case 0:
-			setActionBarTitle("  Notifications");
-			StaticVariables.fragmentIndexCurrentTabNotification=notificationFragmentOne;
-			tab_notification.setSelected(true);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(false);
-			textViewtab_notification.setVisibility(View.GONE);
-			sharePref.setBadgeScore("0");
+			case 0:
+				setActionBarTitle("  Notifications");
+				StaticVariables.fragmentIndexCurrentTabNotification=notificationFragmentOne;
+				tab_notification.setSelected(true);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(false);
+				textViewtab_notification.setVisibility(View.GONE);
+				sharePref.setBadgeScore("0");
 			/*boolean success =*/ ShortcutBadger.removeCount(TabChildActivities.this);
-			//Toast.makeText(getApplicationContext(), "success=" + success, Toast.LENGTH_SHORT).show();
-			switchingFragments(new NotificationFragment());	
-			break;
+				//Toast.makeText(getApplicationContext(), "success=" + success, Toast.LENGTH_SHORT).show();
+				switchingFragments(new NotificationFragment());
+				break;
 
-		case 1:
-			setActionBarTitle("  Scheduler");
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(true);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(false);
-			StaticVariables.fragmentIndexCurrentTabSchedular=schoolFragmentScheduler;
-			switchingFragments(SubjectActivityByChildIDFragment.getInstance());
+			case 1:
+				setActionBarTitle("  Scheduler");
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(true);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(false);
+				StaticVariables.fragmentIndexCurrentTabSchedular=schoolFragmentScheduler;
+				switchingFragments(SubjectActivityByChildIDFragment.getInstance());
 
-			//StaticVariables.fragmentIndexCurrentTabSchedular=calenderFragmentScheduler;
-			//switchingFragments(CalenderFragment.getInstance());
-			break;
+				//StaticVariables.fragmentIndexCurrentTabSchedular=calenderFragmentScheduler;
+				//switchingFragments(CalenderFragment.getInstance());
+				break;
 
-		case 2:
-			setActionBarTitle("  Insights");
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(true);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(false);
-			StaticVariables.fragmentIndexCurrentTabInsight=typesInsightFragment;
-			switchingFragments(TypesInsightsFragment.getInstance());
-			break;
-		case 3:
-			setActionBarTitle("  WhatToDo");
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(false);
-			tab_activity.setSelected(true);
-			//switchingFragments(new WhatToDoFragment());
-			switchingFragments(new WhatToDoRecommendedFragment());
-			break;
-		case 4:
-			setActionBarTitle("  Network");
-			tab_notification.setSelected(false);
-			tab_scheduler.setSelected(false);
-			tab_insights.setSelected(false);
-			tab_network.setSelected(true);
-			tab_activity.setSelected(false);
-			//switchingFragments(new NetworkFragment());
-			switchingFragments(new NetworkConnectionsFragment());
-			break;
+			case 2:
+				setActionBarTitle("  Insights");
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(true);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(false);
+				StaticVariables.fragmentIndexCurrentTabInsight=typesInsightFragment;
+				switchingFragments(TypesInsightsFragment.getInstance());
+				break;
+			case 3:
+				setActionBarTitle("  WhatToDo");
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(false);
+				tab_activity.setSelected(true);
+				//switchingFragments(new WhatToDoFragment());
+				switchingFragments(new WhatToDoRecommendedFragment());
+				break;
+			case 4:
+				setActionBarTitle("  Network");
+				tab_notification.setSelected(false);
+				tab_scheduler.setSelected(false);
+				tab_insights.setSelected(false);
+				tab_network.setSelected(true);
+				tab_activity.setSelected(false);
+				//switchingFragments(new NetworkFragment());
+				switchingFragments(new NetworkConnectionsFragment());
+				break;
 		}
 
 
@@ -427,7 +427,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
 		// nav drawer icons from resources
-		navMenuIcons = getResources()  
+		navMenuIcons = getResources()
 				.obtainTypedArray(R.array.nav_drawer_icons);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -458,6 +458,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -468,7 +469,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		// setting the nav drawer list adapter
 		adapter = new NavDrawerListAdapterMenu(getApplicationContext(),
 				navDrawerItems);
-		mDrawerList.setAdapter(adapter); 
+		mDrawerList.setAdapter(adapter);
 
 		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
@@ -512,7 +513,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				R.drawable.menu, //nav menu toggle icon
 				R.string.app_name, // nav drawer open - description for accessibility
 				R.string.app_name // nav drawer close - description for accessibility
-				) {
+		) {
 			public void onDrawerClosed(View view) {
 				// calling onPrepareOptionsMenu() to show action bar icons
 				invalidateOptionsMenu();
@@ -550,7 +551,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		if (actionBarTitleId > 0) {
 			TextView title = (TextView) findViewById(actionBarTitleId);
 			if (title != null) {
-				title.setTextColor(Color.WHITE); 
+				title.setTextColor(Color.WHITE);
 				title.setText(s);
 			}
 		}
@@ -563,19 +564,19 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 	 * Slide menu item click listener
 	 * */
 	private class SlideMenuClickListener implements
-	ListView.OnItemClickListener {
+			ListView.OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
+								long id) {
 			// display view for selected nav drawer item 
 			System.out.println("value of item click"+position);
 			displayView(position);
 		}
-	}   
+	}
 
 	@SuppressLint("DefaultLocale")
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) 
+	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.main, menu);
 
@@ -670,23 +671,23 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 	private void displayView(int position) {
 		// update the main content by replacing fragments
 		switch (position) {
-		case 0:
+	/*	case 0:
 
-			/*if(ParentProfileInformationActivity.getInstance()!=null)
+			*//*if(ParentProfileInformationActivity.getInstance()!=null)
 			{
 				ParentProfileInformationActivity.getInstance().finish();
-			}*/
+			}*//*
 			finish();
 			Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
 			// set the new task and clear flags
 			intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			startActivity(intentAccessProfile);
-			break;
-		case 1:
-			Intent intentAboutUs =new Intent(TabChildActivities.this, ActivityAboutUS.class);
-			startActivity(intentAboutUs);
-			StaticVariables.webUrl="http://pinwi.in/aboutus.html";
-			break;
+			break;*/
+			case 0:
+				Intent intentAboutUs =new Intent(TabChildActivities.this, ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+				StaticVariables.webUrl="http://pinwi.in/aboutus.html";
+				break;
 			/*case 2:
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivityAboutUS.class);
 			startActivity(intentSupport);
@@ -694,28 +695,28 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivitySupport.class);
 			startActivity(intentSupport);
 			break;*/
-		case 2:
-			Intent intentTutorial =new Intent(TabChildActivities.this, ActivityTutorial.class);
-			startActivity(intentTutorial);
-			break;
+			case 5:
+				Intent intentTutorial =new Intent(TabChildActivities.this, ActivityTutorial.class);
+				startActivity(intentTutorial);
+				break;
 			/*case 3:
 			Intent intentInvite =new Intent(TabChildActivities.this, ActivityInvite.class);
 			startActivity(intentInvite);
 			break;*/
-		case 3:
-			Intent intentInvite =new Intent(TabChildActivities.this, ActivityInvite.class);
-			startActivity(intentInvite);
-			break;
-		case 4:
-			Intent intentContactus =new Intent(TabChildActivities.this, ActivityAboutUS.class);
-			startActivity(intentContactus);
-			StaticVariables.webUrl=" http://pinwi.in/contactus.aspx?4";
+			case 4:
+				Intent intentInvite =new Intent(TabChildActivities.this, ActivityInvite.class);
+				startActivity(intentInvite);
+				break;
+			case 6:
+				Intent intentContactus =new Intent(TabChildActivities.this, ActivityAboutUS.class);
+				startActivity(intentContactus);
+				StaticVariables.webUrl=" http://pinwi.in/contactus.aspx?4";
 
-			break;
-		case 5:
-			mDrawerLayout.closeDrawers();
+				break;
+			case 1:
+				mDrawerLayout.closeDrawers();
 
-			//if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
+				//if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
 			{
 				Intent intentSettings =new Intent(TabChildActivities.this, SettingsActivity.class);
 				startActivity(intentSettings);
@@ -736,21 +737,34 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			/*case 7:
 			new RequestAddOnVersionTask(parentId).execute();
 			break;*/
-		case 6:
-			sharePref.setIsLogin(false);
-			sharePref.setIsLogout(true);
-			sharePref.setParentProfile("");  
+			case 2:
+				mDrawerLayout.closeDrawers();
+				Intent childIntent=new Intent(TabChildActivities.this,ChildListActivity.class);
+				startActivity(childIntent);
+				break;
+			case 3:
+				mDrawerLayout.closeDrawers();
+				Intent parentIntent=new Intent(TabChildActivities.this,ParentRegistrationActivity.class);
+				Bundle bundle=new Bundle();
+				bundle.putBoolean("ToParentScreen", true);
+				parentIntent.putExtras(bundle);
+				startActivity(parentIntent);
+				break;
+			case 7:
+				sharePref.setIsLogin(false);
+				sharePref.setIsLogout(true);
+				sharePref.setParentProfile("");
 
 			/*if(ParentProfileInformationActivity.getInstance()!=null)
 			{
 				ParentProfileInformationActivity.getInstance().finish();
 			}*/
-			finish();
-			Intent intent = new Intent(TabChildActivities.this, LoginActivity.class);
-			startActivity(intent);
-			android.os.Process.killProcess(android.os.Process.myPid());
+				finish();
+				Intent intent = new Intent(TabChildActivities.this, LoginActivity.class);
+				startActivity(intent);
+				android.os.Process.killProcess(android.os.Process.myPid());
 
-			break;
+				break;
 		}
 	}
 	@Override
@@ -807,11 +821,11 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		super.onResume();
 
 		StaticVariables.forPasscode=true;
-		StaticVariables.lastTimeValue=0;	
+		StaticVariables.lastTimeValue=0;
 	}
 
 	@Override
-	public void onFragmentAttached(boolean navigationDrawer,String moduleName) 
+	public void onFragmentAttached(boolean navigationDrawer,String moduleName)
 	{
 		// TODO Auto-generated method stub
 
@@ -839,7 +853,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 
 	}
 
-	private ProgressDialog progressDialog=null;	
+	private ProgressDialog progressDialog=null;
 
 	private class RequestAddOnVersionTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -867,9 +881,9 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 
 			if(checkNetwork.checkNetworkConnection(TabChildActivities.this))
 			{
-				requestaddonVersion = serviceMethod.getRequestAddOnVersion(parentId);		
+				requestaddonVersion = serviceMethod.getRequestAddOnVersion(parentId);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -897,8 +911,8 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			else
 			{
 				showAlert("Add On Request", "Your request for AddOn services has been confirmed!");
-			}	
-		}	
+			}
+		}
 	}
 
 	public void showAlert(String title, String message)
@@ -908,14 +922,14 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		alertBuilder.setTitle(title);
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(message);
-		alertBuilder.setPositiveButton(" OK ", new DialogInterface.OnClickListener() 
-		{	
+		alertBuilder.setPositiveButton(" OK ", new DialogInterface.OnClickListener()
+		{
 			@Override
 			public void onClick(DialogInterface dialog, int which)
 			{
 				dialog.dismiss();
 			}
-		});	
+		});
 		alertBuilder.show();
 	}
 
@@ -924,104 +938,104 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		// TODO Auto-generated method stub
 
 
-		switch (currentTab) 
+		switch (currentTab)
 		{
-		case 0:
-			if(StaticVariables.fragmentIndexCurrentTabNotification==notificationFragmentOne)
-			{
-				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNotification==notificationFragmentTwo)
-
-			{
-				StaticVariables.fragmentIndexCurrentTabNotification=notificationFragmentOne;
-				switchingFragments(new NotificationFragment());
-			}
-			break;
-
-		case 1:
-			if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchool)
-			{
-				if(!StaticVariables.isFrequencySaveClicked)
+			case 0:
+				if(StaticVariables.fragmentIndexCurrentTabNotification==notificationFragmentOne)
 				{
-					showMessage.showAlertFrequency(TabChildActivities.this, new OnEventListener<String>() {
-
-						@Override
-						public void onSuccess(String object) {
-							// TODO Auto-generated method stub
-							StaticVariables.fragmentIndexFrequencyPage=0;
-							switchingFragments(new AddAfterSchoolFragment());
-							StaticVariables.isFrequencySaveClicked=false;
-						}
-
-						@Override
-						public void onFailure(String object) {
-							// TODO Auto-generated method stub
-
-						}
-					});
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
 				}
-				else
+				else if(StaticVariables.fragmentIndexCurrentTabNotification==notificationFragmentTwo)
+
 				{
-					StaticVariables.fragmentIndexFrequencyPage=0;
-					switchingFragments(new AddAfterSchoolFragment());
-					StaticVariables.isFrequencySaveClicked=false;
+					StaticVariables.fragmentIndexCurrentTabNotification=notificationFragmentOne;
+					switchingFragments(new NotificationFragment());
+				}
+				break;
+
+			case 1:
+				if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchool)
+				{
+					if(!StaticVariables.isFrequencySaveClicked)
+					{
+						showMessage.showAlertFrequency(TabChildActivities.this, new OnEventListener<String>() {
+
+							@Override
+							public void onSuccess(String object) {
+								// TODO Auto-generated method stub
+								StaticVariables.fragmentIndexFrequencyPage=0;
+								switchingFragments(new AddAfterSchoolFragment());
+								StaticVariables.isFrequencySaveClicked=false;
+							}
+
+							@Override
+							public void onFailure(String object) {
+								// TODO Auto-generated method stub
+
+							}
+						});
+					}
+					else
+					{
+						StaticVariables.fragmentIndexFrequencyPage=0;
+						switchingFragments(new AddAfterSchoolFragment());
+						StaticVariables.isFrequencySaveClicked=false;
+					}
+
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
+				{
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==afterSchoolFragmentScheduler)
+				{
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
 				}
 
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
-			{
-				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==afterSchoolFragmentScheduler)
-			{
-				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==schoolFragmentScheduler)
+				{
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==schoolFragmentScheduler)
-			{
-				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addActivityFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=11;
+					switchingFragments(new CalenderFragment());
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addActivityFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=11;
-				switchingFragments(new CalenderFragment());
+				}
 
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==getDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=11;
+					switchingFragments(new CalenderFragment());
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==getDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=11;
-				switchingFragments(new CalenderFragment());
+				}
 
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=15;
-				switchingFragments(new GetDataByCalendarDateFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=15;
+					switchingFragments(new GetDataByCalendarDateFragment());
+				}
 
 			/*else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByCalenderdateFragment)
 			{
@@ -1029,518 +1043,518 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				switchingFragments(new GetDataByCalendarDateFragment());
 			}*/
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addActivityFragmentByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=15;
-				switchingFragments(new GetDataByCalendarDateFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=15;
-				switchingFragments(new GetDataByCalendarDateFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=15;
-				switchingFragments(new GetDataByCalendarDateFragment());
-			}
-
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentByActivityFragmentFromCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=14;
-				switchingFragments(new AddActivityFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByActivityFragmentFromCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=14;
-				switchingFragments(new AddActivityFragment());
-			}
-
-
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByAfterSchool)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=12;
-				switchingFragments(new AfterSchoolActivityByChildIdFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAfterSchool)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=12;
-				switchingFragments(new AfterSchoolActivityByChildIdFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentBySchoolFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=13;
-				switchingFragments(new SubjectActivityByChildIDFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentBySchoolFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=13;
-				switchingFragments(new SubjectActivityByChildIDFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesAndSubCategoriesFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=22;
-				switchingFragments(new AddAfterSchoolCategoriesFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyFragmentByAddAfterSchoolFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=35;
-				switchingFragments(new AddAfterSchoolFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByAddAfterSchoolFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=35;
-				switchingFragments(new AddAfterSchoolFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByAddSubjectFragmentFromCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=21;
-				switchingFragments(new AddSubjectFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIDFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=27;
-				switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByInformAllyFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=28;
-				switchingFragments(new DisplayAllyInformationFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAllyDropPickFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=32;
-				switchingFragments(new AllyDropPickFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomFragmentByAddAfterSchoolByCatIDFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=31;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addActivityFragmentByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=15;
+					switchingFragments(new GetDataByCalendarDateFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=15;
+					switchingFragments(new GetDataByCalendarDateFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=15;
+					switchingFragments(new GetDataByCalendarDateFragment());
+				}
+
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentByActivityFragmentFromCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=14;
+					switchingFragments(new AddActivityFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByActivityFragmentFromCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=14;
+					switchingFragments(new AddActivityFragment());
+				}
+
+
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByAfterSchool)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=12;
+					switchingFragments(new AfterSchoolActivityByChildIdFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAfterSchool)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=12;
+					switchingFragments(new AfterSchoolActivityByChildIdFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentBySchoolFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=13;
+					switchingFragments(new SubjectActivityByChildIDFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentBySchoolFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=13;
+					switchingFragments(new SubjectActivityByChildIDFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesAndSubCategoriesFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=22;
+					switchingFragments(new AddAfterSchoolCategoriesFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyFragmentByAddAfterSchoolFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=35;
+					switchingFragments(new AddAfterSchoolFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByAddAfterSchoolFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=35;
+					switchingFragments(new AddAfterSchoolFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByAddSubjectFragmentFromCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=21;
+					switchingFragments(new AddSubjectFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIDFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=27;
+					switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByInformAllyFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=28;
+					switchingFragments(new DisplayAllyInformationFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAllyDropPickFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=32;
+					switchingFragments(new AllyDropPickFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomFragmentByAddAfterSchoolByCatIDFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=31;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAddAfterSchoolByCatIDFragmentByCalenderDateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=31;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAddAfterSchoolByCatIDFragmentByCalenderDateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=31;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentByActivityFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=18;
-				switchingFragments(new AddActivityFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSubjectFragmentByActivityFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=18;
+					switchingFragments(new AddActivityFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByActivityFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=18;
-				switchingFragments(new AddActivityFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByActivityFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=18;
+					switchingFragments(new AddActivityFragment());
+				}
 
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByAddSubjectFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=36;
-				switchingFragments(new AddSubjectFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByAddSubjectFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=36;
+					switchingFragments(new AddSubjectFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesAndSubCategoriesFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=37;
-				switchingFragments(new AddAfterSchoolCategoriesFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesAndSubCategoriesFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=37;
+					switchingFragments(new AddAfterSchoolCategoriesFragment());
+				}
 
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIDFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=39;
-				switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIDFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=39;
+					switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomFragmentByAddAfterSchoolByCatIDFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=40;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomFragmentByAddAfterSchoolByCatIDFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=40;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAddAfterSchoolByCatIDFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=40;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAddAfterSchoolByCatIDFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=40;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
+				}
 
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyFragmentByAddAfterSchoolFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=42;
-				switchingFragments(new AddAfterSchoolFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByAddAfterSchoolFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=42;
-				switchingFragments(new AddAfterSchoolFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyFragmentByAddAfterSchoolFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=42;
+					switchingFragments(new AddAfterSchoolFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByAddAfterSchoolFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=42;
+					switchingFragments(new AddAfterSchoolFragment());
+				}
 
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByInformAllyFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=43;
-				switchingFragments(new DisplayAllyInformationFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByInformAllyFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=43;
+					switchingFragments(new DisplayAllyInformationFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAllyDropPickFragmentFromGetDataByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=45;
-				switchingFragments(new AllyDropPickFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAllyDropPickFragmentFromGetDataByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=45;
+					switchingFragments(new AllyDropPickFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesAndSubCategoriesFragmentByAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesAndSubCategoriesFragmentByAfterSchool)
+				{
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=23;
-				switchingFragments(new AddAfterSchoolCategoriesFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=23;
+					switchingFragments(new AddAfterSchoolCategoriesFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIDFragmentFromGetDataByAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIDFragmentFromGetDataByAfterSchool)
+				{
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=47;
-				switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=47;
+					switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomFragmentByAddAfterSchoolByCatIDFragmentFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomFragmentByAddAfterSchoolByCatIDFragmentFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=48;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=48;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByAddAfterSchoolByCatIDFragmentFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByAddAfterSchoolByCatIDFragmentFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=48;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=48;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyFragmentByAddAfterSchoolFragmentFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyFragmentByAddAfterSchoolFragmentFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=50;
-				switchingFragments(new AddAfterSchoolFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=50;
+					switchingFragments(new AddAfterSchoolFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByAddAfterSchoolFragmentFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentByAddAfterSchoolFragmentFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=50;
-				switchingFragments(new AddAfterSchoolFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=50;
+					switchingFragments(new AddAfterSchoolFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentFromInformAllyByAddAfterSchoolFragmentFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickFragmentFromInformAllyByAddAfterSchoolFragmentFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=51;
-				switchingFragments(new DisplayAllyInformationFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=51;
+					switchingFragments(new DisplayAllyInformationFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentFromAllyDropPickByInformAllyByAddAfterSchoolFragmentFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentFromAllyDropPickByInformAllyByAddAfterSchoolFragmentFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=53;
-				switchingFragments(new AllyDropPickFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=53;
+					switchingFragments(new AllyDropPickFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAllydropPickByAddAfterSchoolFragmentFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolFragmentByAllydropPickByAddAfterSchoolFragmentFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=52;
-				switchingFragments(new AllyDropPickFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=52;
+					switchingFragments(new AllyDropPickFragment());
 
 
-			}
+				}
 
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addafterSchoolallyDropPickFragmentByAddAfterSchoolFragmentFromGetDataByCalenderdateFragment)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addafterSchoolallyDropPickFragmentByAddAfterSchoolFragmentFromGetDataByCalenderdateFragment)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=44;
-				switchingFragments(new AllyDropPickFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=44;
+					switchingFragments(new AllyDropPickFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addafterSchoolallyDropPickFragmentByAddAfterSchoolFragmentByCalenderDateFragment)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addafterSchoolallyDropPickFragmentByAddAfterSchoolFragmentByCalenderDateFragment)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=29;
-				switchingFragments(new AllyDropPickFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=29;
+					switchingFragments(new AllyDropPickFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAddAfterSchoolFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAddAfterSchoolFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=24;
-				switchingFragments(new AddAfterSchoolFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=24;
+					switchingFragments(new AddAfterSchoolFragment());
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByAddAfterSchoolFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByAddAfterSchoolFromAfterSchool)
+				{
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=24;
-				switchingFragments(new AddAfterSchoolFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=24;
+					switchingFragments(new AddAfterSchoolFragment());
 
 
-			}
+				}
 
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByInformAllyByAddAfterSchoolFromAfterSchool)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=58;
-				switchingFragments(new DisplayAllyInformationFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByInformAllyByAddAfterSchoolFromAfterSchool)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=58;
+					switchingFragments(new DisplayAllyInformationFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByallyDropPickByInformAllyByAddAfterSchoolFromAfterSchool)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=60;
-				switchingFragments(new AllyDropPickFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByallyDropPickByInformAllyByAddAfterSchoolFromAfterSchool)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=60;
+					switchingFragments(new AllyDropPickFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByallyDropPickByAddAfterSchoolFromAfterSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByallyDropPickByAddAfterSchoolFromAfterSchool)
+				{
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=59;
-				switchingFragments(new AllyDropPickFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=59;
+					switchingFragments(new AllyDropPickFragment());
 
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByAddSubjectFromSchool)
-			{
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addSchoolFragmentByAddSubjectFromSchool)
+				{
 
 
 
-				StaticVariables.fragmentIndexCurrentTabSchedular=25;
-				switchingFragments(new AddSubjectFragment());
+					StaticVariables.fragmentIndexCurrentTabSchedular=25;
+					switchingFragments(new AddSubjectFragment());
 
 
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=15;
-				switchingFragments(new GetDataByCalendarDateFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolCategoriesFragmentByCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=15;
+					switchingFragments(new GetDataByCalendarDateFragment());
+				}
 
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=17;
-				switchingFragments(new AddAfterSchoolCategoriesFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=17;
+					switchingFragments(new AddAfterSchoolCategoriesFragment());
 
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIdByaddAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=64;
-				switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByCatIdByaddAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=64;
+					switchingFragments(new AddAfterSchoolCategoriesAndSubCategoriesFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomByaddAfterSchoolByCatIdByaddAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=65;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addCustomByaddAfterSchoolByCatIdByaddAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=65;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByaddAfterSchoolByCatIdByaddAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=65;
-				switchingFragments(new AddAfterSchoolByCatIDFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByaddAfterSchoolByCatIdByaddAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=65;
+					switchingFragments(new AddAfterSchoolByCatIDFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAddAfterSchoolByCatIdBySubcategory)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=67;
-				switchingFragments(new AddAfterSchoolFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAddAfterSchoolByCatIdBySubcategory)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=67;
+					switchingFragments(new AddAfterSchoolFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByinformAllyByAddAfterSchoolByCatIdBySubcategory)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=68;
-				switchingFragments(new DisplayAllyInformationFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByinformAllyByAddAfterSchoolByCatIdBySubcategory)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=68;
+					switchingFragments(new DisplayAllyInformationFragment());
 
-			}
+				}
 			/*else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByallyDropPickByinformAllyByAddAfterSchoolByCatIdBySubcategory)
 			{
 				StaticVariables.fragmentIndexCurrentTabSchedular=70;
 				switchingFragments(new AllyDropPickFragment());
 
 			}*/
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByAddAfterSchoolByCatIdBySubcategory)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=67;
-				switchingFragments(new AddAfterSchoolFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==allyDropPickByAddAfterSchoolByCatIdBySubcategory)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=67;
+					switchingFragments(new AddAfterSchoolFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick1)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=32;
-				switchingFragments(new AllyDropPickFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick1)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=32;
+					switchingFragments(new AllyDropPickFragment());
 
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick2)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=45;
-				switchingFragments(new AllyDropPickFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick2)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=45;
+					switchingFragments(new AllyDropPickFragment());
 
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick3)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=53;
-				switchingFragments(new AllyDropPickFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick3)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=53;
+					switchingFragments(new AllyDropPickFragment());
 
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick4)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=60;
-				switchingFragments(new AllyDropPickFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick4)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=60;
+					switchingFragments(new AllyDropPickFragment());
 
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick5)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=70;
-				switchingFragments(new AllyDropPickFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==informAllyByAllyDropPick5)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=70;
+					switchingFragments(new AllyDropPickFragment());
 
-			}
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==76)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=20;
-				switchingFragments(new AddAfterSchoolFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==76)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=20;
+					switchingFragments(new AddAfterSchoolFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==77)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=76;
-				switchingFragments(new DisplayAllyInformationFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==77)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=76;
+					switchingFragments(new DisplayAllyInformationFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==78)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=77;
-				switchingFragments(new AllyDropPickFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==78)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=77;
+					switchingFragments(new AllyDropPickFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==holidaylistfragmentbyCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=11;
-				switchingFragments(new CalenderFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==holidaylistfragmentbyCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=11;
+					switchingFragments(new CalenderFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==holidayDetailFragmentbyHolidayListFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=80;
-				switchingFragments(new 	HolidayListFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==holidayDetailFragmentbyHolidayListFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=80;
+					switchingFragments(new 	HolidayListFragment());
+				}
 
-			//New cases for search
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromAfterSchoolByChildIdFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesFragmentByAfterSchool;//23
-				switchingFragments(new 	AddAfterSchoolCategoriesFragment());
-			}
+				//New cases for search
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromAfterSchoolByChildIdFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesFragmentByAfterSchool;//23
+					switchingFragments(new 	AddAfterSchoolCategoriesFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=
-						addAfterSchoolCategoriesFragmentByActivityFragmentFromCalenderFragment;//22
-				switchingFragments(new 	AddAfterSchoolCategoriesFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=
+							addAfterSchoolCategoriesFragmentByActivityFragmentFromCalenderFragment;//22
+					switchingFragments(new 	AddAfterSchoolCategoriesFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromGetByCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesFragmentByCalenderdateFragment;//17;
-				switchingFragments(new 	AddAfterSchoolCategoriesFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentByAddActivityFromGetByCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=
-						addAfterSchoolCategoriesFragmentByActivityFragmentFromGetDataByCalenderdateFragment;//37
-				switchingFragments(new 	AddAfterSchoolCategoriesFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentFromGetByCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesFragmentByCalenderdateFragment;//17;
+					switchingFragments(new 	AddAfterSchoolCategoriesFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesFragmentByAddActivityFromGetByCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=
+							addAfterSchoolCategoriesFragmentByActivityFragmentFromGetDataByCalenderdateFragment;//37
+					switchingFragments(new 	AddAfterSchoolCategoriesFragment());
+				}
 
-			//New cases for search Subcategory
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentFromAfterSchoolByChildIdFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesAndSubCategoriesFragmentByAfterSchool;//47
-				switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
-			}
+				//New cases for search Subcategory
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentFromAfterSchoolByChildIdFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolCategoriesAndSubCategoriesFragmentByAfterSchool;//47
+					switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentFromCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=
-						addAfterSchoolCategoriesAndSubCategoriesFragmentByCalenderDateFragment;//27
-				switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentFromCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=
+							addAfterSchoolCategoriesAndSubCategoriesFragmentByCalenderDateFragment;//27
+					switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
+				}
 
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentFromGetByCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment;//64;
-				switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentByAddActivityFromGetByCalenderFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabSchedular=
-						addAfterSchoolCategoriesAndSubCategoriesFragmentFromGetDataByCalenderdateFragment;//39
-				switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentFromGetByCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=addAfterSchoolSubcategoryaByAfterSchoolCategoriesFragmentFromCalenderdateFragment;//64;
+					switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabSchedular==searchActivityByAfterSchoolFragmentFromAfterSchoolCategoriesSubcategoriesFragmentByAddActivityFromGetByCalenderFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabSchedular=
+							addAfterSchoolCategoriesAndSubCategoriesFragmentFromGetDataByCalenderdateFragment;//39
+					switchingFragments(new 	AddAfterSchoolCategoriesAndSubCategoriesFragment());
+				}
 
 			/*else if(StaticVariables.fragmentIndexCurrentTabSchedular==addAfterSchoolByallyDropPickByCatIdBySubcategory)
 			{
@@ -1550,327 +1564,327 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			}*/
 
 
-			break;
+				break;
 
 
-		case 2:
+			case 2:
 
-			if(StaticVariables.fragmentIndexErrorDetailPage==errorDetailPageInsights)
-			{
-				StaticVariables.fragmentIndexErrorDetailPage=0;
-				switchingFragments(new InsightsErrorFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabInsight==typesInsightFragment)
-			{
-				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabInsight==delightTrendsFragment)
-			{
-				switchingFragments(new TypesInsightsFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabInsight==insightDriversFragment)
-			{
-				switchingFragments(new TypesInsightsFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabInsight==insightsFragment)
-			{
-				switchingFragments(new TypesInsightsFragment());
-
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabInsight==delightTrendsByActivityFragmentFromTypesInsight)
-			{
-				switchingFragments(new TypesInsightsFragment());
-
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabInsight==delightTrendsByActivityFragmentFromDelightTrendsFragment)
-			{
-				switchingFragments(new DelightTrendsFragment());
-
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabInsight==insightErrorFragment)
-			{
-				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-
-			}
-			break;
-
-		case 3:
-			if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchoolWhattodo)
-			{
-				if(!StaticVariables.isFrequencySaveClicked)
+				if(StaticVariables.fragmentIndexErrorDetailPage==errorDetailPageInsights)
 				{
-					showMessage.showAlertFrequency(TabChildActivities.this, new OnEventListener<String>() {
-
-						@Override
-						public void onSuccess(String object) {
-							// TODO Auto-generated method stub
-							StaticVariables.fragmentIndexFrequencyPage=0;
-							switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
-							StaticVariables.isFrequencySaveClicked=false;
-						}
-
-						@Override
-						public void onFailure(String object) {
-							// TODO Auto-generated method stub
-
-						}
-					});
+					StaticVariables.fragmentIndexErrorDetailPage=0;
+					switchingFragments(new InsightsErrorFragment());
 				}
+				else if(StaticVariables.fragmentIndexCurrentTabInsight==typesInsightFragment)
+				{
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabInsight==delightTrendsFragment)
+				{
+					switchingFragments(new TypesInsightsFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabInsight==insightDriversFragment)
+				{
+					switchingFragments(new TypesInsightsFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabInsight==insightsFragment)
+				{
+					switchingFragments(new TypesInsightsFragment());
+
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabInsight==delightTrendsByActivityFragmentFromTypesInsight)
+				{
+					switchingFragments(new TypesInsightsFragment());
+
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabInsight==delightTrendsByActivityFragmentFromDelightTrendsFragment)
+				{
+					switchingFragments(new DelightTrendsFragment());
+
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabInsight==insightErrorFragment)
+				{
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
+
+				}
+				break;
+
+			case 3:
+				if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageAfterSchoolWhattodo)
+				{
+					if(!StaticVariables.isFrequencySaveClicked)
+					{
+						showMessage.showAlertFrequency(TabChildActivities.this, new OnEventListener<String>() {
+
+							@Override
+							public void onSuccess(String object) {
+								// TODO Auto-generated method stub
+								StaticVariables.fragmentIndexFrequencyPage=0;
+								switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+								StaticVariables.isFrequencySaveClicked=false;
+							}
+
+							@Override
+							public void onFailure(String object) {
+								// TODO Auto-generated method stub
+
+							}
+						});
+					}
+					else
+					{
+						StaticVariables.fragmentIndexFrequencyPage=0;
+						switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+						StaticVariables.isFrequencySaveClicked=false;
+					}
+
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentActivityDetailByClusterId ||StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWislistScreen)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentRecommended;
+					switch (StaticVariables.screenIndex)
+					{
+						case 0:
+							switchingFragments(new WhatToDoRecommendedFragment());
+							break;
+						case 1:
+							switchingFragments(new WhatToDoNetworkFragment());
+
+							break;
+						case 2:
+							switchingFragments(new WhatToDoExploreFragment());
+
+							break;
+
+						default:
+							break;
+					}
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWislistScreenbyActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentActivityDetailByClusterId;
+					switchingFragments(new ActivityListFragment());
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWhoisdoingthisfromactivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentActivityDetailByClusterId;
+					switchingFragments(new ActivityListFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWhoisdoingthisfromWishList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreen;
+					switchingFragments(new WishListFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWhoisdoingthisfromWishListByActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreenbyActivityList;
+					switchingFragments(new WishListFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentchilddetailfromWhoisdoingthisbyactivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWhoisdoingthisfromactivityList;
+					switchingFragments(new WhoDoingThisFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentexhilaratorfromchilddetailfromWhoisdoingthisbyactivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentchilddetailfromWhoisdoingthisbyactivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.ChildDetailFragment() );
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentchilddetailfromWhoisdoingthisbywishList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWhoisdoingthisfromWishList;
+					switchingFragments(new WhoDoingThisFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentexhilaratorfromchilddetailfromWhoisdoingthisbywishList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentchilddetailfromWhoisdoingthisbywishList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.ChildDetailFragment() );
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentchilddetailfromWhoisdoingthisfromWishListByActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWhoisdoingthisfromWishListByActivityList;
+					switchingFragments(new WhoDoingThisFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentexhilaratorfromchilddetailfromWhoisdoingthisfromWishListByActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentchilddetailfromWhoisdoingthisfromWishListByActivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.ChildDetailFragment() );
+				}
+
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAddAfterSchoolfromactivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentActivityDetailByClusterId;
+					switchingFragments(new ActivityListFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentDispalyAllyfromAddAfterSchoolfromactivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAddAfterSchoolfromactivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromactivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentDispalyAllyfromAddAfterSchoolfromactivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.DisplayAllyInformationFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentInformAllyFromAllyDropPickAddAfterSchoolfromactivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromactivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AllyDropPickFragment());
+				}
+
+
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAddAfterSchoolfromwishList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreen;
+					switchingFragments(new WishListFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentDispalyAllyfromAddAfterSchoolfromwishList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAddAfterSchoolfromwishList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromwishList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentDispalyAllyfromAddAfterSchoolfromwishList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.DisplayAllyInformationFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentInformAllyFromAllyDropPickAddAfterSchoolfromwishList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromwishList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AllyDropPickFragment());
+				}
+
+
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAddAfterSchoolfromWishListByActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreenbyActivityList;
+					switchingFragments(new WishListFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentDispalyAllyfromAddAfterSchoolfromWishListByActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAddAfterSchoolfromWishListByActivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromWishListByActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentDispalyAllyfromAddAfterSchoolfromWishListByActivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.DisplayAllyInformationFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentInformAllyFromAllyDropPickAddAfterSchoolfromWishListByActivityList)
+				{
+					StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromWishListByActivityList;
+					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AllyDropPickFragment());
+				}
+
 				else
 				{
-					StaticVariables.fragmentIndexFrequencyPage=0;
-					switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
-					StaticVariables.isFrequencySaveClicked=false;
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
 				}
-
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentActivityDetailByClusterId ||StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWislistScreen)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentRecommended;
-				switch (StaticVariables.screenIndex)
-				{
-				case 0:
-					switchingFragments(new WhatToDoRecommendedFragment());
-					break;
-				case 1:
-					switchingFragments(new WhatToDoNetworkFragment());
-
-					break;
-				case 2:
-					switchingFragments(new WhatToDoExploreFragment());
-
-					break;
-
-				default:
-					break;
-				}
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWislistScreenbyActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentActivityDetailByClusterId;
-				switchingFragments(new ActivityListFragment());
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWhoisdoingthisfromactivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentActivityDetailByClusterId;
-				switchingFragments(new ActivityListFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWhoisdoingthisfromWishList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreen;
-				switchingFragments(new WishListFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentWhoisdoingthisfromWishListByActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreenbyActivityList;
-				switchingFragments(new WishListFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentchilddetailfromWhoisdoingthisbyactivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWhoisdoingthisfromactivityList;
-				switchingFragments(new WhoDoingThisFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentexhilaratorfromchilddetailfromWhoisdoingthisbyactivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentchilddetailfromWhoisdoingthisbyactivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.ChildDetailFragment() );
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentchilddetailfromWhoisdoingthisbywishList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWhoisdoingthisfromWishList;
-				switchingFragments(new WhoDoingThisFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentexhilaratorfromchilddetailfromWhoisdoingthisbywishList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentchilddetailfromWhoisdoingthisbywishList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.ChildDetailFragment() );
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentchilddetailfromWhoisdoingthisfromWishListByActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWhoisdoingthisfromWishListByActivityList;
-				switchingFragments(new WhoDoingThisFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentexhilaratorfromchilddetailfromWhoisdoingthisfromWishListByActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentchilddetailfromWhoisdoingthisfromWishListByActivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.ChildDetailFragment() );
-			}
-
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAddAfterSchoolfromactivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentActivityDetailByClusterId;
-				switchingFragments(new ActivityListFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentDispalyAllyfromAddAfterSchoolfromactivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAddAfterSchoolfromactivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromactivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentDispalyAllyfromAddAfterSchoolfromactivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.DisplayAllyInformationFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentInformAllyFromAllyDropPickAddAfterSchoolfromactivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromactivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AllyDropPickFragment());
-			}
-
-
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAddAfterSchoolfromwishList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreen;
-				switchingFragments(new WishListFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentDispalyAllyfromAddAfterSchoolfromwishList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAddAfterSchoolfromwishList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromwishList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentDispalyAllyfromAddAfterSchoolfromwishList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.DisplayAllyInformationFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentInformAllyFromAllyDropPickAddAfterSchoolfromwishList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromwishList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AllyDropPickFragment());
-			}
-
-
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAddAfterSchoolfromWishListByActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentWislistScreenbyActivityList;
-				switchingFragments(new WishListFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentDispalyAllyfromAddAfterSchoolfromWishListByActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAddAfterSchoolfromWishListByActivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AddAfterSchoolFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromWishListByActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentDispalyAllyfromAddAfterSchoolfromWishListByActivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.DisplayAllyInformationFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabWhatToDo==whattodoFragmentInformAllyFromAllyDropPickAddAfterSchoolfromWishListByActivityList)
-			{
-				StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentAllyDropPickfromDisplayAllyfromAddAfterSchoolfromWishListByActivityList;
-				switchingFragments(new com.hatchtact.pinwi.fragment.whattodo.AllyDropPickFragment());
-			}
-
-			else
-			{
 				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-			}
-			//finish();
-			break;
+				break;
 
-		case 4:
+			case 4:
 
-			if(StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentConnections ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentRequest ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentDiscover)
-			{
-				//finish();
-				finish();
-				Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
-				// set the new task and clear flags
-				intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intentAccessProfile);
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==friendDetailsByNetworkConnectionList || StaticVariables.fragmentIndexCurrentTabNetwork==profileScreenFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=networkFragmentConnections;				
-				switch (StaticVariables.screenIndex)
+				if(StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentConnections ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentRequest ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentDiscover)
 				{
-				case 0:
-					switchingFragments(new NetworkConnectionsFragment());
-					break;
-				case 1:
-					switchingFragments(new NetworkRequestFragment());
-
-					break;
-				case 2:
-					switchingFragments(new NetworkDiscoverFragment());
-
-					break;
-				default:
-					break;
+					//finish();
+					finish();
+					Intent intentAccessProfile =new Intent(TabChildActivities.this, AccessProfileActivity.class);
+					// set the new task and clear flags
+					intentAccessProfile.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					startActivity(intentAccessProfile);
 				}
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==childdetailByFriendDetail)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=friendDetailsByNetworkConnectionList;
-				switchingFragments(new FriendDetailFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==listOfExhilaratorsByChildIdBychilddetail)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=childdetailByFriendDetail;
-				switchingFragments(new ChildDetailFragment());
-			}
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==friendDetailsByNetworkConnectionList || StaticVariables.fragmentIndexCurrentTabNetwork==profileScreenFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=networkFragmentConnections;
+					switch (StaticVariables.screenIndex)
+					{
+						case 0:
+							switchingFragments(new NetworkConnectionsFragment());
+							break;
+						case 1:
+							switchingFragments(new NetworkRequestFragment());
+
+							break;
+						case 2:
+							switchingFragments(new NetworkDiscoverFragment());
+
+							break;
+						default:
+							break;
+					}
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==childdetailByFriendDetail)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=friendDetailsByNetworkConnectionList;
+					switchingFragments(new FriendDetailFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==listOfExhilaratorsByChildIdBychilddetail)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=childdetailByFriendDetail;
+					switchingFragments(new ChildDetailFragment());
+				}
 			/*else if(StaticVariables.fragmentIndexCurrentTabNetwork==profileScreenFragment)
 			{
 				StaticVariables.fragmentIndexCurrentTabNetwork=networkFragmentConnections;
 				switchingFragments(new NetworkConnectionsFragment());
 			}*/
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==profileConnectionFragmentByProfileFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=profileScreenFragment;
-				switchingFragments(new MyProfileScreenFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==childFragmentByProfileFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=profileScreenFragment;
-				switchingFragments(new MyProfileScreenFragment());
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==profileConnectionFragmentByProfileFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=profileScreenFragment;
+					switchingFragments(new MyProfileScreenFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==childFragmentByProfileFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=profileScreenFragment;
+					switchingFragments(new MyProfileScreenFragment());
 
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==listOfExhilaratorsByChildIdBychilddetaiByProfileFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=childFragmentByProfileFragment;
-				switchingFragments(new ChildDetailFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==listOfExhilaratorsByChildIdBychilddetaiByListOfConnectionsByProfileFragment)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=childFragmentByProfileFragmentByNetworkConnections;
-				switchingFragments(new ChildDetailFragment());
-			}
-			else if(StaticVariables.fragmentIndexCurrentTabNetwork==childFragmentByProfileFragmentByNetworkConnections)
-			{
-				StaticVariables.fragmentIndexCurrentTabNetwork=profileConnectionFragmentByProfileFragment;
-				switchingFragments(new ProfileConnectionsFragment());
-			}
-
-
-			//finish();
-			break;
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==listOfExhilaratorsByChildIdBychilddetaiByProfileFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=childFragmentByProfileFragment;
+					switchingFragments(new ChildDetailFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==listOfExhilaratorsByChildIdBychilddetaiByListOfConnectionsByProfileFragment)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=childFragmentByProfileFragmentByNetworkConnections;
+					switchingFragments(new ChildDetailFragment());
+				}
+				else if(StaticVariables.fragmentIndexCurrentTabNetwork==childFragmentByProfileFragmentByNetworkConnections)
+				{
+					StaticVariables.fragmentIndexCurrentTabNetwork=profileConnectionFragmentByProfileFragment;
+					switchingFragments(new ProfileConnectionsFragment());
+				}
 
 
+				//finish();
+				break;
 
-		default:
-			super.onBackPressed();
-			break;
+
+
+			default:
+				super.onBackPressed();
+				break;
 		}
 	}
 
@@ -1881,57 +1895,57 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 
 
 
-		switch (currentTab) 
+		switch (currentTab)
 		{
-		case 0:
-			setDrawerState(true,"  Notifications");
-			break;
+			case 0:
+				setDrawerState(true,"  Notifications");
+				break;
 
-		case 1:
-			if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler || StaticVariables.fragmentIndexCurrentTabSchedular==afterSchoolFragmentScheduler ||StaticVariables.fragmentIndexCurrentTabSchedular==schoolFragmentScheduler)
-			{
-				setDrawerState(true,"  Scheduler");
-			}
+			case 1:
+				if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler || StaticVariables.fragmentIndexCurrentTabSchedular==afterSchoolFragmentScheduler ||StaticVariables.fragmentIndexCurrentTabSchedular==schoolFragmentScheduler)
+				{
+					setDrawerState(true,"  Scheduler");
+				}
 
-			else 
-			{
-				setDrawerState(false,"  Scheduler");
+				else
+				{
+					setDrawerState(false,"  Scheduler");
 
-			}
+				}
 
-			break;
+				break;
 
 
-		case 2:
+			case 2:
 
-			if(StaticVariables.fragmentIndexCurrentTabInsight==typesInsightFragment)
-			{
-				setDrawerState(true,"  Insights");
-			}
-			else
-			{
-				setDrawerState(false,"  Insights");
-			}
-			break;
+				if(StaticVariables.fragmentIndexCurrentTabInsight==typesInsightFragment)
+				{
+					setDrawerState(true,"  Insights");
+				}
+				else
+				{
+					setDrawerState(false,"  Insights");
+				}
+				break;
 
-		case 3:
+			case 3:
 
-			setDrawerState(true,"  WhatToDo");
-			break;
+				setDrawerState(true,"  WhatToDo");
+				break;
 
-		case 4:
-			if(StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentConnections ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentRequest ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentDiscover)
-			{
-				setDrawerState(true,"  Network");
-			}
-			else
-			{
-				setDrawerState(false,"  Network");
-			}
-			break;
+			case 4:
+				if(StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentConnections ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentRequest ||StaticVariables.fragmentIndexCurrentTabNetwork==networkFragmentDiscover)
+				{
+					setDrawerState(true,"  Network");
+				}
+				else
+				{
+					setDrawerState(false,"  Network");
+				}
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
@@ -1943,7 +1957,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.tabcontent_frame_layout, toFragment, "");
-		fragmentTransaction.commit();	
+		fragmentTransaction.commit();
 		getFragmentManager().executePendingTransactions();      // <----- This is the key
 	}
 
@@ -1958,76 +1972,76 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		actionBarTitle();
 
 
-		switch (v.getId()) 
+		switch (v.getId())
 		{
-		case R.id.tab_notification:
-			if(currentTab!=0) {
-				currentTab = 0;
-				StaticVariables.fragmentIndexCurrentTabNotification = notificationFragmentOne;
-				tab_notification.setSelected(true);
-				tab_scheduler.setSelected(false);
-				tab_insights.setSelected(false);
-				tab_network.setSelected(false);
-				tab_activity.setSelected(false);
-				sharePref.setBadgeScore("0");
-				textViewtab_notification.setVisibility(View.GONE);
-				ShortcutBadger.removeCount(TabChildActivities.this);
-				switchingFragments(new NotificationFragment());
-			}
-			break;
-		case R.id.tab_scheduler:
-			if(currentTab!=1) {
-				currentTab = 1;
-				tab_notification.setSelected(false);
-				tab_scheduler.setSelected(true);
-				tab_insights.setSelected(false);
-				tab_network.setSelected(false);
-				tab_activity.setSelected(false);
-				StaticVariables.fragmentIndexCurrentTabSchedular = schoolFragmentScheduler;
-				switchingFragments(SubjectActivityByChildIDFragment.getInstance());
-			}
-			//StaticVariables.fragmentIndexCurrentTabSchedular=calenderFragmentScheduler;
-			//switchingFragments(CalenderFragment.getInstance());
-			break;
+			case R.id.tab_notification:
+				if(currentTab!=0) {
+					currentTab = 0;
+					StaticVariables.fragmentIndexCurrentTabNotification = notificationFragmentOne;
+					tab_notification.setSelected(true);
+					tab_scheduler.setSelected(false);
+					tab_insights.setSelected(false);
+					tab_network.setSelected(false);
+					tab_activity.setSelected(false);
+					sharePref.setBadgeScore("0");
+					textViewtab_notification.setVisibility(View.GONE);
+					ShortcutBadger.removeCount(TabChildActivities.this);
+					switchingFragments(new NotificationFragment());
+				}
+				break;
+			case R.id.tab_scheduler:
+				if(currentTab!=1) {
+					currentTab = 1;
+					tab_notification.setSelected(false);
+					tab_scheduler.setSelected(true);
+					tab_insights.setSelected(false);
+					tab_network.setSelected(false);
+					tab_activity.setSelected(false);
+					StaticVariables.fragmentIndexCurrentTabSchedular = schoolFragmentScheduler;
+					switchingFragments(SubjectActivityByChildIDFragment.getInstance());
+				}
+				//StaticVariables.fragmentIndexCurrentTabSchedular=calenderFragmentScheduler;
+				//switchingFragments(CalenderFragment.getInstance());
+				break;
 
-		case R.id.tab_insight:
-			if(currentTab!=2) {
-				currentTab = 2;
-				tab_notification.setSelected(false);
-				tab_scheduler.setSelected(false);
-				tab_insights.setSelected(true);
-				tab_network.setSelected(false);
-				tab_activity.setSelected(false);
-				StaticVariables.fragmentIndexCurrentTabInsight = typesInsightFragment;
-				switchingFragments(TypesInsightsFragment.getInstance());
-			}
-			break;
-		case R.id.tab_activity:
-			if(currentTab!=3) {
-				currentTab = 3;
-				tab_notification.setSelected(false);
-				tab_scheduler.setSelected(false);
-				tab_insights.setSelected(false);
-				tab_network.setSelected(false);
-				tab_activity.setSelected(true);
-				//switchingFragments(new WhatToDoFragment());
-				StaticVariables.fragmentIndexCurrentTabWhatToDo = whattodoFragmentRecommended;
-				switchingFragments(new WhatToDoRecommendedFragment());
-			}
-			break;
-		case R.id.tab_network:
-			if(currentTab!=4) {
-				currentTab = 4;
-				tab_notification.setSelected(false);
-				tab_scheduler.setSelected(false);
-				tab_insights.setSelected(false);
-				tab_network.setSelected(true);
-				tab_activity.setSelected(false);
-				//switchingFragments(new NetworkFragment());
-				StaticVariables.fragmentIndexCurrentTabNetwork = networkFragmentConnections;
-				switchingFragments(new NetworkConnectionsFragment());
-			}
-			break;
+			case R.id.tab_insight:
+				if(currentTab!=2) {
+					currentTab = 2;
+					tab_notification.setSelected(false);
+					tab_scheduler.setSelected(false);
+					tab_insights.setSelected(true);
+					tab_network.setSelected(false);
+					tab_activity.setSelected(false);
+					StaticVariables.fragmentIndexCurrentTabInsight = typesInsightFragment;
+					switchingFragments(TypesInsightsFragment.getInstance());
+				}
+				break;
+			case R.id.tab_activity:
+				if(currentTab!=3) {
+					currentTab = 3;
+					tab_notification.setSelected(false);
+					tab_scheduler.setSelected(false);
+					tab_insights.setSelected(false);
+					tab_network.setSelected(false);
+					tab_activity.setSelected(true);
+					//switchingFragments(new WhatToDoFragment());
+					StaticVariables.fragmentIndexCurrentTabWhatToDo = whattodoFragmentRecommended;
+					switchingFragments(new WhatToDoRecommendedFragment());
+				}
+				break;
+			case R.id.tab_network:
+				if(currentTab!=4) {
+					currentTab = 4;
+					tab_notification.setSelected(false);
+					tab_scheduler.setSelected(false);
+					tab_insights.setSelected(false);
+					tab_network.setSelected(true);
+					tab_activity.setSelected(false);
+					//switchingFragments(new NetworkFragment());
+					StaticVariables.fragmentIndexCurrentTabNetwork = networkFragmentConnections;
+					switchingFragments(new NetworkConnectionsFragment());
+				}
+				break;
 		}
 	}
 
@@ -2088,14 +2102,14 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				model=serviceMethod.getNewNotificationCount(parentId);
 				if(model!=null)
 				{
-					StaticVariables.notificationCount=model.getCount();			
+					StaticVariables.notificationCount=model.getCount();
 				}
 				else
 				{
 					StaticVariables.notificationCount=0;
 				}
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -2137,11 +2151,11 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 					}
 				}
 				else
-				{	
+				{
 					//getError();
-				}	
-			}	
-		}	
+				}
+			}
+		}
 	}
 
 }

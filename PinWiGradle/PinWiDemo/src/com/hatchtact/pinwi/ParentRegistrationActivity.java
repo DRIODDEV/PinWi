@@ -20,6 +20,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -360,7 +362,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+									long arg3) {
 				// TODO Auto-generated method stub
 
 			}
@@ -1190,135 +1192,135 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		{
 			switch(requestCode)
 			{
-			case SELECT_PICTURE:
+				case SELECT_PICTURE:
 
-				Uri selectedImageUri = data.getData();
-
-
-				bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri));
-				//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath);
-
-				if(bitmapLength!=null)
-				{
-					imageByte=getPath(selectedImageUri);
-
-					bitmapTobyte();
-				}
-				else
-				{
-					imageByte="";
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
-
-				break;
-
-			case 110:
-
-				Uri selectedImageUri1 = data.getData();
-
-				final int takeFlags = data.getFlags()
-						& (Intent.FLAG_GRANT_READ_URI_PERMISSION
-								| Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-				getContentResolver().takePersistableUriPermission(selectedImageUri1, takeFlags);
+					Uri selectedImageUri = data.getData();
 
 
+					bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri));
+					//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath);
 
-				//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath1);
-				bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri1));
-				if(bitmapLength!=null)
-				{
-					imageByte=getPath(selectedImageUri1);
+					if(bitmapLength!=null)
+					{
+						imageByte=getPath(selectedImageUri);
 
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						imageByte="";
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
+
+					break;
+
+				case 110:
+
+					Uri selectedImageUri1 = data.getData();
+
+					final int takeFlags = data.getFlags()
+							& (Intent.FLAG_GRANT_READ_URI_PERMISSION
+							| Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+					getContentResolver().takePersistableUriPermission(selectedImageUri1, takeFlags);
 
 
-				break;
 
-			case 105:
+					//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath1);
+					bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri1));
+					if(bitmapLength!=null)
+					{
+						imageByte=getPath(selectedImageUri1);
 
-				bitmapLength = (Bitmap) data.getExtras().get("data");
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
-				String path = Environment.getExternalStorageDirectory()+ "/profilo_"+".jpeg";
-				File file =  new File(path);
 
-				ExifInterface exif = null;
-				try {
-					exif = new ExifInterface(file.getAbsolutePath());
-					int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-					Matrix matrix = new Matrix();
-					switch (orientation) {
-					case ExifInterface.ORIENTATION_ROTATE_270:
+					break;
 
-						matrix.postRotate(270);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+				case 105:
 
-						break;
-					case ExifInterface.ORIENTATION_ROTATE_180:
+					bitmapLength = (Bitmap) data.getExtras().get("data");
 
-						matrix.postRotate(180);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+					String path = Environment.getExternalStorageDirectory()+ "/profilo_"+".jpeg";
+					File file =  new File(path);
 
-						break;
-					case ExifInterface.ORIENTATION_ROTATE_90:
+					ExifInterface exif = null;
+					try {
+						exif = new ExifInterface(file.getAbsolutePath());
+						int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+						Matrix matrix = new Matrix();
+						switch (orientation) {
+							case ExifInterface.ORIENTATION_ROTATE_270:
 
-						matrix.postRotate(90);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+								matrix.postRotate(270);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
 
-						break;
+								break;
+							case ExifInterface.ORIENTATION_ROTATE_180:
+
+								matrix.postRotate(180);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+
+								break;
+							case ExifInterface.ORIENTATION_ROTATE_90:
+
+								matrix.postRotate(90);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+
+								break;
+
+						}
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					if(bitmapLength.getHeight()>=bitmapLength.getWidth())
+					{
+						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, bitmapLength.getHeight()/2 - bitmapLength.getWidth()/2, bitmapLength.getWidth(), bitmapLength.getWidth());
+					}
+					else
+					{
+
+						bitmapLength = Bitmap.createBitmap(
+								bitmapLength,
+								bitmapLength.getWidth()/2 - bitmapLength.getHeight()/2,
+								0,
+								bitmapLength.getHeight(),
+								bitmapLength.getHeight()
+						);
+
 
 					}
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 
-				if(bitmapLength.getHeight()>=bitmapLength.getWidth())
-				{
-					bitmapLength = Bitmap.createBitmap(bitmapLength, 0, bitmapLength.getHeight()/2 - bitmapLength.getWidth()/2, bitmapLength.getWidth(), bitmapLength.getWidth());
-				}
-				else
-				{
+					ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+					bitmapLength.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
 
-					bitmapLength = Bitmap.createBitmap(
-							bitmapLength,
-							bitmapLength.getWidth()/2 - bitmapLength.getHeight()/2,
-							0,
-							bitmapLength.getHeight(),
-							bitmapLength.getHeight()
-							);
+					try {
+						file.createNewFile();
+						FileOutputStream fo = new FileOutputStream(file);
+						//5
+						fo.write(bytes.toByteArray());
+						fo.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
+					if(bitmapLength!=null)
+					{
+						imageByte=path;
 
-				}
-
-				ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-				bitmapLength.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
-
-				try {
-					file.createNewFile();
-					FileOutputStream fo = new FileOutputStream(file);
-					//5
-					fo.write(bytes.toByteArray());
-					fo.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				if(bitmapLength!=null)
-				{
-					imageByte=path;
-
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
 				/*String path = savingProfilePic((Bitmap)data.getExtras().get("data"));
 
@@ -1334,72 +1336,72 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
 				}
 				 */
-				break;
+					break;
 
-			case 1:
+				case 1:
 
-				final Uri selectedImage = data.getData();
+					final Uri selectedImage = data.getData();
 
-				String wholeID = DocumentsContract.getDocumentId(selectedImage);
+					String wholeID = DocumentsContract.getDocumentId(selectedImage);
 
-				// Split at colon, use second item in the array
-				String id = wholeID.split(":")[1];
+					// Split at colon, use second item in the array
+					String id = wholeID.split(":")[1];
 
-				String[] column = { MediaStore.Images.Media.DATA };
+					String[] column = { MediaStore.Images.Media.DATA };
 
-				// where id is equal to
-				String sel = MediaStore.Images.Media._ID + "=?";
+					// where id is equal to
+					String sel = MediaStore.Images.Media._ID + "=?";
 
-				Cursor cursor = getContentResolver().
-						query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-								column, sel, new String[]{ id }, null);
+					Cursor cursor = getContentResolver().
+							query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+									column, sel, new String[]{ id }, null);
 
-				String filePath2 = "";
+					String filePath2 = "";
 
-				int columnIndex2 = cursor.getColumnIndex(column[0]);
+					int columnIndex2 = cursor.getColumnIndex(column[0]);
 
-				if (cursor.moveToFirst()) {
-					filePath2 = cursor.getString(columnIndex2);
-				}
+					if (cursor.moveToFirst()) {
+						filePath2 = cursor.getString(columnIndex2);
+					}
 
-				cursor.close();
+					cursor.close();
 
 
-				//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(filePath2);
-				bitmapLength=BitmapFactory.decodeFile(filePath2);
-				if(bitmapLength!=null)
-				{
-					imageByte=filePath2;
+					//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(filePath2);
+					bitmapLength=BitmapFactory.decodeFile(filePath2);
+					if(bitmapLength!=null)
+					{
+						imageByte=filePath2;
 
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
-				break;
+					break;
 
-			case 200:
-				String passCodeValue = data.getStringExtra("passCode");
-				//passcode_editText.setText(passCodeValue);
-				text_passcode.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
-				//text_passcode.setTransformationMethod(PasswordTransformationMethod.getInstance());
-				text_passcode.setAlpha(1f);
-				hideKeyBoard();
-				text_passcode.setText(passCodeValue);
-				parentProfile.setPasscode(passCodeValue);
-				passcode_switchView.setChecked(true);
-				break;
+				case 200:
+					String passCodeValue = data.getStringExtra("passCode");
+					//passcode_editText.setText(passCodeValue);
+					text_passcode.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+					//text_passcode.setTransformationMethod(PasswordTransformationMethod.getInstance());
+					text_passcode.setAlpha(1f);
+					hideKeyBoard();
+					text_passcode.setText(passCodeValue);
+					parentProfile.setPasscode(passCodeValue);
+					passcode_switchView.setChecked(true);
+					break;
 			}
 		}
 		else
 		{
 			switch(requestCode)
 			{
-			case 200:
-				passcode_switchView.setChecked(false);
-				break;
+				case 200:
+					passcode_switchView.setChecked(false);
+					break;
 			}
 		}
 	}
@@ -1470,7 +1472,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					((float) targetHeight - 1) / 2,
 					(Math.min(((float) targetWidth),
 							((float) targetHeight)) / 2),
-							Path.Direction.CCW);
+					Path.Direction.CCW);
 
 			canvas.clipPath(path);
 			Bitmap sourceBitmap = scaleBitmapImage;
@@ -1479,7 +1481,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			canvas.drawBitmap(sourceBitmap,
 					new Rect(0, 0, sourceBitmap.getWidth(),
 							sourceBitmap.getHeight()),
-							new Rect(0, 0, targetWidth, targetHeight), null);
+					new Rect(0, 0, targetWidth, targetHeight), null);
 
 			return targetBitmap;
 		}
@@ -1954,7 +1956,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 
 		private String bitmapStoreInSDCard(Bitmap bmp,
-				String nameOfImageAlongWithPath) throws Exception {
+										   String nameOfImageAlongWithPath) throws Exception {
 			System.out.println("path" +nameOfImageAlongWithPath);
 			File sd = new File(nameOfImageAlongWithPath);
 
@@ -2050,7 +2052,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 	}
 
 	private ProgressDialog progressDialogCity=null;
-	private ProgressDialog progressDialogCountry=null;	
+	private ProgressDialog progressDialogCountry=null;
 	private ProgressDialog progressDialogLocality=null;
 
 
@@ -2287,7 +2289,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 	}
 
 	private ProgressDialog progressDialogRegister;
-
+	private String versionName="";
 	private class RegisterParentTask extends AsyncTask<Void, Void, Integer>
 	{
 
@@ -2295,6 +2297,15 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+			PackageManager manager = getPackageManager();
+			PackageInfo info = null;
+			try {
+				info = manager.getPackageInfo( getPackageName(), 0);
+				//"Version 3.0"
+				versionName=info.versionName;
+			} catch (PackageManager.NameNotFoundException e) {
+				e.printStackTrace();
+			}
 			progressDialogRegister = ProgressDialog.show(ParentRegistrationActivity.this, "", StaticVariables.progressBarText, false);
 			progressDialogRegister.setCancelable(false);
 		}
@@ -2321,7 +2332,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					e.printStackTrace();
 				}
 
-				parentId=serviceMethod.createParentProfile(parentProfile);
+				parentId=serviceMethod.createParentProfile(parentProfile,versionName);
 
 				if(parentId!=0)
 				{
@@ -2398,31 +2409,31 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 		// Set the dialog title
 		builder.setTitle("Select Guardian")
-		.setSingleChoiceItems(array,selectedIndexGuardian, new DialogInterface.OnClickListener() {
+				.setSingleChoiceItems(array,selectedIndexGuardian, new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				selectedIndexGuardian=which;
-			}
-		})
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						selectedIndexGuardian=which;
+					}
+				})
 
-		// Set the action buttons
-		.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int id) {
-				// User clicked OK, so save the result somewhere
-				// or return them to the component that opened the dialog
-				dialog.dismiss();
-			}
-		})
-		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int id) {
-				dialog.dismiss();
-				//selectedIndexGuardian=0;
-			}
-		});
+				// Set the action buttons
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						// User clicked OK, so save the result somewhere
+						// or return them to the component that opened the dialog
+						dialog.dismiss();
+					}
+				})
+				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.dismiss();
+						//selectedIndexGuardian=0;
+					}
+				});
 		builder.setCancelable(false);
 		return builder.create();
 	}
@@ -2451,35 +2462,35 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			/*	else if(!checkValidation.validateLastName(lastname_editText.getText().toString()))
 				showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
 			 */else if(!checkValidation.isNotNullOrBlank(email_editText.getText().toString()))
-				 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
-			 else if(!checkValidation.isValidEmail(email_editText.getText().toString()))
-				 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
-			 else if(!checkValidation.isNotNullOrBlank(password_editText.getText().toString()))
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
+			else if(!checkValidation.isValidEmail(email_editText.getText().toString()))
+				showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
+			else if(!checkValidation.isNotNullOrBlank(password_editText.getText().toString()))
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
 
-			//else if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
-			//showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
-			 else if(!checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
-				 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
-			 else if(!checkValidation.isValidPhoneNo(phone_editText.getText().toString()))
-				 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
-			 else if(!checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString()))
-			 {
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 country_autoCompleteTextView.requestFocus();
-			 }
+				//else if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
+				//showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
+			else if(!checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
+				showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
+			else if(!checkValidation.isValidPhoneNo(phone_editText.getText().toString()))
+				showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
+			else if(!checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString()))
+			{
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				country_autoCompleteTextView.requestFocus();
+			}
 			/*else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()) && !checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString())
 					&& !validation.isNotNullOrBlank(street_editText.getText().toString()))*/
-			 else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()))
-			 {
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 city_autoCompleteTextView.requestFocus();
-			 }
-			 else if(!checkValidation.isNotNullOrBlank(street_autoCompleteTextView.getText().toString()))
-			 {
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 street_autoCompleteTextView.requestFocus();
-			 }
+			else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()))
+			{
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				city_autoCompleteTextView.requestFocus();
+			}
+			else if(!checkValidation.isNotNullOrBlank(street_autoCompleteTextView.getText().toString()))
+			{
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				street_autoCompleteTextView.requestFocus();
+			}
 
 
 			/* else if(!checkValidation.isNotNullOrBlank(street_editText.getText().toString()))
@@ -2488,87 +2499,87 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				 street_editText.requestFocus();
 			 }*/
 
-			 else if(checkValidation.isNotNullOrBlank(dob_editText.getText().toString()))
-			 {
-				 //showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
-					 showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
-				 else
-				 {
-					 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
-					 if(passcode_switchView.isChecked())
-					 {
-						 //if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
-						 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
-							 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
+			else if(checkValidation.isNotNullOrBlank(dob_editText.getText().toString()))
+			{
+				//showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
+					showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
+				else
+				{
+					// if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
+					if(passcode_switchView.isChecked())
+					{
+						//if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
+						if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
+							showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
 						 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
 							 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
-						 else
-						 {
-							 moveToLocationScreen();
-						 }
-					 }
-					 else
-					 {
-						 showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
-						 //moveToLocationScreen();
-					 }
-				 }
-			 }
-			 else if(!checkValidation.isNotNullOrBlank(dob_editText.getText().toString())&& countDialog==0)
-			 {
+						else
+						{
+							moveToLocationScreen();
+						}
+					}
+					else
+					{
+						showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
+						//moveToLocationScreen();
+					}
+				}
+			}
+			else if(!checkValidation.isNotNullOrBlank(dob_editText.getText().toString())&& countDialog==0)
+			{
 
-				 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ParentRegistrationActivity.this);
+				AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ParentRegistrationActivity.this);
 
-				 alertBuilder.setTitle("Alert");
-				 alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
-				 alertBuilder.setMessage("Sharing DOB is optional but to use PiNWi as a parent you need be above legal age.By continuing, you declare you are above 18 yrs. ");
+				alertBuilder.setTitle("Alert");
+				alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+				alertBuilder.setMessage("Sharing DOB is optional but to use PiNWi as a parent you need be above legal age.By continuing, you declare you are above 18 yrs. ");
 
-				 alertBuilder.setPositiveButton(" GOT IT ", new DialogInterface.OnClickListener() {
+				alertBuilder.setPositiveButton(" GOT IT ", new DialogInterface.OnClickListener() {
 
-					 @Override
-					 public void onClick(final DialogInterface dialog, int which) {
-						 dialog.dismiss();
-						 countDialog=1;
-						 validateDataOnSubmit();
-					 }
-				 });
-				 alertBuilder.setNegativeButton(" SET ", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(final DialogInterface dialog, int which) {
+						dialog.dismiss();
+						countDialog=1;
+						validateDataOnSubmit();
+					}
+				});
+				alertBuilder.setNegativeButton(" SET ", new DialogInterface.OnClickListener() {
 
-					 @Override
-					 public void onClick(DialogInterface dialog, int which)
-					 {
-						 dialog.dismiss();
-						 datePickerDialog.show();
-					 }
-				 });
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss();
+						datePickerDialog.show();
+					}
+				});
 
-				 alertBuilder.show();
+				alertBuilder.show();
 
-			 }
+			}
 
-			 else
-			 {
-				 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
-				 if(passcode_switchView.isChecked())
+			else
+			{
+				// if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
+				if(passcode_switchView.isChecked())
 
-				 {
-					 // if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
-					 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
-						 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
+				{
+					// if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
+					if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
+						showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
 					 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
 						 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
-					 else
-					 {
-						 moveToLocationScreen();
-					 }
-				 }
-				 else
-				 {
-					 showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
-					 //moveToLocationScreen();
-				 }
-			 }
+					else
+					{
+						moveToLocationScreen();
+					}
+				}
+				else
+				{
+					showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
+					//moveToLocationScreen();
+				}
+			}
 		}
 	}
 }

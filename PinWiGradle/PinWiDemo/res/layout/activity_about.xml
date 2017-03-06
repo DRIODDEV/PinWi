@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
-    tools:context="com.twotech.activity.AboutActivity"
     tools:ignore="MergeRootFrame" >
 
     <WebView

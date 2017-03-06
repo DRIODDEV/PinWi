@@ -38,7 +38,7 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 
 	private View view;
 	public static DelightTrendsByActivityFragment delightTrendsByActivityFragment;
-	private ShowMessages showMessage=null;  
+	private ShowMessages showMessage=null;
 	private ServiceMethod serviceMethod=null;
 	private CheckNetwork checkNetwork=null;
 
@@ -49,7 +49,7 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+			Bundle savedInstanceState)
 	{
 		view=inflater.inflate(R.layout.activity_barchart, container, false);
 		mListener.onFragmentAttached(false,"  Insights");
@@ -68,7 +68,7 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 
 
 
-		return view;		
+		return view;
 	}
 
 
@@ -83,7 +83,7 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 
 
 
-	private ProgressDialog progressDialogDelightTrendsByActivity=null;	
+	private ProgressDialog progressDialogDelightTrendsByActivity=null;
 
 	private class AsyncTaskDelightTrendsByActivity extends AsyncTask<Void, Void, Integer>
 	{
@@ -106,7 +106,7 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 			{
 				getDelightTraitsByActivityList =serviceMethod.getDelightTraitsByActivityList(StaticVariables.currentChild.getChildID(),StaticVariables.ActivityIdInsight);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -142,19 +142,19 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 					setDelightFrameByActivityData();
 				}
 				else
-				{	
+				{
 					getError();
 
-				}	
+				}
 
 
 
-			}	
+			}
 		}
 
 		private void getError()
 		{
-			Error err = serviceMethod.getError();	
+			Error err = serviceMethod.getError();
 			showMessage.showAlert("Alert", "Insufficient Data");
 		}
 	}
@@ -233,10 +233,10 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 
 		ArrayList<String> xVals = new ArrayList<String>();
 		ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-		for (int i = 0; i < getDelightTraitsByActivityList.getGetDelightTraitsByActivity().size(); i++) 
+		for (int i = 0; i < getDelightTraitsByActivityList.getGetDelightTraitsByActivity().size(); i++)
 		{
 			xVals.add(getDelightTraitsByActivityList.getGetDelightTraitsByActivity().get(i).getActivityDate());
-			yVals1.add(new BarEntry(getDelightTraitsByActivityList.getGetDelightTraitsByActivity().get(i).getRating(), i)); 
+			yVals1.add(new BarEntry(getDelightTraitsByActivityList.getGetDelightTraitsByActivity().get(i).getRating(), i));
 		}
 
 
@@ -298,7 +298,7 @@ public class DelightTrendsByActivityFragment extends ParentFragment
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
-	}  
+	}
 
 
 

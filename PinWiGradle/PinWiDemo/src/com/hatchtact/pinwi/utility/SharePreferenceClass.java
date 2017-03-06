@@ -386,6 +386,7 @@ public class SharePreferenceClass
 		editor.commit();
 	}
 
+
 	public int isFirstTimeActivityScheduled(String key) 
 	{		
 		return sharedPreferences.getInt(key+"ActivitySchedule",0);
@@ -452,5 +453,16 @@ public class SharePreferenceClass
 	public boolean isNetworkTableCreated()
 	{
 		return sharedPreferences.getBoolean("networkTableCreated",false);
+	}
+
+	public void setChildAdded(boolean childAdded)
+	{
+		editor = sharedPreferences.edit();
+		editor.putBoolean("childAdded", childAdded);
+		editor.commit();
+	}
+	public boolean isChildAdded()
+	{
+		return sharedPreferences.getBoolean("childAdded",false);
 	}
 }

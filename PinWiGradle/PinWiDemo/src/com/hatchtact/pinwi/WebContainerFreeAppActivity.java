@@ -1,8 +1,6 @@
 package com.hatchtact.pinwi;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -23,6 +21,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -33,7 +34,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.adapter.NavDrawerListAdapterMenu;
-import com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck;
 import com.hatchtact.pinwi.classmodel.NavigationDrawerItem;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.sync.ServiceMethod;
@@ -46,14 +46,14 @@ import com.hatchtact.pinwi.utility.TypeFace;
 
 import java.util.ArrayList;
 
-public class GetStartedActivity extends MainActionBarActivity
+public class WebContainerFreeAppActivity extends MainActionBarActivity
 {
-	private TextView welcome_textView=null;
-	private TextView getStartedText_textView=null;
 	private Button getStarted_button=null;
 	private Button button_fullver=null;
 	private TypeFace typeFace=null;
 	private SharePreferenceClass sharePreferenceclass=null;
+	WebView webView;
+
 	// slide menu items
 	private String[] navMenuTitles;
 	private TypedArray navMenuIcons;
@@ -64,6 +64,7 @@ public class GetStartedActivity extends MainActionBarActivity
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Bitmap bitmapHeader;
+
 	protected CustomLoader customProgressLoader;
 	private ServiceMethod serviceMethod;
 	private Gson gsonRegistration=null;
@@ -71,30 +72,31 @@ public class GetStartedActivity extends MainActionBarActivity
 	private int parentId;
 	private String parentEmailId;
 	private SocialConstants social;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 
-		screenName="Welcome to PiNWi";
 
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.getstarted_activity);
+		setContentView(R.layout.webcontainer_activity);
 		social=new SocialConstants(this);
+		//Declaring the WebView
+		webView = (WebView) findViewById(R.id.webView1);
+		webView.setWebChromeClient(new WebChromeClient(){});
+		webView.setWebViewClient(new myWebViewClient());
 		typeFace= new TypeFace(this);
-		customProgressLoader=new CustomLoader(GetStartedActivity.this);
+		customProgressLoader=new CustomLoader(WebContainerFreeAppActivity.this);
 		serviceMethod=new ServiceMethod();
 		gsonRegistration=new GsonBuilder().create();
 
 
-		sharePreferenceclass=new SharePreferenceClass(GetStartedActivity.this);
+		sharePreferenceclass=new SharePreferenceClass(WebContainerFreeAppActivity.this);
 		try {
 			parentCompleteInformation = gsonRegistration.fromJson(sharePreferenceclass.getParentProfile(), ParentProfile.class);
 			parentId=parentCompleteInformation.getParentID();
 			parentEmailId=parentCompleteInformation.getEmailAddress();
-			StaticVariables.currentParentId=parentId;
 		}
 		catch (Exception e)
 		{
@@ -107,42 +109,21 @@ public class GetStartedActivity extends MainActionBarActivity
 		{
 
 		}
-		welcome_textView=(TextView) findViewById(R.id.text_welcome);
 		getStarted_button=(Button) findViewById(R.id.button_getStarted);
-		getStartedText_textView=(TextView) findViewById(R.id.text_started);
 		button_fullver=(Button) findViewById(R.id.button_fullver);
 
-		typeFace.setTypefaceRegular(welcome_textView);
-		typeFace.setTypefaceLight(getStartedText_textView);
 		typeFace.setTypefaceRegular(getStarted_button);
 		typeFace.setTypefaceRegular(button_fullver);
-		try {
-			new UpdateAppVersionAsyncTask().execute();
-		}
-		catch (Exception e)
-		{
-
-		}
 
 		//free version click
 		getStarted_button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				/*sharePreferenceclass.setIsLogin(true);
-				System.out.println("value of is registered in parentprofile"+sharePreferenceclass.getParentIsRegistered());
-				System.out.println("value of is login in parentprofile"+sharePreferenceclass.getIsLogin());
-				
-				Intent intent=new Intent(GetStartedActivity.this, AccessProfileActivity.class);
+				Intent intent=new Intent(WebContainerFreeAppActivity.this, ChildListFreeActivity.class);
 				startActivity(intent);
-				sharePreferenceclass.setCurrentScreen(4);
-				GetStartedActivity.this.finish();*/
-				social.instantDemoGoogleAnalyticsLog();
-				social.instantDemoFacebookLog();
-				sharePreferenceclass.setIsLogin(true);
-				Intent intent=new Intent(GetStartedActivity.this, ChildListFreeActivity.class);
-				startActivity(intent);
-				GetStartedActivity.this.finish();
+				WebContainerFreeAppActivity.this.finish();
+
 			}
 		});
 
@@ -151,19 +132,59 @@ public class GetStartedActivity extends MainActionBarActivity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				social.fullVersionGoogleAnalyticsLog();
-				social.fullVersionFacebookLog();
+				//in app purchase
+				social.fullVersion2GoogleAnalyticsLog();
+				social.fullVersion2FacebookLog();
 				new GetPaymentStatusCheckAsyncTask().execute();
-				/*sharePreferenceclass.setIsLogin(true);
-				Intent intent=new Intent(GetStartedActivity.this, AccessProfileActivity.class);
+
+			/*	Intent intent=new Intent(WebContainerFreeAppActivity.this, AccessProfileActivity.class);
 				startActivity(intent);
 				sharePreferenceclass.setCurrentScreen(4);
-				GetStartedActivity.this.finish();*/
+				WebContainerFreeAppActivity.this.finish();*/
 			}
 		});
 		// load slide menu items
 		initializeNavigationDrawerItems();//initialize navigation drawer items
 		initializeActionBar();//initialization of action bar and drawer items
+
+		webView.getSettings().setJavaScriptEnabled(true);
+		// webView.getSettings().setPluginState(PluginState.ON);
+		//Setting the settings for the webview
+		webView.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				return true;
+			}
+		});
+		webView.getSettings().setSupportZoom(true);
+		webView.getSettings().setBuiltInZoomControls(true);
+		/* webView.setOnKeyListener(new View.OnKeyListener()
+	        {
+	            @Override
+	            public boolean onKey(View v, int keyCode, KeyEvent event)
+	            {
+	                if(event.getAction() == KeyEvent.ACTION_DOWN)
+	                {
+	                    WebView webView = (WebView) v;
+
+	                    switch(keyCode)
+	                    {
+	                        case KeyEvent.KEYCODE_BACK:
+	                            if(webView.canGoBack())
+	                            {
+	                                webView.goBack();
+	                                return true;
+	                            }
+	                            break;
+	                    }
+	                }
+
+	                return false;
+	            }
+	        });*/
+
+
+		webView.loadUrl(StaticVariables.freeAppWebUrl);
 	}
 
 	/**
@@ -223,6 +244,14 @@ public class GetStartedActivity extends MainActionBarActivity
 		// TODO Auto-generated method stub
 	}*/
 
+	@Override
+	public void onBackPressed() {
+		finish();
+		Intent childIntent=new Intent(WebContainerFreeAppActivity.this,ChildListFreeActivity.class);
+		startActivity(childIntent);
+	}
+
+
 	/**
 	 *
 	 */
@@ -264,7 +293,7 @@ public class GetStartedActivity extends MainActionBarActivity
 
 		//getActionBar().setTitle("Hi "+ parentCompleteInformation.getFirstName());
 
-		String string=" Welcome To PiNWi";
+		String string=" Instant Demo";
 		SpannableString s = new SpannableString(string);
 		s.setSpan(new TypefaceSpan("Roboto-Bold.ttf"), 0, s.length(),
 				Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -327,7 +356,7 @@ public class GetStartedActivity extends MainActionBarActivity
 				mDrawerLayout.closeDrawers();
 				break;*/
 			case 0:
-				Intent intentAboutUs =new Intent(GetStartedActivity.this, ActivityAboutUS.class);
+				Intent intentAboutUs =new Intent(WebContainerFreeAppActivity.this, ActivityAboutUS.class);
 				startActivity(intentAboutUs);
 				StaticVariables.webUrl="http://pinwi.in/aboutus.html";
 				break;
@@ -339,7 +368,7 @@ public class GetStartedActivity extends MainActionBarActivity
 			startActivity(intentSupport);
 			break;*/
 			case 4:
-				Intent intentTutorial =new Intent(GetStartedActivity.this, ActivityTutorial.class);
+				Intent intentTutorial =new Intent(WebContainerFreeAppActivity.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
 				break;
 			/*case 3:
@@ -347,23 +376,23 @@ public class GetStartedActivity extends MainActionBarActivity
 			startActivity(intentInvite);
 			break;*/
 			case 3:
-				Intent intentInvite =new Intent(GetStartedActivity.this, ActivityInvite.class);
+				Intent intentInvite =new Intent(WebContainerFreeAppActivity.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
 			case 5:
-				Intent intentContactus =new Intent(GetStartedActivity.this, ActivityAboutUS.class);
+				Intent intentContactus =new Intent(WebContainerFreeAppActivity.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
 
 				break;
 			case 1:
 				mDrawerLayout.closeDrawers();
-				Intent childIntent=new Intent(GetStartedActivity.this,ChildListActivity.class);
+				Intent childIntent=new Intent(WebContainerFreeAppActivity.this,ChildListActivity.class);
 				startActivity(childIntent);
 				break;
 			case 2:
 				mDrawerLayout.closeDrawers();
-				Intent parentIntent=new Intent(GetStartedActivity.this,ParentRegistrationActivity.class);
+				Intent parentIntent=new Intent(WebContainerFreeAppActivity.this,ParentRegistrationActivity.class);
 				Bundle bundle=new Bundle();
 				bundle.putBoolean("ToParentScreen", true);
 				parentIntent.putExtras(bundle);
@@ -374,7 +403,7 @@ public class GetStartedActivity extends MainActionBarActivity
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");
 				finish();
-				Intent intent = new Intent(GetStartedActivity.this, LoginActivity.class);
+				Intent intent = new Intent(WebContainerFreeAppActivity.this, LoginActivity.class);
 				startActivity(intent);
 				android.os.Process.killProcess(android.os.Process.myPid());
 
@@ -415,6 +444,24 @@ public class GetStartedActivity extends MainActionBarActivity
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
+	class myWebViewClient extends WebViewClient {
+		@Override
+		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			return super.shouldOverrideUrlLoading(view, url);    //To change body of overridden methods use File | Settings | File Templates.
+		}
+		boolean error;
+		@Override
+		public void onReceivedError( WebView view, int errorCode, String description, String failingUrl)  {
+
+			error = true;
+			System.out.println("description error" + description);
+			view.setVisibility( View.GONE );
+			Toast.makeText(WebContainerFreeAppActivity.this, "This feature is unavailable at the moment, please try again later.", Toast.LENGTH_LONG).show();
+			finish();
+		}
+
+	}
+
 	private com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck modelStatus;
 	private class GetPaymentStatusCheckAsyncTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -443,7 +490,7 @@ public class GetStartedActivity extends MainActionBarActivity
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(new CheckNetwork().checkNetworkConnection(GetStartedActivity.this))
+			if(new CheckNetwork().checkNetworkConnection(WebContainerFreeAppActivity.this))
 			{
 				modelStatus =serviceMethod.getPaymentStatusCheck(parentId,parentEmailId);
 			}
@@ -480,101 +527,28 @@ public class GetStartedActivity extends MainActionBarActivity
 					if(modelStatus.getPaymentStatus()==1)
 					{
 						sharePreferenceclass.setIsLogin(true);
-						Intent intent=new Intent(GetStartedActivity.this, AccessProfileActivity.class);
+						Intent intent=new Intent(WebContainerFreeAppActivity.this, AccessProfileActivity.class);
 						startActivity(intent);
 						sharePreferenceclass.setCurrentScreen(4);
-						GetStartedActivity.this.finish();
+						WebContainerFreeAppActivity.this.finish();
 					}
 					else
 					{
 						//Toast.makeText(GetStartedActivity.this,"Not Purchased ",Toast.LENGTH_LONG).show();
-						StaticVariables.screenForPurchase=1;
+						StaticVariables.screenForPurchase=2;
 						finish();
-						Intent intent=new Intent(GetStartedActivity.this, InAppPurchaseActivity.class);
+						Intent intent=new Intent(WebContainerFreeAppActivity.this, InAppPurchaseActivity.class);
 						startActivity(intent);
 					}
 				}
 				else
 				{
 					//Toast.makeText(GetStartedActivity.this,"Not Purchased ",Toast.LENGTH_LONG).show();
-					StaticVariables.screenForPurchase=1;
+					StaticVariables.screenForPurchase=2;
 					finish();
-					Intent intent=new Intent(GetStartedActivity.this, InAppPurchaseActivity.class);
+					Intent intent=new Intent(WebContainerFreeAppActivity.this, InAppPurchaseActivity.class);
 					startActivity(intent);
 				}
-			}
-
-		}
-	}
-	private String versionName="";
-
-	private class UpdateAppVersionAsyncTask extends AsyncTask<Void, Void, Integer>
-	{
-
-
-		public UpdateAppVersionAsyncTask()
-		{
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
-			super.onPreExecute();
-			if(customProgressLoader!=null)
-			{
-				customProgressLoader.startHandler();
-			}
-			PackageManager manager = getPackageManager();
-			PackageInfo info = null;
-			try {
-				info = manager.getPackageInfo( getPackageName(), 0);
-				//"Version 3.0"
-				versionName=info.versionName;
-			} catch (PackageManager.NameNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Override
-		protected Integer doInBackground(Void... params)
-		{
-			// TODO Auto-generated method stub
-			int ErrorCode=0;
-
-			if(new CheckNetwork().checkNetworkConnection(GetStartedActivity.this))
-			{
-				ErrorCode =serviceMethod.updateAppVersion(sharePreferenceclass.getDeviceId(),parentId,versionName);
-			}
-			else
-			{
-				ErrorCode=-1;
-			}
-			return ErrorCode;
-		}
-
-		@Override
-		protected void onPostExecute(Integer  result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-
-			try {
-				customProgressLoader.removeCallbacksHandler();
-			/*	if (progressDialog.isShowing())
-					progressDialog.cancel();*/
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			if(result==-1)
-			{
-
-
-			}
-			else
-			{
-
 			}
 
 		}

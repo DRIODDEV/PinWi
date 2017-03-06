@@ -1,8 +1,6 @@
 package com.hatchtact.pinwi;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -11,6 +9,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,41 +22,56 @@ import android.support.v4.widget.DrawerLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.TypefaceSpan;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.adapter.ChildFreeListAdapter;
 import com.hatchtact.pinwi.adapter.NavDrawerListAdapterMenu;
-import com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck;
+import com.hatchtact.pinwi.classmodel.AccessProfile;
+import com.hatchtact.pinwi.classmodel.AccessProfileList;
+import com.hatchtact.pinwi.classmodel.ChildModel;
+import com.hatchtact.pinwi.classmodel.ChildProfile;
+import com.hatchtact.pinwi.classmodel.GetListofChildsByParentIDList;
 import com.hatchtact.pinwi.classmodel.NavigationDrawerItem;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.sync.ServiceMethod;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
-import com.hatchtact.pinwi.utility.SocialConstants;
+import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 import java.util.ArrayList;
 
-public class GetStartedActivity extends MainActionBarActivity
+public class ChildListFreeActivity extends MainActionBarActivity implements AdapterView.OnItemClickListener
 {
-	private TextView welcome_textView=null;
-	private TextView getStartedText_textView=null;
-	private Button getStarted_button=null;
-	private Button button_fullver=null;
+	private TextView text_started=null;
 	private TypeFace typeFace=null;
 	private SharePreferenceClass sharePreferenceclass=null;
+	private ListView listView;
+	private ShowMessages showMessage=null;
+	private ServiceMethod serviceMethod=null;
+	private CheckNetwork checkNetwork=null;
+
+	//private GetListofChildsByParentIDList getListofChildsByParentIDList;
+	private AccessProfileList accessProfileList=null;
+
+	private ChildFreeListAdapter childListAdapter=null;
+	int parentId=0;
+
+	private ParentProfile parentCompleteInformation;
+	private Gson gsonRegistration=null;
+	private CustomLoader customProgressLoader;
+
 	// slide menu items
 	private String[] navMenuTitles;
 	private TypedArray navMenuIcons;
@@ -64,42 +82,28 @@ public class GetStartedActivity extends MainActionBarActivity
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Bitmap bitmapHeader;
-	protected CustomLoader customProgressLoader;
-	private ServiceMethod serviceMethod;
-	private Gson gsonRegistration=null;
-	private ParentProfile parentCompleteInformation;
-	private int parentId;
-	private String parentEmailId;
-	private SocialConstants social;
+	private String parentName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 
-		screenName="Welcome to PiNWi";
 
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.getstarted_activity);
-		social=new SocialConstants(this);
+		setContentView(R.layout.activity_childlist_free);
+		customProgressLoader=new CustomLoader(ChildListFreeActivity.this);
+
 		typeFace= new TypeFace(this);
-		customProgressLoader=new CustomLoader(GetStartedActivity.this);
+		//getListofChildsByParentIDList=new GetListofChildsByParentIDList();
+		accessProfileList=new AccessProfileList();
+
 		serviceMethod=new ServiceMethod();
+		showMessage=new ShowMessages(ChildListFreeActivity.this);
+		checkNetwork=new CheckNetwork();
 		gsonRegistration=new GsonBuilder().create();
-
-
-		sharePreferenceclass=new SharePreferenceClass(GetStartedActivity.this);
-		try {
-			parentCompleteInformation = gsonRegistration.fromJson(sharePreferenceclass.getParentProfile(), ParentProfile.class);
-			parentId=parentCompleteInformation.getParentID();
-			parentEmailId=parentCompleteInformation.getEmailAddress();
-			StaticVariables.currentParentId=parentId;
-		}
-		catch (Exception e)
-		{
-
-		}
+		sharePreferenceclass=new SharePreferenceClass(ChildListFreeActivity.this);
 		try {
 			bitmapHeader = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.header_bg), SplashActivity.ScreenWidth, BitmapFactory.decodeResource(getResources(), R.drawable.header_bg).getHeight(), false);
 		}
@@ -107,60 +111,16 @@ public class GetStartedActivity extends MainActionBarActivity
 		{
 
 		}
-		welcome_textView=(TextView) findViewById(R.id.text_welcome);
-		getStarted_button=(Button) findViewById(R.id.button_getStarted);
-		getStartedText_textView=(TextView) findViewById(R.id.text_started);
-		button_fullver=(Button) findViewById(R.id.button_fullver);
+		text_started=(TextView) findViewById(R.id.text_started);
+		listView= (ListView) findViewById(R.id.containallchildname_list);
+		typeFace.setTypefaceBold(text_started);
 
-		typeFace.setTypefaceRegular(welcome_textView);
-		typeFace.setTypefaceLight(getStartedText_textView);
-		typeFace.setTypefaceRegular(getStarted_button);
-		typeFace.setTypefaceRegular(button_fullver);
-		try {
-			new UpdateAppVersionAsyncTask().execute();
-		}
-		catch (Exception e)
-		{
+		parentCompleteInformation = gsonRegistration.fromJson(sharePreferenceclass.getParentProfile(), ParentProfile.class);
+		parentId=parentCompleteInformation.getParentID();
+		parentName=parentCompleteInformation.getFirstName();
+		//new GetChildName().execute();
+		new GetAccessProfile(parentId).execute();
 
-		}
-
-		//free version click
-		getStarted_button.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				/*sharePreferenceclass.setIsLogin(true);
-				System.out.println("value of is registered in parentprofile"+sharePreferenceclass.getParentIsRegistered());
-				System.out.println("value of is login in parentprofile"+sharePreferenceclass.getIsLogin());
-				
-				Intent intent=new Intent(GetStartedActivity.this, AccessProfileActivity.class);
-				startActivity(intent);
-				sharePreferenceclass.setCurrentScreen(4);
-				GetStartedActivity.this.finish();*/
-				social.instantDemoGoogleAnalyticsLog();
-				social.instantDemoFacebookLog();
-				sharePreferenceclass.setIsLogin(true);
-				Intent intent=new Intent(GetStartedActivity.this, ChildListFreeActivity.class);
-				startActivity(intent);
-				GetStartedActivity.this.finish();
-			}
-		});
-
-		//buy full version click
-		button_fullver.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				social.fullVersionGoogleAnalyticsLog();
-				social.fullVersionFacebookLog();
-				new GetPaymentStatusCheckAsyncTask().execute();
-				/*sharePreferenceclass.setIsLogin(true);
-				Intent intent=new Intent(GetStartedActivity.this, AccessProfileActivity.class);
-				startActivity(intent);
-				sharePreferenceclass.setCurrentScreen(4);
-				GetStartedActivity.this.finish();*/
-			}
-		});
 		// load slide menu items
 		initializeNavigationDrawerItems();//initialize navigation drawer items
 		initializeActionBar();//initialization of action bar and drawer items
@@ -264,7 +224,7 @@ public class GetStartedActivity extends MainActionBarActivity
 
 		//getActionBar().setTitle("Hi "+ parentCompleteInformation.getFirstName());
 
-		String string=" Welcome To PiNWi";
+		String string=" Select Child";
 		SpannableString s = new SpannableString(string);
 		s.setSpan(new TypefaceSpan("Roboto-Bold.ttf"), 0, s.length(),
 				Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -327,7 +287,7 @@ public class GetStartedActivity extends MainActionBarActivity
 				mDrawerLayout.closeDrawers();
 				break;*/
 			case 0:
-				Intent intentAboutUs =new Intent(GetStartedActivity.this, ActivityAboutUS.class);
+				Intent intentAboutUs =new Intent(ChildListFreeActivity.this, ActivityAboutUS.class);
 				startActivity(intentAboutUs);
 				StaticVariables.webUrl="http://pinwi.in/aboutus.html";
 				break;
@@ -339,7 +299,7 @@ public class GetStartedActivity extends MainActionBarActivity
 			startActivity(intentSupport);
 			break;*/
 			case 4:
-				Intent intentTutorial =new Intent(GetStartedActivity.this, ActivityTutorial.class);
+				Intent intentTutorial =new Intent(ChildListFreeActivity.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
 				break;
 			/*case 3:
@@ -347,23 +307,23 @@ public class GetStartedActivity extends MainActionBarActivity
 			startActivity(intentInvite);
 			break;*/
 			case 3:
-				Intent intentInvite =new Intent(GetStartedActivity.this, ActivityInvite.class);
+				Intent intentInvite =new Intent(ChildListFreeActivity.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
 			case 5:
-				Intent intentContactus =new Intent(GetStartedActivity.this, ActivityAboutUS.class);
+				Intent intentContactus =new Intent(ChildListFreeActivity.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
 
 				break;
 			case 1:
 				mDrawerLayout.closeDrawers();
-				Intent childIntent=new Intent(GetStartedActivity.this,ChildListActivity.class);
-				startActivity(childIntent);
+				Intent childIntent=new Intent(ChildListFreeActivity.this,ChildListActivity.class);
+				startActivityForResult(childIntent,1000);
 				break;
 			case 2:
 				mDrawerLayout.closeDrawers();
-				Intent parentIntent=new Intent(GetStartedActivity.this,ParentRegistrationActivity.class);
+				Intent parentIntent=new Intent(ChildListFreeActivity.this,ParentRegistrationActivity.class);
 				Bundle bundle=new Bundle();
 				bundle.putBoolean("ToParentScreen", true);
 				parentIntent.putExtras(bundle);
@@ -374,7 +334,7 @@ public class GetStartedActivity extends MainActionBarActivity
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");
 				finish();
-				Intent intent = new Intent(GetStartedActivity.this, LoginActivity.class);
+				Intent intent = new Intent(ChildListFreeActivity.this, LoginActivity.class);
 				startActivity(intent);
 				android.os.Process.killProcess(android.os.Process.myPid());
 
@@ -415,26 +375,19 @@ public class GetStartedActivity extends MainActionBarActivity
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	private com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck modelStatus;
-	private class GetPaymentStatusCheckAsyncTask extends AsyncTask<Void, Void, Integer>
+/*	private class GetChildName extends AsyncTask<Void, Void, Integer>
 	{
-
-
-		public GetPaymentStatusCheckAsyncTask()
-		{
-			// TODO Auto-generated constructor stub
-		}
-
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+
 			if(customProgressLoader!=null)
 			{
 				customProgressLoader.startHandler();
 			}
-			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);*/
+			*//*progressDialog = ProgressDialog.show(ChildListActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*//*
 		}
 
 		@Override
@@ -443,9 +396,9 @@ public class GetStartedActivity extends MainActionBarActivity
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(new CheckNetwork().checkNetworkConnection(GetStartedActivity.this))
+			if(checkNetwork.checkNetworkConnection(ChildListFreeActivity.this))
 			{
-				modelStatus =serviceMethod.getPaymentStatusCheck(parentId,parentEmailId);
+				getListofChildsByParentIDList =serviceMethod.getchildListByParentId(parentId);
 			}
 			else
 			{
@@ -461,8 +414,8 @@ public class GetStartedActivity extends MainActionBarActivity
 
 			try {
 				customProgressLoader.removeCallbacksHandler();
-			/*	if (progressDialog.isShowing())
-					progressDialog.cancel();*/
+				*//*if (progressDialog.isShowing())
+					progressDialog.cancel();*//*
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -470,70 +423,100 @@ public class GetStartedActivity extends MainActionBarActivity
 
 			if(result==-1)
 			{
+				showMessage.showToastMessage("Please check your network connection");
 
+				if(checkNetwork.checkNetworkConnection(ChildListFreeActivity.this))
+					new GetChildName().execute();
 
 			}
 			else
 			{
-				if(modelStatus!=null)
+				if(getListofChildsByParentIDList!=null && getListofChildsByParentIDList.getGetListofChildsByParentID().size()>0)
 				{
-					if(modelStatus.getPaymentStatus()==1)
+					StaticVariables.childInfo.clear();
+					StaticVariables.childArrayList.clear();
+					StaticVariables.isChildUpdated=true;
+					for(int i=0;i<getListofChildsByParentIDList.getGetListofChildsByParentID().size();i++)
 					{
-						sharePreferenceclass.setIsLogin(true);
-						Intent intent=new Intent(GetStartedActivity.this, AccessProfileActivity.class);
-						startActivity(intent);
-						sharePreferenceclass.setCurrentScreen(4);
-						GetStartedActivity.this.finish();
+
+						ChildProfile child = new ChildProfile();
+						child.setChildID(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getChildID());
+						child.setFirstName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getNickName());
+						//child.setNickName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getNickName());
+						//child.setProfileImage(accessProfileList.getAccessProfileList().get(i).getProfileImage());
+
+						StaticVariables.childInfo.add(child);
+						ChildModel model=new ChildModel();
+						model.setChildID(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getChildID());
+						model.setFirstName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getFirstName());
+						model.setNickName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getNickName());
+						StaticVariables.childArrayList.add(model);
+
 					}
-					else
-					{
-						//Toast.makeText(GetStartedActivity.this,"Not Purchased ",Toast.LENGTH_LONG).show();
-						StaticVariables.screenForPurchase=1;
-						finish();
-						Intent intent=new Intent(GetStartedActivity.this, InAppPurchaseActivity.class);
-						startActivity(intent);
-					}
+
+					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
+					childListAdapter=new ChildFreeListAdapter(ChildListFreeActivity.this, getListofChildsByParentIDList.getGetListofChildsByParentID(),ChildListFreeActivity.this);
+					listView.setAdapter(childListAdapter);
+					childListAdapter.notifyDataSetChanged();
+					listView.setOnItemClickListener(ChildListFreeActivity.this);
 				}
 				else
 				{
-					//Toast.makeText(GetStartedActivity.this,"Not Purchased ",Toast.LENGTH_LONG).show();
-					StaticVariables.screenForPurchase=1;
-					finish();
-					Intent intent=new Intent(GetStartedActivity.this, InAppPurchaseActivity.class);
-					startActivity(intent);
+					getError();
 				}
 			}
-
 		}
+	}*/
+
+	private void getError()
+	{/*
+		Error err = serviceMethod.getError();
+		showMessage.showAlert("Warning", err.getErrorDesc());
+	 */}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+		// TODO Auto-generated method stub
+		//intent free app
+		StaticVariables.freeAppWebUrl="http://demo.pinwi.in/interst-driver.aspx";
+		//StaticVariables.freeAppWebUrl="http://pinwidemo.staging4.nz-technologies.com/interst-driver.aspx";
+		if(accessProfileList!=null&& accessProfileList.getAccessProfileList().size()>0)
+		{
+			StaticVariables.freeAppWebUrl=StaticVariables.freeAppWebUrl+"?ChildID="+
+					accessProfileList.getAccessProfileList().get(position).getProfileID()+"&&ParentID="+parentId+"&&ParentName="+parentName;
+		}
+		Intent intent=new Intent(ChildListFreeActivity.this, WebContainerFreeAppActivity.class);
+		startActivity(intent);
+		ChildListFreeActivity.this.finish();
 	}
-	private String versionName="";
 
-	private class UpdateAppVersionAsyncTask extends AsyncTask<Void, Void, Integer>
+	@Override
+	public void onBackPressed() {
+		finish();
+		Intent childIntent=new Intent(ChildListFreeActivity.this,GetStartedActivity.class);
+		startActivity(childIntent);
+	}
+
+
+	private class GetAccessProfile extends AsyncTask<Void, Void, Integer>
 	{
+		private int parentId;
+		private boolean isNeedToShowProgress=false;
 
-
-		public UpdateAppVersionAsyncTask()
+		public GetAccessProfile(int parentId)
 		{
 			// TODO Auto-generated constructor stub
+			this.parentId = parentId;
 		}
 
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			if(customProgressLoader!=null)
-			{
-				customProgressLoader.startHandler();
-			}
-			PackageManager manager = getPackageManager();
-			PackageInfo info = null;
-			try {
-				info = manager.getPackageInfo( getPackageName(), 0);
-				//"Version 3.0"
-				versionName=info.versionName;
-			} catch (PackageManager.NameNotFoundException e) {
-				e.printStackTrace();
-			}
+
+			customProgressLoader.startHandler();
+			/*	progressDialogdeAccessProfile = ProgressDialog.show(AccessProfileActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialogdeAccessProfile.setCancelable(false);*/
 		}
 
 		@Override
@@ -542,9 +525,13 @@ public class GetStartedActivity extends MainActionBarActivity
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(new CheckNetwork().checkNetworkConnection(GetStartedActivity.this))
+			if(checkNetwork.checkNetworkConnection(ChildListFreeActivity.this))
 			{
-				ErrorCode =serviceMethod.updateAppVersion(sharePreferenceclass.getDeviceId(),parentId,versionName);
+				accessProfileList = serviceMethod.getaccessProfile(parentId);
+				if(accessProfileList!=null&& accessProfileList.getAccessProfileList().size()>0)
+				{
+					accessProfileList.getAccessProfileList().remove(0);
+				}
 			}
 			else
 			{
@@ -559,9 +546,9 @@ public class GetStartedActivity extends MainActionBarActivity
 			super.onPostExecute(result);
 
 			try {
+
 				customProgressLoader.removeCallbacksHandler();
-			/*	if (progressDialog.isShowing())
-					progressDialog.cancel();*/
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -569,14 +556,67 @@ public class GetStartedActivity extends MainActionBarActivity
 
 			if(result==-1)
 			{
+				showMessage.showToastMessage("Please check your network connection");
 
-
+				if(checkNetwork.checkNetworkConnection(ChildListFreeActivity.this))
+					new GetAccessProfile(parentId).execute();
 			}
 			else
 			{
 
-			}
+				StaticVariables.childInfo.clear();
+				if(accessProfileList!=null && accessProfileList.getAccessProfileList().size()>0)
+				{
 
+					StaticVariables.childInfo.clear();
+					StaticVariables.childArrayList.clear();
+					StaticVariables.isChildUpdated=true;
+					/*for(int i=0;i<accessProfileList.getGetListofChildsByParentID().size();i++)
+					{
+
+						ChildProfile child = new ChildProfile();
+						child.setChildID(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getChildID());
+						child.setFirstName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getNickName());
+						//child.setNickName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getNickName());
+						//child.setProfileImage(accessProfileList.getAccessProfileList().get(i).getProfileImage());
+
+						StaticVariables.childInfo.add(child);
+						ChildModel model=new ChildModel();
+						model.setChildID(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getChildID());
+						model.setFirstName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getFirstName());
+						model.setNickName(getListofChildsByParentIDList.getGetListofChildsByParentID().get(i).getNickName());
+						StaticVariables.childArrayList.add(model);
+
+					}
+
+					StaticVariables.currentChild=StaticVariables.childInfo.get(0);*/
+					childListAdapter=new ChildFreeListAdapter(ChildListFreeActivity.this, accessProfileList.getAccessProfileList(),ChildListFreeActivity.this);
+					listView.setAdapter(childListAdapter);
+					childListAdapter.notifyDataSetChanged();
+					listView.setOnItemClickListener(ChildListFreeActivity.this);
+				}
+				else
+				{
+					getError();
+				}
+			}
 		}
+
+
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		switch (requestCode)
+		{
+			case 1000:
+				new GetAccessProfile(parentId).execute();
+				break;
+			default:
+				break;
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }

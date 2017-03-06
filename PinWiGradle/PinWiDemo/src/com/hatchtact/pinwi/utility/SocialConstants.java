@@ -57,8 +57,12 @@ public class SocialConstants
 	public static final String  Insights_Activated="Insights_Activated";
 	public static final String  Insights_Subscribed="Insights_Subscribed";
 	public static final String  Subscribe_Button_Clicked="Subscribe_Button_Clicked";
-	public static final String  CATEGORY_MOBILE="Mobile";
-	//public static final String  CATEGORY_MOBILE="MobileProduction";
+	public static final String  INSTANTDEMO="Instant_Demo";
+	public static final String  FULLVERSION="Full_Version";
+	public static final String  FULLVERSION2="Full_Version2";
+	public static final String  CUSTOMERSTATUS="Customer_Status";
+	//public static final String  CATEGORY_MOBILE="Mobile";
+	public static final String  CATEGORY_MOBILE="MobileProduction";
 
 	private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -924,6 +928,75 @@ public class SocialConstants
 			}
 		}, 420000);
 
+	}
+
+
+
+	/**
+	 *
+	 */
+	public void instantDemoGoogleAnalyticsLog() {
+
+
+		tracker.send(MapBuilder
+				.createEvent(SocialConstants.CATEGORY_MOBILE,// Event category (required)
+						SocialConstants.CUSTOMERSTATUS,  // Event action (required)
+						SocialConstants.INSTANTDEMO,
+						null)            // Event value
+				.build()
+		);
+	}
+	/**
+	 *
+	 */
+	public void fullVersionGoogleAnalyticsLog() {
+
+
+		tracker.send(MapBuilder
+				.createEvent(SocialConstants.CATEGORY_MOBILE,// Event category (required)
+						SocialConstants.CUSTOMERSTATUS,  // Event action (required)
+						SocialConstants.FULLVERSION,
+						null)            // Event value
+				.build()
+		);
+	}
+	/**
+	 *
+	 */
+	public void fullVersion2GoogleAnalyticsLog() {
+
+
+		tracker.send(MapBuilder
+				.createEvent(SocialConstants.CATEGORY_MOBILE,// Event category (required)
+						SocialConstants.CUSTOMERSTATUS,  // Event action (required)
+						SocialConstants.FULLVERSION2,
+						null)            // Event value
+				.build()
+		);
+	}
+	/**
+	 *
+	 */
+	public void instantDemoFacebookLog() {
+		//Bundle parameters = new Bundle();
+		//parameters.putString(SocialConstants.Registration_Method,"Email");
+
+		logger.logEvent(SocialConstants.INSTANTDEMO);
+		mFirebaseAnalytics.logEvent(SocialConstants.INSTANTDEMO,null);
+	}
+	public void fullVersionFacebookLog() {
+		//Bundle parameters = new Bundle();
+		//parameters.putString(SocialConstants.Registration_Method,"Email");
+
+		logger.logEvent(SocialConstants.FULLVERSION);
+		mFirebaseAnalytics.logEvent(SocialConstants.FULLVERSION,null);
+	}
+	public void fullVersion2FacebookLog() {
+		//Bundle parameters = new Bundle();
+		//parameters.putString(SocialConstants.Registration_Method,"Email");
+
+		logger.logEvent(SocialConstants.FULLVERSION2);
+		mFirebaseAnalytics.logEvent(SocialConstants.FULLVERSION2,null);
 	}
 
 }

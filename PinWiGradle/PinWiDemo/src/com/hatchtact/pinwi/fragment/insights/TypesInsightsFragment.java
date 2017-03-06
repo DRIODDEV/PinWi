@@ -1590,7 +1590,10 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 									new InsightsErrorFragment()).commitAllowingStateLoss();
 						} else if (reportStatus == 1) {
 							//mainscroll.setAlpha(1f);
-
+							if(modelSubscribe!=null)
+							{
+								modelSubscribe.setStatus("true");
+							}
 							refreshDataAccordingToChild();
 
 						}
