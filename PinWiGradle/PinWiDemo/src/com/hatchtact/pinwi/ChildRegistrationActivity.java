@@ -15,7 +15,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
@@ -78,6 +77,7 @@ import com.hatchtact.pinwi.classmodel.SchoolList;
 import com.hatchtact.pinwi.classmodel.UpdateChildProfile;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -96,6 +96,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	private EditText childpasscode_editText=null;
 	private AutoCompleteTextView childautolocktime_autoCompleteTextView=null;
 	private Button continue_button=null;
+	private Button button_new_continue_Child;
 	private ImageView childprofilePic_imageView=null;
 	private ImageView childdob_button=null;
 	private TextView addanotherchild_textView=null;
@@ -153,6 +154,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	private TextView textchild_passcode;
 	private boolean isPasscodeTouched=false;//need to use this flag
 	private TextView header_text,header_help;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -163,10 +165,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.child_registration_activity);
+		customProgressLoader=new CustomLoader(ChildRegistrationActivity.this);
+
 		isLockDialogClicked=false;
 		Bundle bundle = getIntent().getExtras();
 
-		try {	
+		try {
 			childUpdate = bundle.getBoolean("ToChildScreen");
 			childID=bundle.getInt("childId");
 		} catch (Exception e) {
@@ -174,7 +178,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			e.printStackTrace();
 		}
 
-		try {	
+		try {
 			addNewChild=bundle.getBoolean("ToChildScreenFromAdd");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -185,6 +189,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		header_help=(TextView) findViewById(R.id.header_help);
 		header_text.setText(screenName);
 
+
 		header_help.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -192,7 +197,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				// TODO Auto-generated method stub
 				Intent intentAboutUs =new Intent(ChildRegistrationActivity.this, ActivityAboutUS.class);
 				startActivity(intentAboutUs);
-				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";	
+				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
 			}
 		});
 		checkValidation = new Validation();
@@ -205,7 +210,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 		onTouchContinueButton=false;
 
-		schoolList=new SchoolList();  
+		schoolList=new SchoolList();
 		sharePref=new SharePreferenceClass(this);
 		gsonRegistration = new GsonBuilder().create();
 
@@ -222,6 +227,19 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		childpasscode_editText=(EditText) findViewById(R.id.text_passcodeChild);
 		childautolocktime_autoCompleteTextView=(AutoCompleteTextView) findViewById(R.id.text_AutoLockTimeChild);
 		continue_button=(Button) findViewById(R.id.button_continueChild);
+		button_new_continue_Child=(Button) findViewById(R.id.button_new_continue_Child);
+		if(sharePref.getIsLogin()) {
+			button_new_continue_Child.setVisibility(View.GONE);
+		}
+		else
+		{
+			if(sharePref.isChildAdded())
+				button_new_continue_Child.setVisibility(View.VISIBLE);
+			else
+			{
+				button_new_continue_Child.setVisibility(View.GONE);
+			}
+		}
 		childprofilePic_imageView=(ImageView) findViewById(R.id.image_camera_child);
 		addanotherchild_imageView=(ImageView) findViewById(R.id.image_addChild);
 		addanotherchild_textView=(TextView) findViewById(R.id.text_addchild);
@@ -251,6 +269,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		typeFace.setTypefaceRegular(addanotherchild_textView);
 		typeFace.setTypefaceLight(school_autoCompleteTextView);
 		typeFace.setTypefaceRegular(continue_button);
+		typeFace.setTypefaceRegular(button_new_continue_Child);
 		typeFace.setTypefaceLight(text_ProfileText);
 		typeFace.setTypefaceLight(passcodechild_switch);
 		typeFace.setTypefaceLight(textchild_passcode);
@@ -320,6 +339,14 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				}
 			}
 		});
+		button_new_continue_Child.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				showAlertChildContinueNext("Confirmation","Are you sure you want to continue without adding new child profiles?");
+
+			}
+		});
 
 		childdob_button.setOnClickListener(new OnClickListener() {
 
@@ -332,12 +359,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 		childautolocktime_autoCompleteTextView.setOnTouchListener(this);
 
-		childautolocktime_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
+		childautolocktime_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener()
 		{
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+									long arg3) {
 				// TODO Auto-generated method stub
 
 			}
@@ -391,8 +418,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					hideKeyBoard();
 
 					return true;
-				} 
-				else 
+				}
+				else
 				{
 					hideKeyBoard();
 					return true;
@@ -428,12 +455,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		});
 		//school_autoCompleteTextView.setOnTouchListener(this);
 
-		school_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
+		school_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener()
 		{
 
-			@Override 
+			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+									long arg3) {
 				// TODO Auto-generated method stub
 
 				//school_autoCompleteTextView.setText(schoolList.get);
@@ -442,7 +469,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				hideKeyBoard();
 			}
 		});
-		 
+
 
 		addanotherchild_imageView.setOnClickListener(new OnClickListener() {
 
@@ -520,6 +547,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	{
 		// TODO Auto-generated method stub
 		continue_button.setText("Save");
+		button_new_continue_Child.setVisibility(View.GONE);
 		childdob_button.setEnabled(false);
 		//childdob_editText.setEnabled(false);
 		childdob_editText.setEnabled(true);
@@ -533,11 +561,11 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		new GetChildDetailFromServer(childID).execute();
 	}
 
-	private UpdateChildProfile updateChildProfile;	
+	private UpdateChildProfile updateChildProfile;
 
 	private GetChildDetails getChildDetail=null;
 
-	private ProgressDialog progressDialog2=null;
+	//	private ProgressDialog progressDialog2=null;
 	private int countDialog=0;
 
 	private class GetChildDetailFromServer extends AsyncTask<Void, Void, Integer>
@@ -556,8 +584,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog2 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog2.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog2 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog2.setCancelable(false);*/
 		}
 
 		@Override
@@ -570,7 +602,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			{
 				getChildDetail = serviceMethod.getChildDetails(childId);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -583,8 +615,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog2.isShowing())
-					progressDialog2.cancel();
+				customProgressLoader.dismissProgressBar();
+			/*	if (progressDialog2.isShowing())
+					progressDialog2.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -592,7 +625,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			if(result==-1)
 			{
-				showMessage.showToastMessage("Please check your network connection");
+				//showMessage.showToastMessage("Please check your network connection");
 
 				if(checkNetwork.checkNetworkConnection(ChildRegistrationActivity.this))
 					new GetChildDetailFromServer(parentId).execute();
@@ -629,7 +662,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 							childProfile.setGender("Female");
 							girl_textView.setChecked(true);
 						}
-					}   
+					}
 
 					if(getChildDetail.getProfileImage()!=null && getChildDetail.getProfileImage().length()>0)
 					{
@@ -641,7 +674,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 							byte[] imageByteRefill=Base64.decode(getChildDetail.getProfileImage(), 0);
 							if(imageByteRefill!=null)
 							{
-								childprofilePic_imageView.setImageBitmap(getRoundedShape(BitmapFactory.decodeByteArray(imageByteRefill, 0, imageByteRefill.length)));	
+								childprofilePic_imageView.setImageBitmap(getRoundedShape(BitmapFactory.decodeByteArray(imageByteRefill, 0, imageByteRefill.length)));
 
 							}
 						}
@@ -703,11 +736,11 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					}
 				}
 				else
-				{	
+				{
 					getError();
 				}
-			}	
-		}	
+			}
+		}
 	}
 
 	private void setDateTimeField() {
@@ -854,6 +887,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			{
 
 				AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ChildRegistrationActivity.this);
+				alertBuilder.setCancelable(false);
 
 				alertBuilder.setTitle("Alert");
 				alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
@@ -942,13 +976,13 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		}*/
 		childProfile.setSchoolName(textSelectSchool);
 
-		String textSelectedAutolockTime = childautolocktime_autoCompleteTextView.getText().toString();	
+		String textSelectedAutolockTime = childautolocktime_autoCompleteTextView.getText().toString();
 
 		for(int i=0;i<getAutolockTimeList.getGetAutolockTime().size();i++)
 		{
 			if(textSelectedAutolockTime.trim().equalsIgnoreCase(getAutolockTimeList.getGetAutolockTime().get(i).getTimeValue().trim()))
 			{
-				childProfile.setAutolockID(getAutolockTimeList.getGetAutolockTime().get(i).getAutolockID());	
+				childProfile.setAutolockID(getAutolockTimeList.getGetAutolockTime().get(i).getAutolockID());
 				childProfile.setAutolockTime(textSelectedAutolockTime);
 			}
 		}
@@ -1012,15 +1046,15 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			updateChildProfile.setPasscode(childProfile.getPasscode());
 			updateChildProfile.setAutolockTime(childProfile.getAutolockID()+"");
 
-			new UpdateChildInformationOnServer().execute();	
+			new UpdateChildInformationOnServer().execute();
 		}
-		else 
+		else
 		{
 			new RegisterChildTask(hasToaddMore).execute();
 		}
 	}
 
-	private ProgressDialog progressDialog3=null;	
+	//private ProgressDialog progressDialog3=null;
 
 	private class UpdateChildInformationOnServer extends AsyncTask<Void, Void, Integer>
 	{
@@ -1029,8 +1063,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog3 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog3.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog3 = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog3.setCancelable(false);*/
 		}
 
 		@Override
@@ -1043,7 +1081,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			{
 				ErrorCode = serviceMethod.updateChildProfile(updateChildProfile);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -1056,8 +1094,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog3.isShowing())
-					progressDialog3.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog3.isShowing())
+					progressDialog3.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1067,7 +1106,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			if(result==-1)
 			{
-				showMessage.showToastMessage("Please check your network connection");
+				//showMessage.showToastMessage("Please check your network connection");
 
 				if(checkNetwork.checkNetworkConnection(ChildRegistrationActivity.this))
 					new UpdateChildInformationOnServer().execute();
@@ -1115,7 +1154,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					}
 
 					StaticVariables.childPasscodeList=passCodeList;
-					String passcodeListString = gsonRegistration.toJson(passCodeList);		
+					String passcodeListString = gsonRegistration.toJson(passCodeList);
 					sharePref.setPassCodeList(passcodeListString);
 
 					finishActivity();
@@ -1128,7 +1167,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		}
 	}
 
-	void cameraClickDialog() 
+	void cameraClickDialog()
 	{
 		CharSequence[] items={"Camera","Gallery"};
 		AlertDialog.Builder optionDialog = new AlertDialog.Builder(this);
@@ -1159,7 +1198,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		optionDialog.show();
 	}
 
-	private void selectImage() 
+	private void selectImage()
 	{
 		if(Build.VERSION.SDK_INT >20)
 		{
@@ -1169,13 +1208,13 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			startActivityForResult(intent2, 1);
 		}
 		else if (Build.VERSION.SDK_INT <19){
-			Intent intent1 = new Intent(); 
+			Intent intent1 = new Intent();
 			intent1.setType("image/*");
 			intent1.setAction(Intent.ACTION_GET_CONTENT);
 			startActivityForResult(Intent.createChooser(intent1,
 					"Select Picture"), SELECT_PICTURE);
 
-		} else 
+		} else
 		{
 			Intent intent2 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 			intent2.addCategory(Intent.CATEGORY_OPENABLE);
@@ -1192,53 +1231,53 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		super.onActivityResult(requestCode, resultCode, data);
 		System.out.println("in activity result" +resultCode);
 
-		if (resultCode == RESULT_OK) 
+		if (resultCode == RESULT_OK)
 		{
-			switch(requestCode) 
+			switch(requestCode)
 			{
 
-			case SELECT_PICTURE:
+				case SELECT_PICTURE:
 
-				Uri selectedImageUri = data.getData();
+					Uri selectedImageUri = data.getData();
 
-				bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri));
-				if(bitmapLength!=null)
-				{
-					imageByte =getPath(selectedImageUri);
+					bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri));
+					if(bitmapLength!=null)
+					{
+						imageByte =getPath(selectedImageUri);
 
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
-				break;
+					break;
 
-			case 110:
+				case 110:
 
-				Uri selectedImageUri1 = data.getData();
+					Uri selectedImageUri1 = data.getData();
 
-				final int takeFlags = data.getFlags()
-						& (Intent.FLAG_GRANT_READ_URI_PERMISSION
-								| Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-				getContentResolver().takePersistableUriPermission(selectedImageUri1, takeFlags);
-
-
-				bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri1));
-				if(bitmapLength!=null)
-				{
-					imageByte = getPath(selectedImageUri1);
-
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+					final int takeFlags = data.getFlags()
+							& (Intent.FLAG_GRANT_READ_URI_PERMISSION
+							| Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+					getContentResolver().takePersistableUriPermission(selectedImageUri1, takeFlags);
 
 
-				break;
+					bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri1));
+					if(bitmapLength!=null)
+					{
+						imageByte = getPath(selectedImageUri1);
+
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
+
+
+					break;
 
 				/*case 105:
 
@@ -1259,87 +1298,87 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 				break;*/
 
-			case 105:
+				case 105:
 
 
-				bitmapLength = (Bitmap) data.getExtras().get("data");  
+					bitmapLength = (Bitmap) data.getExtras().get("data");
 
-				String path = Environment.getExternalStorageDirectory()+ "/profilo_"+".jpeg";
-				File file =  new File(path);
+					String path = Environment.getExternalStorageDirectory()+ "/profilo_"+".jpeg";
+					File file =  new File(path);
 
-				ExifInterface exif = null;
-				try {
-					exif = new ExifInterface(file.getAbsolutePath());
-					int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-					Matrix matrix = new Matrix();
-					switch (orientation) {
-					case ExifInterface.ORIENTATION_ROTATE_270:
+					ExifInterface exif = null;
+					try {
+						exif = new ExifInterface(file.getAbsolutePath());
+						int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+						Matrix matrix = new Matrix();
+						switch (orientation) {
+							case ExifInterface.ORIENTATION_ROTATE_270:
 
-						matrix.postRotate(270);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+								matrix.postRotate(270);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
 
-						break;
-					case ExifInterface.ORIENTATION_ROTATE_180:
+								break;
+							case ExifInterface.ORIENTATION_ROTATE_180:
 
-						matrix.postRotate(180);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+								matrix.postRotate(180);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
 
-						break;
-					case ExifInterface.ORIENTATION_ROTATE_90:
+								break;
+							case ExifInterface.ORIENTATION_ROTATE_90:
 
-						matrix.postRotate(90);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+								matrix.postRotate(90);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
 
-						break;
+								break;
+
+						}
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					if(bitmapLength.getHeight()>=bitmapLength.getWidth())
+					{
+						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, bitmapLength.getHeight()/2 - bitmapLength.getWidth()/2, bitmapLength.getWidth(), bitmapLength.getWidth());
+					}
+					else
+					{
+
+						bitmapLength = Bitmap.createBitmap(
+								bitmapLength,
+								bitmapLength.getWidth()/2 - bitmapLength.getHeight()/2,
+								0,
+								bitmapLength.getHeight(),
+								bitmapLength.getHeight()
+						);
+
 
 					}
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 
-				if(bitmapLength.getHeight()>=bitmapLength.getWidth())
-				{
-					bitmapLength = Bitmap.createBitmap(bitmapLength, 0, bitmapLength.getHeight()/2 - bitmapLength.getWidth()/2, bitmapLength.getWidth(), bitmapLength.getWidth());
-				}
-				else
-				{
+					ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+					bitmapLength.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
 
-					bitmapLength = Bitmap.createBitmap(
-							bitmapLength, 
-							bitmapLength.getWidth()/2 - bitmapLength.getHeight()/2,
-							0,
-							bitmapLength.getHeight(), 
-							bitmapLength.getHeight()
-							);
+					try {
+						file.createNewFile();
+						FileOutputStream fo = new FileOutputStream(file);
+						//5
+						fo.write(bytes.toByteArray());
+						fo.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
+					if(bitmapLength!=null)
+					{
+						imageByte=path;
 
-				}
-
-				ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-				bitmapLength.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
-
-				try {
-					file.createNewFile();
-					FileOutputStream fo = new FileOutputStream(file);
-					//5
-					fo.write(bytes.toByteArray());
-					fo.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				if(bitmapLength!=null)
-				{
-					imageByte=path;
-
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
 
 				/*String path = savingProfilePic((Bitmap)data.getExtras().get("data"));
@@ -1356,72 +1395,72 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
 				}
 				 */
-				break;
+					break;
 
-			case 1:
+				case 1:
 
-				final Uri selectedImage = data.getData();
+					final Uri selectedImage = data.getData();
 
-				String wholeID = DocumentsContract.getDocumentId(selectedImage);
+					String wholeID = DocumentsContract.getDocumentId(selectedImage);
 
-				// Split at colon, use second item in the array
-				String id = wholeID.split(":")[1];
+					// Split at colon, use second item in the array
+					String id = wholeID.split(":")[1];
 
-				String[] column = { MediaStore.Images.Media.DATA };     
+					String[] column = { MediaStore.Images.Media.DATA };
 
-				// where id is equal to             
-				String sel = MediaStore.Images.Media._ID + "=?";
+					// where id is equal to
+					String sel = MediaStore.Images.Media._ID + "=?";
 
-				Cursor cursor = getContentResolver().
-						query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
-								column, sel, new String[]{ id }, null);
+					Cursor cursor = getContentResolver().
+							query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+									column, sel, new String[]{ id }, null);
 
-				String filePath = "";
+					String filePath = "";
 
-				int columnIndex = cursor.getColumnIndex(column[0]);
+					int columnIndex = cursor.getColumnIndex(column[0]);
 
-				if (cursor.moveToFirst()) {
-					filePath = cursor.getString(columnIndex);
-				}   
+					if (cursor.moveToFirst()) {
+						filePath = cursor.getString(columnIndex);
+					}
 
-				cursor.close();
+					cursor.close();
 
-				bitmapLength=BitmapFactory.decodeFile(filePath);
-				if(bitmapLength!=null)
-				{
-					imageByte = filePath;			
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+					bitmapLength=BitmapFactory.decodeFile(filePath);
+					if(bitmapLength!=null)
+					{
+						imageByte = filePath;
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ChildRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
-				break;
+					break;
 
-			case 200:
-				String passCodeValue = data.getStringExtra("passCode");
-				//childpasscode_editText.setText(passCodeValue);
-				textchild_passcode.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
-				//textchild_passcode.setTransformationMethod(PasswordTransformationMethod.getInstance());
-				textchild_passcode.setAlpha(1f);
-				hideKeyBoard();
-				textchild_passcode.setText(passCodeValue);
+				case 200:
+					String passCodeValue = data.getStringExtra("passCode");
+					//childpasscode_editText.setText(passCodeValue);
+					textchild_passcode.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+					//textchild_passcode.setTransformationMethod(PasswordTransformationMethod.getInstance());
+					textchild_passcode.setAlpha(1f);
+					hideKeyBoard();
+					textchild_passcode.setText(passCodeValue);
 
-				if(childProfile!=null)
-					childProfile.setPasscode(passCodeValue);
-				passcodechild_switch.setChecked(true);
+					if(childProfile!=null)
+						childProfile.setPasscode(passCodeValue);
+					passcodechild_switch.setChecked(true);
 
-				break;
+					break;
 			}
 		}
 		else
 		{
-			switch(requestCode) 
+			switch(requestCode)
 			{
-			case 200:
-				passcodechild_switch.setChecked(false);
-				break;
+				case 200:
+					passcodechild_switch.setChecked(false);
+					break;
 			}
 		}
 	}
@@ -1437,10 +1476,10 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	}
 
 	@SuppressWarnings("deprecation")
-	private  String getPath(Uri uri) 
+	private  String getPath(Uri uri)
 	{
 		// just some safety built in 
-		if( uri == null ) 
+		if( uri == null )
 		{
 			// TODO perform some logging or show user feedback
 			return null;
@@ -1450,7 +1489,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		String[] projection = { MediaStore.Images.Media.DATA };
 		Cursor cursor = managedQuery(uri, projection, null, null, null);
 		if( cursor != null ){
-			int column_index = cursor   
+			int column_index = cursor
 					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			cursor.moveToFirst();
 			return cursor.getString(column_index);
@@ -1487,7 +1526,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 				}
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -1501,7 +1540,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			for(int i=0;i<schoolList.getSchoolList().size();i++)
 			{
-				schoolStringList.add(schoolList.getSchoolList().get(i).getSchoolName()); 
+				schoolStringList.add(schoolList.getSchoolList().get(i).getSchoolName());
 			}
 
 			return schoolStringList;
@@ -1514,7 +1553,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			if(result==-1)
 			{
-				showMessage.showToastMessage("Please check your network connection");
+				//showMessage.showToastMessage("Please check your network connection");
 			}
 			else
 			{
@@ -1525,18 +1564,18 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					school_autoCompleteTextView.setAdapter(checkUpAdapter);*/
 					NamesAdapter namesAdapter = new NamesAdapter(
 							ChildRegistrationActivity.this, R.layout.list_item, R.id.item,schoolStringList
-							);
+					);
 					//set adapter into listStudent
 					school_autoCompleteTextView.setAdapter(namesAdapter);
 					school_autoCompleteTextView.setThreshold(0);
 					//school_autoCompleteTextView.setValidator(new ValidateText(schoolStringList,1));
 				}
 				else
-				{	
+				{
 					getError();
-				}	
-			}	
-		}	
+				}
+			}
+		}
 	}
 
 	private void getError()
@@ -1545,7 +1584,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		showMessage.showAlert("Warning", err.getErrorDesc());
 	 */}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class RegisterChildTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -1562,9 +1601,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(ChildRegistrationActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -1605,11 +1647,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		@Override
 		protected void onPostExecute(Integer result) {
 			// TODO Auto-generated method stub
-			super.onPostExecute(result); 
+			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1620,10 +1663,10 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			if(result==0)
 			{
-				showMessage.showToastMessage("Please check your network connection");
+				//showMessage.showToastMessage("Please check your network connection");
 
-				if(checkNetwork.checkNetworkConnection(ChildRegistrationActivity.this))
-					new RegisterChildTask(hasToaddMore).execute();
+				/*if(checkNetwork.checkNetworkConnection(ChildRegistrationActivity.this))
+					new RegisterChildTask(hasToaddMore).execute();*/
 			}
 			else
 			{
@@ -1647,12 +1690,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					}
 					else
 					{
-						passCodeList = new PassCodeList();	
-						passCodeList.getPasscodeList().add(pcChild);	
+						passCodeList = new PassCodeList();
+						passCodeList.getPasscodeList().add(pcChild);
 					}
 
 					StaticVariables.childPasscodeList=passCodeList;
-					String passcodeListString = gsonRegistration.toJson(passCodeList);		
+					String passcodeListString = gsonRegistration.toJson(passCodeList);
 					sharePref.setPassCodeList(passcodeListString);
 
 					if(hasToaddMore)
@@ -1730,7 +1773,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 	private void hideKeyBoard()
 	{
-		try  
+		try
 		{
 			ChildRegistrationActivity.this.getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -1743,8 +1786,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			ChildRegistrationActivity.this.getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		} 
-		catch (Exception e) 
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -1781,7 +1824,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			}
 		}
 
-		public CharSequence fixText(CharSequence invalidText) 
+		public CharSequence fixText(CharSequence invalidText)
 		{
 			Log.v("Test", "Returning fixed text");
 			System.out.println(invalidText+"  text in change");
@@ -1809,7 +1852,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	private String bitmapTobyte(byte[] bitmapLength)
 	{
 		return Base64.encodeToString(bitmapLength,
-				Base64.DEFAULT);	
+				Base64.DEFAULT);
 	}
 
 	//For Circular Image
@@ -1824,23 +1867,23 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 		}
 		int targetHeight = targetWidth;
-		Bitmap targetBitmap = Bitmap.createBitmap(targetWidth, 
+		Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
 				targetHeight,Bitmap.Config.ARGB_8888);
 
 		Canvas canvas = new Canvas(targetBitmap);
 		Path path = new Path();
 		path.addCircle(((float) targetWidth - 1) / 2,
 				((float) targetHeight - 1) / 2,
-				(Math.min(((float) targetWidth), 
+				(Math.min(((float) targetWidth),
 						((float) targetHeight)) / 2),
-						Path.Direction.CCW);
+				Path.Direction.CCW);
 
 		canvas.clipPath(path);
 		Bitmap sourceBitmap = scaleBitmapImage;
-		canvas.drawBitmap(sourceBitmap, 
+		canvas.drawBitmap(sourceBitmap,
 				new Rect(0, 0, sourceBitmap.getWidth(),
-						sourceBitmap.getHeight()), 
-						new Rect(0, 0, targetWidth, targetHeight), null);
+						sourceBitmap.getHeight()),
+				new Rect(0, 0, targetWidth, targetHeight), null);
 		return targetBitmap;
 	}
 
@@ -1893,7 +1936,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 			if(result==-1)
 			{
-				showMessage.showToastMessage("Please check your network connection");
+				//showMessage.showToastMessage("Please check your network connection");
 			}
 			else
 			{
@@ -1908,7 +1951,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					getError();
 				}
 			}
-		}	
+		}
 	}
 
 	@Override
@@ -1919,7 +1962,10 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			finishActivity();
 		}
 		else
-			super.onBackPressed();
+		{
+			showAlertChildContinue("Confirmation","Are you sure you want to exit the app?");
+		}
+		//	super.onBackPressed();
 
 	}
 
@@ -1934,11 +1980,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	public void showAlertPasscode(String title, final boolean hasToaddMore, String message)
 	{
 		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+		alertBuilder.setCancelable(false);
 
 		alertBuilder.setTitle(title);
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(message);
-		alertBuilder.setPositiveButton(" Submit ", new DialogInterface.OnClickListener() 
+		alertBuilder.setPositiveButton(" Submit ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -1947,9 +1994,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				dialog.dismiss();
 				childSaving(hasToaddMore);
 			}
-		});	
+		});
 
-		alertBuilder.setNegativeButton(" LOCK ", new DialogInterface.OnClickListener() 
+		alertBuilder.setNegativeButton(" LOCK ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -1966,7 +2013,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				intent.putExtras(bundle);
 				startActivityForResult(intent, 200);
 			}
-		});	
+		});
 		alertBuilder.show();
 	}
 
@@ -1979,7 +2026,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		alertBuilder.setCancelable(false);
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(message);
-		alertBuilder.setPositiveButton(" OK ", new DialogInterface.OnClickListener() 
+		alertBuilder.setPositiveButton(" OK ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -1990,12 +2037,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 				new GetListOfAutoLockTimeField().execute();
 			}
-		});	
+		});
 		alertBuilder.show();
 	}
 
 
-	private boolean checkFirstName(String string) 
+	private boolean checkFirstName(String string)
 	{
 		// TODO Auto-generated method stub
 		boolean valid=true;
@@ -2026,7 +2073,7 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	}
 
 
-	private boolean checkNickName(String string) 
+	private boolean checkNickName(String string)
 	{
 		// TODO Auto-generated method stub
 		boolean valid=true;
@@ -2060,11 +2107,11 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 	public void showAlertChildSave(String title, String message)
 	{
 		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-
+		alertBuilder.setCancelable(false);
 		alertBuilder.setTitle(title);
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(message);
-		alertBuilder.setNegativeButton(" Add ", new DialogInterface.OnClickListener() 
+		alertBuilder.setNegativeButton(" Add ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -2073,9 +2120,9 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				dialog.dismiss();
 				clearDataForNewChild();
 			}
-		});	
+		});
 
-		alertBuilder.setPositiveButton(" No, Thanks ", new DialogInterface.OnClickListener() 
+		alertBuilder.setPositiveButton(" No, Thanks ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -2088,11 +2135,11 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				ChildRegistrationActivity.this.finish();
 
 			}
-		});	
+		});
 		alertBuilder.show();
 	}
 	/**
-	 * 
+	 *
 	 */
 	private void clearDataForNewChild() {
 		ChildModel model=new ChildModel();
@@ -2100,7 +2147,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		model.setFirstName(childProfile.getFirstName());
 		model.setNickName(childProfile.getNickName());
 		StaticVariables.childArrayList.add(model);
-
+		button_new_continue_Child.setVisibility(View.VISIBLE);
+		sharePref.setChildAdded(true);
 		childFname_editText.setText("");
 		childLname_editText.setText("");
 		childnickname_editText.setText("");
@@ -2117,12 +2165,12 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 		sharePref.setIsPasscodeChildSet(false);
 		layout_Pass_AutoLockChild.setVisibility(View.GONE);
 
-		imageByte=null;						
+		imageByte=null;
 		childProfile=new ChildProfile();
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) 
+	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.menu_help, menu);
 		return true;
@@ -2138,5 +2186,67 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 			StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";	  
 			}*/
 		return super.onOptionsItemSelected(item);
+	}
+
+
+	public void showAlertChildContinue(String title,String message)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+
+		alertBuilder.setTitle(title);
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage(message);
+		alertBuilder.setPositiveButton(" Cancel ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+			}
+		});
+
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				finish();
+			}
+		});
+		alertBuilder.show();
+	}
+	public void showAlertChildContinueNext(String title,String message)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+		alertBuilder.setCancelable(false);
+		alertBuilder.setTitle(title);
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage(message);
+		alertBuilder.setPositiveButton(" Cancel ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+			}
+		});
+
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				Intent intent=new Intent(ChildRegistrationActivity.this, GetStartedActivity.class);
+				startActivity(intent);
+				sharePref.setCurrentScreen(3);
+				ChildRegistrationActivity.this.finish();			}
+		});
+		alertBuilder.show();
 	}
 }

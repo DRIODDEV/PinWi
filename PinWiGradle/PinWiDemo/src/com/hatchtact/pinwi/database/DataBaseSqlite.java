@@ -12,7 +12,9 @@ public class DataBaseSqlite extends SQLiteOpenHelper {
 
 	/*Table names*/
 	public static final String TABLE_ACCESS_PROFILE = "TABLE_ACCESS_PROFILE";
-	public static final String TABLE_NETWORK_MODULE = "TABLE_NETWORK_MODULE";
+	public static final String TABLE_NETWORK_MODULE = "TABLE_NETWORK_MODULE_CONNECTIONS";
+	public static final String TABLE_NETWORK_MODULE_REQUEST = "TABLE_NETWORK_MODULE_REQUEST";
+	public static final String TABLE_NETWORK_MODULE_DISCOVER = "TABLE_NETWORK_MODULE_DISCOVER";
 
 	/*Access Profile Fields*/
 	public static final String COLUMN_PROFILEID = "ProfileID";
@@ -55,11 +57,27 @@ public class DataBaseSqlite extends SQLiteOpenHelper {
 			+ COLUMN_PENDING_POINTS + " text,"
 			+ COLUMN_PASSCODE + " text)";
 
-	private static final String CREATE_TABLE_NETWORK_MODULE = "create table " + TABLE_NETWORK_MODULE + " ("
+	public static final String CREATE_TABLE_NETWORK_MODULE = "create table " + TABLE_NETWORK_MODULE + " ("
 			+ COLUMN_FriendID + " text primary key, "
 			+ COLUMN_ProfileImage + " text,"
 			+ COLUMN_FriendName + " text,"
 			+ COLUMN_ChildName + " text,"
 			+ COLUMN_FStatus + " text,"
 			+ COLUMN_LoggedUserName + " text)";
+	public static final String CREATE_TABLE_NETWORK_MODULE_REQUEST = "create table " + TABLE_NETWORK_MODULE_REQUEST+ " ("
+			+ COLUMN_FriendID + " text primary key, "
+			+ COLUMN_ProfileImage + " text,"
+			+ COLUMN_FriendName + " text,"
+			+ COLUMN_ChildName + " text,"
+			+ COLUMN_FStatus + " text,"
+			+ COLUMN_LoggedUserName + " text)";
+	public static final String CREATE_TABLE_NETWORK_MODULE_DISCOVER= "create table " + TABLE_NETWORK_MODULE_DISCOVER+ " ("
+			+ COLUMN_FriendID + " text primary key, "
+			+ COLUMN_ProfileImage + " text,"
+			+ COLUMN_FriendName + " text,"
+			+ COLUMN_ChildName + " text,"
+			+ COLUMN_FStatus + " text,"
+			+ COLUMN_LoggedUserName + " text)";
+
+
 }

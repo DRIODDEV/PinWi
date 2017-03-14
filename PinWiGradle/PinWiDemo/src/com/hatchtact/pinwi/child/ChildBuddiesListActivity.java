@@ -33,6 +33,7 @@ import com.hatchtact.pinwi.classmodel.GetListofChildrensByChildActIDList;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -76,6 +77,7 @@ public class ChildBuddiesListActivity extends Activity
 	private View  emptyLine;
 	//private RelativeLayout mainlayout;
 	private View wishlistLayout;
+	private CustomLoader customProgressLoader;
 
 
 	//private ImageView child_alphabetical_imageview,child_search_imageview;
@@ -87,6 +89,7 @@ public class ChildBuddiesListActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_wishlistdetail);
+		customProgressLoader=new CustomLoader(this);
 		isButtonClicked=false;
 		typeFace = new TypeFace(ChildBuddiesListActivity.this);
 		sharepref = new SharePreferenceClass(ChildBuddiesListActivity.this);
@@ -505,7 +508,7 @@ public class ChildBuddiesListActivity extends Activity
 		});
 		 */	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class GetListofChildrensByChildActIDAsync extends AsyncTask<Void, Void, Integer>
 	{
@@ -530,8 +533,12 @@ public class ChildBuddiesListActivity extends Activity
 			super.onPreExecute();
 			if(pageIndex==1)
 			{
-				progressDialog = ProgressDialog.show(ChildBuddiesListActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.startHandler();
+				}
+				/*progressDialog = ProgressDialog.show(ChildBuddiesListActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			}
 			else
 			{
@@ -577,8 +584,9 @@ public class ChildBuddiesListActivity extends Activity
 			try {
 				if(pageIndex==1)
 				{
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.removeCallbacksHandler();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				}
 				else
 				{

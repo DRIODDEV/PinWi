@@ -44,6 +44,7 @@ import com.hatchtact.pinwi.classmodel.GetFriendsTempleteMessageListByChildIDList
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -84,7 +85,8 @@ public class ChildPlayWallActivity extends Activity
 	public View popupViewAction = null;
 	public PopupWindow popupWindowAction = null;
 	private int getType=1;
-	
+	private CustomLoader customProgressLoader;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,7 @@ public class ChildPlayWallActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_playwall);
+		customProgressLoader=new CustomLoader(this);
 		isButtonClicked=false;
 		typeFace = new TypeFace(ChildPlayWallActivity.this);
 		sharepref = new SharePreferenceClass(ChildPlayWallActivity.this);
@@ -468,7 +471,7 @@ public class ChildPlayWallActivity extends Activity
 
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class GetFriendsTempleteMessageListByChildIDAsync extends AsyncTask<Void, Void, Integer>
 	{
@@ -489,8 +492,12 @@ public class ChildPlayWallActivity extends Activity
 
 			if(pageIndex==1)
 			{
-				progressDialog = ProgressDialog.show(ChildPlayWallActivity.this, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.showProgressBar();
+				}
+				/*progressDialog = ProgressDialog.show(ChildPlayWallActivity.this, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			}
 			else
 			{
@@ -539,8 +546,12 @@ public class ChildPlayWallActivity extends Activity
 
 				if(pageIndex==1)
 				{
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					if(customProgressLoader!=null)
+					{
+						customProgressLoader.dismissProgressBar();
+					}
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				}
 				else
 				{

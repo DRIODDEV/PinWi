@@ -38,6 +38,7 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.classmodel.Error;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -131,7 +132,7 @@ public class ChildSetStarRatingActivity extends Activity
 	private boolean isMusicStop = false;
 
 	private boolean isFromPendingScreen=false;
-
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +142,7 @@ public class ChildSetStarRatingActivity extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_child_set_star_rating);
-
+		customProgressLoader=new CustomLoader(this);
 		getDisplayHeight(ChildSetStarRatingActivity.this);
 		getDisplayWidth(ChildSetStarRatingActivity.this);
 
@@ -153,7 +154,7 @@ public class ChildSetStarRatingActivity extends Activity
 		initSoundData();
 		initHeaderItems();
 		initialiseData();
-		initialiseSubjectView();	
+		initialiseSubjectView();
 		setDataForViews();
 		setTouchListeners();
 		generateSkipDialog();
@@ -164,7 +165,7 @@ public class ChildSetStarRatingActivity extends Activity
 
 
 
-	private void initSoundData() 
+	private void initSoundData()
 	{
 		// TODO Auto-generated method stub
 		//soundEffectTransition = new SoundEffect(ChildSetStarRatingActivity.this, R.raw.pageflip);
@@ -271,12 +272,12 @@ public class ChildSetStarRatingActivity extends Activity
 	}
 
 
-	private void initialiseData() 
+	private void initialiseData()
 	{
 		// TODO Auto-generated method stub
 
 		try {
-			Bundle bundle = getIntent().getExtras();	
+			Bundle bundle = getIntent().getExtras();
 			ParentId = bundle.getInt("ParentId");
 			isFromPendingScreen=bundle.getBoolean("Pendingflag");
 			//isFromPendingScreen=false;//this will be removed when backpress functionality
@@ -366,17 +367,17 @@ public class ChildSetStarRatingActivity extends Activity
 
 	}
 
-	private void setDataForViews() 
+	private void setDataForViews()
 	{
 		// TODO Auto-generated method stub
 
 		// load the image only once
 		if (imageOriginal == null) {
-			imageOriginal = ((BitmapDrawable)child_pinwheel.getDrawable()).getBitmap();   		
+			imageOriginal = ((BitmapDrawable)child_pinwheel.getDrawable()).getBitmap();
 		}
 
 
-		setInitialStarRating();	
+		setInitialStarRating();
 
 	}
 
@@ -429,7 +430,7 @@ public class ChildSetStarRatingActivity extends Activity
 	}
 
 
-	private void stopFirstSubjectSounds() 
+	private void stopFirstSubjectSounds()
 	{
 		// TODO Auto-generated method stub
 		if(musicForFirstSubject!=null)
@@ -451,7 +452,7 @@ public class ChildSetStarRatingActivity extends Activity
 
 
 
-	private void setTouchListeners() 
+	private void setTouchListeners()
 	{
 		// TODO Auto-generated method stub
 		detector = new GestureDetector(this, new MyGestureDetector());
@@ -555,7 +556,7 @@ public class ChildSetStarRatingActivity extends Activity
 				ratingDoneNowMoveToNextStep(true);
 			}
 
-		});	
+		});
 
 		builder_Skip.setNegativeButton("No",new DialogInterface.OnClickListener() {
 
@@ -575,9 +576,9 @@ public class ChildSetStarRatingActivity extends Activity
 
 				playSound(soundEffectButtonClicks);
 			}
-		});	
+		});
 	}
-	protected void ratingDoneNowMoveToNextStep(boolean isSkipped) 
+	protected void ratingDoneNowMoveToNextStep(boolean isSkipped)
 	{
 		// TODO Auto-generated method stub
 		if(subjectRatingDoneCount == 1 && StaticVariables.isTutorialSoundEnabled)
@@ -618,7 +619,7 @@ public class ChildSetStarRatingActivity extends Activity
 		private double startAngle;
 
 		@Override
-		public boolean onTouch(View v, MotionEvent event) 
+		public boolean onTouch(View v, MotionEvent event)
 		{
 			if(subjectRatingDoneCount == 1)
 			{
@@ -635,32 +636,32 @@ public class ChildSetStarRatingActivity extends Activity
 			final float y = event.getY();
 			switch (event.getAction()) {
 
-			case MotionEvent.ACTION_DOWN:	
-				startAngle = Math.toDegrees(Math.atan2(x - xc, yc - y));
+				case MotionEvent.ACTION_DOWN:
+					startAngle = Math.toDegrees(Math.atan2(x - xc, yc - y));
 
 
 
-				// reset the touched quadrants
-				//   for (int i = 0; i < quadrantTouched.length; i++) {
-				//      quadrantTouched[i] = false;
-				//  }
-				//startAngle = getAngle(event.getX(), event.getY());
-				break;
+					// reset the touched quadrants
+					//   for (int i = 0; i < quadrantTouched.length; i++) {
+					//      quadrantTouched[i] = false;
+					//  }
+					//startAngle = getAngle(event.getX(), event.getY());
+					break;
 
-			case MotionEvent.ACTION_MOVE:
+				case MotionEvent.ACTION_MOVE:
 
 
-				double currentAngle = Math.toDegrees(Math.atan2(x - xc, yc - y));
+					double currentAngle = Math.toDegrees(Math.atan2(x - xc, yc - y));
 
-				//double currentAngle = getAngle(event.getX(), event.getY());
-				//rotatePinWheel((float) (startAngle - currentAngle ));
-				rotatePinWheel((float) (currentAngle - startAngle ));
-				startAngle = currentAngle;
-				break;
+					//double currentAngle = getAngle(event.getX(), event.getY());
+					//rotatePinWheel((float) (startAngle - currentAngle ));
+					rotatePinWheel((float) (currentAngle - startAngle ));
+					startAngle = currentAngle;
+					break;
 
-			case MotionEvent.ACTION_UP:
+				case MotionEvent.ACTION_UP:
 
-				break;
+					break;
 			}
 
 			// set the touched quadrant to true
@@ -675,7 +676,7 @@ public class ChildSetStarRatingActivity extends Activity
 
 	}
 
-	private void replacePinwheelArrorWithSkipArror() 
+	private void replacePinwheelArrorWithSkipArror()
 	{
 		child_pinwheel_arrow.clearAnimation();
 		child_pinwheel_arrow.setVisibility(View.GONE);
@@ -772,11 +773,11 @@ public class ChildSetStarRatingActivity extends Activity
 
 	/**
 	 * Rotate the PinWheel.
-	 * 
+	 *
 	 * @param degrees The degrees, the pinwi should get rotated.
 	 */
-	private void rotatePinWheel(float degrees) 
-	{		
+	private void rotatePinWheel(float degrees)
+	{
 		try{
 			String sign = degrees+"";
 			if(sign.startsWith("-"))
@@ -795,7 +796,7 @@ public class ChildSetStarRatingActivity extends Activity
 					{
 						starCounter=0;
 						star.get(0).setAlpha(0.4f);
-					}		
+					}
 				}
 
 				if(starCounter <= 0)
@@ -840,7 +841,7 @@ public class ChildSetStarRatingActivity extends Activity
 		{
 			e.printStackTrace();
 		}
-	}	
+	}
 
 	private void initialiseSubjectView()
 	{
@@ -905,7 +906,7 @@ public class ChildSetStarRatingActivity extends Activity
 	}
 
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class AddActivityRating extends AsyncTask<Void, Void, Integer>
 	{
@@ -922,8 +923,12 @@ public class ChildSetStarRatingActivity extends Activity
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(ChildSetStarRatingActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+		/*	progressDialog = ProgressDialog.show(ChildSetStarRatingActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -936,7 +941,7 @@ public class ChildSetStarRatingActivity extends Activity
 			{
 				ErrorCode = serviceMethod.sendChildStarRating(childID, ratingDataToSend);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -949,9 +954,9 @@ public class ChildSetStarRatingActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
-
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
+				customProgressLoader.dismissProgressBar();
 				if(result==-1)
 				{
 					showMessage.showToastMessage("Please check your network connection");
@@ -967,13 +972,13 @@ public class ChildSetStarRatingActivity extends Activity
 						finish();
 						Intent intent = new Intent(ChildSetStarRatingActivity.this, ChildStarEarnedPointActivity.class);
 						startActivity(intent);
-					}	
+					}
 					else
 					{
-						getError();	
+						getError();
 					}
 
-				}	
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -985,14 +990,14 @@ public class ChildSetStarRatingActivity extends Activity
 
 	private void getError()
 	{
-		Error err = serviceMethod.getError();	
+		Error err = serviceMethod.getError();
 		//showMessage.showAlert("Warning", err.getErrorDesc());
 		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ChildSetStarRatingActivity.this);
 
 		alertBuilder.setTitle("Warning");
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(err.getErrorDesc());
-		alertBuilder.setPositiveButton(" OK ", new DialogInterface.OnClickListener() 
+		alertBuilder.setPositiveButton(" OK ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -1002,9 +1007,9 @@ public class ChildSetStarRatingActivity extends Activity
 				isFromPendingScreen=true;
 				finishActivity();
 			}
-		});	
+		});
 		alertBuilder.show();
-	} 
+	}
 
 	@Override
 	public void onBackPressed() {
@@ -1015,7 +1020,7 @@ public class ChildSetStarRatingActivity extends Activity
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void finishActivity() {
 		playSound(soundEffectButtonClicks);
@@ -1085,54 +1090,54 @@ public class ChildSetStarRatingActivity extends Activity
 	private void setVolumeIcon() {
 		if(isMute)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_mute));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_mute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_volume));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_volume));
 
-			}	
+			}
 		}
 	}
 
 	private void setVoiceOverIcon() {
 		if(isMusicStop)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_star_header_music_voiceover.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			} else 
+			} else
 			{
 				child_star_header_music_voiceover.setBackground(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_star_header_music_voiceover.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceover));
 
-			} else 
+			} else
 			{
 				child_star_header_music_voiceover.setBackground(getResources().getDrawable(R.drawable.child_voiceover));
 
-			}	
+			}
 		}
 	}
 }

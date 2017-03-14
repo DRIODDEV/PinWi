@@ -3,10 +3,12 @@ package com.hatchtact.pinwi.fragment.network;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,18 +32,26 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.adapter.NetworkConnectionsListAdapter;
 import com.hatchtact.pinwi.adapter.NetworkRequestListAdapter;
 import com.hatchtact.pinwi.adapter.NetworkSearchListAdapter;
+import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedID;
+import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedIDList;
+import com.hatchtact.pinwi.classmodel.GetListOfPendingRequestsByLoggedID;
 import com.hatchtact.pinwi.classmodel.GetListOfPendingRequestsByLoggedIDList;
 import com.hatchtact.pinwi.classmodel.SearchFriendListGloballyList;
+import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.fragment.insights.ParentFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
-public  class NetworkRequestFragment extends ParentFragment 
+import java.util.ArrayList;
+
+public  class NetworkRequestFragment extends ParentFragment
 {
 	private View view;
 	private SharePreferenceClass sharePref;
@@ -68,7 +78,12 @@ public  class NetworkRequestFragment extends ParentFragment
 	private boolean flag_loading=false;
 	private boolean isSearchList=false;
 	private boolean isSearchDone=false;
-
+	/**For database*/
+	private DataSource source;//initializing  database
+	private final int BACKGROUNDSYNCFLAG=1;//background syncing
+	private final int PROGRESSSYNCFLAG=2;//progress syncing
+	private AppUtils appUtils;
+	/**For database*/
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,8 +91,6 @@ public  class NetworkRequestFragment extends ParentFragment
 		super.onCreate(savedInstanceState);
 		//StaticVariables.fragmentIndexCurrentTabSchedular=202;
 		sharePref=new SharePreferenceClass(getActivity());
-
-
 	}
 
 	@Override
@@ -88,7 +101,7 @@ public  class NetworkRequestFragment extends ParentFragment
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		if(savedInstanceState==null)
 		{
@@ -96,20 +109,48 @@ public  class NetworkRequestFragment extends ParentFragment
 			setHasOptionsMenu(true);
 			mListener.onFragmentAttached(true,"  Network");
 			initialize();//initialize all view items in fragment
-			checkNetwork=new CheckNetwork();
-			showMessage=new ShowMessages(getActivity());
-			servicemethod=new ServiceMethod();
-			getListOfPendingRequestsByLoggedID=new GetListOfPendingRequestsByLoggedIDList();
-			getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().clear();
-			searchFriendListGlobally=new SearchFriendListGloballyList();
-			searchFriendListGlobally.getsearchFriendListGloballyList().clear();
-			new fetchPendingRequestListByLoggedID(1).execute();	
+			appUtils=new AppUtils(getActivity());
+			try {
+				checkIfDataExistInDatabase();//checking if database contains value for access profile data
+			}
+			catch (Exception e)
+			{
+
+			}
+
+			//new fetchPendingRequestListByLoggedID(1).execute();
 			isSearchDone=false;
 		}
-		return view;		
+		return view;
 	}
-
-	private void initialize() 
+	private void checkIfDataExistInDatabase() {
+		source.open();
+		//GetListOfPendingRequestsByLoggedIDList
+		ArrayList<GetListOfPendingRequestsByLoggedID> listRequest=source.getNetworkModuleRequestList();
+		if(getListOfPendingRequestsByLoggedID==null)
+		{
+			getListOfPendingRequestsByLoggedID=new GetListOfPendingRequestsByLoggedIDList();
+		}
+		if(listRequest!=null &&listRequest.size()>0)
+		{
+			getListOfPendingRequestsByLoggedID.setGetInterestTraitsByChildIDOnInsight(listRequest);
+			layout_nodata.setVisibility(View.GONE);
+			noconnectionimage.setVisibility(View.GONE);
+			noconnectiontext.setVisibility(View.GONE);
+			listconnections_network.setVisibility(View.VISIBLE);
+			inviteFriends.setVisibility(View.INVISIBLE);
+			setNetworkRequestData(1,PROGRESSSYNCFLAG);
+			new fetchPendingRequestListByLoggedID(1,BACKGROUNDSYNCFLAG).execute();
+			//new NetworkConnectionsFragment.fetchFriendsListByLoggedID(1,BACKGROUNDSYNCFLAG).execute();
+		}
+		else
+		{
+			new fetchPendingRequestListByLoggedID(1,PROGRESSSYNCFLAG).execute();
+			//new NetworkConnectionsFragment.fetchFriendsListByLoggedID(1,PROGRESSSYNCFLAG).execute();
+		}
+		source.close();
+	}
+	private void initialize()
 	{
 		// TODO Auto-generated method stub
 		connections_textView=(TextView) view.findViewById(R.id.text_connectionheader);
@@ -153,7 +194,7 @@ public  class NetworkRequestFragment extends ParentFragment
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+									int position, long id) {
 				// TODO Auto-generated method stub
 				//here put friend id and open friend details fragment
 				if(!isSearchList)
@@ -176,13 +217,13 @@ public  class NetworkRequestFragment extends ParentFragment
 
 
 
-			public void onScrollStateChanged(AbsListView view, int scrollState) 
+			public void onScrollStateChanged(AbsListView view, int scrollState)
 			{
 
 			}
 
 			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
+								 int visibleItemCount, int totalItemCount) {
 
 				if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0 && totalItemCount>=8)
 				{
@@ -194,7 +235,7 @@ public  class NetworkRequestFragment extends ParentFragment
 						{
 							if(totalItemCount% 8==0)
 							{
-								new fetchPendingRequestListByLoggedID((totalItemCount/8)+1).execute();	
+								new fetchPendingRequestListByLoggedID((totalItemCount/8)+1,PROGRESSSYNCFLAG).execute();
 							}
 						}
 						else
@@ -214,13 +255,13 @@ public  class NetworkRequestFragment extends ParentFragment
 			int len = 0;
 			@Override
 			public void onTextChanged(CharSequence s, int start,
-					int before, int count) {
+									  int before, int count) {
 				// TODO Auto-generated method stub
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start,
-					int count, int after) {
+										  int count, int after) {
 				// TODO Auto-generated method stub
 				String str = s.toString();
 				len = str.length();
@@ -245,7 +286,7 @@ public  class NetworkRequestFragment extends ParentFragment
 					{
 						hasChar=true;
 					}
-					
+
 					if(hasChar)
 					{
 						isSearchList=true;
@@ -272,7 +313,7 @@ public  class NetworkRequestFragment extends ParentFragment
 								getListOfPendingRequestsByLoggedID=new GetListOfPendingRequestsByLoggedIDList();
 							}
 							isSearchDone=true;
-							new fetchPendingRequestListByLoggedID(1).execute();	
+							new fetchPendingRequestListByLoggedID(1,PROGRESSSYNCFLAG).execute();
 						}
 					}
 				}
@@ -287,17 +328,17 @@ public  class NetworkRequestFragment extends ParentFragment
 		editsearch.setOnEditorActionListener(new OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
+										  KeyEvent event) {
 
 
 
 				if (actionId == EditorInfo.IME_ACTION_NEXT)
 				{
 					return true;
-				} else if (actionId == EditorInfo.IME_ACTION_DONE) 
+				} else if (actionId == EditorInfo.IME_ACTION_DONE)
 				{
 					return true;
-				} else 
+				} else
 				{
 					return true;
 				}
@@ -353,6 +394,14 @@ public  class NetworkRequestFragment extends ParentFragment
 			}
 		});
 
+		checkNetwork=new CheckNetwork();
+		showMessage=new ShowMessages(getActivity());
+		servicemethod=new ServiceMethod();
+		getListOfPendingRequestsByLoggedID=new GetListOfPendingRequestsByLoggedIDList();
+		getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().clear();
+		searchFriendListGlobally=new SearchFriendListGloballyList();
+		searchFriendListGlobally.getsearchFriendListGloballyList().clear();
+		source = new DataSource(getActivity());
 
 	}
 
@@ -421,7 +470,7 @@ public  class NetworkRequestFragment extends ParentFragment
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
-	}  
+	}
 
 
 	@Override
@@ -433,25 +482,33 @@ public  class NetworkRequestFragment extends ParentFragment
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	private ProgressDialog progressDialog=null;	
+
+	//private ProgressDialog progressDialog=null;
 
 	private class fetchPendingRequestListByLoggedID extends AsyncTask<Void, Void, Integer>
 	{
 
 		int pageIndex=1;
-		public fetchPendingRequestListByLoggedID(int i) {
+		int flagConnections=0;
+
+		public fetchPendingRequestListByLoggedID(int i,int flag) {
 			// TODO Auto-generated constructor stub
 			pageIndex=i;
+			flagConnections=flag;
+
 		}
 
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(flagConnections!=BACKGROUNDSYNCFLAG) {
+				if (customProgressLoader != null) {
+					customProgressLoader.showProgressBar();
+				}
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -459,29 +516,66 @@ public  class NetworkRequestFragment extends ParentFragment
 		{
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
+			try {
+				if(checkNetwork.checkNetworkConnection(getActivity()))
+				{
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				if(getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size()==0)
+					if (getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size()==0 || flagConnections == BACKGROUNDSYNCFLAG)
+					{
+						source.open();
+						getListOfPendingRequestsByLoggedID =servicemethod.getPendingRequestsListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
+						flag_loading = false;
+						if (getListOfPendingRequestsByLoggedID != null && getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size() > 0) {
+							if (flagConnections == BACKGROUNDSYNCFLAG)
+								source.deleteNetworkModuleRequestData();
+
+							for (int i = 0; i < getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size(); i++)
+							{
+								GetListOfPendingRequestsByLoggedID model=getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().get(i);
+								byte[] imageByte= Base64.decode(model.getProfileImage(), 0);
+
+								if(imageByte!=null)
+								{
+									try {
+										String imagePath= AppUtils.PATHNETWORKIMAGES+model.getFriendID()+".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+										getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().get(i).setProfileImage(appUtils.bitmapStoreInSDCard(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length),imagePath));
+									} catch (Exception e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								source.addNetworkModuleRequestData(getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().get(i));
+							}
+						}
+
+						source.close();
+					}
+
+				/*if(getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size()==0)
 				{
 					getListOfPendingRequestsByLoggedID =servicemethod.getPendingRequestsListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
 					flag_loading=false;
+				}*/
+					else
+					{
+						GetListOfPendingRequestsByLoggedIDList list=servicemethod.getPendingRequestsListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
+						if(list!=null && list.getListOfPendingRequestsByLoggedID().size()>0)
+						{
+							flag_loading=false;
+							getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().addAll(list.getListOfPendingRequestsByLoggedID());
+						}
+
+
+					}
 				}
 				else
 				{
-					GetListOfPendingRequestsByLoggedIDList list=servicemethod.getPendingRequestsListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
-					if(list!=null && list.getListOfPendingRequestsByLoggedID().size()>0)
-					{
-						flag_loading=false;
-						getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().addAll(list.getListOfPendingRequestsByLoggedID());
-					}
-
-
+					ErrorCode=-1;
 				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -493,68 +587,90 @@ public  class NetworkRequestFragment extends ParentFragment
 
 			try {
 				hideKeyBoard();
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				if(flagConnections!=BACKGROUNDSYNCFLAG)
+					customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-			if(result==-1)
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new fetchPendingRequestListByLoggedID(pageIndex, flagConnections).execute();
+
+				} else {
+					if (getListOfPendingRequestsByLoggedID != null && getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size() > 0) {
+						layout_nodata.setVisibility(View.GONE);
+						noconnectionimage.setVisibility(View.GONE);
+						noconnectiontext.setVisibility(View.GONE);
+						listconnections_network.setVisibility(View.VISIBLE);
+						setNetworkRequestData(pageIndex, flagConnections);
+						inviteFriends.setVisibility(View.INVISIBLE);
+					} else {
+
+
+						getError();
+					}
+					isSearchDone = false;
+				}
+			}
+			catch (Exception e)
 			{
-				showMessage.showToastMessage("Please check your network connection");
-
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new fetchPendingRequestListByLoggedID(pageIndex).execute();
 
 			}
-			else
-			{
-				if(getListOfPendingRequestsByLoggedID!=null && getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size()>0)
-				{
-					layout_nodata.setVisibility(View.GONE);
-					noconnectionimage.setVisibility(View.GONE);
-					noconnectiontext.setVisibility(View.GONE);
-					listconnections_network.setVisibility(View.VISIBLE);
-
-					if(pageIndex==1)
-					{
-						adapter=new NetworkRequestListAdapter(getActivity(),getListOfPendingRequestsByLoggedID,NetworkRequestFragment.this);
-						listconnections_network.setAdapter(adapter);
-						adapter.notifyDataSetChanged();
-					}
-					else
-					{
-						adapter.notifyDataSetChanged();
-						listconnections_network.invalidate();
-					}
-
-					inviteFriends.setVisibility(View.INVISIBLE);
-				}
-				else
-				{
+		}
 
 
-					getError();
-				}	
-				isSearchDone=false;
-			}	
-		}	
 	}
 
 	private void getError()
 	{
 		layout_nodata.setVisibility(View.VISIBLE);
 		listconnections_network.setVisibility(View.GONE);
-		com.hatchtact.pinwi.classmodel.Error err = servicemethod.getError();	
+		com.hatchtact.pinwi.classmodel.Error err = servicemethod.getError();
 		//showMessage.showAlert("Warning", err.getErrorDesc());
 		noconnectionimage.setVisibility(View.VISIBLE);
 		noconnectiontext.setVisibility(View.VISIBLE);
 		noconnectiontext.setText(err.getErrorDesc());
 	}
 
+	private void setNetworkRequestData(int pageIndex, int flag) {
 
-	private ProgressDialog progressDialogSearch=null;	
+		if(pageIndex==1)
+		{
+			if(flag==PROGRESSSYNCFLAG)
+			{
+				adapter=new NetworkRequestListAdapter(getActivity(),getListOfPendingRequestsByLoggedID,NetworkRequestFragment.this);
+				listconnections_network.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
+			}
+			else
+			{
+				if(getListOfPendingRequestsByLoggedID.getListOfPendingRequestsByLoggedID().size()<=8)
+				{
+					adapter=new NetworkRequestListAdapter(getActivity(),getListOfPendingRequestsByLoggedID,NetworkRequestFragment.this);
+					listconnections_network.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
+				}
+				else
+				{
+					adapter.notifyDataSetChanged();
+					listconnections_network.invalidate();
+				}
+			}
+		}
+		else
+		{
+			adapter.notifyDataSetChanged();
+			listconnections_network.invalidate();
+		}
+
+	}
+	//private ProgressDialog progressDialogSearch=null;
 
 	private class searchFriendListGlobally extends AsyncTask<Void, Void, Integer>
 	{
@@ -569,9 +685,12 @@ public  class NetworkRequestFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogSearch.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogSearch.setCancelable(false);*/
 		}
 
 		@Override
@@ -598,7 +717,7 @@ public  class NetworkRequestFragment extends ParentFragment
 
 
 				}}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -611,8 +730,9 @@ public  class NetworkRequestFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogSearch.isShowing())
-					progressDialogSearch.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialogSearch.isShowing())
+					progressDialogSearch.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -655,11 +775,11 @@ public  class NetworkRequestFragment extends ParentFragment
 
 
 					getError();
-				}	
+				}
 				isSearchDone=false;
 
-			}	
-		}	
+			}
+		}
 	}
 
 
@@ -680,10 +800,10 @@ public  class NetworkRequestFragment extends ParentFragment
 		}
 
 	}
-	
+
 	public void setInviteButton()
 	{
-		
+
 		layout_nodata.setVisibility(View.VISIBLE);
 		listconnections_network.setVisibility(View.GONE);
 		//com.demo.pinwi.classmodel.Error err = servicemethod.getError();	
@@ -691,8 +811,8 @@ public  class NetworkRequestFragment extends ParentFragment
 		noconnectionimage.setVisibility(View.VISIBLE);
 		noconnectiontext.setVisibility(View.VISIBLE);
 		noconnectiontext.setText("You have no new request.");
-		
-			
+
+
 	}
 
 }

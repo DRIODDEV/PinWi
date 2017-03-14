@@ -727,7 +727,7 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 		}
 
 	}
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class GetSchoolActivityByCalendarDate extends AsyncTask<Void, Void, Integer>
 	{
@@ -744,9 +744,12 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+		/*	progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -772,8 +775,9 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -801,7 +805,7 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 		}	
 	}
 
-	private ProgressDialog progressDialogAfterSchool=null;	
+	//private ProgressDialog progressDialogAfterSchool=null;
 
 	private class GetAfterSchoolActivityByCalendarDate extends AsyncTask<Void, Void, Integer>
 	{
@@ -818,9 +822,12 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialogAfterSchool = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
-			progressDialogAfterSchool.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+		/*	progressDialogAfterSchool = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
+			progressDialogAfterSchool.setCancelable(false);*/
 		}
 
 		@Override
@@ -846,8 +853,9 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogAfterSchool.isShowing())
-					progressDialogAfterSchool.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialogAfterSchool.isShowing())
+					progressDialogAfterSchool.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -865,7 +873,13 @@ public class GetDataByCalendarDateFragment extends ParentFragment
 			{
 				if(afterschoolActivitiesByDateList != null && afterschoolActivitiesByDateList.getAfterSchoolActivitiesByDate().size()>0)
 				{
-					toDisplayAfterSchoolData();
+					try {
+						toDisplayAfterSchoolData();
+					}
+					catch (Exception e)
+					{
+
+					}
 				}
 				else
 				{

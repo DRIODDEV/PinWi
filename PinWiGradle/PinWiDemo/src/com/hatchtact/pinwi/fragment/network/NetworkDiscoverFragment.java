@@ -3,10 +3,12 @@ package com.hatchtact.pinwi.fragment.network;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,19 +33,27 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.adapter.NetworkConnectionsListAdapter;
 import com.hatchtact.pinwi.adapter.NetworkDiscoverListAdapter;
 import com.hatchtact.pinwi.adapter.NetworkSearchListAdapter;
+import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedID;
+import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedIDList;
+import com.hatchtact.pinwi.classmodel.GetPeopleYouMayKnowListByLoggedID;
 import com.hatchtact.pinwi.classmodel.GetPeopleYouMayKnowListByLoggedIDList;
 import com.hatchtact.pinwi.classmodel.SearchFriendListGloballyList;
+import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.fragment.insights.ParentFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.PopupHelper;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
-public  class NetworkDiscoverFragment extends ParentFragment 
+import java.util.ArrayList;
+
+public  class NetworkDiscoverFragment extends ParentFragment
 {
 	private View view;
 	private SharePreferenceClass sharePref;
@@ -70,6 +80,12 @@ public  class NetworkDiscoverFragment extends ParentFragment
 	private boolean flag_loading=false;
 	private boolean isSearchList=false;
 	private boolean isSearchDone=false;
+	/**For database*/
+	private DataSource source;//initializing  database
+	private final int BACKGROUNDSYNCFLAG=1;//background syncing
+	private final int PROGRESSSYNCFLAG=2;//progress syncing
+	private AppUtils appUtils;
+	/**For database*/
 
 
 
@@ -91,7 +107,7 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		if(savedInstanceState==null)
 		{
@@ -99,21 +115,51 @@ public  class NetworkDiscoverFragment extends ParentFragment
 			setHasOptionsMenu(true);
 			mListener.onFragmentAttached(true,"  Network");
 			initialize();//initialize all view items in fragment
-			checkNetwork=new CheckNetwork();
-			showMessage=new ShowMessages(getActivity());
-			servicemethod=new ServiceMethod();
-			getPeopleYouMayKnowListByLoggedIDList=new GetPeopleYouMayKnowListByLoggedIDList();
-			getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().clear();
-			searchFriendListGlobally=new SearchFriendListGloballyList();
-			searchFriendListGlobally.getsearchFriendListGloballyList().clear();
-			new fetchPendingRequestListByLoggedID(1).execute();	
-			isSearchDone=false;
+			appUtils=new AppUtils(getActivity());
+			try
+			{
+				checkIfDataExistInDatabase();//checking if database contains value for access profile data
+			}
+			catch (Exception e)
+			{
+
+			}
+			//new fetchPendingRequestListByLoggedID(1).execute();
+			//isSearchDone=false;
 
 		}
-		return view;		
+		return view;
 	}
 
-	private void initialize() 
+
+	/**
+	 *
+	 */
+	private void checkIfDataExistInDatabase() {
+		source.open();
+		ArrayList<GetPeopleYouMayKnowListByLoggedID> listConnections=source.getNetworkModuleDiscoverList();
+		if(getPeopleYouMayKnowListByLoggedIDList==null)
+		{
+			getPeopleYouMayKnowListByLoggedIDList=new GetPeopleYouMayKnowListByLoggedIDList();
+		}
+		if(listConnections!=null &&listConnections.size()>0)
+		{
+			getPeopleYouMayKnowListByLoggedIDList.setGetInterestTraitsByChildIDOnInsight(listConnections);
+			layout_nodata.setVisibility(View.GONE);
+			noconnectionimage.setVisibility(View.GONE);
+			noconnectiontext.setVisibility(View.GONE);
+			listconnections_network.setVisibility(View.VISIBLE);
+			inviteFriends.setVisibility(View.INVISIBLE);
+			setDiscoverData(1,PROGRESSSYNCFLAG);
+			new fetchPendingRequestListByLoggedID(1,BACKGROUNDSYNCFLAG).execute();
+		}
+		else
+		{
+			new fetchPendingRequestListByLoggedID(1,PROGRESSSYNCFLAG).execute();
+		}
+		source.close();
+	}
+	private void initialize()
 	{
 		// TODO Auto-generated method stub
 		connections_textView=(TextView) view.findViewById(R.id.text_connectionheader);
@@ -156,10 +202,10 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+									int position, long id) {
 				// TODO Auto-generated method stub
 				//here put friend id and open friend details fragment
-				 // showQuickActionMenu(position,view);
+				// showQuickActionMenu(position,view);
 				if(!isSearchList)
 				{
 					StaticVariables.FriendId=getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().get(position).getFriendID()+"";
@@ -174,21 +220,21 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 			}
 		});
-		
+
 
 
 		listconnections_network.setOnScrollListener(new OnScrollListener() {
 
 
 
-			public void onScrollStateChanged(AbsListView view, int scrollState) 
+			public void onScrollStateChanged(AbsListView view, int scrollState)
 			{
 
 			}
 
 			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-
+								 int visibleItemCount, int totalItemCount) {
+              //if needed need to update total item check when removing items
 				if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0 && totalItemCount>=8)
 				{
 					if(flag_loading == false)
@@ -199,7 +245,7 @@ public  class NetworkDiscoverFragment extends ParentFragment
 						{
 							if(totalItemCount% 8==0)
 							{
-								new fetchPendingRequestListByLoggedID((totalItemCount/8)+1).execute();	
+								new fetchPendingRequestListByLoggedID((totalItemCount/8)+1,PROGRESSSYNCFLAG).execute();
 							}
 						}
 						else
@@ -219,13 +265,13 @@ public  class NetworkDiscoverFragment extends ParentFragment
 			int len = 0;
 			@Override
 			public void onTextChanged(CharSequence s, int start,
-					int before, int count) {
+									  int before, int count) {
 				// TODO Auto-generated method stub
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start,
-					int count, int after) {
+										  int count, int after) {
 				// TODO Auto-generated method stub
 				String str = s.toString();
 				len = str.length();
@@ -272,7 +318,7 @@ public  class NetworkDiscoverFragment extends ParentFragment
 								getPeopleYouMayKnowListByLoggedIDList=new GetPeopleYouMayKnowListByLoggedIDList();
 							}
 							isSearchDone=true;
-							new fetchPendingRequestListByLoggedID(1).execute();	
+							new fetchPendingRequestListByLoggedID(1,PROGRESSSYNCFLAG).execute();
 
 						}
 					}
@@ -289,17 +335,17 @@ public  class NetworkDiscoverFragment extends ParentFragment
 		editsearch.setOnEditorActionListener(new OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
+										  KeyEvent event) {
 
 
 
 				if (actionId == EditorInfo.IME_ACTION_NEXT)
 				{
 					return true;
-				} else if (actionId == EditorInfo.IME_ACTION_DONE) 
+				} else if (actionId == EditorInfo.IME_ACTION_DONE)
 				{
 					return true;
-				} else 
+				} else
 				{
 					return true;
 				}
@@ -357,6 +403,14 @@ public  class NetworkDiscoverFragment extends ParentFragment
 			}
 		});
 
+		checkNetwork=new CheckNetwork();
+		showMessage=new ShowMessages(getActivity());
+		servicemethod=new ServiceMethod();
+		getPeopleYouMayKnowListByLoggedIDList=new GetPeopleYouMayKnowListByLoggedIDList();
+		getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().clear();
+		searchFriendListGlobally=new SearchFriendListGloballyList();
+		searchFriendListGlobally.getsearchFriendListGloballyList().clear();
+		source = new DataSource(getActivity());
 
 	}
 
@@ -410,7 +464,7 @@ public  class NetworkDiscoverFragment extends ParentFragment
 		return super.onOptionsItemSelected(item);
 	}*/
 
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		for(int i=0;i<menu.size();i++)
@@ -426,7 +480,7 @@ public  class NetworkDiscoverFragment extends ParentFragment
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
-	}  
+	}
 
 
 	@Override
@@ -438,26 +492,38 @@ public  class NetworkDiscoverFragment extends ParentFragment
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	private ProgressDialog progressDialog=null;	
+
+	//private ProgressDialog progressDialog=null;
 
 	private class fetchPendingRequestListByLoggedID extends AsyncTask<Void, Void, Integer>
 	{
 		int pageIndex=1;
-
-		public fetchPendingRequestListByLoggedID(int i) 
+		int flagConnections=0;
+		public fetchPendingRequestListByLoggedID(int i,int flag)
 		{
 			// TODO Auto-generated constructor stub
 			pageIndex=i;
+			flagConnections=flag;
+
 		}
 
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+			try {
+				if (flagConnections != BACKGROUNDSYNCFLAG) {
+					if (customProgressLoader != null) {
+						customProgressLoader.showProgressBar();
+					}
+				}
+			}
+			catch (Exception e)
+			{
 
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			}
+//			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+//			progressDialog.setCancelable(false);
 		}
 
 		@Override
@@ -465,29 +531,57 @@ public  class NetworkDiscoverFragment extends ParentFragment
 		{
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					if (getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size() == 0 || flagConnections == BACKGROUNDSYNCFLAG) {
+						source.open();
+						getPeopleYouMayKnowListByLoggedIDList = servicemethod.getPeopleYouMayKnowListByLoggedID(StaticVariables.currentParentId, pageIndex, 8);
+						flag_loading = false;
+						if (getPeopleYouMayKnowListByLoggedIDList != null && getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size() > 0) {
+							if (flagConnections == BACKGROUNDSYNCFLAG)
+								source.deleteNetworkModuleDiscoverData();
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				if(getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size()==0)
+							for (int i = 0; i < getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size(); i++) {
+								GetPeopleYouMayKnowListByLoggedID model = getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().get(i);
+								byte[] imageByte = Base64.decode(model.getProfileImage(), 0);
+
+								if (imageByte != null) {
+									try {
+										String imagePath = AppUtils.PATHNETWORKIMAGES + model.getFriendID() + ".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+										getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().get(i).setProfileImage(appUtils.bitmapStoreInSDCard(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length), imagePath));
+									} catch (Exception e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								source.addNetworkModuleDiscovertData(getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().get(i));
+							}
+						}
+
+						source.close();
+					}
+
+				/*if(getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size()==0)
 				{
 					getPeopleYouMayKnowListByLoggedIDList =servicemethod.getPeopleYouMayKnowListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
 					flag_loading=false;
-				}
-				else
-				{
-					GetPeopleYouMayKnowListByLoggedIDList list=servicemethod.getPeopleYouMayKnowListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
-					if(list!=null && list.getPeopleYouMayKnowListByLoggedID().size()>0)
-					{
-						flag_loading=false;
-						getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().addAll(list.getPeopleYouMayKnowListByLoggedID());
+				}*/
+					else {
+						GetPeopleYouMayKnowListByLoggedIDList list = servicemethod.getPeopleYouMayKnowListByLoggedID(StaticVariables.currentParentId, pageIndex, 8);
+						if (list != null && list.getPeopleYouMayKnowListByLoggedID().size() > 0) {
+							flag_loading = false;
+							getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().addAll(list.getPeopleYouMayKnowListByLoggedID());
+						}
+
+
 					}
-
-
+				} else {
+					ErrorCode = -1;
 				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -499,59 +593,82 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 			try {
 				hideKeyBoard();
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				if(flagConnections!=BACKGROUNDSYNCFLAG)
+					customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-			if(result==-1)
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new fetchPendingRequestListByLoggedID(pageIndex, flagConnections).execute();
+
+				} else {
+					if (getPeopleYouMayKnowListByLoggedIDList != null && getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size() > 0) {
+						layout_nodata.setVisibility(View.GONE);
+						noconnectionimage.setVisibility(View.GONE);
+						noconnectiontext.setVisibility(View.GONE);
+						listconnections_network.setVisibility(View.VISIBLE);
+
+						setDiscoverData(pageIndex, flagConnections);
+
+						inviteFriends.setVisibility(View.INVISIBLE);
+					} else {
+						getError();
+					}
+					isSearchDone = false;
+				}
+			}
+			catch (Exception e)
 			{
-				showMessage.showToastMessage("Please check your network connection");
 
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new fetchPendingRequestListByLoggedID(pageIndex).execute();
+			}
+		}
 
+
+	}
+	private void setDiscoverData(int pageIndex, int flagConnections) {
+		if(pageIndex==1)
+		{
+
+			if(flagConnections==PROGRESSSYNCFLAG)
+			{
+				adapter=new NetworkDiscoverListAdapter(getActivity(),getPeopleYouMayKnowListByLoggedIDList);
+				listconnections_network.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
 			}
 			else
 			{
-				if(getPeopleYouMayKnowListByLoggedIDList!=null && getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size()>0)
+				if(getPeopleYouMayKnowListByLoggedIDList.getPeopleYouMayKnowListByLoggedID().size()<=8)
 				{
-					layout_nodata.setVisibility(View.GONE);
-					noconnectionimage.setVisibility(View.GONE);
-					noconnectiontext.setVisibility(View.GONE);
-					listconnections_network.setVisibility(View.VISIBLE);
-
-					if(pageIndex==1)
-					{
-						adapter=new NetworkDiscoverListAdapter(getActivity(),getPeopleYouMayKnowListByLoggedIDList);
-						listconnections_network.setAdapter(adapter);
-						adapter.notifyDataSetChanged();
-					}
-					else
-					{
-						adapter.notifyDataSetChanged();
-						listconnections_network.invalidate();
-					}
-
-					inviteFriends.setVisibility(View.INVISIBLE);
+					adapter=new NetworkDiscoverListAdapter(getActivity(),getPeopleYouMayKnowListByLoggedIDList);
+					listconnections_network.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
 				}
 				else
 				{
-					getError();
-				}	
-				isSearchDone=false;
-			}	
-		}	
+					adapter.notifyDataSetChanged();
+					listconnections_network.invalidate();
+				}
+			}
+		}
+		else
+		{
+			adapter.notifyDataSetChanged();
+			listconnections_network.invalidate();
+		}
 	}
-
 	private void getError()
 	{
 		layout_nodata.setVisibility(View.VISIBLE);
 		listconnections_network.setVisibility(View.GONE);
-		com.hatchtact.pinwi.classmodel.Error err = servicemethod.getError();	
+		com.hatchtact.pinwi.classmodel.Error err = servicemethod.getError();
 		//showMessage.showAlert("Warning", err.getErrorDesc());
 		noconnectionimage.setVisibility(View.VISIBLE);
 		noconnectiontext.setVisibility(View.VISIBLE);
@@ -559,8 +676,8 @@ public  class NetworkDiscoverFragment extends ParentFragment
 	}
 
 
-	private ProgressDialog progressDialogSearch=null;
-	private PopupWindow window;	
+	//private ProgressDialog progressDialogSearch=null;
+	private PopupWindow window;
 
 	private class searchFriendListGlobally extends AsyncTask<Void, Void, Integer>
 	{
@@ -575,9 +692,12 @@ public  class NetworkDiscoverFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogSearch.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogSearch.setCancelable(false);*/
 		}
 
 		@Override
@@ -606,7 +726,7 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 				}
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -619,8 +739,9 @@ public  class NetworkDiscoverFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogSearch.isShowing())
-					progressDialogSearch.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialogSearch.isShowing())
+					progressDialogSearch.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -665,39 +786,39 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 
 					getError();
-				}	
+				}
 				isSearchDone=false;
-			}	
-		}	
+			}
+		}
 	}
 
-	
+
 
 
 	private void showQuickActionMenu(int pos, View v){
-	    LayoutInflater inflater = 
-	            (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater =
+				(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-	    //This is just a view with buttons that act as a menu.  
-	    View popupView = inflater.inflate(R.layout.dialog_menu, null);
-	    popupView.findViewById(R.id.item_dropbox).setTag(pos);
-	    popupView.findViewById(R.id.item_save).setTag(pos);
+		//This is just a view with buttons that act as a menu.
+		View popupView = inflater.inflate(R.layout.dialog_menu, null);
+		popupView.findViewById(R.id.item_dropbox).setTag(pos);
+		popupView.findViewById(R.id.item_save).setTag(pos);
 	   /* popupView.findViewById(R.id.menu_add_note).setTag(pos);
 	    popupView.findViewById(R.id.menu_add_attachment).setTag(pos);*/
 
-	    window = PopupHelper.newBasicPopupWindow(getActivity());
-	    window.setContentView(popupView);
-	    int totalHeight = getActivity().getWindowManager().getDefaultDisplay().getHeight();
-	    int[] location = new int[2];
-	    v.getLocationOnScreen(location);
+		window = PopupHelper.newBasicPopupWindow(getActivity());
+		window.setContentView(popupView);
+		int totalHeight = getActivity().getWindowManager().getDefaultDisplay().getHeight();
+		int[] location = new int[2];
+		v.getLocationOnScreen(location);
 
-	    if (location[1] < (totalHeight / 2.0)) {
-	        PopupHelper.showLikeQuickAction(window, popupView, v
-	                , getActivity().getWindowManager(),0,0,PopupHelper.UPPER_HALF);
-	    } else {
-	        PopupHelper.showLikeQuickAction(window, popupView, v
-	                ,getActivity(). getWindowManager(),0, 0,PopupHelper.LOWER_HALF);
-	    }   
+		if (location[1] < (totalHeight / 2.0)) {
+			PopupHelper.showLikeQuickAction(window, popupView, v
+					, getActivity().getWindowManager(),0,0,PopupHelper.UPPER_HALF);
+		} else {
+			PopupHelper.showLikeQuickAction(window, popupView, v
+					,getActivity(). getWindowManager(),0, 0,PopupHelper.LOWER_HALF);
+		}
 	}
 
 	private void hideKeyBoard() {

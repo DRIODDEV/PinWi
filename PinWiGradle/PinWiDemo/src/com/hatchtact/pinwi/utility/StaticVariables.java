@@ -66,7 +66,7 @@ public class StaticVariables
 	public static FacebookParentProfileModel modelFacebook=new FacebookParentProfileModel();
 
 	public static boolean isChildUpdated=false;
-	public static final String progressBarText="Hold On...";
+	public static final String progressBarText="This shouldn't take too long...";
 	public static boolean isSettingsFromAccessProfile=false;
 	public static ArrayList<ChildModel> childArrayList=new ArrayList<ChildModel>();
 	public static int currentTutorialValue=0;//this is for in app tutorials
@@ -136,6 +136,8 @@ public class StaticVariables
 	public static int categoryIdFinal;
 	public static String categoryNameFinal;
 	public static String dayMode="";
+	public static String freeAppWebUrl="";
+	public static int  screenForPurchase=0;
 
 
 }

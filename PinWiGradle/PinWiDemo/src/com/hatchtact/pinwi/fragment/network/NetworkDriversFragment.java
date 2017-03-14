@@ -78,7 +78,7 @@ public class NetworkDriversFragment extends ParentFragment
 	}
 
 
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
 
 	private class fetchExhilaratorsList extends AsyncTask<Void, Void, Integer>
 	{
@@ -88,9 +88,12 @@ public class NetworkDriversFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -117,8 +120,9 @@ public class NetworkDriversFragment extends ParentFragment
 
 			try {
 
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

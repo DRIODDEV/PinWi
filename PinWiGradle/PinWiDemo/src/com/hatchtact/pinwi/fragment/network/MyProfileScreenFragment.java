@@ -234,7 +234,7 @@ public  class MyProfileScreenFragment extends ParentFragment
 		return super.onOptionsItemSelected(item);
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class fetchProfileDetailsByLoggedID extends AsyncTask<Void, Void, Integer>
 	{
@@ -242,8 +242,12 @@ public  class MyProfileScreenFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -268,8 +272,9 @@ public  class MyProfileScreenFragment extends ParentFragment
 			super.onPostExecute(result);
 			try {
 				hideKeyBoard();
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

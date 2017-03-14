@@ -221,6 +221,7 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 		return view;		
 	}
 
+	private ProgressDialog progressDialog;
 	private class AddNewCustomActivity extends AsyncTask<Void, Void, Integer>
 	{
 		@Override
@@ -274,7 +275,7 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 			}			
 		}	
 	}
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class GetCategory extends AsyncTask<Void, Void, Integer>
 	{
@@ -292,8 +293,12 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -346,8 +351,9 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -625,8 +631,12 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 			try {
-				progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
-				progressDialog.setCancelable(false);
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.startHandler();
+				}
+				/*progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
+				progressDialog.setCancelable(false);*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -674,8 +684,9 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

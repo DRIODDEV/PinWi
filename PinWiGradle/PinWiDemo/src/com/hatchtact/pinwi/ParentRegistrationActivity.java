@@ -20,6 +20,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -105,18 +107,18 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 	private TextView text_passcode=null;
 
 	private RadioButton father_textView=null;
-	private RadioButton mother_textView=null;  
+	private RadioButton mother_textView=null;
 	private RadioButton guardian_textView=null;
 	private RadioButton male_textView=null;
 	private RadioButton female_textView=null;
 	private Switch passcode_switchView=null;
 	private LinearLayout layout_Pass_AutoLock=null;
 
-	private TypeFace typeFace=null;   
+	private TypeFace typeFace=null;
 	private Validation checkValidation=null;
-	private ShowMessages showMessage=null;  
+	private ShowMessages showMessage=null;
 	private ParentProfile parentProfile=null;
-	private UpdateParentProfile updateParentProfile = null; 
+	private UpdateParentProfile updateParentProfile = null;
 	private SharePreferenceClass sharePreferneceClass=null;
 	private Gson gsonRegistration=null;
 
@@ -168,7 +170,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 
@@ -181,7 +183,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 		Bundle bundle = getIntent().getExtras();
 
-		try {	
+		try {
 			parentUpdate = bundle.getBoolean("ToParentScreen");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -204,7 +206,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				// TODO Auto-generated method stub
 				Intent intentAboutUs =new Intent(ParentRegistrationActivity.this, ActivityAboutUS.class);
 				startActivity(intentAboutUs);
-				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";	
+				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
 			}
 		});
 
@@ -260,7 +262,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		father_textView.setChecked(true);
 
 		//typeFace.setTypefaceLight(street_editText);	
-		typeFace.setTypefaceLight(street_autoCompleteTextView);	
+		typeFace.setTypefaceLight(street_autoCompleteTextView);
 		typeFace.setTypefaceLight(city_autoCompleteTextView);
 		typeFace.setTypefaceLight(country_autoCompleteTextView);
 		typeFace.setTypefaceLight(firstname_editText);
@@ -291,7 +293,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-				String textSelected = arg0.getItemAtPosition(arg2).toString();	
+				String textSelected = arg0.getItemAtPosition(arg2).toString();
 				int currentCountryId = 0;
 
 				for(int i=0;i<countryList.getCountry().size();i++)
@@ -309,7 +311,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				else
 				{
 
-					new GetListOfField("city",currentCountryId).execute();	
+					new GetListOfField("city",currentCountryId).execute();
 					CountryId=currentCountryId;
 				}
 			}
@@ -320,7 +322,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-				String textSelected = arg0.getItemAtPosition(arg2).toString();	
+				String textSelected = arg0.getItemAtPosition(arg2).toString();
 				int currentCityId = 0;
 
 				for(int i=0;i<cityList.getCity().size();i++)
@@ -338,7 +340,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				else*/
 				{
 
-					new GetListOfField("locality",currentCityId).execute();	
+					new GetListOfField("locality",currentCityId).execute();
 					CityId=currentCityId;
 				}
 			}
@@ -355,12 +357,12 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			}
 		});*/
 
-		street_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener() 
+		street_autoCompleteTextView.setOnItemClickListener(new OnItemClickListener()
 		{
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+									long arg3) {
 				// TODO Auto-generated method stub
 
 			}
@@ -374,8 +376,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					hideKeyBoard();
 
 					return true;
-				} 
-				else 
+				}
+				else
 				{
 					hideKeyBoard();
 					return true;
@@ -391,8 +393,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					hideKeyBoard();
 
 					return true;
-				} 
-				else 
+				}
+				else
 				{
 					hideKeyBoard();
 					return true;
@@ -453,7 +455,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				phoneCode_editText.setSelection(phoneCode_editText.getText().toString().length());	
+				phoneCode_editText.setSelection(phoneCode_editText.getText().toString().length());
 			}
 		});
 
@@ -511,7 +513,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		//yes
 		continue_button.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) 
+			public void onClick(View v)
 			{
 				validateDataOnSubmit();
 			}
@@ -601,7 +603,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		new GetParentDetailFromServer(parentId).execute();
 	}
 
-	private ProgressDialog progressDialog2=null;	
+	private ProgressDialog progressDialog2=null;
 
 	private class GetParentDetailFromServer extends AsyncTask<Void, Void, Integer>
 	{
@@ -633,11 +635,11 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			if(checkNetwork.checkNetworkConnection(ParentRegistrationActivity.this))
 			{
-				parentInformationFromServer = serviceMethod.getParentinformation(parentId);	
-				locationInformationFromServer = serviceMethod.getLocationinformation(parentId);	
+				parentInformationFromServer = serviceMethod.getParentinformation(parentId);
+				locationInformationFromServer = serviceMethod.getLocationinformation(parentId);
 
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -680,7 +682,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						{
 							city_autoCompleteTextView.setText(locationInformationFromServer.getCityName());
 							parentProfile.setCityID(locationInformationFromServer.getCity());
-							new GetListOfField("locality",parentProfile.getCityID()).execute();	
+							new GetListOfField("locality",parentProfile.getCityID()).execute();
 
 							parentProfile.setCity(locationInformationFromServer.getCityName());
 
@@ -748,9 +750,9 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 								parentProfile.setGender(female_textView.getText().toString());
 								parentProfile.setRelation(guardian_textView.getText().toString());
 								female_textView.setChecked(true);
-							}		
+							}
 						}
-					}   
+					}
 
 					if(parentInformationFromServer.getProfileImage()!=null && parentInformationFromServer.getProfileImage().length()>0)
 					{
@@ -759,7 +761,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						{
 							imageByte = parentInformationFromServer.getProfileImage();
 
-							profilePic_imageView.setImageBitmap(getRoundedShape(BitmapFactory.decodeByteArray(imageByteRefill, 0, imageByteRefill.length)));	
+							profilePic_imageView.setImageBitmap(getRoundedShape(BitmapFactory.decodeByteArray(imageByteRefill, 0, imageByteRefill.length)));
 						}
 					}
 
@@ -794,22 +796,22 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						if(parentInformationFromServer.getAutolockTime()!=0)
 						{
 
-							autolocktime_autoCompleteTextView.setText(parentInformationFromServer.getTimeValue());	
+							autolocktime_autoCompleteTextView.setText(parentInformationFromServer.getTimeValue());
 							autolocktime_autoCompleteTextView.setSelection(parentInformationFromServer.getTimeValue().length());
 						}
 					}
 				}
 				else
-				{	
+				{
 					getError();
-				}	
-			}	
-		}	
+				}
+			}
+		}
 	}
 
 
 	private boolean isFirstTime=false;
-	private void addPreFilledData() 
+	private void addPreFilledData()
 	{
 		// TODO Auto-generated method stub
 		ParentProfile parentInformation = gsonRegistration.fromJson(sharePreferneceClass.getParentProfile(), ParentProfile.class);
@@ -904,15 +906,15 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						parentProfile.setGender(female_textView.getText().toString());
 						parentProfile.setRelation(guardian_textView.getText().toString());
 						female_textView.setChecked(true);
-					}		
+					}
 				}
-			}   
+			}
 
 			if(parentInformation.getProfileImage()!=null && parentInformation.getProfileImage().length()>0)
 			{
 				try {
 					imageByte = parentInformation.getProfileImage();
-					profilePic_imageView.setImageBitmap(getRoundedShape(BitmapFactory.decodeFile(parentInformation.getProfileImage())));			
+					profilePic_imageView.setImageBitmap(getRoundedShape(BitmapFactory.decodeFile(parentInformation.getProfileImage())));
 					parentProfile.setProfileImage(parentInformation.getProfileImage());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -955,7 +957,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				}
 
 				if(parentInformation.getAutolockTime()!=null && parentInformation.getAutolockTime().trim().length()>0)
-					autolocktime_autoCompleteTextView.setText(parentInformation.getAutolockTime());	
+					autolocktime_autoCompleteTextView.setText(parentInformation.getAutolockTime());
 
 			}
 		}
@@ -1001,10 +1003,10 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		}
 	}
 
-	private ProgressDialog progressDialog1=null;	
+	private ProgressDialog progressDialog1=null;
 
 	private class GetListOfAutoLockTimeField extends AsyncTask<Void, Void, Integer>
-	{   
+	{
 
 		@Override
 		protected void onPreExecute() {
@@ -1033,7 +1035,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 				}
 			}
-			else       
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -1086,13 +1088,13 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					getError();
 				}
 			}
-		}	
+		}
 	}
 
 
 	private void getError()
 	{
-		com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();	
+		com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();
 		showMessage.showAlert("Warning", err.getErrorDesc());
 	}
 
@@ -1121,7 +1123,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		},newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 	}
 
-	void cameraClickDialog() 
+	void cameraClickDialog()
 	{
 		CharSequence[] items={"Camera","Gallery"};
 		AlertDialog.Builder optionDialog = new AlertDialog.Builder(this);
@@ -1155,7 +1157,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		optionDialog.show();
 	}
 
-	private void selectImage() 
+	private void selectImage()
 	{
 		if(Build.VERSION.SDK_INT >20)
 		{
@@ -1165,13 +1167,13 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			startActivityForResult(intent2, 1);
 		}
 		else if (Build.VERSION.SDK_INT <19){
-			Intent intent1 = new Intent(); 
+			Intent intent1 = new Intent();
 			intent1.setType("image/*");
 			intent1.setAction(Intent.ACTION_GET_CONTENT);
 			startActivityForResult(Intent.createChooser(intent1,
 					"Select Picture"), SELECT_PICTURE);
 
-		} else 
+		} else
 		{
 			Intent intent2 = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 			intent2.addCategory(Intent.CATEGORY_OPENABLE);
@@ -1186,139 +1188,139 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		super.onActivityResult(requestCode, resultCode, data);
 		System.out.println("in activity result" +resultCode);
 
-		if (resultCode == RESULT_OK) 
+		if (resultCode == RESULT_OK)
 		{
-			switch(requestCode) 
+			switch(requestCode)
 			{
-			case SELECT_PICTURE:
+				case SELECT_PICTURE:
 
-				Uri selectedImageUri = data.getData();
-
-
-				bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri));
-				//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath);
-
-				if(bitmapLength!=null)
-				{
-					imageByte=getPath(selectedImageUri);
-
-					bitmapTobyte();
-				}
-				else
-				{
-					imageByte="";
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
-
-				break;
-
-			case 110:
-
-				Uri selectedImageUri1 = data.getData();
-
-				final int takeFlags = data.getFlags()
-						& (Intent.FLAG_GRANT_READ_URI_PERMISSION
-								| Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-				getContentResolver().takePersistableUriPermission(selectedImageUri1, takeFlags);
+					Uri selectedImageUri = data.getData();
 
 
+					bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri));
+					//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath);
 
-				//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath1);
-				bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri1));
-				if(bitmapLength!=null)
-				{
-					imageByte=getPath(selectedImageUri1);
+					if(bitmapLength!=null)
+					{
+						imageByte=getPath(selectedImageUri);
 
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						imageByte="";
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
+
+					break;
+
+				case 110:
+
+					Uri selectedImageUri1 = data.getData();
+
+					final int takeFlags = data.getFlags()
+							& (Intent.FLAG_GRANT_READ_URI_PERMISSION
+							| Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+					getContentResolver().takePersistableUriPermission(selectedImageUri1, takeFlags);
 
 
-				break;
 
-			case 105:
+					//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(picturePath1);
+					bitmapLength=BitmapFactory.decodeFile(getPath(selectedImageUri1));
+					if(bitmapLength!=null)
+					{
+						imageByte=getPath(selectedImageUri1);
 
-				bitmapLength = (Bitmap) data.getExtras().get("data");  
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
-				String path = Environment.getExternalStorageDirectory()+ "/profilo_"+".jpeg";
-				File file =  new File(path);
 
-				ExifInterface exif = null;
-				try {
-					exif = new ExifInterface(file.getAbsolutePath());
-					int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-					Matrix matrix = new Matrix();
-					switch (orientation) {
-					case ExifInterface.ORIENTATION_ROTATE_270:
+					break;
 
-						matrix.postRotate(270);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+				case 105:
 
-						break;
-					case ExifInterface.ORIENTATION_ROTATE_180:
+					bitmapLength = (Bitmap) data.getExtras().get("data");
 
-						matrix.postRotate(180);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+					String path = Environment.getExternalStorageDirectory()+ "/profilo_"+".jpeg";
+					File file =  new File(path);
 
-						break;
-					case ExifInterface.ORIENTATION_ROTATE_90:
+					ExifInterface exif = null;
+					try {
+						exif = new ExifInterface(file.getAbsolutePath());
+						int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+						Matrix matrix = new Matrix();
+						switch (orientation) {
+							case ExifInterface.ORIENTATION_ROTATE_270:
 
-						matrix.postRotate(90);
-						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+								matrix.postRotate(270);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
 
-						break;
+								break;
+							case ExifInterface.ORIENTATION_ROTATE_180:
+
+								matrix.postRotate(180);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+
+								break;
+							case ExifInterface.ORIENTATION_ROTATE_90:
+
+								matrix.postRotate(90);
+								bitmapLength = Bitmap.createBitmap(bitmapLength, 0, 0, bitmapLength.getWidth(), bitmapLength.getHeight(), matrix, true);
+
+								break;
+
+						}
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					if(bitmapLength.getHeight()>=bitmapLength.getWidth())
+					{
+						bitmapLength = Bitmap.createBitmap(bitmapLength, 0, bitmapLength.getHeight()/2 - bitmapLength.getWidth()/2, bitmapLength.getWidth(), bitmapLength.getWidth());
+					}
+					else
+					{
+
+						bitmapLength = Bitmap.createBitmap(
+								bitmapLength,
+								bitmapLength.getWidth()/2 - bitmapLength.getHeight()/2,
+								0,
+								bitmapLength.getHeight(),
+								bitmapLength.getHeight()
+						);
+
 
 					}
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 
-				if(bitmapLength.getHeight()>=bitmapLength.getWidth())
-				{
-					bitmapLength = Bitmap.createBitmap(bitmapLength, 0, bitmapLength.getHeight()/2 - bitmapLength.getWidth()/2, bitmapLength.getWidth(), bitmapLength.getWidth());
-				}
-				else
-				{
+					ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+					bitmapLength.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
 
-					bitmapLength = Bitmap.createBitmap(
-							bitmapLength, 
-							bitmapLength.getWidth()/2 - bitmapLength.getHeight()/2,
-							0,
-							bitmapLength.getHeight(), 
-							bitmapLength.getHeight()
-							);
+					try {
+						file.createNewFile();
+						FileOutputStream fo = new FileOutputStream(file);
+						//5
+						fo.write(bytes.toByteArray());
+						fo.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
+					if(bitmapLength!=null)
+					{
+						imageByte=path;
 
-				}
-
-				ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-				bitmapLength.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
-
-				try {
-					file.createNewFile();
-					FileOutputStream fo = new FileOutputStream(file);
-					//5
-					fo.write(bytes.toByteArray());
-					fo.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				if(bitmapLength!=null)
-				{
-					imageByte=path;
-
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
 				/*String path = savingProfilePic((Bitmap)data.getExtras().get("data"));
 
@@ -1334,72 +1336,72 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
 				}
 				 */
-				break;
+					break;
 
-			case 1:
+				case 1:
 
-				final Uri selectedImage = data.getData();
+					final Uri selectedImage = data.getData();
 
-				String wholeID = DocumentsContract.getDocumentId(selectedImage);
+					String wholeID = DocumentsContract.getDocumentId(selectedImage);
 
-				// Split at colon, use second item in the array
-				String id = wholeID.split(":")[1];
+					// Split at colon, use second item in the array
+					String id = wholeID.split(":")[1];
 
-				String[] column = { MediaStore.Images.Media.DATA };     
+					String[] column = { MediaStore.Images.Media.DATA };
 
-				// where id is equal to             
-				String sel = MediaStore.Images.Media._ID + "=?";
+					// where id is equal to
+					String sel = MediaStore.Images.Media._ID + "=?";
 
-				Cursor cursor = getContentResolver().
-						query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
-								column, sel, new String[]{ id }, null);
+					Cursor cursor = getContentResolver().
+							query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+									column, sel, new String[]{ id }, null);
 
-				String filePath2 = "";
+					String filePath2 = "";
 
-				int columnIndex2 = cursor.getColumnIndex(column[0]);
+					int columnIndex2 = cursor.getColumnIndex(column[0]);
 
-				if (cursor.moveToFirst()) {
-					filePath2 = cursor.getString(columnIndex2);
-				}   
+					if (cursor.moveToFirst()) {
+						filePath2 = cursor.getString(columnIndex2);
+					}
 
-				cursor.close();
+					cursor.close();
 
 
-				//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(filePath2);
-				bitmapLength=BitmapFactory.decodeFile(filePath2);
-				if(bitmapLength!=null)
-				{
-					imageByte=filePath2;
+					//bitmapLength=new CompressImage(ParentRegistrationActivity.this).compressImage(filePath2);
+					bitmapLength=BitmapFactory.decodeFile(filePath2);
+					if(bitmapLength!=null)
+					{
+						imageByte=filePath2;
 
-					bitmapTobyte();
-				}
-				else
-				{
-					Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
-				}
+						bitmapTobyte();
+					}
+					else
+					{
+						Toast.makeText(ParentRegistrationActivity.this, "Could not use this image. Please pick another one.", Toast.LENGTH_SHORT).show();
+					}
 
-				break;
+					break;
 
-			case 200:
-				String passCodeValue = data.getStringExtra("passCode");
-				//passcode_editText.setText(passCodeValue);
-				text_passcode.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
-				//text_passcode.setTransformationMethod(PasswordTransformationMethod.getInstance());
-				text_passcode.setAlpha(1f);
-				hideKeyBoard();
-				text_passcode.setText(passCodeValue);
-				parentProfile.setPasscode(passCodeValue);
-				passcode_switchView.setChecked(true);
-				break;
+				case 200:
+					String passCodeValue = data.getStringExtra("passCode");
+					//passcode_editText.setText(passCodeValue);
+					text_passcode.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+					//text_passcode.setTransformationMethod(PasswordTransformationMethod.getInstance());
+					text_passcode.setAlpha(1f);
+					hideKeyBoard();
+					text_passcode.setText(passCodeValue);
+					parentProfile.setPasscode(passCodeValue);
+					passcode_switchView.setChecked(true);
+					break;
 			}
 		}
 		else
 		{
-			switch(requestCode) 
+			switch(requestCode)
 			{
-			case 200:
-				passcode_switchView.setChecked(false);
-				break;
+				case 200:
+					passcode_switchView.setChecked(false);
+					break;
 			}
 		}
 	}
@@ -1418,10 +1420,10 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			profilePic_imageView.setImageBitmap(getRoundedShape(bitmapLength));
 	}
 
-	private  String getPath(Uri uri) 
+	private  String getPath(Uri uri)
 	{
 		// just some safety built in 
-		if( uri == null ) 
+		if( uri == null )
 		{
 			// TODO perform some logging or show user feedback
 			return null;
@@ -1430,7 +1432,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		// this will only work for images selected from gallery
 		String[] projection = { MediaStore.Images.Media.DATA };
 		Cursor cursor = managedQuery(uri, projection, null, null, null);
-		if( cursor != null ){ 
+		if( cursor != null ){
 			int column_index = cursor
 					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			cursor.moveToFirst();
@@ -1441,7 +1443,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 	//For Circular Image
 
-	public Bitmap getRoundedShape(Bitmap scaleBitmapImage) 
+	public Bitmap getRoundedShape(Bitmap scaleBitmapImage)
 	{
 
 
@@ -1457,7 +1459,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			int targetHeight = targetWidth;
 
-			Bitmap targetBitmap = Bitmap.createBitmap(targetWidth, 
+			Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
 					targetHeight,Bitmap.Config.ARGB_8888);
 
 			/*Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -1468,18 +1470,18 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			Path path = new Path();
 			path.addCircle(((float) targetWidth - 1) / 2,
 					((float) targetHeight - 1) / 2,
-					(Math.min(((float) targetWidth), 
+					(Math.min(((float) targetWidth),
 							((float) targetHeight)) / 2),
-							Path.Direction.CCW);
+					Path.Direction.CCW);
 
 			canvas.clipPath(path);
 			Bitmap sourceBitmap = scaleBitmapImage;
 
 			System.out.println("value of bitmap"+sourceBitmap);
-			canvas.drawBitmap(sourceBitmap, 
+			canvas.drawBitmap(sourceBitmap,
 					new Rect(0, 0, sourceBitmap.getWidth(),
-							sourceBitmap.getHeight()), 
-							new Rect(0, 0, targetWidth, targetHeight), null);
+							sourceBitmap.getHeight()),
+					new Rect(0, 0, targetWidth, targetHeight), null);
 
 			return targetBitmap;
 		}
@@ -1508,7 +1510,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 	private void hideKeyBoard()
 	{
-		try  
+		try
 		{
 			ParentRegistrationActivity.this.getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -1521,8 +1523,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			ParentRegistrationActivity.this.getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		} 
-		catch (Exception e) 
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -1546,11 +1548,11 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 	private String bitmapTobyte(byte[] bitmapLength)
 	{
 		return Base64.encodeToString(bitmapLength,
-				Base64.DEFAULT);	
+				Base64.DEFAULT);
 	}
 
 
-	private void moveToLocationScreen() 
+	private void moveToLocationScreen()
 	{
 		onTouchContinueButton=true;
 
@@ -1582,12 +1584,12 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		}*/
 		parentProfile.setCity(textSelectedCity);
 
-		String textSelectedCountry = country_autoCompleteTextView.getText().toString();	
+		String textSelectedCountry = country_autoCompleteTextView.getText().toString();
 		for(int i=0;i<countryList.getCountry().size();i++)
 		{
 			if(textSelectedCountry.trim().equalsIgnoreCase(countryList.getCountry().get(i).getCountryName().trim()))
 			{
-				parentProfile.setCountryID(countryList.getCountry().get(i).getCountryID());	
+				parentProfile.setCountryID(countryList.getCountry().get(i).getCountryID());
 				parentProfile.setCountry(textSelectedCountry);
 			}
 		}
@@ -1630,13 +1632,13 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		}
 		parentProfile.setDeviceID(IMEI);
 		parentProfile.setDeviceToken(IMEI);
-		String textSelectedAutolockTime = autolocktime_autoCompleteTextView.getText().toString();	
+		String textSelectedAutolockTime = autolocktime_autoCompleteTextView.getText().toString();
 
 		for(int i=0;i<getAutolockTimeList.getGetAutolockTime().size();i++)
 		{
 			if(textSelectedAutolockTime.trim().equalsIgnoreCase(getAutolockTimeList.getGetAutolockTime().get(i).getTimeValue().trim()))
 			{
-				parentProfile.setAutolockID(getAutolockTimeList.getGetAutolockTime().get(i).getAutolockID());	
+				parentProfile.setAutolockID(getAutolockTimeList.getGetAutolockTime().get(i).getAutolockID());
 				parentProfile.setAutolockTime(textSelectedAutolockTime);
 			}
 		}
@@ -1711,7 +1713,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			//updateLocationByParentID.setCity(parentProfile.getCityID()+"");
 			updateLocationByParentID.setCity(parentProfile.getCity());
 			updateLocationByParentID.setCountry(parentProfile.getCountryID()+"");
-			new UpdateParentInformationOnServer().execute();	
+			new UpdateParentInformationOnServer().execute();
 		}
 		else
 		{
@@ -1729,7 +1731,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		}
 	}
 
-	private ProgressDialog progressDialog3=null;	
+	private ProgressDialog progressDialog3=null;
 
 	private class UpdateParentInformationOnServer extends AsyncTask<Void, Void, Integer>
 	{
@@ -1753,7 +1755,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				//ErrorCode = serviceMethod.getupdateLocation(updateLocationByParentID);
 				ErrorCode = serviceMethod.getupdateParentProfile(updateParentProfile,updateLocationByParentID);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -1833,7 +1835,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					pcParent.setPassCode(updateParentProfile.getPasscode());
 
 					StaticVariables.parentPasscodeModel.setPassCode(updateParentProfile.getPasscode());
-					StaticVariables.parentPasscodeModel.setPassCodeType(1);						
+					StaticVariables.parentPasscodeModel.setPassCodeType(1);
 					StaticVariables.parentPasscodeModel.setProfileId(updateParentProfile.getParentID());
 
 					PassCodeList passCodeList = gsonRegistration.fromJson(sharePreferneceClass.getPassCodeList(), PassCodeList.class);
@@ -1860,19 +1862,19 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 					}
 
-					String passcodeListString = gsonRegistration.toJson(passCodeList);		
+					String passcodeListString = gsonRegistration.toJson(passCodeList);
 					sharePreferneceClass.setPassCodeList(passcodeListString);
 
 					String parentInformation = gsonRegistration.toJson(parentProfile);
-					sharePreferneceClass.setParentProfile(parentInformation);  
+					sharePreferneceClass.setParentProfile(parentInformation);
 					ParentRegistrationActivity.this.finish();
 				}
 				else
 				{
 					getError();
 				}
-			}	
-		}	
+			}
+		}
 	}
 
 	class ValidateText implements AutoCompleteTextView.Validator
@@ -1942,7 +1944,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			if(result!=null)
 			{
-				profilePic_imageView.setImageBitmap(getRoundedShape(result));	
+				profilePic_imageView.setImageBitmap(getRoundedShape(result));
 				try {
 					imageByte = bitmapStoreInSDCard(result, Environment.getExternalStorageDirectory()+ "/profilo_"+".jpeg");
 				} catch (Exception e) {
@@ -1954,7 +1956,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 
 		private String bitmapStoreInSDCard(Bitmap bmp,
-				String nameOfImageAlongWithPath) throws Exception {
+										   String nameOfImageAlongWithPath) throws Exception {
 			System.out.println("path" +nameOfImageAlongWithPath);
 			File sd = new File(nameOfImageAlongWithPath);
 
@@ -1996,7 +1998,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		alertBuilder.setTitle(title);
 		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
 		alertBuilder.setMessage(message);
-		alertBuilder.setPositiveButton(" Submit ", new DialogInterface.OnClickListener() 
+		alertBuilder.setPositiveButton(" Submit ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -2005,9 +2007,9 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				dialog.dismiss();
 				moveToLocationScreen();
 			}
-		});	
+		});
 
-		alertBuilder.setNegativeButton(" LOCK ", new DialogInterface.OnClickListener() 
+		alertBuilder.setNegativeButton(" LOCK ", new DialogInterface.OnClickListener()
 		{
 
 			@Override
@@ -2024,7 +2026,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				startActivityForResult(intent, 200);
 
 			}
-		});	
+		});
 		alertBuilder.show();
 	}
 
@@ -2049,9 +2051,9 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		}
 	}
 
-	private ProgressDialog progressDialogCity=null;	
-	private ProgressDialog progressDialogCountry=null;	
-	private ProgressDialog progressDialogLocality=null;	
+	private ProgressDialog progressDialogCity=null;
+	private ProgressDialog progressDialogCountry=null;
+	private ProgressDialog progressDialogLocality=null;
 
 
 	private class GetListOfField extends AsyncTask<Void, Void, Integer>
@@ -2162,7 +2164,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			for(int i=0;i<cityList.getCity().size();i++)
 			{
-				cityStringList.add(cityList.getCity().get(i).getCityName()); 
+				cityStringList.add(cityList.getCity().get(i).getCityName());
 			}
 
 			return cityStringList;
@@ -2175,7 +2177,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 			for(int i=0;i<localityList.getLocality().size();i++)
 			{
-				localityStringList.add(localityList.getLocality().get(i).getLocalityName()); 
+				localityStringList.add(localityList.getLocality().get(i).getLocalityName());
 			}
 
 			return localityStringList;
@@ -2237,10 +2239,10 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						}
 					}
 					else
-					{	
+					{
 						//getError();
 						new GetListOfField("country",0).execute();
-					}	
+					}
 				}
 
 				else if(getWebservice.equalsIgnoreCase("locality"))
@@ -2262,8 +2264,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						street_autoCompleteTextView.setThreshold(0);
 						//getError();
 						//new GetListOfField("locality",countryId).execute();	
-					}	
-				}	
+					}
+				}
 				else
 				{
 					if(cityList!=null)
@@ -2277,17 +2279,17 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						}
 					}
 					else
-					{	
+					{
 						//getError();
-						new GetListOfField("city",countryId).execute();	
-					}	
-				}	
+						new GetListOfField("city",countryId).execute();
+					}
+				}
 			}
-		}	
+		}
 	}
 
 	private ProgressDialog progressDialogRegister;
-
+	private String versionName="";
 	private class RegisterParentTask extends AsyncTask<Void, Void, Integer>
 	{
 
@@ -2295,6 +2297,15 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+			PackageManager manager = getPackageManager();
+			PackageInfo info = null;
+			try {
+				info = manager.getPackageInfo( getPackageName(), 0);
+				//"Version 3.0"
+				versionName=info.versionName;
+			} catch (PackageManager.NameNotFoundException e) {
+				e.printStackTrace();
+			}
 			progressDialogRegister = ProgressDialog.show(ParentRegistrationActivity.this, "", StaticVariables.progressBarText, false);
 			progressDialogRegister.setCancelable(false);
 		}
@@ -2321,7 +2332,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					e.printStackTrace();
 				}
 
-				parentId=serviceMethod.createParentProfile(parentProfile);
+				parentId=serviceMethod.createParentProfile(parentProfile,versionName);
 
 				if(parentId!=0)
 				{
@@ -2338,7 +2349,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		@Override
 		protected void onPostExecute(Integer result) {
 			// TODO Auto-generated method stub
-			super.onPostExecute(result); 
+			super.onPostExecute(result);
 
 			try {
 				if (progressDialogRegister.isShowing())
@@ -2364,7 +2375,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					social.parentRegistrationFacebookLog();
 					social.parentRegistrationGoogleAnalyticsLog();
 					String parentInformation = gsonRegistration.toJson(parentProfile);
-					sharePreferneceClass.setParentProfile(parentInformation);  
+					sharePreferneceClass.setParentProfile(parentInformation);
 
 					Intent intent=new Intent(ParentRegistrationActivity.this, ConfirmationActivity.class);
 					// pass profile email id and profile id
@@ -2398,31 +2409,31 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 		// Set the dialog title
 		builder.setTitle("Select Guardian")
-		.setSingleChoiceItems(array,selectedIndexGuardian, new DialogInterface.OnClickListener() {
+				.setSingleChoiceItems(array,selectedIndexGuardian, new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				selectedIndexGuardian=which;
-			}
-		})
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						selectedIndexGuardian=which;
+					}
+				})
 
-		// Set the action buttons
-		.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int id) {
-				// User clicked OK, so save the result somewhere
-				// or return them to the component that opened the dialog
-				dialog.dismiss();
-			}
-		})
-		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int id) {
-				dialog.dismiss();
-				//selectedIndexGuardian=0;
-			}
-		});
+				// Set the action buttons
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						// User clicked OK, so save the result somewhere
+						// or return them to the component that opened the dialog
+						dialog.dismiss();
+					}
+				})
+				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.dismiss();
+						//selectedIndexGuardian=0;
+					}
+				});
 		builder.setCancelable(false);
 		return builder.create();
 	}
@@ -2430,11 +2441,11 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void validateDataOnSubmit() {
 		// TODO Auto-generated method stub
-		if(!checkValidation.isNotNullOrBlank(firstname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(lastname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(email_editText.getText().toString()) 
+		if(!checkValidation.isNotNullOrBlank(firstname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(lastname_editText.getText().toString()) && !checkValidation.isNotNullOrBlank(email_editText.getText().toString())
 				&& !checkValidation.isNotNullOrBlank(password_editText.getText().toString()) /*&& !checkValidation.isNotNullOrBlank(dob_editText.getText().toString())*/ && !checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
 		{
 			showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
@@ -2451,35 +2462,35 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			/*	else if(!checkValidation.validateLastName(lastname_editText.getText().toString()))
 				showMessage.showAlert("Invalid Data", "Did you type the name right?\nNote: You cant use smileys or special characters.");
 			 */else if(!checkValidation.isNotNullOrBlank(email_editText.getText().toString()))
-				 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
-			 else if(!checkValidation.isValidEmail(email_editText.getText().toString()))
-				 showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
-			 else if(!checkValidation.isNotNullOrBlank(password_editText.getText().toString()))
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
+			else if(!checkValidation.isValidEmail(email_editText.getText().toString()))
+				showMessage.showAlert("Invalid Email ID", "Your email ID may not be correct. Please check.");
+			else if(!checkValidation.isNotNullOrBlank(password_editText.getText().toString()))
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
 
-			//else if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
-			//showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
-			 else if(!checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
-				 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
-			 else if(!checkValidation.isValidPhoneNo(phone_editText.getText().toString()))
-				 showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
-			 else if(!checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString()))
-			 {
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 country_autoCompleteTextView.requestFocus();
-			 }
+				//else if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
+				//showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
+			else if(!checkValidation.isNotNullOrBlank(phone_editText.getText().toString()))
+				showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
+			else if(!checkValidation.isValidPhoneNo(phone_editText.getText().toString()))
+				showMessage.showAlert("Incorrect Number", "Your phone number should have 10 digits. Please check.");
+			else if(!checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString()))
+			{
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				country_autoCompleteTextView.requestFocus();
+			}
 			/*else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()) && !checkValidation.isNotNullOrBlank(country_autoCompleteTextView.getText().toString())
 					&& !validation.isNotNullOrBlank(street_editText.getText().toString()))*/
-			 else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()))
-			 {
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 city_autoCompleteTextView.requestFocus();
-			 }
-			 else if(!checkValidation.isNotNullOrBlank(street_autoCompleteTextView.getText().toString()))
-			 {
-				 showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 street_autoCompleteTextView.requestFocus();
-			 }
+			else if(!checkValidation.isNotNullOrBlank(city_autoCompleteTextView.getText().toString()))
+			{
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				city_autoCompleteTextView.requestFocus();
+			}
+			else if(!checkValidation.isNotNullOrBlank(street_autoCompleteTextView.getText().toString()))
+			{
+				showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				street_autoCompleteTextView.requestFocus();
+			}
 
 
 			/* else if(!checkValidation.isNotNullOrBlank(street_editText.getText().toString()))
@@ -2488,87 +2499,87 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 				 street_editText.requestFocus();
 			 }*/
 
-			 else if(checkValidation.isNotNullOrBlank(dob_editText.getText().toString()))
-			 {
-				 //showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
-				 if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
-					 showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
-				 else
-				 {
-					 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
-					 if(passcode_switchView.isChecked())
-					 {
-						 //if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
-						 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
-							 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
+			else if(checkValidation.isNotNullOrBlank(dob_editText.getText().toString()))
+			{
+				//showMessage.showAlert("Incomplete Data", "Oops! You left a few important fields blank.");
+				if(!checkValidation.isAgeValid(yearDOB, monthDOB, dayDOB, 18))
+					showMessage.showAlert("Alert", "You must be atleast 18 years of age to use this app");
+				else
+				{
+					// if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
+					if(passcode_switchView.isChecked())
+					{
+						//if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
+						if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
+							showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
 						 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
 							 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
-						 else
-						 {
-							 moveToLocationScreen();
-						 }
-					 }
-					 else
-					 {
-						 showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
-						 //moveToLocationScreen();
-					 }
-				 }
-			 }
-			 else if(!checkValidation.isNotNullOrBlank(dob_editText.getText().toString())&& countDialog==0)
-			 {
+						else
+						{
+							moveToLocationScreen();
+						}
+					}
+					else
+					{
+						showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
+						//moveToLocationScreen();
+					}
+				}
+			}
+			else if(!checkValidation.isNotNullOrBlank(dob_editText.getText().toString())&& countDialog==0)
+			{
 
-				 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ParentRegistrationActivity.this);
+				AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ParentRegistrationActivity.this);
 
-				 alertBuilder.setTitle("Alert");
-				 alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
-				 alertBuilder.setMessage("Sharing DOB is optional but to use PiNWi as a parent you need be above legal age.By continuing, you declare you are above 18 yrs. ");
+				alertBuilder.setTitle("Alert");
+				alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+				alertBuilder.setMessage("Sharing DOB is optional but to use PiNWi as a parent you need be above legal age.By continuing, you declare you are above 18 yrs. ");
 
-				 alertBuilder.setPositiveButton(" GOT IT ", new DialogInterface.OnClickListener() {
+				alertBuilder.setPositiveButton(" GOT IT ", new DialogInterface.OnClickListener() {
 
-					 @Override
-					 public void onClick(final DialogInterface dialog, int which) {
-						 dialog.dismiss();
-						 countDialog=1;
-						 validateDataOnSubmit();
-					 }
-				 });
-				 alertBuilder.setNegativeButton(" SET ", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(final DialogInterface dialog, int which) {
+						dialog.dismiss();
+						countDialog=1;
+						validateDataOnSubmit();
+					}
+				});
+				alertBuilder.setNegativeButton(" SET ", new DialogInterface.OnClickListener() {
 
-					 @Override
-					 public void onClick(DialogInterface dialog, int which)
-					 {
-						 dialog.dismiss();
-						 datePickerDialog.show();
-					 }
-				 });
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss();
+						datePickerDialog.show();
+					}
+				});
 
-				 alertBuilder.show();
+				alertBuilder.show();
 
-			 }
+			}
 
-			 else
-			 {
-				 // if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
-				 if(passcode_switchView.isChecked())
+			else
+			{
+				// if(layout_Pass_AutoLock.getVisibility()==View.VISIBLE)
+				if(passcode_switchView.isChecked())
 
-				 {
-					 // if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
-					 if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
-						 showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
+				{
+					// if(!checkValidation.isNotNullOrBlank(passcode_editText.getText().toString()))
+					if(!checkValidation.isNotNullOrBlank(text_passcode.getText().toString()))
+						showMessage.showAlert("Alert", "Please enter a passcode before you proceed.");
 					 /* else if(!checkValidation.isNotNullOrBlank(autolocktime_autoCompleteTextView.getText().toString()))
 						 showMessage.showAlert("Alert", "Please enter autolocktime before you proceed.");*/
-					 else
-					 {
-						 moveToLocationScreen();
-					 }
-				 }
-				 else
-				 {
-					 showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
-					 //moveToLocationScreen();
-				 }
-			 }
+					else
+					{
+						moveToLocationScreen();
+					}
+				}
+				else
+				{
+					showAlertPasscode("Alert", "Locking your profile helps secure access to different profiles within the app. Are you sure don't want to set up a profile lock?");
+					//moveToLocationScreen();
+				}
+			}
 		}
 	}
 }

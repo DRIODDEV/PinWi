@@ -26,6 +26,7 @@ import com.hatchtact.pinwi.classmodel.Error;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.SocialConstants;
@@ -65,6 +66,8 @@ public class ChildStarEarnedPointActivity extends Activity
 	private boolean isMusicStop = false;
 	private boolean isMute = false;
 	private SocialConstants social;
+	private CustomLoader customProgressLoader;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -73,6 +76,8 @@ public class ChildStarEarnedPointActivity extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_child_star_earned_point);
+		customProgressLoader=new CustomLoader(this);
+
 		social=new SocialConstants(this);
 		social.Child_RatingsFacebookLog();
 		social.Child_RatingsGoogleAnalyticsLog();
@@ -87,7 +92,7 @@ public class ChildStarEarnedPointActivity extends Activity
 
 	}
 
-	private void initSoundData() 
+	private void initSoundData()
 	{
 		// TODO Auto-generated method stub
 		soundEffectStar = new SoundEffect(ChildStarEarnedPointActivity.this, R.raw.star_animation);
@@ -107,7 +112,7 @@ public class ChildStarEarnedPointActivity extends Activity
 	}
 
 	@SuppressLint("NewApi")
-	private void setHeaderItems() 
+	private void setHeaderItems()
 	{
 		// TODO Auto-generated method stub
 		child_header_image = (HexagonImageView) findViewById(R.id.child_header_image);
@@ -234,54 +239,54 @@ public class ChildStarEarnedPointActivity extends Activity
 	private void setVoiceOverIcon() {
 		if(isMusicStop)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceovermute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceover));
 
-			} else 
+			} else
 			{
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceover));
 
-			}	
+			}
 		}
 	}
 	@SuppressLint("NewApi")
 	private void setVolumeIcon() {
 		if(isMute)
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_mute));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_mute));
 
-			}			
+			}
 		}
 		else
 		{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) 
-			{	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+			{
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_volume));
 
-			} else 
+			} else
 			{
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_volume));
 
-			}	
+			}
 		}
 	}
 
@@ -303,7 +308,7 @@ public class ChildStarEarnedPointActivity extends Activity
 		typeFace.setTypefaceGotham(child_star_earned_points_text);
 
 	}
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 
 	private class AddPointsEarned extends AsyncTask<Void, Void, Integer>
 	{
@@ -319,9 +324,12 @@ public class ChildStarEarnedPointActivity extends Activity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(ChildStarEarnedPointActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(ChildStarEarnedPointActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -334,7 +342,7 @@ public class ChildStarEarnedPointActivity extends Activity
 			{
 				earnedPoints = serviceMethod.getAddPointsEarned(childID);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 				earnedPoints = -1;
@@ -348,9 +356,9 @@ public class ChildStarEarnedPointActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
-
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
+				customProgressLoader.removeCallbacksHandler();
 				if(result==-1)
 				{
 					showMessage.showToastMessage("Please check your network connection");
@@ -362,10 +370,10 @@ public class ChildStarEarnedPointActivity extends Activity
 				{
 					if(earnedPoints == -1)
 					{
-						getError();	
+						getError();
 					}
 					else
-					{	
+					{
 						child_star_earned_points_text.setText(earnedPoints+"");
 						playSound(soundEffectStar);
 
@@ -399,7 +407,7 @@ public class ChildStarEarnedPointActivity extends Activity
 						}
 					}
 
-				}	
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -418,7 +426,7 @@ public class ChildStarEarnedPointActivity extends Activity
 		handler.postDelayed(new Runnable() {
 
 			@Override
-			public void run() { 
+			public void run() {
 				if(bitmap!=null)
 				{
 					bitmap.recycle();
@@ -438,9 +446,9 @@ public class ChildStarEarnedPointActivity extends Activity
 
 	private void getError()
 	{
-		Error err = serviceMethod.getError();	
+		Error err = serviceMethod.getError();
 		showMessage.showAlert("Warning", err.getErrorDesc());
-	} 
+	}
 
 	private int dp2px(int dp) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
@@ -485,7 +493,7 @@ public class ChildStarEarnedPointActivity extends Activity
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void finishActivity() {
 		playSound(soundEffectButtonClicks);

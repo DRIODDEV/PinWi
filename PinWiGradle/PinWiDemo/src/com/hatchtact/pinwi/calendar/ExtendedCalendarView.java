@@ -28,6 +28,7 @@ import com.hatchtact.pinwi.classmodel.ActivityDaysByCalendarMonth;
 import com.hatchtact.pinwi.classmodel.CalenderDateList;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
@@ -427,7 +428,8 @@ public class ExtendedCalendarView extends RelativeLayout implements OnItemClickL
 		this.gestureType = gestureType;
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
+	private CustomLoader customProgressLoader;
 
 	private class GetDaysByMonth extends AsyncTask<Void, Void, Integer>
 	{
@@ -436,8 +438,13 @@ public class ExtendedCalendarView extends RelativeLayout implements OnItemClickL
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(context, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader==null)
+			{
+				customProgressLoader=new CustomLoader(context);
+			}
+			customProgressLoader.startHandler();
+			/*progressDialog = ProgressDialog.show(context, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -445,15 +452,19 @@ public class ExtendedCalendarView extends RelativeLayout implements OnItemClickL
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(checkNetwork.checkNetworkConnection(context))
-			{
-				calendarDateList=serviceMethod.getDay(activityDaysByCalendarMonth);
+			try {
+				{
+				}
+				if (checkNetwork.checkNetworkConnection(context)) {
+					calendarDateList = serviceMethod.getDay(activityDaysByCalendarMonth);
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else
+			catch (Exception e)
 			{
-				ErrorCode=-1;
-			}
 
+			}
 			return ErrorCode;
 		}
 
@@ -463,8 +474,9 @@ public class ExtendedCalendarView extends RelativeLayout implements OnItemClickL
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

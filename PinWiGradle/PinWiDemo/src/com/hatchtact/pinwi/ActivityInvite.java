@@ -22,6 +22,7 @@ import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.classmodel.TutorialItems;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -49,7 +50,8 @@ public class ActivityInvite extends MainActionBarActivity implements OnItemClick
 	private SharePreferenceClass sharePreferenceClass=null;
 	
 	private String messageText=null;
-	
+	protected CustomLoader customProgressLoader;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -57,6 +59,7 @@ public class ActivityInvite extends MainActionBarActivity implements OnItemClick
 		screenName="Invite";
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_invite);
+		customProgressLoader=new CustomLoader(ActivityInvite.this);
 
 		listData=(ListView) findViewById(R.id.list_invite); 
 
@@ -88,7 +91,7 @@ public class ActivityInvite extends MainActionBarActivity implements OnItemClick
 		new GetInviteURL(parentId).execute();
 	}
 	
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class GetInviteURL extends AsyncTask<Void, Void, String>
 	{
@@ -106,8 +109,12 @@ public class ActivityInvite extends MainActionBarActivity implements OnItemClick
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(ActivityInvite.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(ActivityInvite.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -134,8 +141,9 @@ public class ActivityInvite extends MainActionBarActivity implements OnItemClick
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

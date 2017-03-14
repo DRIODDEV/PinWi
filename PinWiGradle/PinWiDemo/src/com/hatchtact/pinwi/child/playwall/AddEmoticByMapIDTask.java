@@ -9,6 +9,7 @@ import com.hatchtact.pinwi.classmodel.GetFriendsTempleteMessageListByChildIDList
 import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
@@ -17,7 +18,8 @@ import com.hatchtact.pinwi.utility.StaticVariables;
  */
 public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 {
-	private ProgressDialog progressDialog;
+	private  CustomLoader customProgressLoader;
+	//private ProgressDialog progressDialog;
 	private String errorMessage;
 	private Context mContext;
 	private OnEventListener callback;
@@ -41,9 +43,10 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 		this.EmoticID=EmoticID;
 		loggedId=LoggedID;
 		if(social==null)
-		social=new SocialConstants(context);
+			social=new SocialConstants(context);
 		getFriendsTempleteMessageListByChildIDList=new GetFriendsTempleteMessageListByChildIDList();
 		getFriendsTempleteMessageListByChildIDList.getFriendsTempleteMessageListByChildID().clear();
+		customProgressLoader=new CustomLoader(context);
 
 	}
 
@@ -52,10 +55,14 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		progressDialog = ProgressDialog.show(mContext, "", StaticVariables.progressBarText, false);
+		//progressDialog = ProgressDialog.show(mContext, "", StaticVariables.progressBarText, false);
 		serviceMethod=new ServiceMethod();
 		checkNetwork=new CheckNetwork();
-		progressDialog.setCancelable(false);
+		if(customProgressLoader!=null)
+		{
+			customProgressLoader.showProgressBar();
+		}
+		//progressDialog.setCancelable(false);
 	}
 
 	//String status;
@@ -68,16 +75,16 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 		{
 			switch (currentWebServiceTobeUsed)
 			{
-			case addEmoticon:
-				try {
-					getFriendsTempleteMessageListByChildIDList=serviceMethod.addEmoticByMapID(MapID, loggedId, EmoticID);
-				} catch (Exception e) 
-				{
-					ErrorCode=-1;
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				break;	
+				case addEmoticon:
+					try {
+						getFriendsTempleteMessageListByChildIDList=serviceMethod.addEmoticByMapID(MapID, loggedId, EmoticID);
+					} catch (Exception e)
+					{
+						ErrorCode=-1;
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
 			}
 		}
 		else
@@ -96,23 +103,27 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 	protected void onPostExecute(Integer result)
 	{
 		super.onPostExecute(result);
-		if (progressDialog.isShowing())
-			progressDialog.cancel();
+		if(customProgressLoader!=null)
+		{
+			customProgressLoader.dismissProgressBar();
+		}
+		/*if (progressDialog.isShowing())
+			progressDialog.cancel();*/
 
 		switch (currentWebServiceTobeUsed)
 		{
-		case addEmoticon:
-			if(result==-1)
-			{
-				showToastMessage("Please check your network connection");
+			case addEmoticon:
+				if(result==-1)
+				{
+					showToastMessage("Please check your network connection");
 
-			}
-			else
-			{
-			}	
+				}
+				else
+				{
+				}
 
-			setResultData(result);
-			break;
+				setResultData(result);
+				break;
 
 
 		}

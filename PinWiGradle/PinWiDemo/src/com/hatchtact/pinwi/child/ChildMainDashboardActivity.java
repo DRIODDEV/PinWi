@@ -30,6 +30,7 @@ import com.hatchtact.pinwi.classmodel.Error;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -59,6 +60,7 @@ public class ChildMainDashboardActivity extends Activity
 	private TextView textpostcard,textplaywall,textalerts,textbuddies,textwishlist,textpoint,textnotification;
 	private Animation shake;
 	private boolean isActivityFinished=false;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class ChildMainDashboardActivity extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_maindashboard);
+		customProgressLoader=new CustomLoader(this);
 		isButtonClicked=false;
 		typeFace = new TypeFace(ChildMainDashboardActivity.this);
 		sharepref = new SharePreferenceClass(ChildMainDashboardActivity.this);
@@ -403,7 +406,7 @@ public class ChildMainDashboardActivity extends Activity
 
 	}
 
-	private ProgressDialog progressDialog=null;
+	//private ProgressDialog progressDialog=null;
 	private int count=0;
 
 	private class GetNotificationCountByChildIdAsync extends AsyncTask<Void, Void, Integer>
@@ -447,8 +450,9 @@ public class ChildMainDashboardActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 
 				if(result==-1)
 				{
@@ -568,8 +572,12 @@ public class ChildMainDashboardActivity extends Activity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(ChildMainDashboardActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(ChildMainDashboardActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -598,8 +606,9 @@ public class ChildMainDashboardActivity extends Activity
 			{
 				showMessage.showToastMessage("Please check your network connection");
 				try {
-					if (progressDialog.isShowing())
-						progressDialog.cancel();
+					customProgressLoader.removeCallbacksHandler();
+					/*if (progressDialog.isShowing())
+						progressDialog.cancel();*/
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

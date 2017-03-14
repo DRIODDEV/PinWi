@@ -41,12 +41,13 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hatchtact.pinwi.gcm.GCMNotificationIntentService;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
-public class SplashActivity extends Activity 
+public class SplashActivity extends Activity
 {
 	private SharePreferenceClass sharePreferenceClass=null;
 	private ShowMessages showMessage=null;
@@ -65,7 +66,7 @@ public class SplashActivity extends Activity
 	private String registrationId;
 	private FirebaseAnalytics mFirebaseAnalytics;
 	CleverTapAPI cleverTap;
-
+	private CustomLoader customProgressLoader;
 	private void getDisplayWidth(Activity a)
 	{
 
@@ -91,6 +92,7 @@ public class SplashActivity extends Activity
 		setContentView(R.layout.splash_activity);
 		// Obtain the FirebaseAnalytics instance.
 		mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+		customProgressLoader=new CustomLoader(SplashActivity.this);
 		/*mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 		Bundle bundle = new Bundle();
 		bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1");
@@ -161,7 +163,7 @@ public class SplashActivity extends Activity
 		registerGCM();
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class CheckDeviceIdExist extends AsyncTask<Void, Void, Integer>
 	{
@@ -177,9 +179,13 @@ public class SplashActivity extends Activity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+/*
 			progressDialog = ProgressDialog.show(SplashActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -193,7 +199,7 @@ public class SplashActivity extends Activity
 				serviceMethod.appLauncherByDeviceID(registrationId, 1);
 				ErrorCode=serviceMethod.checkDeviceIDExist(deviceId);
 			}
-			else  
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -206,8 +212,9 @@ public class SplashActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -233,36 +240,36 @@ public class SplashActivity extends Activity
 				{
 					switch (sharePreferenceClass.getCurrentScreen())
 					{
-					case 1:
-						finish();
-						Intent intent1 = new Intent(SplashActivity.this, ChildRegistrationActivity.class);
-						startActivity(intent1);
-						break;
+						case 1:
+							finish();
+							Intent intent1 = new Intent(SplashActivity.this, ChildRegistrationActivity.class);
+							startActivity(intent1);
+							break;
 
-					case 2:
-						finish();
+						case 2:
+							finish();
 						/*Intent intent2 = new Intent(SplashActivity.this, AllyRegistrationActivity.class);
 						startActivity(intent2);*/
 						/*Intent intent2 = new Intent(SplashActivity.this, GetStartedActivity.class);
 						startActivity(intent2);*/
-						Intent intent2 = new Intent(SplashActivity.this, AccessProfileActivity.class);
-						startActivity(intent2);
-						break;
+							Intent intent2 = new Intent(SplashActivity.this, AccessProfileActivity.class);
+							startActivity(intent2);
+							break;
 
-					case 3:
-						finish();
+						case 3:
+							finish();
 						/*Intent intent3 = new Intent(SplashActivity.this, GetStartedActivity.class);
 						startActivity(intent3);*/
-						Intent intent3 = new Intent(SplashActivity.this, AccessProfileActivity.class);
-						startActivity(intent3);
-						break;
+							Intent intent3 = new Intent(SplashActivity.this, GetStartedActivity.class);
+							startActivity(intent3);
+							break;
 
-					case 4:
-						finish();
-						Intent intent = new Intent(SplashActivity.this, AccessProfileActivity.class);
-						startActivity(intent);
-						break;
-					}		
+						case 4:
+							finish();
+							Intent intent = new Intent(SplashActivity.this, AccessProfileActivity.class);
+							startActivity(intent);
+							break;
+					}
 				}
 				else if(!sharePreferenceClass.getParentIsRegistered() && getResult.contains("New Device ID."))
 				{
@@ -271,14 +278,14 @@ public class SplashActivity extends Activity
 					startActivity(intent);
 				}
 
-				else if(getResult.contains("Device ID Already Exists.") || 
+				else if(getResult.contains("Device ID Already Exists.") ||
 						(sharePreferenceClass.getParentIsRegistered() && !sharePreferenceClass.getIsLogin() && sharePreferenceClass.getIsLogout()))
 				{
 					finish();
 					Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
 					startActivity(intent);
 				}
-			}	
+			}
 		}
 	}
 
@@ -320,7 +327,7 @@ public class SplashActivity extends Activity
 			super.onPostExecute(result);
 			//send registrationId to your Server
 			new CheckDeviceIdExist(deviceId).execute();
-		}	
+		}
 	}
 
 	/*private void getError()
@@ -350,7 +357,7 @@ public class SplashActivity extends Activity
 		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	}
 	/**
-	 * 
+	 *
 	 */
 	private void installGoogleAnalyticsLog() {
 		/*
@@ -389,8 +396,8 @@ public class SplashActivity extends Activity
 							SocialConstants.App_Launch,  // Event action (required)
 							null,
 							null)            // Event value
-							.build()
-					);
+					.build()
+			);
 		}
 		else
 		{
@@ -415,12 +422,12 @@ public class SplashActivity extends Activity
 							SocialConstants.Downloaded_App,  // Event action (required)
 							label,
 							null)            // Event value
-							.build()
-					);
+					.build()
+			);
 		}
 	}
 	/**
-	 * 
+	 *
 	 */
 	private void installFacebookLog() {
 		AppEventsLogger logger = AppEventsLogger.newLogger(this);

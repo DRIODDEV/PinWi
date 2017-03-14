@@ -8,8 +8,10 @@ import com.hatchtact.pinwi.fragment.NotificationFragment;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -22,13 +24,14 @@ public class NotificationDetailActivity extends FragmentActivity
 	private TextView idNotificationTimeFragment2;
 	private TextView idNotificationDescFragment2;
 	private TypeFace typeFace;
+	private ImageView imageCross;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		WindowManager.LayoutParams params = getWindow().getAttributes();  
 		params.x =0;  
-		params.height = (int) (SplashActivity.ScreenHeight*.4f);  
+		params.height = (int) (SplashActivity.ScreenHeight*.35f);
 		params.width = (int)(SplashActivity.ScreenWidth* .9f) ;  
 		params.y = SplashActivity.ScreenHeight/15;  
 		this.getWindow().setAttributes(params); 
@@ -40,6 +43,7 @@ public class NotificationDetailActivity extends FragmentActivity
 		imageNotificationNewFragment2=(ImageView)findViewById(R.id.imageNotificationNewFragment2);
 		idNotificationTimeFragment2=(TextView)findViewById(R.id.idNotificationTimeFragment2);
 		idNotificationDescFragment2=(TextView)findViewById(R.id.idNotificationDescFragment2);
+		imageCross=(ImageView)findViewById(R.id.imageCross);
 		
 		
 		if(NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getStatus()==1)
@@ -77,6 +81,13 @@ public class NotificationDetailActivity extends FragmentActivity
 		
 		idNotificationDescFragment2.setText(NotificationFragment.getNotificationListByParentIDList.getGetNotificationListByParentID().get(StaticVariables.positionNotificationSelected).getDescription());
 		typeFace.setTypefaceRegular(idNotificationDescFragment2);
+		imageCross.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+				NotificationDetailActivity.this.overridePendingTransition(R.anim.activity_open_scale, R.anim.disappear);
+			}
+		});
 		
 		
 	}

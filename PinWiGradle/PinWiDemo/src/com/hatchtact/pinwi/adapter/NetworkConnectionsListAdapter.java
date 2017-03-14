@@ -23,10 +23,12 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.SplashActivity;
 import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedID;
 import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedIDList;
+import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.fragment.network.CustomAsyncTask;
 import com.hatchtact.pinwi.fragment.network.NetworkConnectionsFragment;
 import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.fragment.network.ZoomScreenActivity;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
@@ -35,6 +37,7 @@ import com.hatchtact.pinwi.utility.TypeFace;
 public class NetworkConnectionsListAdapter extends BaseAdapter
 {
 
+	private final DataSource source;
 	public GetFriendsListByLoggedIDList getFriendsListByloggedId;
 
 	private LayoutInflater inflater;
@@ -52,19 +55,20 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 		fragmentContext=networkConnectionsFragment;
 		typeFace=new TypeFace(context);
 		showMessage=new ShowMessages(context);
+		source=new DataSource(context);
 
 	}
 
 	@Override
 	public int getCount() {
-		if (getFriendsListByloggedId.getGetFriendsListByLoggedID() != null) 
+		if (getFriendsListByloggedId.getGetFriendsListByLoggedID() != null)
 		{
 			return getFriendsListByloggedId.getGetFriendsListByLoggedID().size();
-		} 
-		else 
+		}
+		else
 		{
 			return 0;
-		}          
+		}
 	}
 
 	@Override
@@ -74,7 +78,7 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 	}
 
 	@Override
-	public long getItemId(int position) 
+	public long getItemId(int position)
 	{
 		return position;
 	}
@@ -82,29 +86,47 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 	ViewHolder holder;
 
 	@Override
-	public View getView(final int position, View view, ViewGroup parent) 
+	public View getView(final int position, View view, ViewGroup parent)
 	{
 		if (view == null)
 		{
 			view = inflater.inflate(R.layout.list_network_connection_rowitem, null);
 			holder = createViewHolder(view);
 			view.setTag(holder);
-		} 
-		else 
+		}
+		else
 		{
 			holder = (ViewHolder) view.getTag();
 		}
 
 
 		GetFriendsListByLoggedID model=getFriendsListByloggedId.getGetFriendsListByLoggedID().get(position);
-		if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>100)
+		if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>10 &&model.getProfileImage().trim().length()<100)
+		{
+			String imagePath= AppUtils.PATHNETWORKIMAGES+model.getFriendID()+".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+			Bitmap imageProfile=null;
+			try {
+				imageProfile = new AppUtils(context).getImagefromSDCard(imagePath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if(imageProfile!=null)
+			{
+				holder.imgUser.setBackgroundResource(0);
+				holder.imgUser.setImageBitmap(getRoundedRectBitmap(imageProfile));
+			}
+
+		}
+		else if(model.getProfileImage()!=null && model.getProfileImage().trim().length()>100)
 		{
 			byte[] imageByteParent=Base64.decode(model.getProfileImage(), 0);
 			if(imageByteParent!=null)
 			{
-				holder.imgUser.setBackgroundResource(0);	
+				holder.imgUser.setBackgroundResource(0);
 
-				holder.imgUser.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeByteArray(imageByteParent, 0, imageByteParent.length)));	
+				holder.imgUser.setImageBitmap(getRoundedRectBitmap(BitmapFactory.decodeByteArray(imageByteParent, 0, imageByteParent.length)));
 			}
 		}
 		else
@@ -160,16 +182,19 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 							new CustomAsyncTask(context, model.getFriendID(), "3", StaticVariables.currentParentId+"",1, new OnEventListener<String>() {
 
 								@Override
-								public void onSuccess(String object) 
+								public void onSuccess(String object)
 								{
 									// TODO Auto-generated method stub
-
 									getFriendsListByloggedId.getGetFriendsListByLoggedID().remove(model);
 									notifyDataSetChanged();
+
 									if(getFriendsListByloggedId.getGetFriendsListByLoggedID()!=null && getFriendsListByloggedId.getGetFriendsListByLoggedID().size()==0)
 									{
 										fragmentContext.setInviteButton();
 									}
+									source.open();
+									source.deleteNetworkConnectionsRow(model.getFriendID());
+									source.close();
 
 								}
 
@@ -190,13 +215,13 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 
 
 				}
-				else if(model.getFStatus().equalsIgnoreCase("2"))				
+				else if(model.getFStatus().equalsIgnoreCase("2"))
 				{
 
 					new CustomAsyncTask(context, model.getFriendID(), "1", StaticVariables.currentParentId+"",1, new OnEventListener<String>() {
 
 						@Override
-						public void onSuccess(String object) 
+						public void onSuccess(String object)
 						{
 							// TODO Auto-generated method stub
 							//getFriendsListByloggedId.getGetFriendsListByLoggedID().remove(model);
@@ -267,7 +292,7 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 		return view;
 	}
 
-	private ViewHolder createViewHolder(View view)   
+	private ViewHolder createViewHolder(View view)
 	{
 		ViewHolder holder = new ViewHolder();
 
@@ -282,7 +307,7 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 		return holder;
 	}
 
-	private  class ViewHolder 
+	private  class ViewHolder
 	{
 		private ImageView imgUser;
 		private TextView txtParentName;
@@ -292,7 +317,7 @@ public class NetworkConnectionsListAdapter extends BaseAdapter
 
 
 
-	private Bitmap getRoundedRectBitmap(Bitmap bitmap) 
+	private Bitmap getRoundedRectBitmap(Bitmap bitmap)
 	{
 
 		int pixels;

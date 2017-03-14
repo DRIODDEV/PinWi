@@ -43,7 +43,7 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 	private ListView subjectDisplayList=null;
 	private ImageView image_addNewActivity=null;
 
-	private ShowMessages showMessage=null;  
+	private ShowMessages showMessage=null;
 	private ServiceMethod serviceMethod=null;
 	private CheckNetwork checkNetwork=null;
 
@@ -70,25 +70,25 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		StaticVariables.fragmentIndexCurrentTabSchedular=13;
-		
-			sharePref=new SharePreferenceClass(getActivity());
-			if(!sharePref.isatSchoolTutorial())
-			{
-				sharePref.setAtSchoolTutorial(true);
-		          // ScreenSlidePagerAdapter.NUM_PAGES=6;
-				social.CompletedTutorialFacebookLog();
-				social.CompletedTutorialGoogleAnalyticsLog();
-				Intent tutorial=new Intent(getActivity(), GuideSlideActivity.class);
-				startActivity(tutorial);
-				//getActivity().overridePendingTransition(R.anim.activity_open_translate, R.anim.activity_close_translate);
-				//StaticVariables.currentTutorialValue=StaticVariables.atSchoolTutorial;
-			}
-		
+
+		sharePref=new SharePreferenceClass(getActivity());
+		if(!sharePref.isatSchoolTutorial())
+		{
+			sharePref.setAtSchoolTutorial(true);
+			// ScreenSlidePagerAdapter.NUM_PAGES=6;
+			social.CompletedTutorialFacebookLog();
+			social.CompletedTutorialGoogleAnalyticsLog();
+			Intent tutorial=new Intent(getActivity(), GuideSlideActivity.class);
+			startActivity(tutorial);
+			//getActivity().overridePendingTransition(R.anim.activity_open_translate, R.anim.activity_close_translate);
+			//StaticVariables.currentTutorialValue=StaticVariables.atSchoolTutorial;
+		}
+
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		view=inflater.inflate(R.layout.subjectactivtiy_display, container, false);
 		setHasOptionsMenu(true);
@@ -107,9 +107,9 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 		image_infotnSchool=(ImageView) view.findViewById(R.id.image_infotnSchool);
 		layout_addschoolActivityByTab=(LinearLayout) view.findViewById(R.id.layout_addschoolActivityByTab);
 		addschoolTab_text=(TextView) view.findViewById(R.id.addschoolTab_text);
-		
+
 		typeFace.setTypefaceRegular(addschoolTab_text);
-		
+
 		image_infotnSchool.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -206,7 +206,7 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 			}
 		});
 
-		return view;		
+		return view;
 	}
 
 	@Override
@@ -224,7 +224,7 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void refreshAccordingToChildId() {
 
@@ -233,11 +233,17 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 		{
 			startAsync = true;
 
-			new GetActivityByChildId(StaticVariables.currentChild.getChildID()).execute();
+			try {
+				new GetActivityByChildId(StaticVariables.currentChild.getChildID()).execute();
+			}
+			catch (Exception e)
+			{
+
+			}
 		}
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class GetActivityByChildId extends AsyncTask<Void, Void, Integer>
 	{
@@ -254,8 +260,12 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -263,14 +273,16 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 		{
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
-
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				subjectActivitiesByChildIDList =serviceMethod.getSubjectActivitiesByChild(childId);
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					subjectActivitiesByChildIDList = serviceMethod.getSubjectActivitiesByChild(childId);
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -281,79 +293,71 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-			if(result==-1)
-			{
-				showMessage.showToastMessage("Please check your network connection");
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new GetActivityByChildId(childId).execute();
 
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new GetActivityByChildId(childId).execute();
+				} else {
+					if (result != -1) {
+						// For same activity like math
 
-			}
-			else
-			{
-				if(result!=-1)
-				{
-					// For same activity like math
+						//I have to check here if i directly click on school then no data is available so it's a crash
+						if (subjectActivitiesByChildIDList != null && subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().size() > 0) {
+							layout_addschoolActivityByTab.setVisibility(View.GONE);
+							for (int i = 0; i < subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().size(); i++) {
+								boolean isAlreadyExist = false;
 
-					//I have to check here if i directly click on school then no data is available so it's a crash
-					if(subjectActivitiesByChildIDList != null && subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().size()>0)
-					{
-						layout_addschoolActivityByTab.setVisibility(View.GONE);
-						for(int i=0;i<subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().size();i++)
-						{
-							boolean isAlreadyExist=false;
+								for (int j = 0; j < secondArrayList.size(); j++) {
+									if (secondArrayList.get(j).getActivityID() == subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getActivityID()) {
+										String previousdayId = secondArrayList.get(j).getDayid();
+										String currentdayId = subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getDayid();
+										String finaldayIds = previousdayId + "," + currentdayId;
+										SubjectActivitiesByChildID childIdModel = new SubjectActivitiesByChildID();
 
-							for(int j=0;j<secondArrayList.size();j++)
-							{
-								if(secondArrayList.get(j).getActivityID()==subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getActivityID())
-								{
-									String previousdayId=secondArrayList.get(j).getDayid();
-									String currentdayId=subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getDayid();
-									String finaldayIds=previousdayId+","+currentdayId;
-									SubjectActivitiesByChildID childIdModel=new SubjectActivitiesByChildID();
+										childIdModel.setName(subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getName());
+										childIdModel.setActivityID(subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getActivityID());
+										childIdModel.setDayid(finaldayIds);
 
-									childIdModel.setName(subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getName());
-									childIdModel.setActivityID(subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i).getActivityID());
-									childIdModel.setDayid(finaldayIds);
+										secondArrayList.remove(j);
 
-									secondArrayList.remove(j);
-
-									secondArrayList.add(j, childIdModel);
-									isAlreadyExist=true;
-									break;
+										secondArrayList.add(j, childIdModel);
+										isAlreadyExist = true;
+										break;
+									}
+								}
+								if (!isAlreadyExist) {
+									secondArrayList.add(subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i));
 								}
 							}
-							if(!isAlreadyExist)
-							{
-								secondArrayList.add(subjectActivitiesByChildIDList.getSubjectActivitiesByChildID().get(i));
-							}
-						}
 
-						displaysubjectActivityByChildIdAdapter=new DisplaySubjectActivityByChildIdAdapter(getActivity(), secondArrayList);
-						subjectDisplayList.setAdapter(displaysubjectActivityByChildIdAdapter);
-						subjectDisplayList.setOnItemClickListener(SubjectActivityByChildIDFragment.this);
-					}
-					else
-					{
+							displaysubjectActivityByChildIdAdapter = new DisplaySubjectActivityByChildIdAdapter(getActivity(), secondArrayList);
+							subjectDisplayList.setAdapter(displaysubjectActivityByChildIdAdapter);
+							subjectDisplayList.setOnItemClickListener(SubjectActivityByChildIDFragment.this);
+						} else {
+							getError();
+							layout_addschoolActivityByTab.setVisibility(View.VISIBLE);
+						}
+					} else {
 						getError();
 						layout_addschoolActivityByTab.setVisibility(View.VISIBLE);
 					}
-				}	
-				else
-				{
-					getError();
-					layout_addschoolActivityByTab.setVisibility(View.VISIBLE);
 				}
 			}
+			catch (Exception e)
+			{
 
-		}	
+			}
+		}
 	}
 
 	private void getError()
@@ -405,7 +409,7 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 		menu.findItem(R.id.action_childName).setTitle(StaticVariables.currentChild.getFirstName());
 
 		super.onCreateOptionsMenu(menu, inflater);
-	}  
+	}
 
 
 	@Override
@@ -431,6 +435,6 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
+
+
 }

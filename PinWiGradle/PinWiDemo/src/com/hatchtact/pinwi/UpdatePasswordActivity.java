@@ -22,6 +22,7 @@ import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.classmodel.ResetPassword;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -52,6 +53,7 @@ public class UpdatePasswordActivity extends Activity
 	
 	private TextView aboutUs_textView=null;
 	private TextView help_textView=null;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,8 @@ public class UpdatePasswordActivity extends Activity
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		setContentView(R.layout.activity_forgotpasswordsetpassword);	
+		setContentView(R.layout.activity_forgotpasswordsetpassword);
+		customProgressLoader=new CustomLoader(this);
 
 		checkValidation = new Validation();
 		showMessage = new ShowMessages(UpdatePasswordActivity.this);
@@ -141,15 +144,19 @@ public class UpdatePasswordActivity extends Activity
 		});
 	}
 
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
 	private class UpdatePassword extends AsyncTask<Void, Void, Integer>
 	{
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(UpdatePasswordActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(UpdatePasswordActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -175,8 +182,9 @@ public class UpdatePasswordActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+//				if (progressDialog.isShowing())
+//					progressDialog.cancel();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

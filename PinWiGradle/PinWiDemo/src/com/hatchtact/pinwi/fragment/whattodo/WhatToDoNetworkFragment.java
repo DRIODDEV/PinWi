@@ -285,7 +285,7 @@ public  class WhatToDoNetworkFragment extends ParentFragment
 	}
 
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class fetchListOfClustersOnRecommendedByChildID extends AsyncTask<Void, Void, Integer>
 	{
@@ -302,8 +302,12 @@ public  class WhatToDoNetworkFragment extends ParentFragment
 		{
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -343,8 +347,9 @@ public  class WhatToDoNetworkFragment extends ParentFragment
 
 			try {
 				hideKeyBoard();
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

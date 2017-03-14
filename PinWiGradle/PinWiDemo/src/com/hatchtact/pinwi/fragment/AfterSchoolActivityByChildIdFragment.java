@@ -41,7 +41,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 	private ListView afterSchoolDisplayList=null;
 	private ImageView image_addNewAfterSchoolActivity=null;
 
-	private ShowMessages showMessage=null;  
+	private ShowMessages showMessage=null;
 	private ServiceMethod serviceMethod=null;
 	private CheckNetwork checkNetwork=null;
 
@@ -58,22 +58,22 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 	private TextView calender_textView=null;
 	private TextView afterschool_textView=null;
 	private TextView school_textView=null;
-	
+
 	private LinearLayout layout_addafterschoolActivityByTab=null;
 	private TextView addafterschoolTab_text=null;
 	private SharePreferenceClass sharePref;
 	private ImageView image_infotnSchool;
 
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		StaticVariables.fragmentIndexCurrentTabSchedular=12;
-		
-			sharePref=new SharePreferenceClass(getActivity());
-			if(!sharePref.isafterschoolTutorial())
-			{/*
+
+		sharePref=new SharePreferenceClass(getActivity());
+		if(!sharePref.isafterschoolTutorial())
+		{/*
 				sharePref.setafterschoolTutorial(true);
 		           ScreenSlidePagerAdapter.NUM_PAGES=7;
 
@@ -81,11 +81,11 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 				startActivity(tutorial);
 				StaticVariables.currentTutorialValue=StaticVariables.afterSchoolTutorial;
 			*/}
-		
+
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 		view=inflater.inflate(R.layout.afterschoolactivtiy_display, container, false);
@@ -103,6 +103,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 			}
 		});
 		StaticVariables.fragmentIndex=11;
+		StaticVariables.addAfterSchoolActivities=null;
 
 		serviceMethod=new ServiceMethod();
 		showMessage=new ShowMessages(getActivity());
@@ -110,10 +111,10 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 
 		afterSchoolDisplayList=(ListView) view.findViewById(R.id.list_dataafterSchool);
 		image_addNewAfterSchoolActivity=(ImageView) view.findViewById(R.id.image_addbtnAfterSchool);
-		
+
 		layout_addafterschoolActivityByTab=(LinearLayout) view.findViewById(R.id.layout_addafterschoolActivityByTab);
 		addafterschoolTab_text=(TextView) view.findViewById(R.id.addafterschoolTab_text);
-		
+
 		typeFace.setTypefaceRegular(addafterschoolTab_text);
 
 
@@ -130,7 +131,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 						new AddAfterSchoolCategoriesFragment()).addToBackStack(StaticVariables.fragmentIndex+"").commit();*/
 			}
 		});
-		
+
 		layout_addafterschoolActivityByTab.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -151,7 +152,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 		typeFace.setTypefaceRegular(calender_textView);
 		typeFace.setTypefaceRegular(school_textView);
 		typeFace.setTypefaceRegular(afterschool_textView);
-		
+
 		calender_textView.setBackgroundResource(R.drawable.rectangular_btnrelation);
 		calender_textView.setTextColor(getResources().getColor(R.color.btnrelationselection_color));
 
@@ -161,7 +162,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 		school_textView.setBackgroundResource(R.drawable.rectangular_btnrelation);
 		school_textView.setTextColor(getResources().getColor(R.color.btnrelationselection_color));
 
-		
+
 
 		calender_textView.setOnClickListener(new OnClickListener() {
 
@@ -169,7 +170,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				
+
 				switchingFragments(new CalenderFragment());
 				/*getFragmentManager().beginTransaction().replace(R.id.realtabcontent,
 						new CalenderFragment()).addToBackStack(StaticVariables.fragmentIndex+"").commit();*/
@@ -223,18 +224,18 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void refreshDataAccordingToChildId() {
 		if(!startAsync )
 		{
 			startAsync = true;
-			
+
 			new GetAfterSchoolActivityByChildId(StaticVariables.currentChild.getChildID()).execute();
 		}
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class GetAfterSchoolActivityByChildId extends AsyncTask<Void, Void, Integer>
 	{
@@ -251,8 +252,12 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -261,13 +266,18 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
 
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				afterschoolActivityByChildIDList =serviceMethod.getAfterSchoolActivityByChildId(childId);
+			try {
+
+
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					afterschoolActivityByChildIDList = serviceMethod.getAfterSchoolActivityByChildId(childId);
+				} else {
+					ErrorCode = -1;
+				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -278,94 +288,88 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			try {
 
-			if(result==-1)
-			{
-				showMessage.showToastMessage("Please check your network connection");
 
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new GetAfterSchoolActivityByChildId(childId).execute();
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-			}
-			else
-			{
-				if(result!=-1)
-				{
-					// For same activity like math
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new GetAfterSchoolActivityByChildId(childId).execute();
 
-					//I have to check here if i directly click on school then no data is available so it's a crash
-					if(afterschoolActivityByChildIDList != null && afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().size()>0)
-					{
-						for(int i=0;i<afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().size();i++)
-						{
-							
-							layout_addafterschoolActivityByTab.setVisibility(View.GONE);
-							
-							boolean isAlreadyExist=false;
+				} else {
+					if (result != -1) {
+						// For same activity like math
 
-							for(int j=0;j<secondArrayList.size();j++)
-							{
-								if(secondArrayList.get(j).getActivityID()==afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getActivityID())
-								{
-									String previousdayId=secondArrayList.get(j).getDaysValue();
-									String currentdayId=""+afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getDayID();
-									String finaldayIds=previousdayId+","+currentdayId;
+						//I have to check here if i directly click on school then no data is available so it's a crash
+						if (afterschoolActivityByChildIDList != null && afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().size() > 0) {
+							for (int i = 0; i < afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().size(); i++) {
 
-									AfterSchoolActivityByChildID childIdModel=new AfterSchoolActivityByChildID();
+								layout_addafterschoolActivityByTab.setVisibility(View.GONE);
 
-									childIdModel.setActivityName(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getActivityName());
-									childIdModel.setActivityID(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getActivityID());
-									childIdModel.setDaysValue(finaldayIds);
-									childIdModel.setStartTime(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getStartTime());
-									childIdModel.setStartDate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getStartDate());
-									childIdModel.setEnddate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getEnddate());
-									childIdModel.setEndTime(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getEndTime());
-									childIdModel.setExamDate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getExamDate());
-									childIdModel.setIsPrivate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).isIsPrivate());
-									childIdModel.setIsSpecial(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).isIsSpecial());
-									childIdModel.setIsVerified(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).isIsVerified());
+								boolean isAlreadyExist = false;
 
-									childIdModel.setRemarks(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getRemarks());
+								for (int j = 0; j < secondArrayList.size(); j++) {
+									if (secondArrayList.get(j).getActivityID() == afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getActivityID()) {
+										String previousdayId = secondArrayList.get(j).getDaysValue();
+										String currentdayId = "" + afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getDayID();
+										String finaldayIds = previousdayId + "," + currentdayId;
 
-									secondArrayList.remove(j);
+										AfterSchoolActivityByChildID childIdModel = new AfterSchoolActivityByChildID();
 
-									secondArrayList.add(j, childIdModel);
-									isAlreadyExist=true;
-									break;
+										childIdModel.setActivityName(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getActivityName());
+										childIdModel.setActivityID(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getActivityID());
+										childIdModel.setDaysValue(finaldayIds);
+										childIdModel.setStartTime(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getStartTime());
+										childIdModel.setStartDate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getStartDate());
+										childIdModel.setEnddate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getEnddate());
+										childIdModel.setEndTime(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getEndTime());
+										childIdModel.setExamDate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getExamDate());
+										childIdModel.setIsPrivate(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).isIsPrivate());
+										childIdModel.setIsSpecial(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).isIsSpecial());
+										childIdModel.setIsVerified(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).isIsVerified());
+
+										childIdModel.setRemarks(afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i).getRemarks());
+
+										secondArrayList.remove(j);
+
+										secondArrayList.add(j, childIdModel);
+										isAlreadyExist = true;
+										break;
+									}
+								}
+								if (!isAlreadyExist) {
+									AfterSchoolActivityByChildID afterSchoolByChildId = afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i);
+									afterSchoolByChildId.setDaysValue("" + afterSchoolByChildId.getDayID());
+									secondArrayList.add(afterSchoolByChildId);
 								}
 							}
-							if(!isAlreadyExist)
-							{
-								AfterSchoolActivityByChildID afterSchoolByChildId=afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().get(i);
-								afterSchoolByChildId.setDaysValue(""+afterSchoolByChildId.getDayID());
-								secondArrayList.add(afterSchoolByChildId);
-							}
-						}
 
-						displayafterSchoolActivityByChildIdAdapter=new DisplayAfterSchoolActivityByChildIdAdapter(getActivity(), secondArrayList);
-						afterSchoolDisplayList.setAdapter(displayafterSchoolActivityByChildIdAdapter);
-						afterSchoolDisplayList.setOnItemClickListener(AfterSchoolActivityByChildIdFragment.this);
-					}
-					else
-					{
+							displayafterSchoolActivityByChildIdAdapter = new DisplayAfterSchoolActivityByChildIdAdapter(getActivity(), secondArrayList);
+							afterSchoolDisplayList.setAdapter(displayafterSchoolActivityByChildIdAdapter);
+							afterSchoolDisplayList.setOnItemClickListener(AfterSchoolActivityByChildIdFragment.this);
+						} else {
+							getError();
+							layout_addafterschoolActivityByTab.setVisibility(View.VISIBLE);
+						}
+					} else {
 						getError();
 						layout_addafterschoolActivityByTab.setVisibility(View.VISIBLE);
 					}
-				}	
-				else
-				{
-					getError();
-					layout_addafterschoolActivityByTab.setVisibility(View.VISIBLE);
 				}
 			}
+			catch (Exception e)
+			{
 
-		}	
+			}
+		}
 	}
 
 	private void getError()
@@ -381,16 +385,16 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 		// TODO Auto-generated method stub
 
 		Bundle bundle = new Bundle();
-       
+
 		activityName = secondArrayList.get(position).getActivityName();
 		activityId = secondArrayList.get(position).getActivityID();
-		 StaticVariables.subSubCategoryName=activityName;
-		 StaticVariables.subSubCategoryId=activityId;
+		StaticVariables.subSubCategoryName=activityName;
+		StaticVariables.subSubCategoryId=activityId;
 		bundle.putString("ActivityName", activityName);
 		bundle.putInt("ActivityId", activityId);
 		//By default sbke liye updated ki value 0.....bundle milne pr 1st tym whi p hi set kr denge...
 		AddAfterSchoolFragment.updatedDataFromAfterSchool = 0;
-		
+
 		bundle.putString("ComingFromWhichScreen", "updateAfterSchoolActivity");
 		addafterSchoolFragment.setArguments(bundle);
 		StaticVariables.deleteAfterSchoolFromAfterSchool=true;
@@ -412,7 +416,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 		menu.findItem(R.id.action_childName).setTitle(StaticVariables.currentChild.getFirstName());
 
 		super.onCreateOptionsMenu(menu, inflater);
-	}  
+	}
 
 
 	@Override
@@ -427,7 +431,7 @@ public class AfterSchoolActivityByChildIdFragment extends ParentFragment impleme
 
 			startAsync = false;
 			//afterschoolActivityByChildIDList.getAfterSchoolActivityByChildID().clear();
-			
+
 			secondArrayList.clear();
 			afterSchoolDisplayList.setAdapter(new DisplayAfterSchoolActivityByChildIdAdapter(getActivity(), secondArrayList));
 			refreshDataAccordingToChildId();

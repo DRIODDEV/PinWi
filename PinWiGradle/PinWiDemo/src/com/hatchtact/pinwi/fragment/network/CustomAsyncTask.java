@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
@@ -15,7 +16,8 @@ import com.hatchtact.pinwi.utility.StaticVariables;
  */
 public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 {
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
+	private CustomLoader customProgressLoader;
 	private String errorMessage;
 	private Context mContext;
 	private OnEventListener callback;
@@ -46,7 +48,7 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 		friendId=FriendId;
 		actionflag=Actionflag;
 		loggedId=LoggedId;
-		
+		customProgressLoader=new CustomLoader(context);
 	}
 
 
@@ -54,10 +56,14 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		progressDialog = ProgressDialog.show(mContext, "", StaticVariables.progressBarText, false);
+	//	progressDialog = ProgressDialog.show(mContext, "", StaticVariables.progressBarText, false);
 		serviceMethod=new ServiceMethod();
 		checkNetwork=new CheckNetwork();
-		progressDialog.setCancelable(false);
+		if(customProgressLoader!=null)
+		{
+			customProgressLoader.showProgressBar();
+		}
+		//progressDialog.setCancelable(false);
 	}
 
 	String status;
@@ -107,8 +113,9 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 	protected void onPostExecute(Integer result)
 	{
 		super.onPostExecute(result);
-		if (progressDialog.isShowing())
-			progressDialog.cancel();
+		customProgressLoader.dismissProgressBar();
+		/*if (progressDialog.isShowing())
+			progressDialog.cancel();*/
 
 		switch (currentWebServiceTobeUsed)
 		{

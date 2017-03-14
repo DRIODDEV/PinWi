@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
 /**
@@ -15,7 +16,7 @@ import com.hatchtact.pinwi.utility.StaticVariables;
  */
 public class AddPostcardTask extends AsyncTask<Void, Void, Integer>
 {
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
 	private String errorMessage;
 	private Context mContext;
 	private OnEventListener callback;
@@ -25,6 +26,7 @@ public class AddPostcardTask extends AsyncTask<Void, Void, Integer>
 	private CheckNetwork checkNetwork;
 	private int templateId,loggedId,actiontype;
 	private String sendingText="";
+	private CustomLoader customProgressLoader;
 
 
 
@@ -37,6 +39,7 @@ public class AddPostcardTask extends AsyncTask<Void, Void, Integer>
 		actiontype=actionType;
 		loggedId=LoggedID;
 		sendingText=Text;
+		customProgressLoader=new CustomLoader(context);
 
 	}
 
@@ -45,10 +48,14 @@ public class AddPostcardTask extends AsyncTask<Void, Void, Integer>
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		progressDialog = ProgressDialog.show(mContext, "", StaticVariables.progressBarText, false);
+		//progressDialog = ProgressDialog.show(mContext, "", StaticVariables.progressBarText, false);
 		serviceMethod=new ServiceMethod();
 		checkNetwork=new CheckNetwork();
-		progressDialog.setCancelable(false);
+		if(customProgressLoader!=null)
+		{
+			customProgressLoader.showProgressBar();;
+		}
+		//progressDialog.setCancelable(false);
 	}
 
 	String status;
@@ -61,16 +68,16 @@ public class AddPostcardTask extends AsyncTask<Void, Void, Integer>
 		{
 			switch (currentWebServiceTobeUsed)
 			{
-			case addPostcard:
-				try {
-					status=serviceMethod.addPostcard(templateId, loggedId,actiontype,sendingText);
-				} catch (Exception e) 
-				{
-					ErrorCode=-1;
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				break;	
+				case addPostcard:
+					try {
+						status=serviceMethod.addPostcard(templateId, loggedId,actiontype,sendingText);
+					} catch (Exception e)
+					{
+						ErrorCode=-1;
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
 			}
 		}
 		else
@@ -89,23 +96,27 @@ public class AddPostcardTask extends AsyncTask<Void, Void, Integer>
 	protected void onPostExecute(Integer result)
 	{
 		super.onPostExecute(result);
-		if (progressDialog.isShowing())
-			progressDialog.cancel();
+		if(customProgressLoader!=null)
+		{
+			customProgressLoader.dismissProgressBar();
+		}
+		/*if (progressDialog.isShowing())
+			progressDialog.cancel();*/
 
 		switch (currentWebServiceTobeUsed)
 		{
-		case addPostcard:
-			if(result==-1)
-			{
-				showToastMessage("Please check your network connection");
+			case addPostcard:
+				if(result==-1)
+				{
+					showToastMessage("Please check your network connection");
 
-			}
-			else
-			{
-			}	
+				}
+				else
+				{
+				}
 
-			setResultData(result);
-			break;
+				setResultData(result);
+				break;
 
 
 		}

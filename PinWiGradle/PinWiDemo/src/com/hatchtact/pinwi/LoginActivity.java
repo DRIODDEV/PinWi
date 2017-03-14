@@ -31,15 +31,16 @@ import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 import com.hatchtact.pinwi.utility.Validation;
 
-public class LoginActivity extends Activity 
-{	
-	private TextView manageMap_textView=null; 
+public class LoginActivity extends Activity
+{
+	private TextView manageMap_textView=null;
 	private EditText userName_editText=null;
 	private EditText password_editText=null;
 	private Button login_button=null;
@@ -70,6 +71,7 @@ public class LoginActivity extends Activity
 	private SharePreferenceClass sharePreferenceClass=null;
 
 	ParentProfile parentCompleteInformation;
+	private CustomLoader customProgressLoader;
 
 
 	private void getDisplayWidth(Activity a)
@@ -85,7 +87,7 @@ public class LoginActivity extends Activity
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -95,7 +97,8 @@ public class LoginActivity extends Activity
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.login_activity);
-		try 
+		customProgressLoader=new CustomLoader(this);
+		try
 		{
 			deleteData();//delete db data and images data from sd card
 		}
@@ -105,6 +108,7 @@ public class LoginActivity extends Activity
 		}
 
 		sharePreferenceClass=new SharePreferenceClass(LoginActivity.this);
+		sharePreferenceClass.setChildAdded(false);
 		StaticVariables.isSignUpClicked=false;
 		getDisplayWidth(LoginActivity.this);
 		checkValidation = new Validation();
@@ -206,7 +210,7 @@ public class LoginActivity extends Activity
 					new CheckWebservice().execute();
 				}
 			}
-		});	
+		});
 
 		sighUp_button.setOnClickListener(new OnClickListener() {
 
@@ -224,7 +228,7 @@ public class LoginActivity extends Activity
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void deleteData() {
 		File newfile=new File(Environment.getExternalStorageDirectory()+"/PinWi");
@@ -233,9 +237,10 @@ public class LoginActivity extends Activity
 		datasource.open();
 		datasource.deleteAll();
 		datasource.close();
-	} 
+		sharePref.setNetworkTableCreated(false);
+	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class CheckWebservice extends AsyncTask<Void, Void, Integer>
 	{
@@ -253,7 +258,7 @@ public class LoginActivity extends Activity
 				userres =serviceMethod.authenticateUserWithDeviceID(authenticateUser,sharePreferenceClass.getGCMDeviceId());
 
 			}
-			else  
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -265,8 +270,12 @@ public class LoginActivity extends Activity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(LoginActivity.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(LoginActivity.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -275,8 +284,9 @@ public class LoginActivity extends Activity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -289,7 +299,7 @@ public class LoginActivity extends Activity
 			}
 			else
 			{
-				if(userres!=null)     
+				if(userres!=null)
 				{
 					if(parentCompleteInformation == null)
 					{
@@ -299,6 +309,7 @@ public class LoginActivity extends Activity
 					parentCompleteInformation.setParentID(userres.getProfileID());
 					parentCompleteInformation.setFirstName(userres.getFirstName());
 					parentCompleteInformation.setLastName(userres.getLastName());
+					parentCompleteInformation.setEmailAddress(userName_editText.getText().toString());
 
 					sharePref.setIsLogin(true);
 					sharePref.setIsLogout(false);
@@ -306,7 +317,7 @@ public class LoginActivity extends Activity
 
 
 					String parentInformation = gsonRegistration.toJson(parentCompleteInformation);
-					sharePref.setParentProfile(parentInformation);  
+					sharePref.setParentProfile(parentInformation);
 
 					if(userres.getProfileStatus()==0)
 					{
@@ -318,25 +329,43 @@ public class LoginActivity extends Activity
 					else if(userres.getProfileStatus()==1)
 					{
 						LoginActivity.this.finish();
-						sharePref.setCurrentScreen(4);
-						Intent intent=new Intent(LoginActivity.this, AccessProfileActivity.class);
+						Intent intent=null;
+						if(userres.getPaymentStatus()==1)
+						{
+							sharePref.setCurrentScreen(4);
+							intent = new Intent(LoginActivity.this, AccessProfileActivity.class);
+						}
+						else
+						{
+							sharePref.setCurrentScreen(3);
+							intent = new Intent(LoginActivity.this, GetStartedActivity.class);
+						}
 
 						startActivity(intent);
 					}
 					else if(userres.getProfileStatus()==2)
 					{
 						LoginActivity.this.finish();
-						sharePref.setCurrentScreen(4);
-						Intent intent=new Intent(LoginActivity.this, AccessProfileActivity.class);
+						Intent intent=null;
+						if(userres.getPaymentStatus()==1)
+						{
+							sharePref.setCurrentScreen(4);
+							intent = new Intent(LoginActivity.this, AccessProfileActivity.class);
+						}
+						else
+						{
+							sharePref.setCurrentScreen(3);
+							intent = new Intent(LoginActivity.this, GetStartedActivity.class);
+						}
 						startActivity(intent);
 					}
 				}
 				else
-				{	
-					Error err = serviceMethod.getError();	
+				{
+					Error err = serviceMethod.getError();
 					showMessage.showAlert("Alert", err.getErrorDesc());
-				}	
-			}			
-		}	
+				}
+			}
+		}
 	}
 }

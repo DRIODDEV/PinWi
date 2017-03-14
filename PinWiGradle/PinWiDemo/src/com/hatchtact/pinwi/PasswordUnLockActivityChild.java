@@ -24,6 +24,7 @@ import com.hatchtact.pinwi.classmodel.Error;
 import com.hatchtact.pinwi.classmodel.RecoverPasscode;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -65,6 +66,7 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 	private Button button7;
 	private Button button8;
 	private Button button9;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.app_passcode_keyboard);
+		customProgressLoader=new CustomLoader(this);
 
 		try {
 			Bundle bundle = getIntent().getExtras();	
@@ -430,7 +433,7 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 	};
 
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class SendPasscodeOnEmail extends AsyncTask<Void, Void, Integer>
 	{
@@ -446,8 +449,12 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(PasswordUnLockActivityChild.this, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialog = ProgressDialog.show(PasswordUnLockActivityChild.this, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -472,8 +479,9 @@ public  class PasswordUnLockActivityChild extends MainActionBarActivity
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1,13 +1,14 @@
 package com.hatchtact.pinwi.fragment.network;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,20 +31,27 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.hatchtact.pinwi.AccessProfileActivity;
 import com.hatchtact.pinwi.ActivityInvite;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.adapter.NetworkConnectionsListAdapter;
 import com.hatchtact.pinwi.adapter.NetworkSearchListAdapter;
+import com.hatchtact.pinwi.classmodel.AccessProfile;
+import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedID;
 import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedIDList;
 import com.hatchtact.pinwi.classmodel.SearchFriendListGloballyList;
+import com.hatchtact.pinwi.database.DataSource;
 import com.hatchtact.pinwi.fragment.insights.ParentFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
+import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
-public  class NetworkConnectionsFragment extends ParentFragment 
+import java.util.ArrayList;
+
+public  class NetworkConnectionsFragment extends ParentFragment
 {
 	private View view;
 	private SharePreferenceClass sharePref;
@@ -70,6 +78,12 @@ public  class NetworkConnectionsFragment extends ParentFragment
 	private boolean flag_loading=false;
 	private boolean isSearchList=false;
 	private boolean isSearchDone=false;
+	/**For database*/
+	private DataSource source;//initializing  database
+	private final int BACKGROUNDSYNCFLAG=1;//background syncing
+	private final int PROGRESSSYNCFLAG=2;//progress syncing
+	private AppUtils appUtils;
+	/**For database*/
 
 
 	@Override
@@ -78,8 +92,6 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		super.onCreate(savedInstanceState);
 		//StaticVariables.fragmentIndexCurrentTabSchedular=201;
 		sharePref=new SharePreferenceClass(getActivity());
-
-
 	}
 
 	@Override
@@ -90,7 +102,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		if(savedInstanceState==null)
 		{
@@ -98,22 +110,51 @@ public  class NetworkConnectionsFragment extends ParentFragment
 			setHasOptionsMenu(true);
 			mListener.onFragmentAttached(true,"  Network");
 			initialize();//initialize all view items in fragment
-			checkNetwork=new CheckNetwork();
-			showMessage=new ShowMessages(getActivity());
-			servicemethod=new ServiceMethod();
-			getFriendsListByLoggedID=new GetFriendsListByLoggedIDList();
-			getFriendsListByLoggedID.getGetFriendsListByLoggedID().clear();
-			searchFriendListGlobally=new SearchFriendListGloballyList();
-			searchFriendListGlobally.getsearchFriendListGloballyList().clear();
-			new fetchFriendsListByLoggedID(1).execute();	
+			appUtils=new AppUtils(getActivity());
+			try
+			{
+				checkIfDataExistInDatabase();//checking if database contains value for access profile data
+			}
+			catch (Exception e)
+			{
+
+			}
+/*
+			new fetchFriendsListByLoggedID(1).execute();
+*/
 			isSearchDone=false;
-
-
 		}
-		return view;		
+		return view;
 	}
 
-	private void initialize() 
+	/**
+	 *
+	 */
+	private void checkIfDataExistInDatabase() {
+		source.open();
+		ArrayList<GetFriendsListByLoggedID> listConnections=source.getNetworkModuleList();
+		if(getFriendsListByLoggedID==null)
+		{
+			getFriendsListByLoggedID=new GetFriendsListByLoggedIDList();
+		}
+		if(listConnections!=null &&listConnections.size()>0)
+		{
+			getFriendsListByLoggedID.setGetInterestTraitsByChildIDOnInsight(listConnections);
+			layout_nodata.setVisibility(View.GONE);
+			noconnectionimage.setVisibility(View.GONE);
+			noconnectiontext.setVisibility(View.GONE);
+			listconnections_network.setVisibility(View.VISIBLE);
+			inviteFriends.setVisibility(View.INVISIBLE);
+			setNetworkConnectionsData(1,PROGRESSSYNCFLAG);
+			new fetchFriendsListByLoggedID(1,BACKGROUNDSYNCFLAG).execute();
+		}
+		else
+		{
+			new fetchFriendsListByLoggedID(1,PROGRESSSYNCFLAG).execute();
+		}
+		source.close();
+	}
+	private void initialize()
 	{
 		// TODO Auto-generated method stub
 		connections_textView=(TextView) view.findViewById(R.id.text_connectionheader);
@@ -152,19 +193,15 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		typeFace.setTypefaceRegular(inviteFriends);
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-
-
 		listconnections_network.setOnScrollListener(new OnScrollListener() {
 
-
-
-			public void onScrollStateChanged(AbsListView view, int scrollState) 
+			public void onScrollStateChanged(AbsListView view, int scrollState)
 			{
 
 			}
 
 			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
+								 int visibleItemCount, int totalItemCount) {
 
 				if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0 && totalItemCount>=8)
 				{
@@ -176,7 +213,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 						{
 							if(totalItemCount% 8==0)
 							{
-								new fetchFriendsListByLoggedID((totalItemCount/8)+1).execute();	
+								new fetchFriendsListByLoggedID((totalItemCount/8)+1,PROGRESSSYNCFLAG).execute();
 							}
 						}
 						else
@@ -196,7 +233,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+									int position, long id) {
 				// TODO Auto-generated method stub
 				//here put friend id and open friend details fragment
 				if(!isSearchList)
@@ -210,21 +247,19 @@ public  class NetworkConnectionsFragment extends ParentFragment
 				StaticVariables.fragmentIndexCurrentTabNetwork=204;
 				StaticVariables.ClusterName="Connections";
 				switchingFragments(new FriendDetailFragment());
-
 			}
 		});
 		editsearch.addTextChangedListener(new TextWatcher() {
-
 			int len = 0;
 			@Override
 			public void onTextChanged(CharSequence s, int start,
-					int before, int count) {
+									  int before, int count) {
 				// TODO Auto-generated method stub
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start,
-					int count, int after) {
+										  int count, int after) {
 				// TODO Auto-generated method stub
 				String str = s.toString();
 				len = str.length();
@@ -234,7 +269,6 @@ public  class NetworkConnectionsFragment extends ParentFragment
 			public void afterTextChanged(Editable s) {
 				if(!isSearchDone)
 				{
-
 					String str = s.toString();
 					boolean hasChar = false;
 					for (int k = 0; k < str.length(); k++) {
@@ -263,7 +297,6 @@ public  class NetworkConnectionsFragment extends ParentFragment
 					}
 					else
 					{
-
 						if(str.equalsIgnoreCase(""))
 						{
 							isSearchList=false;
@@ -274,7 +307,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 								getFriendsListByLoggedID=new GetFriendsListByLoggedIDList();
 							}
 							isSearchDone=true;
-							new fetchFriendsListByLoggedID(1).execute();	
+							new fetchFriendsListByLoggedID(1,PROGRESSSYNCFLAG).execute();
 						}
 					}
 
@@ -283,30 +316,23 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		});
 
 
-
-
-
-
 		editsearch.setOnEditorActionListener(new OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
-
+										  KeyEvent event) {
 				if (actionId == EditorInfo.IME_ACTION_NEXT)
 				{
 					return true;
-				} else if (actionId == EditorInfo.IME_ACTION_DONE) 
+				} else if (actionId == EditorInfo.IME_ACTION_DONE)
 				{
 					return true;
-				} else 
+				} else
 				{
 					return true;
 				}
 
 			}
 		});
-
-
 
 
 		imgMyProfile.setOnClickListener(new OnClickListener() {
@@ -356,6 +382,14 @@ public  class NetworkConnectionsFragment extends ParentFragment
 			}
 		});
 
+		checkNetwork=new CheckNetwork();
+		showMessage=new ShowMessages(getActivity());
+		servicemethod=new ServiceMethod();
+		getFriendsListByLoggedID=new GetFriendsListByLoggedIDList();
+		getFriendsListByLoggedID.getGetFriendsListByLoggedID().clear();
+		searchFriendListGlobally=new SearchFriendListGloballyList();
+		searchFriendListGlobally.getsearchFriendListGloballyList().clear();
+		source = new DataSource(getActivity());
 
 	}
 
@@ -408,7 +442,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 
 		return super.onOptionsItemSelected(item);
 	}*/
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		for(int i=0;i<menu.size();i++)
@@ -424,7 +458,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
-	}  
+	}
 
 
 	@Override
@@ -437,25 +471,31 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		return super.onOptionsItemSelected(item);
 	}
 
-	private ProgressDialog progressDialog=null;	
+	//private ProgressDialog progressDialog=null;
 
 	private class fetchFriendsListByLoggedID extends AsyncTask<Void, Void, Integer>
 	{
 		int pageIndex=1;
+		int flagConnections=0;
 
-		public fetchFriendsListByLoggedID(int i) 
+		public fetchFriendsListByLoggedID(int i,int flag)
 		{
 			// TODO Auto-generated constructor stub
 			pageIndex=i;
+			flagConnections=flag;
 		}
 
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			if(flagConnections!=BACKGROUNDSYNCFLAG) {
+				if (customProgressLoader != null) {
+					customProgressLoader.showProgressBar();
+				}
+			}
+			/*progressDialog = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
 		}
 
 		@Override
@@ -463,29 +503,52 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		{
 			// TODO Auto-generated method stub
 			int ErrorCode=0;
-
-			if(checkNetwork.checkNetworkConnection(getActivity()))
-			{
-				if(getFriendsListByLoggedID.getGetFriendsListByLoggedID().size()==0)
-				{
-					getFriendsListByLoggedID =servicemethod.getFriendsListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
-					flag_loading=false;
-				}
-				else
-				{
-					GetFriendsListByLoggedIDList list=servicemethod.getFriendsListByLoggedID(StaticVariables.currentParentId,pageIndex,8);
-					if(list!=null && list.getGetFriendsListByLoggedID().size()>0)
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					if (getFriendsListByLoggedID.getGetFriendsListByLoggedID().size() == 0 || flagConnections == BACKGROUNDSYNCFLAG)
 					{
-						flag_loading=false;
-						getFriendsListByLoggedID.getGetFriendsListByLoggedID().addAll(list.getGetFriendsListByLoggedID());
+						source.open();
+						getFriendsListByLoggedID = servicemethod.getFriendsListByLoggedID(StaticVariables.currentParentId, pageIndex, 8);
+						flag_loading = false;
+						if (getFriendsListByLoggedID != null && getFriendsListByLoggedID.getGetFriendsListByLoggedID().size() > 0) {
+							if (flagConnections == BACKGROUNDSYNCFLAG)
+								source.deleteNetworkModuleData();
+
+							for (int i = 0; i < getFriendsListByLoggedID.getGetFriendsListByLoggedID().size(); i++)
+							{
+								GetFriendsListByLoggedID model=getFriendsListByLoggedID.getGetFriendsListByLoggedID().get(i);
+								byte[] imageByte= Base64.decode(model.getProfileImage(), 0);
+
+								if(imageByte!=null)
+								{
+									try {
+										String imagePath= AppUtils.PATHNETWORKIMAGES+model.getFriendID()+".jpeg"/*+"_"+System.currentTimeMillis()+""*/;
+										getFriendsListByLoggedID.getGetFriendsListByLoggedID().get(i).setProfileImage(appUtils.bitmapStoreInSDCard(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length),imagePath));
+									} catch (Exception e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								source.addNetworkModuleData(getFriendsListByLoggedID.getGetFriendsListByLoggedID().get(i));
+							}
+						}
+
+						source.close();
+					} else {
+						GetFriendsListByLoggedIDList list = servicemethod.getFriendsListByLoggedID(StaticVariables.currentParentId, pageIndex, 8);
+						if (list != null && list.getGetFriendsListByLoggedID().size() > 0) {
+							flag_loading = false;
+							getFriendsListByLoggedID.getGetFriendsListByLoggedID().addAll(list.getGetFriendsListByLoggedID());
+						}
+
 					}
-
-
+				} else {
+					ErrorCode = -1;
 				}
 			}
-			else 
+			catch (Exception e)
 			{
-				ErrorCode=-1;
+
 			}
 			return ErrorCode;
 		}
@@ -497,61 +560,53 @@ public  class NetworkConnectionsFragment extends ParentFragment
 
 			try {
 				hideKeyBoard();
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				if(flagConnections!=BACKGROUNDSYNCFLAG)
+					customProgressLoader.dismissProgressBar();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			if(result==-1)
-			{
-				showMessage.showToastMessage("Please check your network connection");
+			try {
+				if (result == -1) {
+					showMessage.showToastMessage("Please check your network connection");
 
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-					new fetchFriendsListByLoggedID(1).execute();
+					if (checkNetwork.checkNetworkConnection(getActivity()))
+						new fetchFriendsListByLoggedID(1, flagConnections).execute();
+
+				} else {
+					if (getFriendsListByLoggedID != null && getFriendsListByLoggedID.getGetFriendsListByLoggedID().size() > 0) {
+						layout_nodata.setVisibility(View.GONE);
+						noconnectionimage.setVisibility(View.GONE);
+						noconnectiontext.setVisibility(View.GONE);
+						listconnections_network.setVisibility(View.VISIBLE);
+
+						setNetworkConnectionsData(pageIndex, flagConnections);
+
+						inviteFriends.setVisibility(View.INVISIBLE);
+					} else {
+						getError();
+					}
+					isSearchDone = false;
+				}
+			}
+			catch (Exception e)
+			{
 
 			}
-			else
-			{
-				if(getFriendsListByLoggedID!=null && getFriendsListByLoggedID.getGetFriendsListByLoggedID().size()>0)
-				{
-					layout_nodata.setVisibility(View.GONE);
-					noconnectionimage.setVisibility(View.GONE);
-					noconnectiontext.setVisibility(View.GONE);
-					listconnections_network.setVisibility(View.VISIBLE);
-
-					if(pageIndex==1)
-					{
-						adapter=new NetworkConnectionsListAdapter(getActivity(),getFriendsListByLoggedID,NetworkConnectionsFragment.this);
-						listconnections_network.setAdapter(adapter);
-						adapter.notifyDataSetChanged();
-					}
-					else
-					{
-						adapter.notifyDataSetChanged();
-						listconnections_network.invalidate();
-					}
-
-					inviteFriends.setVisibility(View.INVISIBLE);
-				}
-				else
-				{
+		}
 
 
-					getError();
-				}	
-				isSearchDone=false;
-			}	
-		}	
 	}
 
 	private void getError()
 	{
-		
+
 		layout_nodata.setVisibility(View.VISIBLE);
 		listconnections_network.setVisibility(View.GONE);
-		com.hatchtact.pinwi.classmodel.Error err = servicemethod.getError();	
+		com.hatchtact.pinwi.classmodel.Error err = servicemethod.getError();
 		//showMessage.showAlert("Warning", err.getErrorDesc());
 		noconnectionimage.setVisibility(View.VISIBLE);
 		noconnectiontext.setVisibility(View.VISIBLE);
@@ -559,7 +614,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 	}
 
 
-	private ProgressDialog progressDialogSearch=null;	
+	//private ProgressDialog progressDialogSearch=null;
 
 	private class searchFriendListGlobally extends AsyncTask<Void, Void, Integer>
 	{
@@ -574,9 +629,12 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
-			progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-			progressDialogSearch.setCancelable(false);
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+			/*progressDialogSearch = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+			progressDialogSearch.setCancelable(false);*/
 		}
 
 		@Override
@@ -603,7 +661,7 @@ public  class NetworkConnectionsFragment extends ParentFragment
 
 
 				}}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -616,8 +674,9 @@ public  class NetworkConnectionsFragment extends ParentFragment
 			super.onPostExecute(result);
 
 			try {
-				if (progressDialogSearch.isShowing())
-					progressDialogSearch.cancel();
+				customProgressLoader.dismissProgressBar();
+				/*if (progressDialogSearch.isShowing())
+					progressDialogSearch.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -659,10 +718,10 @@ public  class NetworkConnectionsFragment extends ParentFragment
 
 
 					getError();
-				}	
-			}	
+				}
+			}
 			isSearchDone=false;
-		}	
+		}
 	}
 
 
@@ -683,8 +742,8 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		}
 
 	}
-	
-	
+
+
 	public void setInviteButton()
 	{
 		layout_nodata.setVisibility(View.VISIBLE);
@@ -695,7 +754,37 @@ public  class NetworkConnectionsFragment extends ParentFragment
 		noconnectiontext.setVisibility(View.VISIBLE);
 		noconnectiontext.setText("You have no parent connection.");
 		inviteFriends.setVisibility(View.VISIBLE);
-			
+
 	}
 
+	public void setNetworkConnectionsData(int pageIndex, int flag) {
+		if(pageIndex==1)
+		{
+			if(flag==PROGRESSSYNCFLAG)
+			{
+				adapter = new NetworkConnectionsListAdapter(getActivity(), getFriendsListByLoggedID, NetworkConnectionsFragment.this);
+				listconnections_network.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
+			}
+			else
+			{
+				if(getFriendsListByLoggedID.getGetFriendsListByLoggedID().size()<=8)
+				{
+					adapter = new NetworkConnectionsListAdapter(getActivity(), getFriendsListByLoggedID, NetworkConnectionsFragment.this);
+					listconnections_network.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
+				}
+				else
+				{
+					adapter.notifyDataSetChanged();
+					listconnections_network.invalidate();
+				}
+			}
+		}
+		else
+		{
+			adapter.notifyDataSetChanged();
+			listconnections_network.invalidate();
+		}
+	}
 }

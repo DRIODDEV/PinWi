@@ -30,17 +30,17 @@ public class NotificationFragment extends ParentFragment implements OnItemClickL
 	private static NotificationFragment notificationFragment;
 	private ListView listView=null;
 	public static GetNotificationListByParentIDList getNotificationListByParentIDList=new GetNotificationListByParentIDList();
-	private ShowMessages showMessage=null;  
+	private ShowMessages showMessage=null;
 	private ServiceMethod serviceMethod=null;
 	private CheckNetwork checkNetwork=null;
-	
+
 	private NotificationFragmentOneAdapter adapter;
 	private TextView textNotificactionmsg;
-	
-	
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		if(savedInstanceState==null)
 		{
@@ -53,7 +53,7 @@ public class NotificationFragment extends ParentFragment implements OnItemClickL
 
 			listView=(ListView) view.findViewById(R.id.list_notificationScreen);
 			textNotificactionmsg=(TextView) view.findViewById(R.id.textNotificactionmsg);
-			
+
 			StaticVariables.notificationCountInvisible=true;
 
 
@@ -71,28 +71,34 @@ public class NotificationFragment extends ParentFragment implements OnItemClickL
 			listView.setOnItemClickListener(NotificationFragment.this);
 		}
 
-		return view;		
+		return view;
 	}
-	
-	
-	
-	private void refreshDataAccordingToParent() 
-	
+
+
+
+	private void refreshDataAccordingToParent()
+
 	{
 		// TODO Auto-generated method stub
-		
 
-		
+
+
 		//getNotificationListByParentIDList.getGetNotificationListByParentID().clear();
 		
 
 		/*...................NotificationListByParentID........................*/
-	
-		new AsyncNotificationListByParentID().execute();
+
+		try {
+			new AsyncNotificationListByParentID().execute();
+		}
+		catch (Exception e)
+		{
+
+		}
 
 		/*...................NotificationListByParentID.........................*/
-	
-		
+
+
 	}
 
 
@@ -105,150 +111,152 @@ public class NotificationFragment extends ParentFragment implements OnItemClickL
 		}
 		return notificationFragment;
 	}
-	
-	
-	// the create options menu with a MenuInflater to have the menu from your fragment
-		@Override
-		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-			for(int i=0;i<menu.size();i++)
-			{
-				if(menu.getItem(i).getItemId()!=R.id.action_childName)
-				 menu.getItem(i).setVisible(false);
-				else
-				{
-					menu.findItem(R.id.action_childName).setTitle(StaticVariables.currentParentName);//Here we have to set parent name
-					 menu.getItem(i).setVisible(true);
 
-				}
+
+	// the create options menu with a MenuInflater to have the menu from your fragment
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		for(int i=0;i<menu.size();i++)
+		{
+			if(menu.getItem(i).getItemId()!=R.id.action_childName)
+				menu.getItem(i).setVisible(false);
+			else
+			{
+				menu.findItem(R.id.action_childName).setTitle(StaticVariables.currentParentName);//Here we have to set parent name
+				menu.getItem(i).setVisible(true);
+
 			}
-		   
-		    super.onCreateOptionsMenu(menu, inflater);
-		} 
-		
-		
-		
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) {
-			// TODO Auto-generated method stub
-			 if(item.getItemId()==android.R.id.home)
-		     {
-		     	getActivity().onBackPressed();
-		     }
-			return super.onOptionsItemSelected(item);
 		}
 
-		
-		
-		private ProgressDialog progressDialogNotification=null;	
+		super.onCreateOptionsMenu(menu, inflater);
+	}
 
-		private class AsyncNotificationListByParentID extends AsyncTask<Void, Void, Integer>
+
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		if(item.getItemId()==android.R.id.home)
 		{
-			@Override
-			protected void onPreExecute() {
-				// TODO Auto-generated method stub
-				super.onPreExecute();
+			getActivity().onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
-				progressDialogNotification = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
-				progressDialogNotification.setCancelable(false);
-			}
 
-			@Override
-			protected Integer doInBackground(Void... params)
-			{
-				// TODO Auto-generated method stub
-				int ErrorCode=0;
 
-				if(checkNetwork.checkNetworkConnection(getActivity()))
-				{
-					if(getNotificationListByParentIDList.getGetNotificationListByParentID()!=null)
-					{
-						if(getNotificationListByParentIDList.getGetNotificationListByParentID().size()==0)
-						{
+	//private ProgressDialog progressDialogNotification=null;
+
+	private class AsyncNotificationListByParentID extends AsyncTask<Void, Void, Integer>
+	{
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			if(customProgressLoader!=null)
+				customProgressLoader.startHandler();
+				/*progressDialogNotification = ProgressDialog.show(getActivity(), "", StaticVariables.progressBarText, false);
+				progressDialogNotification.setCancelable(false);*/
+		}
+
+		@Override
+		protected Integer doInBackground(Void... params)
+		{
+			// TODO Auto-generated method stub
+			int ErrorCode=0;
+
+			try {
+				if (checkNetwork.checkNetworkConnection(getActivity())) {
+					if (getNotificationListByParentIDList.getGetNotificationListByParentID() != null) {
+						if (getNotificationListByParentIDList.getGetNotificationListByParentID().size() == 0) {
 							getNotificationListByParentIDList.getGetNotificationListByParentID().clear();
 
-							getNotificationListByParentIDList =serviceMethod.getNotificationListByParentIDList(StaticVariables.currentParentId);
+							getNotificationListByParentIDList = serviceMethod.getNotificationListByParentIDList(StaticVariables.currentParentId);
 						}
 					}
+				} else {
+					ErrorCode = -1;
 				}
-				else 
-				{
-					ErrorCode=-1;
-				}
-				return ErrorCode;
+			}
+			catch (Exception e)
+			{
+
+			}
+			return ErrorCode;
+		}
+
+		@Override
+		protected void onPostExecute(Integer  result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+
+			try {
+				customProgressLoader.removeCallbacksHandler();
+					/*if (progressDialogNotification.isShowing())
+						progressDialogNotification.cancel();*/
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
-			@Override
-			protected void onPostExecute(Integer  result) {
-				// TODO Auto-generated method stub
-				super.onPostExecute(result);
-
-				try {
-					if (progressDialogNotification.isShowing())
-						progressDialogNotification.cancel();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				if(result==-1)
-				{
+			try {
+				if (result == -1) {
 					showMessage.showToastMessage("Please check your network connection");
-
-					if(checkNetwork.checkNetworkConnection(getActivity()))
+					if (checkNetwork.checkNetworkConnection(getActivity()))
 						new AsyncNotificationListByParentID().execute();
 
-				}
-				else
-				{
-					if(getNotificationListByParentIDList!=null && getNotificationListByParentIDList.getGetNotificationListByParentID().size()>0)
-					{
+				} else {
+					if (getNotificationListByParentIDList != null && getNotificationListByParentIDList.getGetNotificationListByParentID().size() > 0) {
 						setNotificationListData();
-					}
-					else
-					{	
+					} else {
 						textNotificactionmsg.setVisibility(View.VISIBLE);
 						listView.setVisibility(View.GONE);
 						//getError();
-					}	
-				}	
-			}	
+					}
+				}
+			}
+			catch (Exception e)
+			{
+
+			}
 		}
-		
-		
-		private void getError()
-		{
-			com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();	
-			showMessage.showAlert("Warning", err.getErrorDesc());
-		}
+	}
+
+
+	private void getError()
+	{
+		com.hatchtact.pinwi.classmodel.Error err = serviceMethod.getError();
+		showMessage.showAlert("Warning", err.getErrorDesc());
+	}
 
 
 
-		public void setNotificationListData() {
-			// TODO Auto-generated method stub
-			adapter=new NotificationFragmentOneAdapter(getActivity());
-			listView.setAdapter(adapter);
-			
-		}
+	public void setNotificationListData() {
+		// TODO Auto-generated method stub
+		adapter=new NotificationFragmentOneAdapter(getActivity());
+		listView.setAdapter(adapter);
+
+	}
 
 
 
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			// TODO Auto-generated method stub
-			
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+							long id) {
+		// TODO Auto-generated method stub
 
-			// TODO Auto-generated method stub
-			StaticVariables.positionNotificationSelected=position;
-			//StaticVariables.fragmentIndexCurrentTabNotification=102;
-			getNotificationListByParentIDList.getGetNotificationListByParentID().get(position).setRead(1);
-			adapter.notifyDataSetChanged();
-			listView.invalidate();
-			Intent notificationDetail=new Intent(getActivity(), NotificationDetailActivity.class);
-			startActivity(notificationDetail);
-			//switchingFragments(new NotificationFragmentTwo());
-			
-		
-			
-		}
+
+		// TODO Auto-generated method stub
+		StaticVariables.positionNotificationSelected=position;
+		//StaticVariables.fragmentIndexCurrentTabNotification=102;
+		getNotificationListByParentIDList.getGetNotificationListByParentID().get(position).setRead(1);
+		adapter.notifyDataSetChanged();
+		listView.invalidate();
+		Intent notificationDetail=new Intent(getActivity(), NotificationDetailActivity.class);
+		startActivity(notificationDetail);
+		//switchingFragments(new NotificationFragmentTwo());
+
+
+
+	}
 }

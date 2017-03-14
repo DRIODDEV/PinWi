@@ -15,6 +15,8 @@ public class AppUtils
 
 	private Context mContext;
 	public static final String PATHACCESSPROFILEIMAGES="/PinWi/AccessProfile/";
+	public static final String PATHNETWORKIMAGES="/PinWi/Network/";
+
 	public AppUtils(Context context)
 	{
 		super();

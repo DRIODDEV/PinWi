@@ -84,7 +84,7 @@
 
     <!-- GetStartedActivity -->
     <string name="welcome_text">Welcome</string>
-    <string name="started_text">A smart parenting app to help you map what drives your child\'s interest while managing their life better on-the-go. It\’s easy, intuitive and insightful. You can stay now up-to-date with your child\'s ever evolving interests with our Interest Mapping Reports and ensure you make smarter more interest focused choices.</string>
+    <string name="started_text">A smart parenting app to help you map what drives your child\'s interest while managing their life better on-the-go. It\’s easy, intuitive and insightful. You can now stay up-to-date with your child\'s ever evolving interests with our Interest Mapping Reports and ensure you make smarter more interest focused choices.</string>
     <string name="getStarted_button">Get Started</string>
 
     <!-- AccessProfileActivity -->
@@ -125,34 +125,64 @@
     <string name="sunday">SUN</string>
 
     <!-- Nav Drawer Menu Items -->
+
+    <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item>Home</item>
-        <item>About Us</item>
+        <!-- <item>Home</item>-->
+        <item>About Pinwi</item>
         <!-- <item>FAQ</item> -->
-        <item>Tutorial</item>
-        <!-- <item>Invite Friend</item> -->
-        <item>Contact Us</item>
         <item>Settings</item>
+        <item>Child Profiles</item>
+        <item>Parent Profile</item>
+        <item>Invite Friend</item>
+        <item>Tutorials</item>
+        <item>Contact Us</item>
         <!-- <item>Add on App</item> -->
         <item>Logout</item>
     </string-array>
-
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items_free">
+        <!-- <item>Home</item>-->
+        <item>About Pinwi</item>
+        <item>Child Profiles</item>
+        <item>Parent Profile</item>
+        <item>Invite Friend</item>
+        <item>Tutorials</item>
+        <item>Contact Us</item>
+        <!-- <item>Add on App</item> -->
+        <item>Logout</item>
+    </string-array>
     <!-- Nav Drawer List Item Icons -->
 
 
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item>@drawable/home_drawer</item>
+        <!-- <item>@drawable/home_drawer</item>-->
         <item>@drawable/about_us</item>
-        <!-- <item>@drawable/support</item> -->
-        <item>@drawable/tutorial</item>
-        <!-- <item>@drawable/invite_friend</item> -->
-        <item>@drawable/contact_us</item>
         <item>@drawable/setting</item>
+        <item>@drawable/child_navigation</item>
+        <item>@drawable/parent_navigation</item>
         <!-- <item>@drawable/add_on</item> -->
+        <!-- <item>@drawable/support</item> -->
+        <item>@drawable/invite_friend</item>
+        <item>@drawable/tutorial</item>
+        <item>@drawable/contact_us</item>
+
+
         <item>@drawable/logout</item>
     </array>
-
+    <array name="nav_drawer_icons_free">
+        <!-- <item>@drawable/home_drawer</item>-->
+        <item>@drawable/about_us</item>
+        <item>@drawable/child_navigation</item>
+        <item>@drawable/parent_navigation</item>
+        <!-- <item>@drawable/add_on</item> -->
+        <!-- <item>@drawable/support</item> -->
+        <item>@drawable/invite_friend</item>
+        <item>@drawable/tutorial</item>
+        <item>@drawable/contact_us</item>
+        <item>@drawable/logout</item>
+    </array>
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
 
@@ -266,9 +296,9 @@ content here\', making it look like readable English. </string>
         realistic and real-time \n insights that can help you stay focused on your child’s interests. 
         Remember interests evolve with time and exposure. So keep the activities updated and the ratings consistent.\n\n</string>
     <string name="btnWhyamIdoingthis">Thanks I got it</string>
-    <string name="playstore_text">Subscription renews automatically at end of term.\nTurn off auto-renew from your PlayStore settings.</string>
-        <string name="afterschool_notetext">Location</string>
-      <string-array name="freq_page_txt">
+    <string name="playstore_text">This is one time purchase and gives you access to all the Pinwi Features.</string>
+    <string name="afterschool_notetext">Location</string>
+    <string-array name="freq_page_txt">
         <item>All these days</item>
         <item>Weekly</item>
         <item>Bi-Weekly</item>
@@ -281,5 +311,27 @@ content here\', making it look like readable English. </string>
         <item>Sunday</item>
         <item>All Weekdays</item>
         <item>Only Weekends</item>
+    </string-array>
+    <string name="free_text">Instant Demo Report</string>
+    <string name="full_text">Get Full Access</string>
+
+    <string name="free_child_list_text">This will generate a demo interest report for your child. Please select who you would like to run this demo on?</string>
+    <string-array name="parent_features_inapp">
+        <item>Add &amp; track children’s daily activities with a simple scheduler</item>
+        <item>View recommendations &amp; explore new activities</item>
+        <item>View activities on a child\'s wish list</item>
+        <item>Build parent connections to activate a safe social network for children</item>
+        <item>See activities other children in the network are doing</item>
+    </string-array>
+
+    <string-array name="child_features_inapp">
+        <item>Collect points everyday for rating activities</item>
+        <item>Use points in future to get gifts and games</item>
+        <item>Create a wish list of activities</item>
+        <item>Safely connect with buddies in the network</item>
+        <item>Share activity based post cards with buddies</item>
+        <item>View the Play wall to see Buddies post cards</item>
+        <item>Respond to post cards shared by buddies</item>
+
     </string-array>
 </resources>

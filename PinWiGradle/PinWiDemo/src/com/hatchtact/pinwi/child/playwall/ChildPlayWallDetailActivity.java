@@ -43,6 +43,7 @@ import com.hatchtact.pinwi.classmodel.GetDetailByChildIDList;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
+import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -76,7 +77,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 	private HexagonImageView child_buddies_image;
 	private HexagonImageView child_buddies;
 	private TextView buddies_name, playwall_heading, playwall_desc,
-	songDuration, detail_time;
+			songDuration, detail_time;
 	private ImageView playwall_image, mp3Image;
 	private View playwall_audio;
 	private SeekBar seekBar;
@@ -106,6 +107,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 	private RelativeLayout layout_bottom;
 	private Integer[] arrayImagesSmileys={R.drawable.wow_i,R.drawable.wow_i,R.drawable.lol_i,R.drawable.inspired_i,R.drawable.welldone_i,R.drawable.cool_i,R.drawable.me_too_i,R.drawable.love_i,R.drawable.party_time_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i,R.drawable.wow_i};
 	private LinearLayout layoutemojione,layoutemojitwo,layoutemojithree,layoutemojifour,layoutemojifive;
+	private CustomLoader customProgressLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +116,8 @@ public class ChildPlayWallDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_playwalldetail);
+
+		customProgressLoader=new CustomLoader(this);
 		MapId = getIntent().getExtras().getString("mapid");
 		color = getIntent().getExtras().getString("color");
 		actionType = getIntent().getExtras().getString("actiontype");
@@ -174,7 +178,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 									dp2px(80), false);
 					child_header_image.setImageBitmap(bitmap);
 				}
-			}*/ 
+			}*/
 			if(StaticVariables.currentChild.getProfileImage()!=null && StaticVariables.currentChild.getProfileImage().trim().length()>10)
 			{	
 				/*byte[] imageByteParent=Base64.decode(StaticVariables.currentChild.getProfileImage(), 0);
@@ -199,12 +203,12 @@ public class ChildPlayWallDetailActivity extends Activity {
 
 				}
 			}
-			
+
 			else {
 				bitmap = Bitmap.createScaledBitmap(
 						BitmapFactory.decodeResource(getResources(),
 								R.drawable.child_image), dp2px(80), dp2px(80),
-								false);
+						false);
 				child_header_image.setImageBitmap(bitmap);
 			}
 		} catch (OutOfMemoryError e) {
@@ -274,18 +278,18 @@ public class ChildPlayWallDetailActivity extends Activity {
 
 		child_header_move_to_access_profile = (ImageView) findViewById(R.id.child_header_move_to_access_profile);
 		child_header_move_to_access_profile
-		.setBackgroundResource(R.drawable.back_child_dashboard);
+				.setBackgroundResource(R.drawable.back_child_dashboard);
 
 		child_header_move_to_access_profile
-		.setOnClickListener(new OnClickListener() {
+				.setOnClickListener(new OnClickListener() {
 
-			@SuppressLint("NewApi")
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finishActivity();
-			}
-		});
+					@SuppressLint("NewApi")
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						finishActivity();
+					}
+				});
 
 	}
 
@@ -381,11 +385,11 @@ public class ChildPlayWallDetailActivity extends Activity {
 		detail_time.setTextColor(getResources().getColor(R.color.black_color));
 		detail_time.setAlpha(.6f);
 
-		emojilayoutimageone=(ImageView)findViewById(R.id.emojilayoutimageone);	
+		emojilayoutimageone=(ImageView)findViewById(R.id.emojilayoutimageone);
 		emojilayoutimagetwo=(ImageView)findViewById(R.id.emojilayoutimagetwo);
-		emojilayoutimagethree=(ImageView)findViewById(R.id.emojilayoutimagethree);	
+		emojilayoutimagethree=(ImageView)findViewById(R.id.emojilayoutimagethree);
 		emojilayoutimagefour=(ImageView)findViewById(R.id.emojilayoutimagefour);
-		emojilayoutimagefive=(ImageView)findViewById(R.id.emojilayoutimagefive);	
+		emojilayoutimagefive=(ImageView)findViewById(R.id.emojilayoutimagefive);
 		layout_bottom=(RelativeLayout)findViewById(R.id.layout_bottom);
 		layoutemojione = (LinearLayout)findViewById(R.id.layoutemojione);
 		layoutemojitwo = (LinearLayout)findViewById(R.id.layoutemojitwo);
@@ -412,10 +416,10 @@ public class ChildPlayWallDetailActivity extends Activity {
 
 	}
 
-	private ProgressDialog progressDialog = null;
+	//private ProgressDialog progressDialog = null;
 
 	private class GetDetailByChildIDAsync extends
-	AsyncTask<Void, Void, Integer> {
+			AsyncTask<Void, Void, Integer> {
 
 		public GetDetailByChildIDAsync() {
 			// TODO Auto-generated constructor stub
@@ -426,11 +430,15 @@ public class ChildPlayWallDetailActivity extends Activity {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.showProgressBar();
+			}
+/*
 			progressDialog = ProgressDialog.show(
 					ChildPlayWallDetailActivity.this, "",
 					StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			progressDialog.setCancelable(false);*/
 
 		}
 
@@ -458,13 +466,16 @@ public class ChildPlayWallDetailActivity extends Activity {
 			super.onPostExecute(result);
 
 			try {
-
-				if (progressDialog.isShowing())
-					progressDialog.cancel();
+				if(customProgressLoader!=null)
+				{
+					customProgressLoader.dismissProgressBar();
+				}
+			/*	if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 
 				if (result == -1) {
 					showMessage
-					.showToastMessage("Please check your network connection");
+							.showToastMessage("Please check your network connection");
 
 					/*
 					 * if(checkNetwork.checkNetworkConnection(ChildAlertActivity.
@@ -527,9 +538,9 @@ public class ChildPlayWallDetailActivity extends Activity {
 							}
 						} else if (model.getActionType().equalsIgnoreCase("3")) {
 							playwalldatalayout
-							.setBackgroundColor(getResources()
-									.getColor(
-											R.color.black_colorwithalpha));
+									.setBackgroundColor(getResources()
+											.getColor(
+													R.color.black_colorwithalpha));
 
 							playwall_image.setVisibility(View.GONE);
 							playwall_desc.setVisibility(View.GONE);
@@ -666,7 +677,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 				layoutemojione.setEnabled(false);
 				layoutemojione .setClickable(false);
 			}
-			else 
+			else
 			{
 				txtemojione.setVisibility(View.VISIBLE);
 				emojilayoutimageone.setAlpha(1f);
@@ -682,7 +693,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 				layoutemojitwo .setClickable(false);
 
 			}
-			else 
+			else
 			{
 				txtemojitwo.setVisibility(View.VISIBLE);
 				emojilayoutimagetwo.setAlpha(1f);
@@ -697,7 +708,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 				layoutemojithree.setEnabled(false);
 				layoutemojithree.setClickable(false);
 			}
-			else 
+			else
 			{
 				txtemojithree.setVisibility(View.VISIBLE);
 				emojilayoutimagethree.setAlpha(1f);
@@ -712,7 +723,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 				layoutemojifour.setEnabled(false);
 				layoutemojifour .setClickable(false);
 			}
-			else 
+			else
 			{
 				txtemojifour.setVisibility(View.VISIBLE);
 				emojilayoutimagefour.setAlpha(1f);
@@ -727,7 +738,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 				layoutemojifive.setEnabled(false);
 				layoutemojifive .setClickable(false);
 			}
-			else 
+			else
 			{
 				txtemojifive.setVisibility(View.VISIBLE);
 				emojilayoutimagefive.setAlpha(1f);
@@ -910,7 +921,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void finishActivity() {
 		if(!isActivityFinished)
@@ -941,9 +952,9 @@ public class ChildPlayWallDetailActivity extends Activity {
 			byte[] imageByteParent = Base64.decode(model.getProfileImage(), 0);
 			if (imageByteParent != null) {
 				Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory
-						.decodeByteArray(imageByteParent, 0,
-								imageByteParent.length), dp2px(80), dp2px(80),
-								false);
+								.decodeByteArray(imageByteParent, 0,
+										imageByteParent.length), dp2px(80), dp2px(80),
+						false);
 				child_buddies_image.setImageBitmap(bitmap);
 			}
 		} else {
@@ -952,7 +963,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 			 * child_image); holder.child_buddies_image.setImageBitmap(null);
 			 */
 			Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory
-					.decodeResource(getResources(), R.drawable.child_image),
+							.decodeResource(getResources(), R.drawable.child_image),
 					dp2px(80), dp2px(80), false);
 			child_buddies_image.setImageBitmap(bitmap);
 		}
@@ -962,9 +973,9 @@ public class ChildPlayWallDetailActivity extends Activity {
 			byte[] imageByteParent = Base64.decode(model.getProfileImage(), 0);
 			if (imageByteParent != null) {
 				Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory
-						.decodeByteArray(imageByteParent, 0,
-								imageByteParent.length), dp2px(80), dp2px(80),
-								false);
+								.decodeByteArray(imageByteParent, 0,
+										imageByteParent.length), dp2px(80), dp2px(80),
+						false);
 				child_buddies.setImageBitmap(bitmap);
 			}
 		} else {
@@ -973,7 +984,7 @@ public class ChildPlayWallDetailActivity extends Activity {
 			 * ; holder.child_buddies.setImageBitmap(null);
 			 */
 			Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory
-					.decodeResource(getResources(), R.drawable.child_image),
+							.decodeResource(getResources(), R.drawable.child_image),
 					dp2px(80), dp2px(80), false);
 			child_buddies.setImageBitmap(bitmap);
 		}
@@ -1002,15 +1013,15 @@ public class ChildPlayWallDetailActivity extends Activity {
 			mediaPlayerAudioMsg.prepare();
 			mediaPlayerAudioMsg.start();
 			mediaPlayerAudioMsg
-			.setOnCompletionListener(new OnCompletionListener() {
-				@Override
-				public void onCompletion(MediaPlayer mp) {
-					stopTimerForAudioPlay();
-					mp3Image.setImageResource(R.drawable.play_i);
-					stopVoiceMsg();
-					// stopTimerForAudioPlay();
-				}
-			});
+					.setOnCompletionListener(new OnCompletionListener() {
+						@Override
+						public void onCompletion(MediaPlayer mp) {
+							stopTimerForAudioPlay();
+							mp3Image.setImageResource(R.drawable.play_i);
+							stopVoiceMsg();
+							// stopTimerForAudioPlay();
+						}
+					});
 			playDuration = mediaPlayerAudioMsg.getDuration() / 1000;
 			String seconds = String.format("%02d", playDuration % 60);
 			String minutes = String.format("%02d", playDuration / 60);
