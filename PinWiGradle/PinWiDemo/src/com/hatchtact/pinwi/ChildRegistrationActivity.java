@@ -1673,8 +1673,8 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 
 				if(result!=-1)
 				{
-					social.childRegistrationFacebookLog();
-					social.childRegistrationGoogleAnalyticsLog();
+					/*social.childRegistrationFacebookLog();
+					social.childRegistrationGoogleAnalyticsLog();*/
 					//sharePref.setCurrentScreen(2);	
 					PassCode pcChild = new  PassCode();
 
@@ -1697,7 +1697,22 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					StaticVariables.childPasscodeList=passCodeList;
 					String passcodeListString = gsonRegistration.toJson(passCodeList);
 					sharePref.setPassCodeList(passcodeListString);
+					if(sharePref.getIsLogin())
+					{
 
+					}
+					else
+					{
+						if(!sharePref.isChildAdded())
+						{
+
+							if(social!=null)
+							{
+								social.child_ProfileAnalyticsLog();
+							}
+						}
+
+					}
 					if(hasToaddMore)
 					{
 						try {

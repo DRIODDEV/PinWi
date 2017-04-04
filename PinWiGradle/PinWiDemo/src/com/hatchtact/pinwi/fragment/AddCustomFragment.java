@@ -221,7 +221,7 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 		return view;		
 	}
 
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
 	private class AddNewCustomActivity extends AsyncTask<Void, Void, Integer>
 	{
 		@Override
@@ -246,8 +246,12 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
-			progressDialog.setCancelable(false);
+			/*progressDialog = ProgressDialog.show(mActivity, "", StaticVariables.progressBarText, false);
+			progressDialog.setCancelable(false);*/
+			if(customProgressLoader!=null)
+			{
+				customProgressLoader.startHandler();
+			}
 		}
 
 		@Override
@@ -255,9 +259,17 @@ public class AddCustomFragment extends ParentFragment implements OnTouchListener
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 
-			try {
+			/*try {
 				if (progressDialog.isShowing())
 					progressDialog.cancel();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			try {
+				customProgressLoader.removeCallbacksHandler();
+				/*if (progressDialog.isShowing())
+					progressDialog.cancel();*/
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

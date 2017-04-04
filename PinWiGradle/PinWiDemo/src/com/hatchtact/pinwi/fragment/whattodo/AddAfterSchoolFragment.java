@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
@@ -638,8 +639,9 @@ public class AddAfterSchoolFragment extends ParentFragment
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					showAlertDelete("Confirmation","Are you sure you want to delete activity?");
 
-					new DeleteScheduledActivityAsync().execute();
+					//new DeleteScheduledActivityAsync().execute();
 
 				}
 			});
@@ -1422,8 +1424,8 @@ public class AddAfterSchoolFragment extends ParentFragment
 					{*/
 					if(Errorcode==0)
 					{
-						social.Schedule_Activity_from_WTDFacebookLog();
-						social.Schedule_Activity_from_WTDGoogleAnalyticsLog();
+						/*social.Schedule_Activity_from_WTDFacebookLog();
+						social.Schedule_Activity_from_WTDGoogleAnalyticsLog();*/
 						resetStaticValues();
 						//getError();
 						if(StaticVariables.fragmentIndexCurrentTabWhatToDo==314)
@@ -1762,8 +1764,8 @@ public class AddAfterSchoolFragment extends ParentFragment
 				}
 				else
 				{
-					social.Schedule_Activity_from_WTDFacebookLog();
-					social.Schedule_Activity_from_WTDGoogleAnalyticsLog();
+					/*social.Schedule_Activity_from_WTDFacebookLog();
+					social.Schedule_Activity_from_WTDGoogleAnalyticsLog();*/
 					if(StaticVariables.fragmentIndexCurrentTabWhatToDo==314)
 					{
 						StaticVariables.fragmentIndexCurrentTabWhatToDo = 302;
@@ -1912,8 +1914,8 @@ public class AddAfterSchoolFragment extends ParentFragment
 				if(status.equalsIgnoreCase("0"))
 				{
 					//Toast.makeText(getActivity(), "Scheduled Activity Deleted Successfully.", Toast.LENGTH_LONG).show();
-					social.Schedule_Activity_from_WTDFacebookLog();
-					social.Schedule_Activity_from_WTDGoogleAnalyticsLog();
+					/*social.Schedule_Activity_from_WTDFacebookLog();
+					social.Schedule_Activity_from_WTDGoogleAnalyticsLog();*/
 					if(StaticVariables.fragmentIndexCurrentTabWhatToDo==314)
 					{
 						StaticVariables.fragmentIndexCurrentTabWhatToDo = 302;
@@ -1959,5 +1961,34 @@ public class AddAfterSchoolFragment extends ParentFragment
 		return uniqueList;
 	}
 
+	public void showAlertDelete(String title,String message)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+
+		alertBuilder.setTitle(title);
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage(message);
+		alertBuilder.setPositiveButton(" Cancel ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+			}
+		});
+
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				new DeleteScheduledActivityAsync().execute();
+			}
+		});
+		alertBuilder.show();
+	}
 
 }

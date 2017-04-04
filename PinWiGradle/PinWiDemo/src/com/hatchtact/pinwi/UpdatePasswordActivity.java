@@ -1,7 +1,9 @@
 package com.hatchtact.pinwi;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -215,9 +217,9 @@ public class UpdatePasswordActivity extends Activity
 
 				//serviceMethod.getError();
 
-				Intent intent=new Intent(UpdatePasswordActivity.this, LoginActivity.class);
+				/*Intent intent=new Intent(UpdatePasswordActivity.this, LoginActivity.class);
 				startActivity(intent);
-				UpdatePasswordActivity.this.finish();
+				UpdatePasswordActivity.this.finish();*/
 			}
 		}
 	}
@@ -225,10 +227,33 @@ public class UpdatePasswordActivity extends Activity
 	private void getError()
 	{
 		Error err = serviceMethod.getError();	
-		Toast.makeText(UpdatePasswordActivity.this, err.getErrorDesc(), Toast.LENGTH_LONG).show();
-		//showAlert("Warning", err);
+		//Toast.makeText(UpdatePasswordActivity.this, err.getErrorDesc(), Toast.LENGTH_LONG).show();
+		showAlert("Warning", err.getErrorDesc());
 	}
 
+	public void showAlert(String title, String message)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+
+		alertBuilder.setTitle(title);
+		alertBuilder.setCancelable(false);
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage(message);
+		alertBuilder.setPositiveButton(" Try login now ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				Intent intent=new Intent(UpdatePasswordActivity.this, LoginActivity.class);
+				startActivity(intent);
+				UpdatePasswordActivity.this.finish();
+
+			}
+		});
+		alertBuilder.show();
+	}
 }
 
 

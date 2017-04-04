@@ -50,6 +50,7 @@ import com.hatchtact.pinwi.fragment.AddAfterSchoolByCatIDFragment;
 import com.hatchtact.pinwi.fragment.AddAfterSchoolCategoriesAndSubCategoriesFragment;
 import com.hatchtact.pinwi.fragment.AddAfterSchoolCategoriesFragment;
 import com.hatchtact.pinwi.fragment.AddAfterSchoolFragment;
+import com.hatchtact.pinwi.fragment.AddSchoolFragment;
 import com.hatchtact.pinwi.fragment.AddSubjectFragment;
 import com.hatchtact.pinwi.fragment.AfterSchoolActivityByChildIdFragment;
 import com.hatchtact.pinwi.fragment.AllyDropPickFragment;
@@ -82,6 +83,7 @@ import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -266,11 +268,13 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 
 	private final int frequencyPageAfterSchool=1000;
 	private final int frequencyPageAfterSchoolWhattodo=1001;
+	private final int frequencyPageSchool=1003;
+	private final int addCustomSchoolActivity=1004;
 
 	private final int errorDetailPageInsights=2000;
 
 	private Bitmap bitmapHeader;
-
+	private SocialConstants social;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -279,6 +283,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_tab);
+		social=new SocialConstants(TabChildActivities.this);
 		/* boolean success = ShortcutBadger.removeCount(TabChildActivities.this);
 
          Toast.makeText(getApplicationContext(), "success=" + success, Toast.LENGTH_SHORT).show();*/
@@ -351,6 +356,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		StaticVariables.fragmentIndexCurrentTabNotification=notificationFragmentOne;
 		StaticVariables.fragmentIndexCurrentTabNetwork=networkFragmentConnections;
 		StaticVariables.fragmentIndexCurrentTabWhatToDo=whattodoFragmentRecommended;
+		setAnalyticsCurrentScreen(currentTab);
 
 		switch (currentTab)
 		{
@@ -458,7 +464,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -695,10 +701,10 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivitySupport.class);
 			startActivity(intentSupport);
 			break;*/
-			case 5:
+			/*case 5:
 				Intent intentTutorial =new Intent(TabChildActivities.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
-				break;
+				break;*/
 			/*case 3:
 			Intent intentInvite =new Intent(TabChildActivities.this, ActivityInvite.class);
 			startActivity(intentInvite);
@@ -707,7 +713,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				Intent intentInvite =new Intent(TabChildActivities.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
-			case 6:
+			case 5:
 				Intent intentContactus =new Intent(TabChildActivities.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl=" http://pinwi.in/contactus.aspx?4";
@@ -750,7 +756,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				parentIntent.putExtras(bundle);
 				startActivity(parentIntent);
 				break;
-			case 7:
+			case 6:
 				sharePref.setIsLogin(false);
 				sharePref.setIsLogout(true);
 				sharePref.setParentProfile("");
@@ -841,14 +847,12 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			mDrawerToggle.onDrawerStateChanged(DrawerLayout.LOCK_MODE_UNLOCKED);
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
 			mDrawerToggle.syncState();
-
 		}
 		else {
 			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 			mDrawerToggle.onDrawerStateChanged(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 			mDrawerToggle.setDrawerIndicatorEnabled(false);
 			mDrawerToggle.syncState();
-
 		}
 
 	}
@@ -987,6 +991,40 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 						StaticVariables.isFrequencySaveClicked=false;
 					}
 
+				}
+				else if(StaticVariables.fragmentIndexFrequencyPage==frequencyPageSchool)
+				{
+					if(!StaticVariables.isFrequencySaveClicked)
+					{
+						showMessage.showAlertFrequency(TabChildActivities.this, new OnEventListener<String>() {
+
+							@Override
+							public void onSuccess(String object) {
+								// TODO Auto-generated method stub
+								StaticVariables.fragmentIndexFrequencyPage=0;
+								switchingFragments(new AddSchoolFragment());
+								StaticVariables.isFrequencySaveClicked=false;
+							}
+
+							@Override
+							public void onFailure(String object) {
+								// TODO Auto-generated method stub
+
+							}
+						});
+					}
+					else
+					{
+						StaticVariables.fragmentIndexFrequencyPage=0;
+						switchingFragments(new AddSchoolFragment());
+						StaticVariables.isFrequencySaveClicked=false;
+					}
+
+				}
+				else if(StaticVariables.fragmentIndexFrequencyPage==addCustomSchoolActivity)
+				{
+						StaticVariables.fragmentIndexFrequencyPage=0;
+						switchingFragments(new AddSubjectFragment());
 				}
 				else if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
 				{
@@ -2043,6 +2081,7 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				}
 				break;
 		}
+		setAnalyticsCurrentScreen(currentTab);
 	}
 
 	@Override
@@ -2158,4 +2197,32 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 		}
 	}
 
+
+	private void setAnalyticsCurrentScreen(int currentValue)
+	{
+		String type="";
+		switch (currentValue)
+		{
+			case 0:
+				type="Notification_Tab";
+				break;
+			case 1:
+				type="Schedular_Tab";
+				break;
+			case 2:
+				type="Insights_Tab";
+				break;
+			case 3:
+				type="Network_tab";
+				break;
+			case 4:
+				type="WhatToDo_Tab";
+				break;
+		}
+		if(social!=null)
+		{
+			social.parent_AccessAnalyticsLog(type);
+		}
+
+	}
 }

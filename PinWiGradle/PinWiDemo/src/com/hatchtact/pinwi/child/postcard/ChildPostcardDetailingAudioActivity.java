@@ -473,8 +473,8 @@ public class ChildPostcardDetailingAudioActivity  extends Activity {
 									@Override
 									public void onSuccess(String object) {
 										// TODO Auto-generated method stub
-										social.Create_Postcard_VOSentFacebookLog();
-										social.Create_Postcard_VOGoogleAnalyticsLog();
+										/*social.Create_Postcard_VOSentFacebookLog();
+										social.Create_Postcard_VOGoogleAnalyticsLog();*/
 										child_postcard_sent_layout.setVisibility(View.VISIBLE);
 										layout_bottomlayer_postcard_detail.setVisibility(View.GONE);
 										child_postcard_detail_mid_audio.setVisibility(View.INVISIBLE);

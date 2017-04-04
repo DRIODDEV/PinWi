@@ -16,7 +16,7 @@ import com.hatchtact.pinwi.ActivityAboutUS;
 import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
-public class InsightsErrorDummyFragment extends ParentFragment implements OnClickListener 
+public class InsightsErrorDummyFragment extends ParentFragment implements OnClickListener
 {
 
 	private View view;
@@ -32,7 +32,7 @@ public class InsightsErrorDummyFragment extends ParentFragment implements OnClic
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+			Bundle savedInstanceState)
 	{
 		view=inflater.inflate(R.layout.insights_error_dummy_fragment, container, false);
 		mListener.onFragmentAttached(false,"  Insights");
@@ -51,7 +51,7 @@ public class InsightsErrorDummyFragment extends ParentFragment implements OnClic
 		texterrorinsightfragment.setText(errorText);
 
 
-		return view;		
+		return view;
 	}
 
 
@@ -84,7 +84,7 @@ public class InsightsErrorDummyFragment extends ParentFragment implements OnClic
 
 	// the create options menu with a MenuInflater to have the menu from your fragment
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) 
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
 		for(int i=0;i<menu.size();i++)
 		{
@@ -98,7 +98,7 @@ public class InsightsErrorDummyFragment extends ParentFragment implements OnClic
 			}
 		}
 		super.onCreateOptionsMenu(menu, inflater);
-	} 
+	}
 
 
 

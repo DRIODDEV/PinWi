@@ -1,5 +1,7 @@
 package com.hatchtact.pinwi;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -36,6 +38,7 @@ import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.adapter.NavDrawerListAdapterMenu;
 import com.hatchtact.pinwi.classmodel.NavigationDrawerItem;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
+import com.hatchtact.pinwi.fragment.AddAfterSchoolFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.CustomLoader;
@@ -120,9 +123,11 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(WebContainerFreeAppActivity.this, ChildListFreeActivity.class);
+				showAlertStartOver("Confirmation","Are you sure you want to start over?");
+
+				/*Intent intent=new Intent(WebContainerFreeAppActivity.this, ChildListFreeActivity.class);
 				startActivity(intent);
-				WebContainerFreeAppActivity.this.finish();
+				WebContainerFreeAppActivity.this.finish();*/
 
 			}
 		});
@@ -133,8 +138,7 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				//in app purchase
-				social.fullVersion2GoogleAnalyticsLog();
-				social.fullVersion2FacebookLog();
+				social.full_VersionAnalyticsLog("Footer_Button");
 				new GetPaymentStatusCheckAsyncTask().execute();
 
 			/*	Intent intent=new Intent(WebContainerFreeAppActivity.this, AccessProfileActivity.class);
@@ -224,7 +228,7 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 
 		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -293,7 +297,7 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 
 		//getActionBar().setTitle("Hi "+ parentCompleteInformation.getFirstName());
 
-		String string=" Instant Demo";
+		String string=" Instant Report";
 		SpannableString s = new SpannableString(string);
 		s.setSpan(new TypefaceSpan("Roboto-Bold.ttf"), 0, s.length(),
 				Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -367,10 +371,10 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivitySupport.class);
 			startActivity(intentSupport);
 			break;*/
-			case 4:
+			/*case 4:
 				Intent intentTutorial =new Intent(WebContainerFreeAppActivity.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
-				break;
+				break;*/
 			/*case 3:
 			Intent intentInvite =new Intent(AccessProfileActivity.this, ActivityInvite.class);
 			startActivity(intentInvite);
@@ -379,7 +383,7 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 				Intent intentInvite =new Intent(WebContainerFreeAppActivity.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
-			case 5:
+			case 4:
 				Intent intentContactus =new Intent(WebContainerFreeAppActivity.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
@@ -398,7 +402,7 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 				parentIntent.putExtras(bundle);
 				startActivity(parentIntent);
 				break;
-			case 6:
+			case 5:
 				sharePreferenceclass.setIsLogin(false);
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");
@@ -552,5 +556,38 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 			}
 
 		}
+	}
+
+
+	public void showAlertStartOver(String title,String message)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(WebContainerFreeAppActivity.this);
+
+		alertBuilder.setTitle(title);
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage(message);
+		alertBuilder.setPositiveButton(" Cancel ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+			}
+		});
+
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				Intent intent=new Intent(WebContainerFreeAppActivity.this, ChildListFreeActivity.class);
+				startActivity(intent);
+				WebContainerFreeAppActivity.this.finish();
+			}
+		});
+		alertBuilder.show();
 	}
 }

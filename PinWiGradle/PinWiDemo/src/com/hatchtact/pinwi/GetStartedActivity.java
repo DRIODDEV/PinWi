@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.adapter.GetStartedScreenSlidePagerAdapter;
 import com.hatchtact.pinwi.adapter.NavDrawerListAdapterMenu;
 import com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck;
 import com.hatchtact.pinwi.classmodel.NavigationDrawerItem;
@@ -45,6 +48,8 @@ import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GetStartedActivity extends MainActionBarActivity
 {
@@ -71,6 +76,10 @@ public class GetStartedActivity extends MainActionBarActivity
 	private int parentId;
 	private String parentEmailId;
 	private SocialConstants social;
+
+	ViewPager viewpager;
+	private GetStartedScreenSlidePagerAdapter mPagerAdapter;
+	private ImageView dotone,dottwo,dotthree,dotfour,dotfive,dotsix;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -137,8 +146,7 @@ public class GetStartedActivity extends MainActionBarActivity
 				startActivity(intent);
 				sharePreferenceclass.setCurrentScreen(4);
 				GetStartedActivity.this.finish();*/
-				social.instantDemoGoogleAnalyticsLog();
-				social.instantDemoFacebookLog();
+				social.instant_DemoAnalyticsLog("Free_Button");
 				sharePreferenceclass.setIsLogin(true);
 				Intent intent=new Intent(GetStartedActivity.this, ChildListFreeActivity.class);
 				startActivity(intent);
@@ -151,8 +159,7 @@ public class GetStartedActivity extends MainActionBarActivity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				social.fullVersionGoogleAnalyticsLog();
-				social.fullVersionFacebookLog();
+				social.full_VersionAnalyticsLog("Main_Button");
 				new GetPaymentStatusCheckAsyncTask().execute();
 				/*sharePreferenceclass.setIsLogin(true);
 				Intent intent=new Intent(GetStartedActivity.this, AccessProfileActivity.class);
@@ -164,6 +171,110 @@ public class GetStartedActivity extends MainActionBarActivity
 		// load slide menu items
 		initializeNavigationDrawerItems();//initialize navigation drawer items
 		initializeActionBar();//initialization of action bar and drawer items
+
+
+		dotone=(ImageView)findViewById(R.id.imagedot);
+		dottwo=(ImageView)findViewById(R.id.imagedottwo);
+		dotthree=(ImageView)findViewById(R.id.imagedotthree);
+		dotfour=(ImageView)findViewById(R.id.imagedotfour);
+		dotfive=(ImageView)findViewById(R.id.imagedotfive);
+		dotsix=(ImageView)findViewById(R.id.imagedotsix);
+		viewpager=(ViewPager) findViewById(R.id.pager);
+		viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageSelected(int position) {
+
+
+				switch (position) {
+					case 0:
+						pageSwitcher(5);
+						page=0;
+						dotone.setImageResource(R.drawable.dot_darkblue);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+
+					case 1:
+						pageSwitcher(5);
+						page=1;
+						dottwo.setImageResource(R.drawable.dot_darkblue);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+
+					case 2:
+						pageSwitcher(5);
+						page=2;
+						dotthree.setImageResource(R.drawable.dot_darkblue);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+
+					case 3:
+						pageSwitcher(5);
+						page=3;
+						dotfour.setImageResource(R.drawable.dot_darkblue);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+					case 4:
+						pageSwitcher(5);
+						page=4;
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_darkblue);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+					case 5:
+						pageSwitcher(5);
+						page=5;
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_darkblue);
+						break;
+					default:
+						break;
+				}
+
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+
+			}
+		});
+
+
+
+
+		mPagerAdapter = new GetStartedScreenSlidePagerAdapter(getSupportFragmentManager());
+		viewpager.setAdapter(mPagerAdapter);
+		pageSwitcher(5);
+		page=0;
+
 	}
 
 	/**
@@ -203,7 +314,7 @@ public class GetStartedActivity extends MainActionBarActivity
 
 		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -338,10 +449,10 @@ public class GetStartedActivity extends MainActionBarActivity
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivitySupport.class);
 			startActivity(intentSupport);
 			break;*/
-			case 4:
+		/*	case 4:
 				Intent intentTutorial =new Intent(GetStartedActivity.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
-				break;
+				break;*/
 			/*case 3:
 			Intent intentInvite =new Intent(AccessProfileActivity.this, ActivityInvite.class);
 			startActivity(intentInvite);
@@ -350,7 +461,7 @@ public class GetStartedActivity extends MainActionBarActivity
 				Intent intentInvite =new Intent(GetStartedActivity.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
-			case 5:
+			case 4:
 				Intent intentContactus =new Intent(GetStartedActivity.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
@@ -369,7 +480,7 @@ public class GetStartedActivity extends MainActionBarActivity
 				parentIntent.putExtras(bundle);
 				startActivity(parentIntent);
 				break;
-			case 6:
+			case 5:
 				sharePreferenceclass.setIsLogin(false);
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");
@@ -415,7 +526,7 @@ public class GetStartedActivity extends MainActionBarActivity
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	private com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck modelStatus;
+	private GetPaymentStatusCheck modelStatus;
 	private class GetPaymentStatusCheckAsyncTask extends AsyncTask<Void, Void, Integer>
 	{
 
@@ -579,4 +690,53 @@ public class GetStartedActivity extends MainActionBarActivity
 
 		}
 	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if(timer!=null)
+		{
+			timer.cancel();
+			timer=null;
+		}
+	}
+
+	Timer timer;
+	int page = 0;
+
+	public void pageSwitcher(int seconds) {
+		seconds=9;
+		if(timer!=null)
+		{
+			timer.cancel();
+			timer=null;
+		}
+		timer = new Timer(); // At this line a new Thread will be created
+		timer.scheduleAtFixedRate(new RemindTask(), 0, seconds * 1000); // delay
+		// in
+		// milliseconds
+	}
+
+	// this is an inner class...
+	class RemindTask extends TimerTask {
+
+		@Override
+		public void run() {
+
+			// As the TimerTask run on a seprate thread from UI thread we have
+			// to call runOnUiThread to do work on UI thread.
+			runOnUiThread(new Runnable() {
+				public void run() {
+					if (page > 5) { // In my case the number of pages are 5
+						//timer.cancel();
+						page=0;
+						viewpager.setCurrentItem(page++);
+					} else {
+						viewpager.setCurrentItem(page++);
+					}
+				}
+			});
+		}
+	}
+
 }

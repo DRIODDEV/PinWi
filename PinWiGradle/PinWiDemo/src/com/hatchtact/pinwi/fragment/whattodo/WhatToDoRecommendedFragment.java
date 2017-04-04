@@ -77,8 +77,8 @@ public  class WhatToDoRecommendedFragment extends ParentFragment
 		if(savedInstanceState==null)
 		{
 			view=inflater.inflate(R.layout.recommended_whattodo, container, false);
-			social.View_What_to_DoFacebookLog();
-			social.View_What_to_DoGoogleAnalyticsLog();
+		/*	social.View_What_to_DoFacebookLog();
+			social.View_What_to_DoGoogleAnalyticsLog();*/
 			setHasOptionsMenu(true);
 			mListener.onFragmentAttached(true,"  What to do");
 			initialize();//initialize all view items in fragment

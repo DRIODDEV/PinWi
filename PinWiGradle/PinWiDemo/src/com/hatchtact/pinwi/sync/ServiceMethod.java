@@ -16,104 +16,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hatchtact.pinwi.AccessProfileActivity;
-import com.hatchtact.pinwi.classmodel.AccessProfileList;
-import com.hatchtact.pinwi.classmodel.ActivityDaysByCalendarMonth;
-import com.hatchtact.pinwi.classmodel.AddAfterSchoolActivities;
-import com.hatchtact.pinwi.classmodel.AddAllyInformationOnActivity;
-import com.hatchtact.pinwi.classmodel.AddCustomActivity;
-import com.hatchtact.pinwi.classmodel.AddHolidaysByChildIDModel;
-import com.hatchtact.pinwi.classmodel.AddSubjectActivity;
-import com.hatchtact.pinwi.classmodel.AfterSchoolActivitiesByDateList;
-import com.hatchtact.pinwi.classmodel.AfterSchoolActivityByCatIdList;
-import com.hatchtact.pinwi.classmodel.AfterSchoolActivityByChildIDList;
-import com.hatchtact.pinwi.classmodel.AfterSchoolActivityDetails;
-import com.hatchtact.pinwi.classmodel.AfterSchoolCategoriesByOwnerIDList;
-import com.hatchtact.pinwi.classmodel.AllyList;
-import com.hatchtact.pinwi.classmodel.AllyProfile;
-import com.hatchtact.pinwi.classmodel.AuthenticateUser;
-import com.hatchtact.pinwi.classmodel.AuthenticateUserResult;
-import com.hatchtact.pinwi.classmodel.CalenderDateList;
-import com.hatchtact.pinwi.classmodel.CategoriesAndSubCategoriesList;
-import com.hatchtact.pinwi.classmodel.CheckConfirmationCode;
-import com.hatchtact.pinwi.classmodel.CheckPasscode;
-import com.hatchtact.pinwi.classmodel.CheckPasswordCode;
-import com.hatchtact.pinwi.classmodel.ChildProfile;
-import com.hatchtact.pinwi.classmodel.CityList;
-import com.hatchtact.pinwi.classmodel.CountryList;
-import com.hatchtact.pinwi.classmodel.DisplayAllyListByChildAndActivityId;
+import com.hatchtact.pinwi.classmodel.*;
 import com.hatchtact.pinwi.classmodel.Error;
-import com.hatchtact.pinwi.classmodel.GetAllyDetails;
-import com.hatchtact.pinwi.classmodel.GetAllyInformationOnActivity;
-import com.hatchtact.pinwi.classmodel.GetAutolockTimeList;
-import com.hatchtact.pinwi.classmodel.GetBadgeDetailsByChildIDOnInsightList;
-import com.hatchtact.pinwi.classmodel.GetChildAfterSchoolActiviesByDaySubjectModelList;
-import com.hatchtact.pinwi.classmodel.GetChildDetails;
-import com.hatchtact.pinwi.classmodel.GetChildDetailsByChildIDList;
-import com.hatchtact.pinwi.classmodel.GetChildDetailsOnBuddiesByChildIDOnCIList;
-import com.hatchtact.pinwi.classmodel.GetChildSubjectActiviesByDaySubjectModelList;
-import com.hatchtact.pinwi.classmodel.GetChildsDetailsOnRecommendedByActivityIDList;
-import com.hatchtact.pinwi.classmodel.GetDelightTraitsByActivityList;
-import com.hatchtact.pinwi.classmodel.GetDelightTraitsByChildIDOnInsightList;
-import com.hatchtact.pinwi.classmodel.GetDetailByChildIDList;
-import com.hatchtact.pinwi.classmodel.GetDetailByMapEmoticIDList;
-import com.hatchtact.pinwi.classmodel.GetExhilaratorsListByChildIDList;
-import com.hatchtact.pinwi.classmodel.GetFriendDetailsByFriendIDList;
-import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedIDList;
-import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedIDOnCIList;
-import com.hatchtact.pinwi.classmodel.GetFriendsTempleteMessageListByChildID;
-import com.hatchtact.pinwi.classmodel.GetFriendsTempleteMessageListByChildIDList;
-import com.hatchtact.pinwi.classmodel.GetHolidayDetailsByHolidayDesc;
-import com.hatchtact.pinwi.classmodel.GetHolidaysByChildIDList;
-import com.hatchtact.pinwi.classmodel.GetInterestPatternByChildIDOnInsightList;
-import com.hatchtact.pinwi.classmodel.GetInterestTraitsByChildIDOnInsightList;
-import com.hatchtact.pinwi.classmodel.GetListOfActivitiesOnRecommendedByClusterIDList;
-import com.hatchtact.pinwi.classmodel.GetListOfBuddiesByChildIDOnCIList;
-import com.hatchtact.pinwi.classmodel.GetListOfClustersOnRecommendedByChildIDList;
-import com.hatchtact.pinwi.classmodel.GetListOfMessageTempletesList;
-import com.hatchtact.pinwi.classmodel.GetListOfPendingRequestsByLoggedIDList;
-import com.hatchtact.pinwi.classmodel.GetListOfPinWiNetworksByLoggedIDList;
-import com.hatchtact.pinwi.classmodel.GetListOfWishListsByChildIDList;
-import com.hatchtact.pinwi.classmodel.GetListofAllysByParentIDList;
-import com.hatchtact.pinwi.classmodel.GetListofChildrensByChildActIDList;
-import com.hatchtact.pinwi.classmodel.GetListofChildsByParentIDList;
-import com.hatchtact.pinwi.classmodel.GetLocationDetails;
-import com.hatchtact.pinwi.classmodel.GetNeighbourhoodRadiusList;
-import com.hatchtact.pinwi.classmodel.GetNewNotificationCount;
-import com.hatchtact.pinwi.classmodel.GetNotificationByNotificationID;
-import com.hatchtact.pinwi.classmodel.GetNotificationListByChildIDOnCIList;
-import com.hatchtact.pinwi.classmodel.GetNotificationListByParentIDList;
-import com.hatchtact.pinwi.classmodel.GetParentDetails;
-import com.hatchtact.pinwi.classmodel.GetPastDaysRatingStatusModelList;
-import com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck;
-import com.hatchtact.pinwi.classmodel.GetPeopleYouMayKnowListByLoggedIDList;
-import com.hatchtact.pinwi.classmodel.GetPercentageCount;
-import com.hatchtact.pinwi.classmodel.GetPointsInfoByChildIDModel;
-import com.hatchtact.pinwi.classmodel.GetPointsInfoByChildIDOnInsightsList;
-import com.hatchtact.pinwi.classmodel.GetProfileDetailsByLoggedIDList;
-import com.hatchtact.pinwi.classmodel.GetSchoolActivitiesByDateList;
-import com.hatchtact.pinwi.classmodel.GetWishListsByChildIDList;
-import com.hatchtact.pinwi.classmodel.ListOfAllysList;
-import com.hatchtact.pinwi.classmodel.LocalityList;
-import com.hatchtact.pinwi.classmodel.ParentProfile;
-import com.hatchtact.pinwi.classmodel.RequestAddOnVersionModel;
-import com.hatchtact.pinwi.classmodel.ResetPassword;
-import com.hatchtact.pinwi.classmodel.ResultIsSubscribeList;
-import com.hatchtact.pinwi.classmodel.SchedularHolidayList;
-import com.hatchtact.pinwi.classmodel.SchoolActivityDetails;
-import com.hatchtact.pinwi.classmodel.SchoolList;
-import com.hatchtact.pinwi.classmodel.SearchActivitiesByActivityNameList;
-import com.hatchtact.pinwi.classmodel.SearchActivitiesByChildIDList;
-import com.hatchtact.pinwi.classmodel.SearchActivityByNameList;
-import com.hatchtact.pinwi.classmodel.SearchFriendListGloballyList;
-import com.hatchtact.pinwi.classmodel.SearchListOfBuddiesOnCIList;
-import com.hatchtact.pinwi.classmodel.SearchWishListByChildIDList;
-import com.hatchtact.pinwi.classmodel.SendConfirmationCodeToMail;
-import com.hatchtact.pinwi.classmodel.SubjectActivitiesByChildIDList;
-import com.hatchtact.pinwi.classmodel.SubjectActivitiesList;
-import com.hatchtact.pinwi.classmodel.UpdateAllyProfile;
-import com.hatchtact.pinwi.classmodel.UpdateChildProfile;
-import com.hatchtact.pinwi.classmodel.UpdateLocationByParentID;
-import com.hatchtact.pinwi.classmodel.UpdateParentProfile;
 import com.hatchtact.pinwi.utility.GetValidJson;
 import com.hatchtact.pinwi.utility.StaticVariables;
 
@@ -2413,6 +2317,11 @@ public class ServiceMethod
 		request.addProperty("ActivityDays",addSubjectActivity.getActivityDays());
 		request.addProperty("Remarks",addSubjectActivity.getRemarks());
 		request.addProperty("ExamDate",addSubjectActivity.getExamDate());
+		request.addProperty("StartDate",addSubjectActivity.getStartDate());
+		request.addProperty("EndDate",addSubjectActivity.getEndDate());
+		request.addProperty("FMode",addSubjectActivity.getFMode());
+		request.addProperty("BWFMode",addSubjectActivity.getBWFMode());
+		request.addProperty("SemesterMode",addSubjectActivity.getSemesterMode());
 
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SOAP_VERSION); // put
@@ -10865,4 +10774,88 @@ public class ServiceMethod
 		}*/
 		return errorcode;
 	}
+	public GetAtCurrentSemesterByChildID getAtCurrentSemesterByChildID(int ChildID)
+	{
+		GetAtCurrentSemesterByChildID getAtCurrentSemester =null;
+
+		String METHOD_NAME = "GetAtCurrentSemesterByChildID";
+		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request.addProperty(WSIDKEY, WSID);
+		request.addProperty(WSPWDKEY,WSPWD);
+		request.addProperty("ChildID",ChildID);
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+				SOAP_VERSION); // put
+
+		envelope.dotNet = true;
+
+		envelope.setAddAdornments(false);
+		envelope.implicitTypes = false;
+		envelope.setOutputSoapObject(request); // prepare request
+
+		HttpTransportSE httpTransport = new HttpTransportSE(URL, TIMEOUT);
+
+		httpTransport.debug = DEBUG; // this is optional, use it if you don't
+
+		// want to use a packet sniffer to check
+		// what the sent
+		// message was (httpTransport.requestDump)
+		httpTransport.setXmlVersionTag(HEADER);
+
+		try {
+
+			httpTransport.call(SOAP_ACTION, envelope);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		// send request
+		Log.d("RAM RAM3", "XML: " + httpTransport.requestDump);
+
+		SoapObject result = null;
+		String returnString = "";
+		try {
+			envelope.getResponse();
+			result = (SoapObject) envelope.bodyIn;
+			for (int i = 0; i < result.getPropertyCount(); i++) {
+				returnString = result.getProperty(i).toString();
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+
+		errorMessage  = returnString;
+
+		String getSemester = getValidJson.getValidJsonObject(returnString);
+		try {
+
+			JSONObject  onj = new JSONObject(getSemester);
+			getAtCurrentSemester=new GetAtCurrentSemesterByChildID();
+			getAtCurrentSemester.setStartDate(onj.getString("StartDate"));
+			getAtCurrentSemester.setEndDate(onj.getString("EndDate"));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			getAtCurrentSemester=null;
+			/*getAtCurrentSemester.setStartDate("");
+			getAtCurrentSemester.setEndDate("");*/
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return getAtCurrentSemester;
+	}
+
 }

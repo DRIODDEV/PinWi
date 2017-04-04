@@ -79,8 +79,8 @@ public class ChildStarEarnedPointActivity extends Activity
 		customProgressLoader=new CustomLoader(this);
 
 		social=new SocialConstants(this);
-		social.Child_RatingsFacebookLog();
-		social.Child_RatingsGoogleAnalyticsLog();
+		/*social.Child_RatingsFacebookLog();
+		social.Child_RatingsGoogleAnalyticsLog();*/
 		typeFace = new TypeFace(ChildStarEarnedPointActivity.this);
 		sharepref = new SharePreferenceClass(ChildStarEarnedPointActivity.this);
 
@@ -375,6 +375,7 @@ public class ChildStarEarnedPointActivity extends Activity
 					else
 					{
 						child_star_earned_points_text.setText(earnedPoints+"");
+						social.rating_DoneAnalyticsLog(earnedPoints+"");
 						playSound(soundEffectStar);
 
 						//if voice over is not to be playes...comes from pending point screen

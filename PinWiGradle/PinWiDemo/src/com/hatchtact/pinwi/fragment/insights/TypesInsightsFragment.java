@@ -1,14 +1,7 @@
 package com.hatchtact.pinwi.fragment.insights;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,8 +32,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.PercentFormatter;
 import com.hatchtact.pinwi.R;
-import com.hatchtact.pinwi.TutorialPageActivity;
-import com.hatchtact.pinwi.adapter.ScreenSlidePagerAdapter;
 import com.hatchtact.pinwi.classmodel.GetBadgeDetailsByChildIDOnInsightList;
 import com.hatchtact.pinwi.classmodel.GetDelightTraitsByChildIDOnInsightList;
 import com.hatchtact.pinwi.classmodel.GetInterestPatternByChildIDOnInsight;
@@ -54,6 +45,11 @@ import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 @SuppressLint("DefaultLocale")
 public class TypesInsightsFragment extends ParentFragment implements View.OnClickListener
@@ -149,11 +145,11 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		if(!sharePref.isinsightsTutorial())
 		{
 			sharePref.setInsightsTutorial(true);
-			ScreenSlidePagerAdapter.NUM_PAGES=6;
+			/*ScreenSlidePagerAdapter.NUM_PAGES=6;
 
 			Intent tutorial=new Intent(getActivity(), TutorialPageActivity.class);
 			startActivity(tutorial);
-			StaticVariables.currentTutorialValue=StaticVariables.insightsTutorial;
+			StaticVariables.currentTutorialValue=StaticVariables.insightsTutorial;*/
 		}
 
 
@@ -263,8 +259,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
 				StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");
 				StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
-				social.Subscribe_Button_ClickedFacebookLog();
-				social.Subscribe_Button_ClickedGoogleAnalyticsLog();
+				/*social.Subscribe_Button_ClickedFacebookLog();
+				social.Subscribe_Button_ClickedGoogleAnalyticsLog();*/
 				switchingFragments(new SubscribeFragment());
 
 
@@ -355,19 +351,22 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(modelSubscribe.getStatus().trim().equalsIgnoreCase("true"))
+				//if(modelSubscribe.getStatus().trim().equalsIgnoreCase("true"))
+				if(getDelightTraitsByChildIDOnInsightList!=null && getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight()!=null)
 				{
-					StaticVariables.fragmentIndexCurrentTabInsight=2;
-					switchingFragments(new DelightTrendsFragment());
+					if(getDelightTraitsByChildIDOnInsightList.getGetDelightTraitsByChildIDOnInsight().size()>0) {
+						StaticVariables.fragmentIndexCurrentTabInsight = 2;
+						switchingFragments(new DelightTrendsFragment());
+					}
 				}
-				else
+				/*else
 				{
 					StaticVariables.fragmentIndexCurrentTabInsight=4;
 					StaticVariables.subscriptionTypeArray=modelSubscribe.getSubscriptionType().split(",");
 					StaticVariables.subscriptionTextArray=modelSubscribe.getSubscriptionText().split(",");
 					StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
 					switchingFragments(new SubscribeFragment());
-				}
+				}*/
 
 			}
 		});
@@ -531,15 +530,14 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		if(sharePref.isInsightsActivared(StaticVariables.currentChild.getChildID()+"")==0)
 		{
 
-			social.Insights_ActivatedFacebookLog();
-			social.Insights_ActivatedGoogleAnalyticsLog();
+			social.insights_ActivatedAnalyticsLog();
 			sharePref.setInsightsActivated(1,StaticVariables.currentChild.getChildID()+"");
 		}
 
-		social.Quality_Badge_LevelFacebookLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
+		/*social.Quality_Badge_LevelFacebookLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
 		social.Quality_Badge_LevelGoogleAnalyticsLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
 
-
+*/
 		imgBadge.setImageResource(imageBadgesList.get(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge() -1));
 
 		//String Level="Level " + getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge() + ".";
@@ -702,7 +700,8 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 				imageinterstdrivers.setImageResource(R.drawable.arrow_i);
 			}
 
-			imageinterstdrivers.setOnClickListener(new View.OnClickListener() {
+			imageinterstdrivers.setEnabled(false);
+			/*imageinterstdrivers.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
@@ -713,7 +712,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 					StaticVariables.subscriptionCostArray=modelSubscribe.getSubscriptionCost().split(",");
 					switchingFragments(new SubscribeFragment());
 				}
-			});
+			});*/
 			//circleLinearLayout.removeAllViews();
 			viewInsights.setOnClickListener(new View.OnClickListener() {
 

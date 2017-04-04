@@ -23,16 +23,7 @@
         android:padding="10dip"
         />
 
-    <include
-        android:id="@+id/child_postcard_sent_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/child_postcard_detail_header"
-        layout="@layout/layout_post_sent"
-        android:visibility="invisible"
-         />
-    
-     <LinearLayout
+    <LinearLayout
         android:id="@+id/layout_bottomlayer_postcard_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -122,5 +113,15 @@
                 android:textSize="@dimen/textSizechildmaindashboard" />
         </RelativeLayout>
     </LinearLayout>
+
+    <include
+        android:id="@+id/child_postcard_sent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/layout_post_sent"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

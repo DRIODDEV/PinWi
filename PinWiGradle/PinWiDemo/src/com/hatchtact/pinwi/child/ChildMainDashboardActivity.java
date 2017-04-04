@@ -33,6 +33,7 @@ import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -61,6 +62,7 @@ public class ChildMainDashboardActivity extends Activity
 	private Animation shake;
 	private boolean isActivityFinished=false;
 	private CustomLoader customProgressLoader;
+	private SocialConstants social;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class ChildMainDashboardActivity extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_child_maindashboard);
 		customProgressLoader=new CustomLoader(this);
+		social=new SocialConstants(ChildMainDashboardActivity.this);
 		isButtonClicked=false;
 		typeFace = new TypeFace(ChildMainDashboardActivity.this);
 		sharepref = new SharePreferenceClass(ChildMainDashboardActivity.this);
@@ -332,12 +335,14 @@ public class ChildMainDashboardActivity extends Activity
 
 	private void setClickListeners()
 	{
+
 		// TODO Auto-generated method stub
 		layoutpostcard.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				social.child_AccessAnalyticsLog("PostCard_Tab");
 				Intent intent = new Intent(ChildMainDashboardActivity.this, ChildPostcardActivity.class);
 				startActivity(intent);
 				ChildMainDashboardActivity.this.finish();
@@ -348,6 +353,7 @@ public class ChildMainDashboardActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				social.child_AccessAnalyticsLog("Playwall_Tab");
 				Intent intent = new Intent(ChildMainDashboardActivity.this, ChildPlayWallActivity.class);
 				startActivity(intent);
 				ChildMainDashboardActivity.this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -361,6 +367,7 @@ public class ChildMainDashboardActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				social.child_AccessAnalyticsLog("Alerts_Tab");
 				Intent intent = new Intent(ChildMainDashboardActivity.this, ChildAlertActivity.class);
 				intent.putExtra("count", count);
 				startActivity(intent);
@@ -373,6 +380,7 @@ public class ChildMainDashboardActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				social.child_AccessAnalyticsLog("Buddies_Tab");
 				Intent intent = new Intent(ChildMainDashboardActivity.this, ChildBuddiesActivity.class);
 				startActivity(intent);
 				ChildMainDashboardActivity.this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -385,6 +393,7 @@ public class ChildMainDashboardActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				social.child_AccessAnalyticsLog("Wishlist_Tab");
 				Intent intent = new Intent(ChildMainDashboardActivity.this, ChildWishListActivity.class);
 				startActivity(intent);
 				ChildMainDashboardActivity.this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -397,6 +406,7 @@ public class ChildMainDashboardActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub'
+				social.child_AccessAnalyticsLog("Points_Tab");
 				Intent intent = new Intent(ChildMainDashboardActivity.this, ChildPendingPointActivity.class);
 				startActivity(intent);
 				ChildMainDashboardActivity.this.finish();

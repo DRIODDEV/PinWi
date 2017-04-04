@@ -23,6 +23,7 @@ import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -54,6 +55,7 @@ public class ChildTutorialActivity extends FragmentActivity
 			"GREAT JOB RATING ACTIVITIES!!",
 			"RATE ACTIVITIES FOR YESTERDAY"
 	};
+	private SocialConstants social;
 	/*New Changes*/
 
 	private ServiceMethod serviceMethod=null;
@@ -64,7 +66,8 @@ public class ChildTutorialActivity extends FragmentActivity
 
 	private boolean isMusicStop = false;
 	private TextView btnNext;
-private CustomLoader customProgressLoader;
+	private CustomLoader customProgressLoader;
+	public static boolean isTutorialRunning=false;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -73,17 +76,18 @@ private CustomLoader customProgressLoader;
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+		isTutorialRunning=false;
 		sharePreferenceClass=new SharePreferenceClass(ChildTutorialActivity.this);
 		customProgressLoader=new CustomLoader(this);
 		checkNetwork=new CheckNetwork();
 		showMessage=new ShowMessages(ChildTutorialActivity.this);
 		serviceMethod=new ServiceMethod();
-
+		social=new SocialConstants(ChildTutorialActivity.this);
 		isMusicStop=sharePreferenceClass.isVoiceOver(StaticVariables.currentChild.getChildID() + "");
 
 		if(!sharePreferenceClass.getIsChildTutorialDone(StaticVariables.currentChild.getChildID()))
 		{
+			isTutorialRunning=true;
 			sharePreferenceClass.setIsChildTutorialDone(StaticVariables.currentChild.getChildID());
 
 			setContentView(R.layout.activity_screen_slide);
@@ -138,6 +142,7 @@ private CustomLoader customProgressLoader;
 							else
 							{
 								//finishActivity();
+								social.childTutorialFriendAnalyticsLog("Completed");
 							}
 
 						}
@@ -160,6 +165,7 @@ private CustomLoader customProgressLoader;
 		}
 		else
 		{
+			isTutorialRunning=false;
 			setContentView(R.layout.apptutorial);
 			imageAppTutorial=(ImageView) findViewById(R.id.imageAppTutorial);
 			textHeadingAppTutorial=(TextView) findViewById(R.id.textHeadingAppTutorial);
@@ -171,7 +177,7 @@ private CustomLoader customProgressLoader;
 			childMusicPlayer = new ChildMusicPlayer(AccessProfileActivity.getInstance(), arraySoundForImages[StaticVariables.statusChild]);
 
 			playMusic();
-			
+
 			btnNext=(TextView)findViewById(R.id.imageNext);
 			btnNext.setVisibility(View.VISIBLE);
 			typefaceClass.setTypefaceRegular(textHeadingAppTutorial);
@@ -198,7 +204,7 @@ private CustomLoader customProgressLoader;
 
 
 	/**
-	 * 
+	 *
 	 */
 	private void playMusic() {
 		if(childMusicPlayer !=null )
@@ -216,7 +222,7 @@ private CustomLoader customProgressLoader;
 
 
 	@Override
-	public void onBackPressed() 
+	public void onBackPressed()
 	{
 		// TODO Auto-generated method stub
 		finishActivity();
@@ -225,6 +231,14 @@ private CustomLoader customProgressLoader;
 
 
 	private void finishActivity() {
+		if(isTutorialRunning)
+		{
+			isTutorialRunning=false;
+			if(social!=null)
+			{
+				social.childTutorialFriendAnalyticsLog("Skipped");
+			}
+		}
 		if(childMusicPlayer != null)
 		{
 			childMusicPlayer.stop();
@@ -253,7 +267,7 @@ private CustomLoader customProgressLoader;
 				callingWebServiceForChildData("0");
 			}
 		}
-		else 
+		else
 		{
 			//Intent intent = new Intent(ChildTutorialActivity.this, ChildDashboardActivity.class);
 			/*Bundle bundle = new Bundle();
@@ -324,7 +338,7 @@ private CustomLoader customProgressLoader;
 			{
 				ErrorCode = serviceMethod.getChildAfterSchoolActiviesByDayForChildModule(childID,daysAgo);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -365,7 +379,7 @@ private CustomLoader customProgressLoader;
 				new GetChildSubjectActiviesByDayForChildModule(childID,daysAgo).execute();
 			}
 
-		}	
+		}
 	}
 
 	private class GetChildSubjectActiviesByDayForChildModule extends AsyncTask<Void, Void, Integer>
@@ -400,7 +414,7 @@ private CustomLoader customProgressLoader;
 			{
 				ErrorCode = serviceMethod.getChildSubjectActiviesByDayForChildModule(childID,daysAgo);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -476,7 +490,7 @@ private CustomLoader customProgressLoader;
 
 			}
 
-		}	
+		}
 	}
 
 

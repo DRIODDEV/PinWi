@@ -1,12 +1,9 @@
 package com.hatchtact.pinwi.child;
 
-import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -43,6 +40,8 @@ import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
+
+import java.util.ArrayList;
 
 @SuppressLint("NewApi")
 public class ChildSetStarRatingActivity extends Activity
@@ -85,7 +84,7 @@ public class ChildSetStarRatingActivity extends Activity
 	private static Bitmap imageOriginal = null,imageScaled = null;
 	private static Matrix matrix;
 	private int pinwiHeight, pinwiWidth;
-	private GestureDetector detector;
+	//private GestureDetector detector;
 	// needed for detecting the inversed rotations
 	private boolean[] quadrantTouched;
 
@@ -455,7 +454,7 @@ public class ChildSetStarRatingActivity extends Activity
 	private void setTouchListeners()
 	{
 		// TODO Auto-generated method stub
-		detector = new GestureDetector(this, new MyGestureDetector());
+	//	detector = new GestureDetector(this, new MyGestureDetector());
 
 		child_pinwheel.setOnTouchListener(new MyOnTouchListener());
 		child_pinwheel.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -667,7 +666,7 @@ public class ChildSetStarRatingActivity extends Activity
 			// set the touched quadrant to true
 			quadrantTouched[getQuadrant(event.getX() - (pinwiWidth / 2), pinwiHeight - event.getY() - (pinwiHeight / 2))] = true;
 
-			detector.onTouchEvent(event);
+			//detector.onTouchEvent(event);
 
 			return true;
 		}
@@ -712,7 +711,7 @@ public class ChildSetStarRatingActivity extends Activity
 			}
 
 
-			return true;
+			return false;
 		}
 	}
 

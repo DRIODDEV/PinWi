@@ -12,5 +12,4 @@
 
     <!-- Set a session timeout period of 30 seconds -->
     <integer name="ga_sessionTimeout">30</integer>
-
 </resources>

@@ -1,18 +1,10 @@
 package com.hatchtact.pinwi.fragment;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
@@ -47,6 +39,14 @@ import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.Validation;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class AddAfterSchoolFragment extends ParentFragment
 {
 	private View view;
@@ -60,7 +60,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 	private LinearLayout layout_startTime=null;
 	private LinearLayout layout_endTime=null;
 	private LinearLayout layout_endDate=null;
-	private LinearLayout layout_daysofWeek=null; 
+	private LinearLayout layout_daysofWeek=null;
 	private LinearLayout layout_informAlly1=null;
 	private LinearLayout layout_informAlly2=null;
 
@@ -147,7 +147,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
+							 Bundle savedInstanceState)
 	{
 		view=inflater.inflate(R.layout.addafterschool_activity, container, false);
 		setHasOptionsMenu(true);
@@ -170,11 +170,11 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 
 
-		return view;		
+		return view;
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void settingDefaultValueDaysDialog() {
 		/*boolean flag=true;
@@ -255,14 +255,14 @@ public class AddAfterSchoolFragment extends ParentFragment
 				daySelected.add("5");
 				daySelected.add("6");
 				daySelected.add("7");
-				daysOfWeekValue_text.setText("All days");
+				//daysOfWeekValue_text.setText("All days");
 			}
 		}
 	}
 
 	private void clickEvent()
 	{
-		layout_informAlly1.setOnClickListener(new OnClickListener() 
+		layout_informAlly1.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v) {
@@ -635,7 +635,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
+										 boolean isChecked) {
 
 				if(mark_special_switch.isChecked())
 				{
@@ -656,7 +656,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
+										 boolean isChecked) {
 
 				if(mark_private_switch.isChecked())
 				{
@@ -679,7 +679,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 			}
 		});
 
-		button_pickSellerAfterSchool.setOnClickListener(new OnClickListener() 
+		button_pickSellerAfterSchool.setOnClickListener(new OnClickListener()
 		{
 
 			@Override
@@ -833,9 +833,9 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 		addAfterSchoolActivities=new AddAfterSchoolActivities();
 
-		if(getArguments()!=null) 
+		if(getArguments()!=null)
 		{
-			activityName = getArguments().getString("ActivityName");  
+			activityName = getArguments().getString("ActivityName");
 			activityId=getArguments().getInt("ActivityId");
 			comesfromWhichScreen=getArguments().getString("ComingFromWhichScreen");
 
@@ -938,8 +938,9 @@ public class AddAfterSchoolFragment extends ParentFragment
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					showAlertDelete("Confirmation","Are you sure you want to delete activity?");
 
-					new DeleteScheduledActivityAsync().execute();
+					//new DeleteScheduledActivityAsync().execute();
 
 				}
 			});
@@ -977,7 +978,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 		addAfterSchoolActivities.setActivityID(StaticVariables.subSubCategoryId);
 	}
 
-	private void reFillValueIfAny() 
+	private void reFillValueIfAny()
 	{
 		// TODO Auto-generated method stub
 		if(StaticVariables.addAfterSchoolActivities!=null)
@@ -1015,9 +1016,16 @@ public class AddAfterSchoolFragment extends ParentFragment
 				start_timeValue_text.setText(StaticVariables.addAfterSchoolActivities.getStartTime());
 				//convert this value to 24 hr format
 				//11:01 AM
-				selectedStartHour = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getStartTime().split(":")[0]);
-				selectedStartMinute = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getStartTime().split(":")[1].substring(0, 1).trim());
-
+				if(StaticVariables.addAfterSchoolActivities.getStartTime().toString().trim().equalsIgnoreCase("60:60"))
+				{
+					selectedStartHour=0;
+					selectedStartMinute=0;
+					start_timeValue_text.setText("Not Specified");
+				}
+				else {
+					selectedStartHour = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getStartTime().split(":")[0]);
+					selectedStartMinute = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getStartTime().split(":")[1].substring(0, 1).trim());
+				}
 				//convert this value to 24 hr format
 				//11:01 AM
 				/*selectedStartHour = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getStartTime().split(":")[0]);
@@ -1034,10 +1042,16 @@ public class AddAfterSchoolFragment extends ParentFragment
 			{
 
 				end_timeValue_text.setText(StaticVariables.addAfterSchoolActivities.getEndTime());
-
-				selectedEndHour = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getEndTime().split(":")[0]);
-				selectedEndMinute = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getEndTime().split(":")[1].substring(0, 1).trim());
-
+				if(StaticVariables.addAfterSchoolActivities.getEndTime().toString().trim().equalsIgnoreCase("60:60"))
+				{
+					selectedEndHour=0;
+					selectedEndMinute=0;
+					end_timeValue_text.setText("Not Specified");
+				}
+				else {
+					selectedEndHour = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getEndTime().split(":")[0]);
+					selectedEndMinute = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getEndTime().split(":")[1].substring(0, 1).trim());
+				}
 
 				/*selectedEndHour = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getEndTime().split(":")[0]);
 				selectedEndMinute = Integer.parseInt(StaticVariables.addAfterSchoolActivities.getEndTime().split(":")[1].split(" ")[0]);
@@ -1147,7 +1161,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 			addAfterSchoolActivities.setActivityDays(StaticVariables.addAfterSchoolActivities.getActivityDays());
 
-			text_typeNoteAfterSchool.setText(StaticVariables.addAfterSchoolActivities.getRemarks());	
+			text_typeNoteAfterSchool.setText(StaticVariables.addAfterSchoolActivities.getRemarks());
 		}
 		else
 		{
@@ -1282,7 +1296,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 	}
 
 	private void setTimeField()
-	{    
+	{
 		layout_startTime.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -1314,7 +1328,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 		if(text_typeNoteAfterSchool.getText().toString().trim()!=null)
 			StaticVariables.addAfterSchoolActivities.setRemarks(text_typeNoteAfterSchool.getText().toString().trim());
 
-		switchingFragments(new FrequencyAfterSchoolFragment());	
+		switchingFragments(new FrequencyAfterSchoolFragment());
 		/**Added for frquency page after school new changes */
 
 
@@ -1573,7 +1587,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 
 
-	private void setDateField() 
+	private void setDateField()
 	{
 		layout_startDate.setOnClickListener(new OnClickListener() {
 
@@ -1611,7 +1625,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 			@Override
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
-					int dayOfMonth) {
+								  int dayOfMonth) {
 				// TODO Auto-generated method stub
 				Calendar newDate=Calendar.getInstance();
 				newDate.set(year, monthOfYear, dayOfMonth);
@@ -1647,10 +1661,10 @@ public class AddAfterSchoolFragment extends ParentFragment
 					specialselectDay=dayOfMonth;
 
 					addAfterSchoolActivities.setSpecialDate(specialDayValueValue_text.getText().toString());
-				}				
+				}
 			}
 		}, newCalendar
-		.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+				.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
 		datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 10000);
 
@@ -1693,7 +1707,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 		@Override
 		protected void onPostExecute(Integer result) {
 			// TODO Auto-generated method stub
-			super.onPostExecute(result); 
+			super.onPostExecute(result);
 
 			try {
 				customProgressLoader.dismissProgressBar();
@@ -1731,13 +1745,13 @@ public class AddAfterSchoolFragment extends ParentFragment
 						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
 						{
 							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
-							social.scheduleFirstActivityFacebookLog();
-							social.scheduleFirstActivityGoogleAnalyticsLog();
+							/*social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();*/
 						}
 						else
 						{
-							social.scheduleAfterSchoolActivityFacebookLog();
-							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();
+							/*social.scheduleAfterSchoolActivityFacebookLog();
+							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*/
 						}
 
 						switchingFragments(new AfterSchoolActivityByChildIdFragment());
@@ -1755,9 +1769,9 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 	private void getError()
 	{
-		Error err = serviceMethod.getError();	
+		Error err = serviceMethod.getError();
 		showMessage.showAlert("Warning", err.getErrorDesc());
-	} 
+	}
 	/*private void getError()
 	{
 		Error err = serviceMethod.getError();	
@@ -1946,7 +1960,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 			{
 				afterSchoolActivityDetails =serviceMethod.getAfterSchoolActivityDetail(childId, activityId);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -1977,10 +1991,10 @@ public class AddAfterSchoolFragment extends ParentFragment
 			else
 			{
 				if(result!=-1)
-				{	
+				{
 					if(afterSchoolActivityDetails!=null)
 					{
-						
+
 						addAfterSchoolActivities.setfMode(afterSchoolActivityDetails.getfMode());
 						addAfterSchoolActivities.setBWFMode(afterSchoolActivityDetails.getBWFMode());
 						if(afterSchoolActivityDetails.getfMode()==0)
@@ -2077,35 +2091,49 @@ public class AddAfterSchoolFragment extends ParentFragment
 							addAfterSchoolActivities.setSpecialDate(afterSchoolActivityDetails.getSpecialDate());
 						}
 
-						String[] specialDate = afterSchoolActivityDetails.getSpecialDate().split("/");
+						if(afterSchoolActivityDetails.getSpecialDate().toString().trim().length()>0) {
+							String[] specialDate = afterSchoolActivityDetails.getSpecialDate().split("/");
 
-						for(int i=0;i<specialDate.length;i++)
-						{
-							specialselectDay=Integer.parseInt(specialDate[0]);
-							specialselectMonth=(Integer.parseInt(specialDate[1]))-1;
-							specialselectYear=Integer.parseInt(specialDate[2]);
+							for (int i = 0; i < specialDate.length; i++) {
+								specialselectDay = Integer.parseInt(specialDate[0]);
+								specialselectMonth = (Integer.parseInt(specialDate[1])) - 1;
+								specialselectYear = Integer.parseInt(specialDate[2]);
+							}
+						}
+						if(afterSchoolActivityDetails.getStartDate().toString().trim().length()>0) {
+							String[] startDate = afterSchoolActivityDetails.getStartDate().split("/");
+
+							for (int i = 0; i < startDate.length; i++) {
+								selectedStartDay = Integer.parseInt(startDate[0]);
+								selectedStartMonth = (Integer.parseInt(startDate[1])) - 1;
+								selectedStartYear = Integer.parseInt(startDate[2]);
+							}
+						}
+						if(afterSchoolActivityDetails.getEndDate().toString().trim().length()>0) {
+
+							String[] endDate = afterSchoolActivityDetails.getEndDate().split("/");
+
+							for (int i = 0; i < endDate.length; i++) {
+								selectedEndDay = Integer.parseInt(endDate[0]);
+								selectedEndMonth = (Integer.parseInt(endDate[1])) - 1;
+								selectedEndYear = Integer.parseInt(endDate[2]);
+							}
 						}
 
-						String[] startDate = afterSchoolActivityDetails.getStartDate().split("/");
+						if(afterSchoolActivityDetails.getStartTime().toString().trim().length()>0) {
+							if(afterSchoolActivityDetails.getStartTime().toString().trim().equalsIgnoreCase("60:60"))
+							{
+								selectedStartHour=0;
+								selectedStartMinute=0;
+								start_timeValue_text.setText("Not Specified");
+							}
+							else {
+								selectedStartHour = Integer.parseInt(afterSchoolActivityDetails.getStartTime().split(":")[0]);
+								selectedStartMinute = Integer.parseInt(afterSchoolActivityDetails.getStartTime().split(":")[1].substring(0, 1).trim());
 
-						for(int i=0;i<startDate.length;i++)
-						{
-							selectedStartDay=Integer.parseInt(startDate[0]);
-							selectedStartMonth=(Integer.parseInt(startDate[1]))-1;
-							selectedStartYear=Integer.parseInt(startDate[2]);
+
+							}
 						}
-
-						String[] endDate = afterSchoolActivityDetails.getEndDate().split("/");
-
-						for(int i=0;i<endDate.length;i++)
-						{
-							selectedEndDay=Integer.parseInt(endDate[0]);
-							selectedEndMonth=(Integer.parseInt(endDate[1]))-1;
-							selectedEndYear=Integer.parseInt(endDate[2]);
-						}
-						selectedStartHour = Integer.parseInt(afterSchoolActivityDetails.getStartTime().split(":")[0]);
-						selectedStartMinute = Integer.parseInt(afterSchoolActivityDetails.getStartTime().split(":")[1].substring(0, 1).trim());
-
 						//convert this value to 24 hr format
 						//11:01 AM
 						/*selectedStartHour = Integer.parseInt(afterSchoolActivityDetails.getStartTime().split(":")[0]);
@@ -2115,10 +2143,16 @@ public class AddAfterSchoolFragment extends ParentFragment
 						{
 							selectedStartHour+=12;
 						}*/
-
-						selectedEndHour = Integer.parseInt(afterSchoolActivityDetails.getEndTime().split(":")[0]);
-						selectedEndMinute = Integer.parseInt(afterSchoolActivityDetails.getEndTime().split(":")[1].substring(0, 1).trim());
-
+						if(afterSchoolActivityDetails.getEndTime().toString().trim().length()>0) {
+							if (afterSchoolActivityDetails.getEndTime().toString().trim().equalsIgnoreCase("60:60")) {
+								selectedEndHour = 0;
+								selectedEndMinute = 0;
+								end_timeValue_text.setText("Not Specified");
+							} else {
+								selectedEndHour = Integer.parseInt(afterSchoolActivityDetails.getEndTime().split(":")[0]);
+								selectedEndMinute = Integer.parseInt(afterSchoolActivityDetails.getEndTime().split(":")[1].substring(0, 1).trim());
+							}
+						}
 
 						/*selectedEndHour = Integer.parseInt(afterSchoolActivityDetails.getEndTime().split(":")[0]);
 						selectedEndMinute = Integer.parseInt(afterSchoolActivityDetails.getEndTime().split(":")[1].split(" ")[0]);
@@ -2209,7 +2243,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 						/*		ally1Value_text.setText(afterSchoolActivityDetails.getAlly1FirstName());
 						ally2Value_text.setText(afterSchoolActivityDetails.getAlly2FirstName());*/
-					}	
+					}
 				}
 				else
 				{
@@ -2217,18 +2251,18 @@ public class AddAfterSchoolFragment extends ParentFragment
 					if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
 					{
 						sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
-						social.scheduleFirstActivityFacebookLog();
-						social.scheduleFirstActivityGoogleAnalyticsLog();
+						/*social.scheduleFirstActivityFacebookLog();
+						social.scheduleFirstActivityGoogleAnalyticsLog();*/
 					}
 					else
 					{
-						social.scheduleAfterSchoolActivityFacebookLog();
-						social.scheduleAfterSchoolActivityGoogleAnalyticsLog();
+						/*social.scheduleAfterSchoolActivityFacebookLog();
+						social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*/
 					}
 					switchingFragments(new AfterSchoolActivityByChildIdFragment());
 				}
 			}
-		}	
+		}
 	}
 
 	/*	private void getError(String toMove)
@@ -2254,7 +2288,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
-	} 
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -2322,7 +2356,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -2365,13 +2399,13 @@ public class AddAfterSchoolFragment extends ParentFragment
 						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
 						{
 							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
-							social.scheduleFirstActivityFacebookLog();
-							social.scheduleFirstActivityGoogleAnalyticsLog();
+							/*social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();*/
 						}
 						else
 						{
-							social.scheduleAfterSchoolActivityFacebookLog();
-							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();
+							/*social.scheduleAfterSchoolActivityFacebookLog();
+							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*/
 						}
 						switchingFragments(new AfterSchoolActivityByChildIdFragment());
 					}
@@ -2385,8 +2419,8 @@ public class AddAfterSchoolFragment extends ParentFragment
 
 				}
 
-			}	
-		}	
+			}
+		}
 	}
 
 	private ArrayList<String> removeDupliciacy(
@@ -2412,5 +2446,34 @@ public class AddAfterSchoolFragment extends ParentFragment
 		return uniqueList;
 	}
 
+	public void showAlertDelete(String title,String message)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+
+		alertBuilder.setTitle(title);
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage(message);
+		alertBuilder.setPositiveButton(" Cancel ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+			}
+		});
+
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				new DeleteScheduledActivityAsync().execute();
+			}
+		});
+		alertBuilder.show();
+	}
 
 }

@@ -163,7 +163,7 @@ public class ChildListFreeActivity extends MainActionBarActivity implements Adap
 
 		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -298,10 +298,10 @@ public class ChildListFreeActivity extends MainActionBarActivity implements Adap
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivitySupport.class);
 			startActivity(intentSupport);
 			break;*/
-			case 4:
+			/*case 4:
 				Intent intentTutorial =new Intent(ChildListFreeActivity.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
-				break;
+				break;*/
 			/*case 3:
 			Intent intentInvite =new Intent(AccessProfileActivity.this, ActivityInvite.class);
 			startActivity(intentInvite);
@@ -310,7 +310,7 @@ public class ChildListFreeActivity extends MainActionBarActivity implements Adap
 				Intent intentInvite =new Intent(ChildListFreeActivity.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
-			case 5:
+			case 4:
 				Intent intentContactus =new Intent(ChildListFreeActivity.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
@@ -329,7 +329,7 @@ public class ChildListFreeActivity extends MainActionBarActivity implements Adap
 				parentIntent.putExtras(bundle);
 				startActivity(parentIntent);
 				break;
-			case 6:
+			case 5:
 				sharePreferenceclass.setIsLogin(false);
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");

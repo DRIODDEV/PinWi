@@ -30,7 +30,7 @@ import com.hatchtact.pinwi.utility.TypeFace;
 
 public class ChildListActivity extends MainActionBarActivity implements OnItemClickListener
 {
-	private ShowMessages showMessage=null;  
+	private ShowMessages showMessage=null;
 	private ServiceMethod serviceMethod=null;
 	private CheckNetwork checkNetwork=null;
 
@@ -52,15 +52,17 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 
 	private TypeFace typeFace=null;
 	private CustomLoader customProgressLoader;
+	private boolean isButtonTouched=false;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 		screenName="Settings";
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_childlist);
+		isButtonTouched=false;
 		customProgressLoader=new CustomLoader(ChildListActivity.this);
 
 		getListofChildsByParentIDList=new GetListofChildsByParentIDList();
@@ -90,12 +92,15 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent childIntent=new Intent(ChildListActivity.this,ChildRegistrationActivity.class);
-				Bundle bundleLocation=new Bundle();
-				bundleLocation.putBoolean("ToChildScreenFromAdd", true);
-				childIntent.putExtras(bundleLocation);
-				startActivity(childIntent);
-				ChildListActivity.this.finish();
+				if(!isButtonTouched) {
+					isButtonTouched=true;
+					Intent childIntent = new Intent(ChildListActivity.this, ChildRegistrationActivity.class);
+					Bundle bundleLocation = new Bundle();
+					bundleLocation.putBoolean("ToChildScreenFromAdd", true);
+					childIntent.putExtras(bundleLocation);
+					startActivity(childIntent);
+					ChildListActivity.this.finish();
+				}
 			}
 		});
 
@@ -105,19 +110,22 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent childIntent=new Intent(ChildListActivity.this,ChildRegistrationActivity.class);
-				Bundle bundleLocation=new Bundle();
-				bundleLocation.putBoolean("ToChildScreenFromAdd", true);
-				childIntent.putExtras(bundleLocation);
-				startActivity(childIntent);
-				ChildListActivity.this.finish();
+				if(!isButtonTouched) {
+					isButtonTouched = true;
+					Intent childIntent = new Intent(ChildListActivity.this, ChildRegistrationActivity.class);
+					Bundle bundleLocation = new Bundle();
+					bundleLocation.putBoolean("ToChildScreenFromAdd", true);
+					childIntent.putExtras(bundleLocation);
+					startActivity(childIntent);
+					ChildListActivity.this.finish();
+				}
 			}
 		});
 
 		new GetChildName().execute();
 	}
 
-	private ProgressDialog progressDialog=null;	
+	private ProgressDialog progressDialog=null;
 
 	private class GetChildName extends AsyncTask<Void, Void, Integer>
 	{
@@ -144,7 +152,7 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			{
 				getListofChildsByParentIDList =serviceMethod.getchildListByParentId(parentId);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -205,11 +213,11 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 					listView.setOnItemClickListener(ChildListActivity.this);
 				}
 				else
-				{	
+				{
 					getError();
-				}	
-			}	
-		}	
+				}
+			}
+		}
 	}
 
 	private void getError()
@@ -222,13 +230,16 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
 
-		Intent childIntent=new Intent(ChildListActivity.this,ChildRegistrationActivity.class);
-		Bundle bundleLocation=new Bundle();
-		bundleLocation.putBoolean("ToChildScreen", true);
-		bundleLocation.putInt("childId", getListofChildsByParentIDList.getGetListofChildsByParentID().get(position).getChildID());
-		childIntent.putExtras(bundleLocation);
-		startActivity(childIntent);
-		ChildListActivity.this.finish();
+		if(!isButtonTouched) {
+			isButtonTouched = true;
+			Intent childIntent = new Intent(ChildListActivity.this, ChildRegistrationActivity.class);
+			Bundle bundleLocation = new Bundle();
+			bundleLocation.putBoolean("ToChildScreen", true);
+			bundleLocation.putInt("childId", getListofChildsByParentIDList.getGetListofChildsByParentID().get(position).getChildID());
+			childIntent.putExtras(bundleLocation);
+			startActivity(childIntent);
+			ChildListActivity.this.finish();
+		}
 	}
 
 
@@ -275,7 +286,7 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			{
 				status=serviceMethod.deleteChildByChildId(currentChildId);
 			}
-			else 
+			else
 			{
 				ErrorCode=-1;
 			}
@@ -310,7 +321,7 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 				{
 					if(childListAdapter.list_childName.size()==1)
 					{
-						Toast.makeText(ChildListActivity.this, "At least one child is required.", Toast.LENGTH_LONG).show();	
+						Toast.makeText(ChildListActivity.this, "At least one child is required.", Toast.LENGTH_LONG).show();
 					}
 					else
 					{
@@ -364,8 +375,8 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 				{
 					getError();
 				}
-			}	
-		}	
+			}
+		}
 	}
 
 }

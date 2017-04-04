@@ -23,10 +23,11 @@ import com.hatchtact.pinwi.adapter.GuideSlideTemplateAdapter.SwipeCallback;
 import com.hatchtact.pinwi.child.CustomDrawable;
 import com.hatchtact.pinwi.child.FlipAnimation;
 import com.hatchtact.pinwi.child.postcard.ChildPostcardActivity;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 @SuppressLint("ValidFragment")
-public class GuideSlideTemplateFragment  extends Fragment 
+public class GuideSlideTemplateFragment  extends Fragment
 {
 	public static final String ARG_PAGE = "page";
 	private int mPageNumber;
@@ -42,6 +43,8 @@ public class GuideSlideTemplateFragment  extends Fragment
 	public static boolean isSlider=false;
 	private Animation fadeCard,showCard;
 	private View emptyView;
+	private ImageView img_cancel;
+	private SocialConstants social;
 
 
 	public static GuideSlideTemplateFragment create(int pageNumber, SwipeCallback swipeCallback) {
@@ -49,6 +52,7 @@ public class GuideSlideTemplateFragment  extends Fragment
 		Bundle args = new Bundle();
 		args.putInt(ARG_PAGE, pageNumber);
 		fragment.setArguments(args);
+
 		System.out.println("in screen slide" +pageNumber);
 		return fragment;
 	}
@@ -63,27 +67,35 @@ public class GuideSlideTemplateFragment  extends Fragment
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(social==null)
+		{
+			social=new SocialConstants(getActivity());
+		}
 		mPageNumber = getArguments().getInt(ARG_PAGE);
 
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		// Inflate the layout containing a title and body text.
 		final ViewGroup rootView = (ViewGroup) inflater
 				.inflate(R.layout.fragment_guidefrag, container, false);
-
+		if(social==null)
+		{
+			social=new SocialConstants(getActivity());
+		}
 		templatebackLayout = (LinearLayout)rootView.findViewById(R.id.templatebackLayout);
 		template_front_layout = (RelativeLayout)rootView.findViewById(R.id.template_front_layout);
 		template_inner_text_why = (TextView)rootView.findViewById(R.id.template_inner_text_why);
 		template_inner_text_skip = (TextView)rootView.findViewById(R.id.template_inner_text_skip);
 		crossImage = (ImageView)rootView.findViewById(R.id.crossImage);
 		stepsText = (TextView)rootView.findViewById(R.id.stepsText);
-		detailText = (TextView)rootView.findViewById(R.id.detailText);	
+		detailText = (TextView)rootView.findViewById(R.id.detailText);
 		emptyView=(View)rootView.findViewById(R.id.emptyView);
 		bgGuide = (ImageView)rootView.findViewById(R.id.bgGuide);
 		bgImage = (ImageView)rootView.findViewById(R.id.bgImage);
+		img_cancel = (ImageView)rootView.findViewById(R.id.img_cancel);
 
 		//setBackgroundOfViews(template_front_layout,true);
 		//setBackgroundOfViews(template_inner_text,false);
@@ -103,47 +115,47 @@ public class GuideSlideTemplateFragment  extends Fragment
 
 		switch (mPageNumber)
 		{
-		case 0:
-			bgGuide.setBackgroundResource(R.drawable.stepone);
-			//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.steponebackground));
-			//bgImage.setBackgroundResource(R.drawable.guide_one);
-			break;
-		case 1:
-			bgGuide.setBackgroundResource(R.drawable.steptwo);
-			//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.steptwobackground));
+			case 0:
+				bgGuide.setBackgroundResource(R.drawable.stepone);
+				//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.steponebackground));
+				//bgImage.setBackgroundResource(R.drawable.guide_one);
+				break;
+			case 1:
+				bgGuide.setBackgroundResource(R.drawable.steptwo);
+				//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.steptwobackground));
 
-			//bgImage.setBackgroundResource(R.drawable.guide_two);
-			break;
-		case 2:
-			bgGuide.setBackgroundResource(R.drawable.stepthree);
-			//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepthreebackground));
+				//bgImage.setBackgroundResource(R.drawable.guide_two);
+				break;
+			case 2:
+				bgGuide.setBackgroundResource(R.drawable.stepthree);
+				//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepthreebackground));
 
-			//bgImage.setBackgroundResource(R.drawable.guide_three);
-			break;
-		case 3:
-			bgGuide.setBackgroundResource(R.drawable.stepfour);
-			//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepfourbackground));
+				//bgImage.setBackgroundResource(R.drawable.guide_three);
+				break;
+			case 3:
+				bgGuide.setBackgroundResource(R.drawable.stepfour);
+				//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepfourbackground));
 
-			//bgImage.setBackgroundResource(R.drawable.guide_four);
-			break;
-		case 4:
-			bgGuide.setBackgroundResource(R.drawable.stepfive);
-			//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepfivebackground));
+				//bgImage.setBackgroundResource(R.drawable.guide_four);
+				break;
+			case 4:
+				bgGuide.setBackgroundResource(R.drawable.stepfive);
+				//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepfivebackground));
 
-			//bgImage.setBackgroundResource(R.drawable.guide_five);
-			break;
-		case 5:
-			bgGuide.setBackgroundResource(R.drawable.stepsix);
-			//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepsixbackground));
-			//bgImage.setBackgroundResource(R.drawable.guide_six);
-			break;
-		case 6:
-			bgGuide.setBackgroundResource(R.drawable.stepseven);
-			//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepsevenbackground));
-			//bgImage.setBackgroundResource(R.drawable.guide_seven);
-			break;
-		default:
-			break;
+				//bgImage.setBackgroundResource(R.drawable.guide_five);
+				break;
+			case 5:
+				bgGuide.setBackgroundResource(R.drawable.stepsix);
+				//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepsixbackground));
+				//bgImage.setBackgroundResource(R.drawable.guide_six);
+				break;
+			case 6:
+				bgGuide.setBackgroundResource(R.drawable.stepseven);
+				//bgGuide.setBackgroundColor(getActivity().getResources().getColor(R.color.stepsevenbackground));
+				//bgImage.setBackgroundResource(R.drawable.guide_seven);
+				break;
+			default:
+				break;
 		}
 		//setTextColor(template_inner_text);
 		//setTopBackground(template_back_text);
@@ -173,16 +185,28 @@ public class GuideSlideTemplateFragment  extends Fragment
 		new TypeFace(getActivity()).setTypefaceRegular(detailText);
 
 
-		crossImage.setOnClickListener(new OnClickListener() {			
+		crossImage.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(social!=null)
+					social.parent_TutorialAnalyticsLog("Skipped");
+				getActivity().finish();
+				getActivity().overridePendingTransition(R.anim.shrink_from_topleft_to_bottomright, R.anim.shrink_from_topleft_to_bottomright);
+
+			}
+		});
+		img_cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(social!=null)
+					social.parent_TutorialAnalyticsLog("Skipped");
 				getActivity().finish();
 				getActivity().overridePendingTransition(R.anim.shrink_from_topleft_to_bottomright, R.anim.shrink_from_topleft_to_bottomright);
 
 			}
 		});
 
-		emptyView.setOnClickListener(new OnClickListener() {			
+		emptyView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//templatebackLayout.setVisibility(View.VISIBLE);
@@ -190,11 +214,15 @@ public class GuideSlideTemplateFragment  extends Fragment
 				//if(shake==null)
 				/*shake = AnimationUtils.loadAnimation(getActivity(), R.anim.disappear);
 				template_front_layout.startAnimation(shake);*/
+				if(social!=null)
+				{
+					social.parent_TutorialAnalyticsLog("Started");
+				}
 				flipCard();
 				//swipeCallback.isSwipeEnable(true);
 			}
 		});
-		template_inner_text_why.setOnClickListener(new OnClickListener() {			
+		template_inner_text_why.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//templatebackLayout.setVisibility(View.VISIBLE);
@@ -207,10 +235,11 @@ public class GuideSlideTemplateFragment  extends Fragment
 				//swipeCallback.isSwipeEnable(true);
 			}
 		});
-		template_inner_text_skip.setOnClickListener(new OnClickListener() {			
+		template_inner_text_skip.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+				if(social!=null)
+					social.parent_TutorialAnalyticsLog("Skipped");
 				getActivity().finish();
 				getActivity().overridePendingTransition(R.anim.shrink_from_topleft_to_bottomright, R.anim.shrink_from_topleft_to_bottomright);
 
@@ -254,8 +283,8 @@ public class GuideSlideTemplateFragment  extends Fragment
 			fadeCard.setAnimationListener(new AnimationListener() {
 
 				@Override
-				public void onAnimationStart(Animation animation) 
-				{			
+				public void onAnimationStart(Animation animation)
+				{
 					isSlider=true;
 					swipeCallback.isSwipeEnable(true);
 					//templatebackLayout.setVisibility(View.VISIBLE);
@@ -266,16 +295,16 @@ public class GuideSlideTemplateFragment  extends Fragment
 					{
 						showCard = AnimationUtils.loadAnimation(getActivity(), R.anim.activity_open_scale);
 					}*/
-					
+
 				}
 
 				@Override
-				public void onAnimationRepeat(Animation animation) {				
+				public void onAnimationRepeat(Animation animation) {
 				}
 
 				@Override
-				public void onAnimationEnd(Animation animation) {	
-					
+				public void onAnimationEnd(Animation animation) {
+
 					//templatebackLayout.startAnimation(showCard);
 					/*templatebackLayout.setVisibility(View.VISIBLE);
 					//template_front_layout.setVisibility(View.GONE);

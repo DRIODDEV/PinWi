@@ -352,6 +352,8 @@ public class ConfirmationActivity extends MainActionBarActivity implements OnCli
 					String passcodeListString = gsonRegistration.toJson(pcList);				
 					sharePref.setPassCodeList(passcodeListString);
 
+					if(social!=null)
+					social.parent_ProfileAnalyticsLog();
 					generateCongrateDialog();
 				}
 				else

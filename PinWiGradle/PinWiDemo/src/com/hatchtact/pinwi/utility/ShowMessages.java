@@ -376,5 +376,41 @@ public class ShowMessages {
 	
 		
 	}
+
+	public void showAlertSetNewDates( Context mContext,final OnEventListener<String> callback)
+	{
+		// TODO Auto-generated method stub
+
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(mContext);
+
+		alertBuilder.setTitle("Alert");
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage("You are attempting to set a new semester. This will override your existing semester dates and map all existing semester activities to the new dates. Do you wish to confirm?\n ");
+
+		alertBuilder.setPositiveButton(" Cancel ", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(final DialogInterface dialog, int which) {
+
+				dialog.dismiss();
+				callback.onFailure("");
+			}
+		});
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+
+				dialog.dismiss();
+				callback.onSuccess("");
+
+			}
+		});
+
+		alertBuilder.show();
+
+
+	}
 	
 }

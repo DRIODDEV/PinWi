@@ -485,8 +485,8 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 									public void onSuccess(String object) {
 										// TODO Auto-generated method stub
 										//if(!isEditingEnabled){
-										social.Create_Postcard_TextSentFacebookLog();
-										social.Create_Postcard_TextGoogleAnalyticsLog();
+										/*social.Create_Postcard_TextSentFacebookLog();
+										social.Create_Postcard_TextGoogleAnalyticsLog();*/
 										child_postcard_sent_layout.setVisibility(View.VISIBLE);
 										layout_bottomlayer_postcard_detail.setVisibility(View.INVISIBLE);
 										child_postcard_detail_mid_text.setVisibility(View.INVISIBLE);

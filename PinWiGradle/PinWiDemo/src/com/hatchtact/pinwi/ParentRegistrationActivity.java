@@ -2372,8 +2372,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			{
 				if(result!=-1)
 				{
-					social.parentRegistrationFacebookLog();
-					social.parentRegistrationGoogleAnalyticsLog();
+				/*	social.parentRegistrationFacebookLog();
+					social.parentRegistrationGoogleAnalyticsLog();*/
 					String parentInformation = gsonRegistration.toJson(parentProfile);
 					sharePreferneceClass.setParentProfile(parentInformation);
 

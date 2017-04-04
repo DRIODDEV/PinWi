@@ -4,16 +4,40 @@
     android:layout_height="match_parent"
     android:background="@color/background_color" >
 
-    <Button
-        android:id="@+id/button_continueChild"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dip"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/rectangular_btn"
-        android:text="@string/save_text"
-        android:textColor="@color/black_color"
-        android:textSize="18sp" />
- <include
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/layoutButtonsChild"
+        >
+        <Button
+            android:id="@+id/button_continueChild"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangular_btn"
+            android:text="@string/save_text"
+            android:layout_weight="1"
+            android:textColor="@color/black_color"
+            android:textSize="18sp" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/font_white_color"/>
+
+        <Button
+            android:id="@+id/button_new_continue_Child"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rectangular_btn"
+            android:text="@string/continue_text"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:textColor="@color/black_color"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <include
         android:id="@+id/headerActionBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +45,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/button_continueChild"
+        android:layout_above="@id/layoutButtonsChild"
         android:layout_below="@+id/headerActionBar"
         android:layout_marginBottom="10dip"
         android:layout_marginTop="15dip" >

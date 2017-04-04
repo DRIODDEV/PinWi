@@ -8,7 +8,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="3dip" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,10 +66,11 @@
 
                 <TextView
                     android:id="@+id/start_date_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
                     android:text="@string/startDate_text"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
 
@@ -76,7 +78,6 @@
                     android:id="@+id/start_dateValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
@@ -91,7 +92,7 @@
                 android:layout_below="@id/layout_startDate"
                 android:layout_marginTop="5dip"
                 android:background="@color/gray" />
-            
+
             <LinearLayout
                 android:id="@+id/layout_endDate"
                 android:layout_width="match_parent"
@@ -105,9 +106,10 @@
 
                 <TextView
                     android:id="@+id/end_date_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:text="@string/endDate_text"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
@@ -116,7 +118,6 @@
                     android:id="@+id/end_dateValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
@@ -131,7 +132,7 @@
                 android:layout_below="@id/layout_endDate"
                 android:layout_marginTop="5dip"
                 android:background="@color/gray" />
-            
+
 
             <LinearLayout
                 android:id="@+id/layout_startTime"
@@ -146,9 +147,10 @@
 
                 <TextView
                     android:id="@+id/start_time_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:text="@string/startTime_text"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
@@ -157,7 +159,6 @@
                     android:id="@+id/start_timeValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
@@ -186,10 +187,11 @@
 
                 <TextView
                     android:id="@+id/end_time_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
                     android:text="@string/endTime_text"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
 
@@ -197,7 +199,6 @@
                     android:id="@+id/end_timeValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
@@ -213,7 +214,7 @@
                 android:layout_marginTop="5dip"
                 android:background="@color/gray" />
 
-            
+
             <LinearLayout
                 android:id="@+id/layout_daysofWeek"
                 android:layout_width="match_parent"
@@ -227,10 +228,11 @@
 
                 <TextView
                     android:id="@+id/daysOfWeek_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
                     android:text="@string/dayofWeek_text"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
 
@@ -238,7 +240,6 @@
                     android:id="@+id/daysOfWeekValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="18sp" />
@@ -259,7 +260,7 @@
                 android:text="@string/reminder_text"
                 android:textColor="@color/black_color"
                 android:textSize="15sp" />
-            
+
            <View
                 android:id="@+id/line_belowFrequency"
                 android:layout_width="match_parent"

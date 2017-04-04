@@ -3,6 +3,7 @@ package com.hatchtact.pinwi.utility;
 import java.util.ArrayList;
 
 import com.hatchtact.pinwi.classmodel.AddAfterSchoolActivities;
+import com.hatchtact.pinwi.classmodel.AddSubjectActivity;
 import com.hatchtact.pinwi.classmodel.ChildModel;
 import com.hatchtact.pinwi.classmodel.ChildProfile;
 import com.hatchtact.pinwi.classmodel.FacebookParentProfileModel;
@@ -138,6 +139,7 @@ public class StaticVariables
 	public static String dayMode="";
 	public static String freeAppWebUrl="";
 	public static int  screenForPurchase=0;
+	public static AddSubjectActivity addSchoolActivities;
 
 
 }

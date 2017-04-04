@@ -28,12 +28,15 @@
             android:layout_marginLeft="2dip"
             android:padding="8dp"
             android:text="Profile Setup"
+            android:visibility="gone"
             android:textColor="@color/black_color"
             android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
+            android:visibility="gone"
+
             android:background="@color/gray" />
 
         <TextView
@@ -60,12 +63,16 @@
             android:layout_marginLeft="2dip"
             android:padding="8dp"
             android:text="Child Profile"
+            android:visibility="gone"
+
             android:textColor="@color/black_color"
             android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
+            android:visibility="gone"
+
             android:background="@color/gray" />
 
         <TextView

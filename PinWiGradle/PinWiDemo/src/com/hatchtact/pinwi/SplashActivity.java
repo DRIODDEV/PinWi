@@ -1,21 +1,12 @@
 package com.hatchtact.pinwi;
 
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
@@ -26,18 +17,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.clevertap.android.sdk.CleverTapAPI;
-import com.clevertap.android.sdk.exceptions.CleverTapMetaDataNotFoundException;
-import com.clevertap.android.sdk.exceptions.CleverTapPermissionsNotSatisfied;
-import com.facebook.appevents.AppEventsConstants;
-import com.facebook.appevents.AppEventsLogger;
 import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.Tracker;
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hatchtact.pinwi.gcm.GCMNotificationIntentService;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
@@ -46,6 +27,10 @@ import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
+
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class SplashActivity extends Activity
 {
@@ -64,9 +49,10 @@ public class SplashActivity extends Activity
 
 	private GoogleCloudMessaging gcm;
 	private String registrationId;
-	private FirebaseAnalytics mFirebaseAnalytics;
-	CleverTapAPI cleverTap;
+	//private FirebaseAnalytics mFirebaseAnalytics;
+	//CleverTapAPI cleverTap;
 	private CustomLoader customProgressLoader;
+	private SocialConstants socialConstants;
 	private void getDisplayWidth(Activity a)
 	{
 
@@ -90,58 +76,11 @@ public class SplashActivity extends Activity
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.splash_activity);
-		// Obtain the FirebaseAnalytics instance.
-		mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 		customProgressLoader=new CustomLoader(SplashActivity.this);
-		/*mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-		Bundle bundle = new Bundle();
-		bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1");
-		bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name");
-		bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
-		mFirebaseAnalytics.logEvent("Demo Event", bundle);
-		showHashKey(SplashActivity.this);*/
-		//new SharePreferenceClass(getApplicationContext()).setAppDownloaded(false);
 		sharePreferenceClass=new SharePreferenceClass(SplashActivity.this);
-		/*int badgeCount = 1;
-		boolean success = ShortcutBadger.applyCount(SplashActivity.this, badgeCount);
-		Toast.makeText(getApplicationContext(), "Set count=" + badgeCount + ", success=" + success, Toast.LENGTH_SHORT).show();
-	*/
-		try {
-			cleverTap = CleverTapAPI.getInstance(getApplicationContext());
-		} catch (CleverTapMetaDataNotFoundException e) {
-			// thrown if you haven't specified your CleverTap Account ID or Token in your AndroidManifest.xml
-		} catch (CleverTapPermissionsNotSatisfied e) {
-			// thrown if you haven't requested the required permissions in your AndroidManifest.xml
-			System.out.print(""+e);
-		}
-		installFacebookLog();
-		installGoogleAnalyticsLog();
+		socialConstants=new SocialConstants(SplashActivity.this);
+		downloadAnalyticsLog();
 		sharePreferenceClass.setAppDownloaded(true);
-
-		/*CleverTapAPI cleverTap;
-		try {
-		  cleverTap = CleverTapAPI.getInstance(getApplicationContext());
-		} catch (CleverTapMetaDataNotFoundException e) {
-		  // thrown if you haven't specified your CleverTap Account ID or Token in your AndroidManifest.xml
-		} catch (CleverTapPermissionsNotSatisfied e) {
-		  // thrown if you haven't requested the required permissions in your AndroidManifest.xml
-		}*/
-
-		/*FacebookSdk.sdkInitialize(getApplicationContext());
-	    AppEventsLogger.activateApp(this);*/
-
-		//startService(new Intent(getBaseContext(), OnClearFromService.class));
-		/* EasyTracker easyTracker = EasyTracker.getInstance(this);
-
-		  // MapBuilder.createEvent().build() returns a Map of event fields and values
-		  // that are set and sent with the hit.
-		  easyTracker.send(MapBuilder
-		      .createEvent("view",     // Event category (required)
-		                   "view",  // Event action (required)
-		                   "SplashScreen",   // Event label
-		                   null)            // Event value
-		      .build()
-		  );*/
 
 		StaticVariables.isSignUpClicked=false;
 		serviceMethod=new ServiceMethod();
@@ -359,119 +298,15 @@ public class SplashActivity extends Activity
 	/**
 	 *
 	 */
-	private void installGoogleAnalyticsLog() {
-		/*
-		 * Send a screen view to Google Analytics by setting a map of parameter
-		 * values on the tracker and calling send.
-		 */
-		Tracker tracker = GoogleAnalytics.getInstance(this).getTracker("UA-86307141-1");
+	private void downloadAnalyticsLog() {
 
-		/*HashMap<String, String> hitParameters = new HashMap<String, String>();
-		hitParameters.put(SocialConstants.DeviceType,Build.DEVICE);
-		hitParameters.put(SocialConstants.OSType,Build.VERSION.INCREMENTAL);
-		hitParameters.put(SocialConstants.OSVersion,Build.VERSION.RELEASE);
-
-		tracker.send(hitParameters);*/
-		if(sharePreferenceClass.isAppDownloaded())
+		if(!sharePreferenceClass.isAppDownloaded())
 		{
-			/*HashMap<String, String> hitParameters = new HashMap<String, String>();*/
-			Calendar c = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-			String strTime = sdf.format(c.getTime());
-			SimpleDateFormat sdDate = new SimpleDateFormat("yyyy-MM-dd");
-			String strDate = sdDate.format(c.getTime());
-			/*hitParameters.put(SocialConstants.Time_of_the_day,strTime);
-			hitParameters.put(SocialConstants.Number_of_times_a_Day,strDate);
-
-			tracker.send(hitParameters);*/
-			String label=SocialConstants.Time_of_the_day+":"+strTime+","
-					+SocialConstants.Number_of_times_a_Day+":"+strDate;
-			/*tracker.send(new HitBuilders.EventBuilder()
-		    .setCategory(SocialConstants.CATEGORY_MOBILE)
-		    .setAction(SocialConstants.App_Launch)
-		    .setLabel(label).
-		    build());*/
-			tracker.send(MapBuilder
-					.createEvent(SocialConstants.CATEGORY_MOBILE,// Event category (required)
-							SocialConstants.App_Launch,  // Event action (required)
-							null,
-							null)            // Event value
-					.build()
-			);
-		}
-		else
-		{
-			/*HashMap<String, String> hitParameters = new HashMap<String, String>();
-			hitParameters.put(SocialConstants.DeviceType,Build.DEVICE);
-			hitParameters.put(SocialConstants.OSType,Build.VERSION.INCREMENTAL);
-			hitParameters.put(SocialConstants.OSVersion,Build.VERSION.RELEASE);
-
-			tracker.send(hitParameters);*/
-
-			/*String label=SocialConstants.DeviceType+":"+ Build.MODEL+","
-					+SocialConstants.OSType+":"+ "Android"+","
-					+SocialConstants.OSVersion+":"+ Build.VERSION.RELEASE;*/
-			String label=SocialConstants.OSType+":"+ "Android";
-		/*	tracker.send(new HitBuilders.EventBuilder()
-		    .setCategory(SocialConstants.CATEGORY_MOBILE)
-		    .setAction(SocialConstants.Downloaded_App)
-		    .setLabel(label).
-		    build());*/
-			tracker.send(MapBuilder
-					.createEvent(SocialConstants.CATEGORY_MOBILE,// Event category (required)
-							SocialConstants.Downloaded_App,  // Event action (required)
-							label,
-							null)            // Event value
-					.build()
-			);
+			socialConstants.download_StatusAnalyticsLog();
 		}
 	}
-	/**
-	 *
-	 */
-	private void installFacebookLog() {
-		AppEventsLogger logger = AppEventsLogger.newLogger(this);
 
 
-		if(sharePreferenceClass.isAppDownloaded())
-		{
-			Bundle parameters = new Bundle();
-			Calendar c = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-			String strTime = sdf.format(c.getTime());
-			SimpleDateFormat sdDate = new SimpleDateFormat("yyyy-MM-dd");
-			String strDate = sdDate.format(c.getTime());
-
-			//parameters.putString(SocialConstants.Time_of_the_day,strTime);
-			//parameters.putString(SocialConstants.Number_of_times_a_Day,strDate);
-			//logger.logEvent(AppEventsConstants.EVENT_NAME_ACTIVATED_APP,null);
-
-			Bundle bundle = new Bundle();
-			//bundle.putString(SocialConstants.Time_of_the_day,strTime);
-			//bundle.putString(SocialConstants.Number_of_times_a_Day,strDate);
-			mFirebaseAnalytics.logEvent(SocialConstants.App_Launch, null);
-			// event with properties
-			/*HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
-			prodViewedAction.put(SocialConstants.Time_of_the_day,strTime);
-			prodViewedAction.put(SocialConstants.Number_of_times_a_Day,strDate);
-
-			cleverTap.event.push(SocialConstants.App_Launch, prodViewedAction);*/
-		}
-		else
-		{
-			Bundle parameters = new Bundle();
-			//parameters.putString(SocialConstants.DeviceType,Build.MODEL);
-			parameters.putString(SocialConstants.OSType,"Android");
-			//parameters.putString(SocialConstants.OSVersion,Build.VERSION.RELEASE);
-			logger.logEvent(SocialConstants.Downloaded_App,parameters);
-
-			Bundle bundle = new Bundle();
-			//bundle.putString(SocialConstants.DeviceType,Build.MODEL);
-			bundle.putString(SocialConstants.OSType,"Android");
-			//bundle.putString(SocialConstants.OSVersion,Build.VERSION.RELEASE);
-			mFirebaseAnalytics.logEvent(SocialConstants.Downloaded_App, bundle);
-		}
-	}
 
 	private  void showHashKey(Context context) {
 		try {
