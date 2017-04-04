@@ -52,6 +52,10 @@
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-mdpi\\mic_i.png"
     },
     {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\child_navigation.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-mdpi\\child_navigation.png"
+    },
+    {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\atschool3.png",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-mdpi\\atschool3.png"
     },
@@ -1144,6 +1148,10 @@
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-mdpi\\child_dashboard_earnedcup.png"
     },
     {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\parent_navigation.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-mdpi\\parent_navigation.png"
+    },
+    {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\com_facebook_tooltip_black_topnub.png",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.0.0\\res\\drawable-mdpi-v4\\com_facebook_tooltip_black_topnub.png"
     },
@@ -1302,6 +1310,10 @@
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\child_slide7.png",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-mdpi\\child_slide7.png"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\tick_inapp.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-mdpi\\tick_inapp.png"
     },
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_textfield_search_right_selected_holo_dark.9.png",

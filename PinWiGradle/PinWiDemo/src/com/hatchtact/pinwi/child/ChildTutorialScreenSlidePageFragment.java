@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.hatchtact.pinwi.R;
 
-public class ChildTutorialScreenSlidePageFragment  extends Fragment 
+public class ChildTutorialScreenSlidePageFragment  extends Fragment
 {
 
 	public static final String ARG_PAGE = "page";
@@ -22,7 +22,7 @@ public class ChildTutorialScreenSlidePageFragment  extends Fragment
 			R.drawable.child_slide4,R.drawable.child_slide5,R.drawable.child_slide6,R.drawable.child_slide7,R.drawable.child_slide8};
 
 	private TextView btnNext;
-	
+
 
 	public static ChildTutorialScreenSlidePageFragment create(int pageNumber) {
 		ChildTutorialScreenSlidePageFragment fragment = new ChildTutorialScreenSlidePageFragment();
@@ -48,7 +48,7 @@ public class ChildTutorialScreenSlidePageFragment  extends Fragment
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		// Inflate the layout containing a title and body text.
 		final ViewGroup rootView = (ViewGroup) inflater
 				.inflate(R.layout.fragment_screen_slide_page, container, false);
@@ -67,19 +67,20 @@ public class ChildTutorialScreenSlidePageFragment  extends Fragment
 		});
 
 		image.setImageResource(arrayImagesTutorial[mPageNumber]);
-		
+
 		if(mPageNumber==arrayImagesTutorial.length-1)
 		{
 			//btnNext.setImageResource(R.drawable.next);
+			ChildTutorialActivity.isTutorialRunning=false;
 			btnNext.setText("Done");
 			btnNext.setVisibility(View.VISIBLE);
 		}
 		else
 		{
 			//btnNext.setImageResource(R.drawable.ic_launcher);
+			ChildTutorialActivity.isTutorialRunning=true;
 			btnNext.setText("Skip");
 			btnNext.setVisibility(View.VISIBLE);
-		
 		}
 
 		return rootView;

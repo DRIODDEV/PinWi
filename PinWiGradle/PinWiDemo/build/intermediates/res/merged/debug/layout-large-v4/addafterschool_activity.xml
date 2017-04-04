@@ -65,10 +65,11 @@
 
                 <TextView
                     android:id="@+id/start_date_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
                     android:text="@string/startDate_text"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
 
@@ -76,7 +77,6 @@
                     android:id="@+id/start_dateValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
@@ -105,10 +105,11 @@
 
                 <TextView
                     android:id="@+id/end_date_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
                     android:text="@string/endDate_text"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
 
@@ -116,7 +117,6 @@
                     android:id="@+id/end_dateValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
@@ -145,10 +145,11 @@
 
                 <TextView
                     android:id="@+id/start_time_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
                     android:text="@string/startTime_text"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
 
@@ -156,7 +157,6 @@
                     android:id="@+id/start_timeValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
@@ -185,10 +185,11 @@
 
                 <TextView
                     android:id="@+id/end_time_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.35"
                     android:text="@string/endTime_text"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
 
@@ -196,7 +197,6 @@
                     android:id="@+id/end_timeValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.65"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
@@ -225,10 +225,11 @@
 
                 <TextView
                     android:id="@+id/daysOfWeek_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
                     android:text="@string/dayofWeek_text"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/asterisk"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
 
@@ -236,7 +237,6 @@
                     android:id="@+id/daysOfWeekValue_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
                     android:gravity="right"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/textLarge" />
@@ -485,20 +485,6 @@
                 android:textSize="@dimen/textLarge" />
 
             <Button
-                android:id="@+id/button_pickSellerAfterSchool"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_typeNoteAfterSchool"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"
-                android:layout_marginTop="20dip"
-                android:background="@drawable/rectangular_btn"
-                android:padding="10dip"
-                android:text="@string/done_text"
-                android:textColor="@color/black_color"
-                android:textSize="@dimen/textLarge" />
-
-            <Button
                 android:id="@+id/button_deleteAfterSchool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -519,6 +505,19 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_pickSellerAfterSchool"
                 android:layout_marginTop="10dip" />
+
+            <Button
+                android:id="@+id/button_pickSellerAfterSchool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/rectangular_btn"
+                android:padding="10dip"
+                android:text="@string/done_text"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/textLarge"
+                android:layout_below="@+id/text_typeNoteAfterSchool"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </ScrollView>
 

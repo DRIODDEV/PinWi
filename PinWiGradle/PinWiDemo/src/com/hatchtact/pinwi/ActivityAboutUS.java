@@ -37,33 +37,31 @@ public class ActivityAboutUS extends MainActionBarActivity
 		else if(StaticVariables.webUrl.contains("blog"))
 		{
 			screenName="Insights";
-
 		}
 		else if(StaticVariables.webUrl.contains("contactus"))
 		{
 			screenName="Contact Us";
-
 		}
 
 		else if(StaticVariables.webUrl.contains("terms"))
 		{
 			screenName="Terms Of Use";
-
 		}
 		else if(StaticVariables.webUrl.contains("privacy_policy"))
 		{
 			screenName="Privacy Policy";
-
 		}
 		else if(StaticVariables.webUrl.contains("Insight_Report"))
 		{
 			screenName="Insights Sample Report";
-
+		}
+		else if(StaticVariables.webUrl.contains("interst-driver.aspx"))
+		{
+			screenName="Instant Demo Report";
 		}
 		else
 		{
 			screenName="FAQ";
-
 		}
 
 

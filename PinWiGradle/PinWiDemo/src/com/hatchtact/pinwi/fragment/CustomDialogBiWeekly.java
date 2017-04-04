@@ -15,11 +15,11 @@ public class CustomDialogBiWeekly extends Dialog implements View.OnClickListener
 
 	private TextView txtStartNextWeek, txtIncludeThisWeek,txtCancel;
 	private TypeFace typeface;
-	private FrequencyAfterSchoolFragment contextAfterSchool;
+	private FrequencySchoolFragment contextAfterSchool;
 
 
 
-	public CustomDialogBiWeekly(FrequencyAfterSchoolFragment context) {
+	public CustomDialogBiWeekly(FrequencySchoolFragment context) {
 		super(context.getActivity());
 		// TODO Auto-generated constructor stub
 		this.contextAfterSchool = context;
@@ -31,7 +31,7 @@ public class CustomDialogBiWeekly extends Dialog implements View.OnClickListener
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.custom_dialog_whattodo);
-
+		setCancelable(false);
 
 		txtStartNextWeek = (TextView) findViewById(R.id.txtwhoisdoingthis);
 		txtIncludeThisWeek = (TextView) findViewById(R.id.txtSchedulethisAct);
@@ -54,7 +54,7 @@ public class CustomDialogBiWeekly extends Dialog implements View.OnClickListener
 		{
 
 		}
-		setCancelable(true);
+		//setCancelable(true);
 	}
 
 
@@ -63,18 +63,18 @@ public class CustomDialogBiWeekly extends Dialog implements View.OnClickListener
 	public void onClick(View v) {
 		switch (v.getId()) {
 
-		case R.id.txtwhoisdoingthis:
-			contextAfterSchool.biWeeklyImplementation(0);//next week
-			dismiss();
-			break;
-		case R.id.txtSchedulethisAct:
-			contextAfterSchool.biWeeklyImplementation(1);//this week
-			dismiss();
-			break;
-		case R.id.txtCancel:
-			contextAfterSchool.biWeeklyImplementation(2);
-			dismiss();
-			break;
+			case R.id.txtwhoisdoingthis:
+				contextAfterSchool.biWeeklyImplementation(0);//next week
+				dismiss();
+				break;
+			case R.id.txtSchedulethisAct:
+				contextAfterSchool.biWeeklyImplementation(1);//this week
+				dismiss();
+				break;
+			case R.id.txtCancel:
+				contextAfterSchool.biWeeklyImplementation(2);
+				dismiss();
+				break;
 		}
 	}
 

@@ -60,7 +60,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 		setHasOptionsMenu(true);
 		serviceMethod=new ServiceMethod();
 		btnDashboard=(Button)view.findViewById(R.id.btndashboard);
-		btnDashboard.setText("View Sample Report");
+		btnDashboard.setText(" Insights Sample Report");
 		btnDashboard.setOnClickListener(this);
 		typeFace.setTypefaceRegular(btnDashboard);
 		layoutText=(LinearLayout) view.findViewById(R.id.layoutText);
@@ -134,8 +134,14 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 
 			case R.id.btndashboard:
 				StaticVariables.webUrl="http://demo.pinwi.in/Insight_Report.pdf";
+				/*StaticVariables.webUrl="http://demo.pinwi.in/interst-driver.aspx";
+
+				StaticVariables.webUrl=StaticVariables.webUrl+"?ChildID="+
+						StaticVariables.currentChild.getChildID()+"&&ParentID="+StaticVariables.currentParentId+"&&ParentName="+StaticVariables.currentParentName;
+*/
 				Intent intentAboutUsPdf =new Intent(getActivity(), ActivityAboutUS.class);
 				startActivity(intentAboutUsPdf);
+
 				break;
 		}
 		

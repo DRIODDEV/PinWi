@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="child_features_inapp">
+        <item>Collect points everyday for rating activities</item>
+        <item>Use points in future to get gifts and games</item>
+        <item>Create a wish list of activities</item>
+        <item>Safely connect with buddies in the network</item>
+        <item>Share activity based post cards with buddies</item>
+        <item>View the Play wall to see Buddies post cards</item>
+        <item>Respond to post cards shared by buddies</item>
+
+    </string-array>
     <string-array name="freq_page_txt">
         <item>All these days</item>
         <item>Weekly</item>
@@ -14,6 +24,30 @@
         <item>All Weekdays</item>
         <item>Only Weekends</item>
     </string-array>
+    <string-array name="get_started_features">
+        <item>Pinwi helps you map what drives your child\'s interests while managing their life better on-the-go. It\'s easy, intuitive and insightful. You can now stay up-to-date with your child\'s ever evolving interests and ensure you make smarter more interest focused choices.</item>
+        <item>Children\'s interests are driven by what makes them happy. The easiest way to know what makes children happy is to listen to them. Pinwi helps you do this in three unique ways –rating activities, creating wish lists and posting about things they love to do.</item>
+        <item>Why children get bored of activities so quickly; or why what they once loved doesn\'t excite them anymore? Psychologists say, unlike aptitude and inherent skills, interests are ever-evolving. For a more well rounded development its important for children balance both aptitude and interests.</item>
+        <item>Children who love quizzes and trivia are mostly driven by a hunger to seek knowledge, as are children who enjoy going to museums. Both reflect an interest that involves feeding a curious mind to learn more about the world, its people, their ideas, views and experiences.</item>
+        <item>Children who enjoy playing strategy games like chess, checkers or monopoly are likely to enjoy subjects like Science, Computers, and Astronomy. Just like the subjects, strategy games are also driven by logical thinking and involve reasoning and problem solving.</item>
+        <item>That interest in Fine Arts is just about the ability to express creatively. Our research says – children interested in activities such as painting, sketching and other art forms are driven by a stronger visual sense than a desire for creative expression.</item>
+    </string-array>
+    <string-array name="get_started_features_heading">
+        <item>A Smart Parenting App</item>
+        <item>Parenting by Listening</item>
+        <item>Ever Wonder?</item>
+        <item>Did you know?</item>
+        <item>Truth be Told!</item>
+        <item>Who Says!</item>
+     </string-array>
+    <array name="getstartedheadingcolors">
+        <item>@color/coloroneheading</item>
+        <item>@color/colortwoheading</item>
+        <item>@color/colorthreeheading</item>
+        <item>@color/colorfourheading</item>
+        <item>@color/colorfiveheading</item>
+        <item>@color/colorsixheading</item>
+    </array>
     <string-array name="guidestepdetails">
         <item>Hi! Start by adding all subjects your child \n does at school.</item>
         <item>Next, add all after-school activities your \n child is enrolled in</item>
@@ -24,26 +58,71 @@
         <item>You’re good to go! </item>
     </string-array>
     <array name="nav_drawer_icons">
-        <item>@drawable/home_drawer</item>
+       <!-- <item>@drawable/home_drawer</item>-->
         <item>@drawable/about_us</item>
-        <!-- <item>@drawable/support</item> -->
-        <item>@drawable/tutorial</item>
-        <item>@drawable/invite_friend</item>
-        <item>@drawable/contact_us</item>
         <item>@drawable/setting</item>
+        <item>@drawable/child_navigation</item>
+        <item>@drawable/parent_navigation</item>
         <!-- <item>@drawable/add_on</item> -->
+        <!-- <item>@drawable/support</item> -->
+        <item>@drawable/invite_friend</item>
+<!--
+        <item>@drawable/tutorial</item>
+-->
+        <item>@drawable/contact_us</item>
+
+
+        <item>@drawable/logout</item>
+    </array>
+    <array name="nav_drawer_icons_free">
+        <!-- <item>@drawable/home_drawer</item>-->
+        <item>@drawable/about_us</item>
+        <item>@drawable/child_navigation</item>
+        <item>@drawable/parent_navigation</item>
+        <!-- <item>@drawable/add_on</item> -->
+        <!-- <item>@drawable/support</item> -->
+        <item>@drawable/invite_friend</item>
+<!--
+        <item>@drawable/tutorial</item>
+-->
+        <item>@drawable/contact_us</item>
+
         <item>@drawable/logout</item>
     </array>
     <string-array name="nav_drawer_items">
-        <item>Home</item>
-        <item>About Us</item>
+       <!-- <item>Home</item>-->
+        <item>About Pinwi</item>
         <!-- <item>FAQ</item> -->
-        <item>Tutorial</item>
-        <item>Invite Friend</item>
-        <item>Contact Us</item>
         <item>Settings</item>
+        <item>Child Profiles</item>
+        <item>Parent Profile</item>
+        <item>Invite Friend</item>
+<!--
+        <item>Tutorials</item>
+-->
+        <item>Contact Us</item>
         <!-- <item>Add on App</item> -->
         <item>Logout</item>
+    </string-array>
+    <string-array name="nav_drawer_items_free">
+        <!-- <item>Home</item>-->
+        <item>About Pinwi</item>
+        <item>Child Profiles</item>
+        <item>Parent Profile</item>
+        <item>Invite Friend</item>
+<!--
+        <item>Tutorials</item>
+-->
+        <item>Contact Us</item>
+        <!-- <item>Add on App</item> -->
+        <item>Logout</item>
+    </string-array>
+    <string-array name="parent_features_inapp">
+        <item>Add &amp; track children’s daily activities with a simple scheduler</item>
+        <item>View recommendations &amp; explore new activities</item>
+        <item>View activities on a child\'s wish list</item>
+        <item>Build parent connections to activate a safe social network for children</item>
+        <item>See activities other children in the network are doing</item>
     </string-array>
     <attr format="reference" name="actionBarDivider"/>
     <attr format="reference" name="actionBarItemBackground"/>
@@ -132,6 +211,12 @@
     <color name="buddies_Active_bg">#592B86</color>
     <color name="buddies_normal_bg">#66FFFFFF</color>
     <color name="chartbackgroundcolor"> #90CAF9</color>
+    <color name="colorfiveheading"> #4f2a72</color>
+    <color name="colorfourheading">#d51931</color>
+    <color name="coloroneheading">#f48f3c</color>
+    <color name="colorsixheading">#d51931</color>
+    <color name="colorthreeheading">#5d8d44</color>
+    <color name="colortwoheading">#95207a</color>
     <color name="com_facebook_blue">#3B5998</color>
     <color name="com_facebook_button_background_color">#415dae</color>
     <color name="com_facebook_button_background_color_disabled">#bdc1c9</color>
@@ -406,7 +491,7 @@ content here\', making it look like readable English. </string>
     <string name="createcustom_activity_text">Create custom</string>
     <string name="custom_text">Custom</string>
     <string name="dayofWeek_text">Frequency</string>
-    <string name="default_web_client_id" translatable="false">836624727534-a1vrvsuh21hrjh87962jr39hpqdapidd.apps.googleusercontent.com</string>
+    <string name="default_web_client_id" translatable="false">789343534588-uv7oqnngm92knb5buqnfo4tgd8h6ptlq.apps.googleusercontent.com</string>
     <string name="defaulttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
     <string name="delete_text">Delete</string>
     <string name="desc_list_item_icon">Item Icon</string>
@@ -424,7 +509,7 @@ content here\', making it look like readable English. </string>
     <string name="facebook_text">Facebook</string>
     <string name="father_text">Father</string>
     <string name="female_text">Female</string>
-    <string name="firebase_database_url" translatable="false">https://fir-pinwi.firebaseio.com</string>
+    <string name="firebase_database_url" translatable="false">https://pinwi-bce21.firebaseio.com</string>
     <string name="forgotPasscodetext">Forgot my Code</string>
     <string name="forgotpassword_codetext1">Verify your Code.</string>
     <string name="forgotpassword_codetext2">Enter the code below and click Continue to update your password.</string>
@@ -432,16 +517,19 @@ content here\', making it look like readable English. </string>
     <string name="forgotpassword_text">Forgot password?</string>
     <string name="forgotpassword_text1">Forgot Password</string>
     <string name="forgotpassword_updateText">Update Password</string>
+    <string name="free_child_list_text">This will generate an Instant Interest Report for your child. Select a child to continue. </string>
+    <string name="free_text">Instant Interest Report</string>
     <string name="friday">FRI</string>
     <string name="friday_text">F</string>
+    <string name="full_text">Get Full Access</string>
     <string name="ga_trackingId"> UA-86307141-1</string>
-    <string name="gcm_defaultSenderId" translatable="false">836624727534</string>
+    <string name="gcm_defaultSenderId" translatable="false">789343534588</string>
     <string name="getStarted_button">Get Started</string>
     <string name="girl_text">Girl</string>
-    <string name="google_api_key" translatable="false">AIzaSyBBbLkDh7XGERZvNllZBC0HmA0aPzUVloo</string>
-    <string name="google_app_id" translatable="false">1:836624727534:android:3e383128c0f818d0</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBBbLkDh7XGERZvNllZBC0HmA0aPzUVloo</string>
-    <string name="google_storage_bucket" translatable="false">firebase-pinwi.appspot.com</string>
+    <string name="google_api_key" translatable="false">AIzaSyCWBgCJPYRuNFtmFEMVeJrnT9VIlWSHTYo</string>
+    <string name="google_app_id" translatable="false">1:789343534588:android:3e383128c0f818d0</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCWBgCJPYRuNFtmFEMVeJrnT9VIlWSHTYo</string>
+    <string name="google_storage_bucket" translatable="false">pinwi-bce21.appspot.com</string>
     <string name="googleplus_text">Google +</string>
     <string name="guardian_text">Guardian</string>
     <string name="heading1_text">Heading 1</string>
@@ -489,7 +577,7 @@ content here\', making it look like readable English. </string>
     <string name="passcode_parent_text">Lock Your Profile</string>
     <string name="passcode_text">Unlock Profile</string>
     <string name="pick_text">Pick a Seller</string>
-    <string name="playstore_text">Subscription renews automatically at end of term.\nTurn off auto-renew from your PlayStore settings.</string>
+    <string name="playstore_text">This is one time purchase and gives you access to all the Pinwi Features.</string>
     <string name="receive_confirmation_text">Receive Confirmation Through:</string>
     <string name="recommendedheadertext">Recommended</string>
     <string name="reminder_text">Reminder</string>
@@ -518,7 +606,7 @@ content here\', making it look like readable English. </string>
     <string name="speical_date_text">Special Date</string>
     <string name="startDate_text">Start Date</string>
     <string name="startTime_text">Start Time</string>
-    <string name="started_text">A smart parenting app to help you map what drives your child\'s interest while managing their life better on-the-go. It\’s easy, intuitive and insightful. You can stay now up-to-date with your child\'s ever evolving interests with our Interest Mapping Reports and ensure you make smarter more interest focused choices.</string>
+    <string name="started_text">A smart parenting app to help you map what drives your child\'s interest while managing their life better on-the-go. It\’s easy, intuitive and insightful. You can now stay up-to-date with your child\'s ever evolving interests with our Interest Mapping Reports and ensure you make smarter more interest focused choices.</string>
     <string name="subject_calender_text">Subject Calender</string>
     <string name="submit_text">Submit</string>
     <string name="successful_text">Your profile has been confirmed. You may now continue setting it up.</string>

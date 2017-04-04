@@ -135,14 +135,14 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
-						social.Network_Connection_AcceptedFacebookLog();
-						social.Network_Connection_AcceptedGoogleAnalyticsLog();
+						/*social.Network_Connection_AcceptedFacebookLog();
+						social.Network_Connection_AcceptedGoogleAnalyticsLog();*/
 						Toast.makeText(mContext, "Friend Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
-						social.Network_Connection_AddedFacebookLog();
-						social.Network_Connection_AddedGoogleAnalyticsLog();
+						/*social.Network_Connection_AddedFacebookLog();
+						social.Network_Connection_AddedGoogleAnalyticsLog();*/
 						Toast.makeText(mContext, "Friend Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -172,14 +172,14 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
-						social.Network_Connection_AcceptedFacebookLog();
-						social.Network_Connection_AcceptedGoogleAnalyticsLog();
+						/*social.Network_Connection_AcceptedFacebookLog();
+						social.Network_Connection_AcceptedGoogleAnalyticsLog();*/
 						Toast.makeText(mContext, "Friend Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
-						social.Network_Connection_AddedFacebookLog();
-						social.Network_Connection_AddedGoogleAnalyticsLog();
+						/*social.Network_Connection_AddedFacebookLog();
+						social.Network_Connection_AddedGoogleAnalyticsLog();*/
 						Toast.makeText(mContext, "Friend Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -213,8 +213,8 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
-						social.buddyRequestSentFacebookLog();
-						social.buddyRequestSentGoogleAnalyticsLog();
+						/*social.buddyRequestSentFacebookLog();
+						social.buddyRequestSentGoogleAnalyticsLog();*/
 						Toast.makeText(mContext, "Yay! Your request is on its way.", Toast.LENGTH_LONG).show();
 					}
 
@@ -244,14 +244,14 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
-						social.addBuddyFacebookLog();
-						social.addBuddyGoogleAnalyticsLog();
+						/*social.addBuddyFacebookLog();
+						social.addBuddyGoogleAnalyticsLog();*/
 						Toast.makeText(mContext, "Buddy Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
-						social.buddyRequestSentFacebookLog();
-						social.buddyRequestSentGoogleAnalyticsLog();
+						/*social.buddyRequestSentFacebookLog();
+						social.buddyRequestSentGoogleAnalyticsLog();*/
 						Toast.makeText(mContext, "Buddy Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -277,8 +277,8 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 				{
 					if(actionflag.equalsIgnoreCase("4"))
 					{
-						social.Add_to_WishlistFacebookLog();
-						social.Add_to_WishlistGoogleAnalyticsLog();
+						/*social.Add_to_WishlistFacebookLog();
+						social.Add_to_WishlistGoogleAnalyticsLog();*/
 					//Toast.makeText(mContext, "You have wished for this. Good choice.", Toast.LENGTH_LONG).show();
 					}
 					

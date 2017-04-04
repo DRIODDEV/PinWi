@@ -118,6 +118,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 	private SocialConstants social;
 	private TextView textViewtab_notification;
 	private CustomLoader customProgressLoader;
+	private boolean isButtonTouched=false;
+
 	private void getDisplayWidth(Activity a)
 	{
 
@@ -139,6 +141,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		//screenName="Access your Profile";
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.accessprofile_activity);
+		isButtonTouched=false;
+
 		social=new SocialConstants(this);
 		customProgressLoader=new CustomLoader(AccessProfileActivity.this);
 		getDisplayWidth(AccessProfileActivity.this);
@@ -358,7 +362,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+		//navDrawerItems.add(new NavigationDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -668,10 +672,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		}  
 		else*/
 		{
-			earnedPointsForChildSelected = accessProfileList.getAccessProfileList().get(position).getEarnedPoints();
-			StaticVariables.currentChild=StaticVariables.childInfo.get(position);
-			StaticVariables.isTutorialSoundEnabled = true;
-			callingWebServiceForChildData();
+			if(!isButtonTouched) {
+				isButtonTouched=true;
+				earnedPointsForChildSelected = accessProfileList.getAccessProfileList().get(position).getEarnedPoints();
+				StaticVariables.currentChild = StaticVariables.childInfo.get(position);
+				StaticVariables.isTutorialSoundEnabled = true;
+				callingWebServiceForChildData();
+			}
 		}
 	}
 
@@ -713,6 +720,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		super.onResume();
 		StaticVariables.forPasscode=true;
 		StaticVariables.lastTimeValue=0;
+		isButtonTouched=false;
 	}
 
 
@@ -792,11 +800,15 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 				showMessage.showToastMessage("Please check your network connection");
 				try {
 					customProgressLoader.removeCallbacksHandler();
+					isButtonTouched=false;
+
 					/*if (progressDialog.isShowing())
 						progressDialog.cancel();*/
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					isButtonTouched=false;
+
 				}
 				if(checkNetwork.checkNetworkConnection(AccessProfileActivity.this))
 					new GetStatusForChildModule(childID).execute();
@@ -875,6 +887,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 
 			if(result==-1)
 			{
+				isButtonTouched=false;
+
 				showMessage.showToastMessage("Please check your network connection");
 
 				if(checkNetwork.checkNetworkConnection(AccessProfileActivity.this))
@@ -949,6 +963,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			{
 				showMessage.showToastMessage("Please check your network connection");
 
+				isButtonTouched=false;
 
 
 				if(checkNetwork.checkNetworkConnection(AccessProfileActivity.this))
@@ -1003,6 +1018,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 					{ */
 					//StaticVariables.currentChild=StaticVariables.childInfo.get(0);
 
+					isButtonTouched=false;
 
 					if(StaticVariables.childPasscodeList!=null)
 					{
@@ -1012,8 +1028,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 							{
 								if(StaticVariables.childPasscodeList.getPasscodeList().get(i).getPassCode()!=null&& !StaticVariables.childPasscodeList.getPasscodeList().get(i).getPassCode().trim().equalsIgnoreCase("") && StaticVariables.childPasscodeList.getPasscodeList().get(i).getPassCode().trim().length()==4)
 								{
-									social.Access_Child_ProfileFacebookLog();
-									social.Access_Child_ProfileGoogleAnalyticsLog();
+									/*social.Access_Child_ProfileFacebookLog();
+									social.Access_Child_ProfileGoogleAnalyticsLog();*/
 									Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivityChild.class);
 									Bundle bundle = new Bundle();
 									bundle.putInt("ProfileId", StaticVariables.childPasscodeList.getPasscodeList().get(i).getProfileId());
@@ -1024,8 +1040,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 								}
 								else
 								{
-									social.Access_Child_ProfileFacebookLog();
-									social.Access_Child_ProfileGoogleAnalyticsLog();
+								/*	social.Access_Child_ProfileFacebookLog();
+									social.Access_Child_ProfileGoogleAnalyticsLog();*/
 									Intent intent = new Intent(AccessProfileActivity.this, ChildTutorialActivity.class);
 									startActivity(intent);
 									AccessProfileActivity.this.finish();
@@ -1038,8 +1054,10 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 					}
 					else
 					{
-						social.Access_Child_ProfileFacebookLog();
-						social.Access_Child_ProfileGoogleAnalyticsLog();
+						isButtonTouched=false;
+
+						/*social.Access_Child_ProfileFacebookLog();
+						social.Access_Child_ProfileGoogleAnalyticsLog();*/
 						Intent intent = new Intent(AccessProfileActivity.this, ChildTutorialActivity.class);
 						startActivity(intent);
 						AccessProfileActivity.this.finish();
@@ -1106,10 +1124,10 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			Intent intentSupport =new Intent(TabChildActivities.this, ActivitySupport.class);
 			startActivity(intentSupport);
 			break;*/
-			case 5:
+			/*case 5:
 				Intent intentTutorial =new Intent(AccessProfileActivity.this, ActivityTutorial.class);
 				startActivity(intentTutorial);
-				break;
+				break;*/
 			/*case 3:
 			Intent intentInvite =new Intent(AccessProfileActivity.this, ActivityInvite.class);
 			startActivity(intentInvite);
@@ -1118,7 +1136,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 				Intent intentInvite =new Intent(AccessProfileActivity.this, ActivityInvite.class);
 				startActivity(intentInvite);
 				break;
-			case 6:
+			case 5:
 				Intent intentContactus =new Intent(AccessProfileActivity.this, ActivityAboutUS.class);
 				startActivity(intentContactus);
 				StaticVariables.webUrl="http://pinwi.in/contactus.aspx?4";
@@ -1164,7 +1182,7 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			/*case 7:
 			new RequestAddOnVersionTask(parentId).execute();
 			break;*/
-			case 7:
+			case 6:
 				sharePreferenceClass.setIsLogin(false);
 				sharePreferenceClass.setIsLogout(true);
 				sharePreferenceClass.setParentProfile("");
@@ -1460,33 +1478,39 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(parentCompleteInformation.getPasscode().toString()!=null && parentCompleteInformation.getPasscode().toString().equals(""))
-				{
+				if(!isButtonTouched) {
+					isButtonTouched=true;
+					if (parentCompleteInformation.getPasscode().toString() != null && parentCompleteInformation.getPasscode().toString().equals("")) {
 					/*Intent intent = new Intent(AccessProfileActivity.this, ParentProfileInformationActivity.class);
 					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
 					startActivity(intent);*/
-					social.Access_Parent_ProfileFacebookLog();
-					social.Access_Parent_ProfileGoogleAnalyticsLog();
-					Intent intent=new Intent(AccessProfileActivity.this, TabChildActivities.class);
-					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
-					intent.putExtra("Type", 1);
-					startActivity(intent);
-					/** Fading Transition Effect */
+						/*social.Access_Parent_ProfileFacebookLog();
+						social.Access_Parent_ProfileGoogleAnalyticsLog();*/
+
+						Intent intent = new Intent(AccessProfileActivity.this, TabChildActivities.class);
+						StaticVariables.currentChild = StaticVariables.childInfo.get(0);
+						intent.putExtra("Type", 1);
+						startActivity(intent);
+						isButtonTouched=false;
+
+						/** Fading Transition Effect */
 					/*AccessProfileActivity.this.overridePendingTransition(R.anim.grow_from_bottom, R.anim.shrink_from_top);
-					 */AccessProfileActivity.this.finish();
-				}
-				else
-				{
-					StaticVariables.currentChild=StaticVariables.childInfo.get(0);
-					social.Access_Parent_ProfileFacebookLog();
-					social.Access_Parent_ProfileGoogleAnalyticsLog();
-					Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivity.class);
-					Bundle bundle = new Bundle();
-					bundle.putInt("ProfileId", parentId);
-					bundle.putBoolean("ToLoadNextScreen", true);
-					intent.putExtras(bundle);
-					startActivity(intent);
-					//AccessProfileActivity.this.finish();
+					 */
+						AccessProfileActivity.this.finish();
+					} else {
+						StaticVariables.currentChild = StaticVariables.childInfo.get(0);
+						/*social.Access_Parent_ProfileFacebookLog();
+						social.Access_Parent_ProfileGoogleAnalyticsLog();*/
+						Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivity.class);
+						Bundle bundle = new Bundle();
+						bundle.putInt("ProfileId", parentId);
+						bundle.putBoolean("ToLoadNextScreen", true);
+						intent.putExtras(bundle);
+						startActivity(intent);
+						isButtonTouched=false;
+
+						//AccessProfileActivity.this.finish();
+					}
 				}
 			}
 		});

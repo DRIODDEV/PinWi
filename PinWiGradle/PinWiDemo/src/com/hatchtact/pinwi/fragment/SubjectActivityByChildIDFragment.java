@@ -72,12 +72,13 @@ public class SubjectActivityByChildIDFragment extends ParentFragment implements 
 		StaticVariables.fragmentIndexCurrentTabSchedular=13;
 
 		sharePref=new SharePreferenceClass(getActivity());
+		StaticVariables.addSchoolActivities=null;
 		if(!sharePref.isatSchoolTutorial())
 		{
 			sharePref.setAtSchoolTutorial(true);
 			// ScreenSlidePagerAdapter.NUM_PAGES=6;
-			social.CompletedTutorialFacebookLog();
-			social.CompletedTutorialGoogleAnalyticsLog();
+			/*social.CompletedTutorialFacebookLog();
+			social.CompletedTutorialGoogleAnalyticsLog();*/
 			Intent tutorial=new Intent(getActivity(), GuideSlideActivity.class);
 			startActivity(tutorial);
 			//getActivity().overridePendingTransition(R.anim.activity_open_translate, R.anim.activity_close_translate);

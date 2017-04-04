@@ -1,6 +1,6 @@
 package com.hatchtact.pinwi.fragment;
 
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,10 +11,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,6 +54,9 @@ public class AddSubjectFragment extends ParentFragment implements OnItemClickLis
 	private EditText editsearch;
 
 	//public static  String filterString="";
+	private TextView cannotfindActivity_text;
+	private TextView createCustomActivity_text;
+	private LinearLayout layout_customadd=null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +65,8 @@ public class AddSubjectFragment extends ParentFragment implements OnItemClickLis
 		view=inflater.inflate(R.layout.activity_subjectnamelist, container, false);
 		setHasOptionsMenu(true);
 		mListener.onFragmentAttached(false,"  Scheduler");
-
+		StaticVariables.fragmentIndexFrequencyPage=0;
+		StaticVariables.addSchoolActivities=null;
 		StaticVariables.fragmentIndex=3;
 	//	filterString="";
 		
@@ -77,7 +84,25 @@ public class AddSubjectFragment extends ParentFragment implements OnItemClickLis
 		editsearch=(EditText) view.findViewById(R.id.editSearch);
 		typeFace.setTypefaceRegular(editsearch);
 		imageSearch.setVisibility(View.VISIBLE);
-		
+
+		cannotfindActivity_text=(TextView) view.findViewById(R.id.cannotfindActivity_text);
+		createCustomActivity_text=(TextView) view.findViewById(R.id.createCustomActivity_text);
+		layout_customadd=(LinearLayout) view.findViewById(R.id.layout_customadd);
+		typeFace.setTypefaceRegular(cannotfindActivity_text);
+		typeFace.setTypefaceRegular(createCustomActivity_text);
+		layout_customadd.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				hideKeyBoard();
+				StaticVariables.fragmentIndexFrequencyPage=1004;
+				switchingFragments(new AddCustomFragmentSchool());
+
+			}
+		});
+
 		editsearch.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -270,4 +295,21 @@ public class AddSubjectFragment extends ParentFragment implements OnItemClickLis
 			     }
 				return super.onOptionsItemSelected(item);
 			}
+	private void hideKeyBoard() {
+
+
+
+		try {
+			getActivity().getWindow().setSoftInputMode(
+					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+			InputMethodManager inputManager = (InputMethodManager) getActivity()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			inputManager.hideSoftInputFromWindow(getActivity()
+					.getCurrentFocus().getWindowToken(), 0);
+			getActivity().getWindow().setSoftInputMode(
+					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		} catch (Exception e) {
+		}
+
+	}
 }

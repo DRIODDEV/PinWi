@@ -348,8 +348,8 @@ public class ChildPostcardDetailingImageActivity  extends Activity {
 								@Override
 								public void onSuccess(String object) {
 									// TODO Auto-generated method stub
-									social.Create_Postcard_PhotoSentFacebookLog();
-									social.Create_Postcard_PhotoGoogleAnalyticsLog();
+									/*social.Create_Postcard_PhotoSentFacebookLog();
+									social.Create_Postcard_PhotoGoogleAnalyticsLog();*/
 									
 									child_postcard_sent_layout.setVisibility(View.VISIBLE);
 									layout_bottomlayer_postcard_detail.setVisibility(View.INVISIBLE);

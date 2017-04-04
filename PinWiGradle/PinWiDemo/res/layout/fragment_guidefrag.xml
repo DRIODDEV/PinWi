@@ -28,7 +28,7 @@
                 android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-               />
+                />
 
             <ImageView
                 android:id="@+id/crossImage"
@@ -116,6 +116,13 @@
             android:text="I&apos;ll figure it out"
             android:textColor="@color/font_white_color"
             android:textSize="@dimen/selectionButtonText" />
+        <ImageView
+            android:id="@+id/img_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cancel_guide"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
 </RelativeLayout>

@@ -136,8 +136,8 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 			if(getFriendsTempleteMessageListByChildIDList!=null && getFriendsTempleteMessageListByChildIDList.getFriendsTempleteMessageListByChildID().size()>0)
 			{
 				showToastMessage("Emoticon Added");
-				social.reactedToPostFacebookLog();
-				social.reactedToPostGoogleAnalyticsLog();
+				/*social.reactedToPostFacebookLog();
+				social.reactedToPostGoogleAnalyticsLog();*/
 				callback.onSuccess(getFriendsTempleteMessageListByChildIDList.getFriendsTempleteMessageListByChildID().get(0));
 			}
 			else

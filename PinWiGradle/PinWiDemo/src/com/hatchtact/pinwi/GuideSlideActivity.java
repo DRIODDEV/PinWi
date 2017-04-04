@@ -22,7 +22,7 @@ import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.TypeFace;
 
-public class GuideSlideActivity extends FragmentActivity 
+public class GuideSlideActivity extends FragmentActivity
 {
 	private ServiceMethod serviceMethod=null;
 	private ShowMessages showMessage=null;
@@ -34,7 +34,7 @@ public class GuideSlideActivity extends FragmentActivity
 	private TextView text_previous,text_next,text_why,text_getStarted;
 	private TemplateViewPager guideSlideTemplate;
 	private View emptyView;
-	//protected SocialConstants social;
+	protected SocialConstants social;
 
 
 
@@ -42,18 +42,18 @@ public class GuideSlideActivity extends FragmentActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		WindowManager.LayoutParams params = getWindow().getAttributes();  
-		params.x =0;  
-		params.height = (int) (SplashActivity.ScreenHeight*.7f);  
-		params.width = SplashActivity.ScreenWidth ;  
-		params.y = SplashActivity.ScreenHeight/15;  
-		this.getWindow().setAttributes(params); 
+		WindowManager.LayoutParams params = getWindow().getAttributes();
+		params.x =0;
+		params.height = (int) (SplashActivity.ScreenHeight*.7f);
+		params.width = SplashActivity.ScreenWidth ;
+		params.y = SplashActivity.ScreenHeight/15;
+		this.getWindow().setAttributes(params);
 
 		setContentView(R.layout.activity_guideslide);
 		GuideSlideActivity.this.overridePendingTransition(R.anim.grow_from_bottomright_to_topleft, R.anim.activity_close);
 		typeFace = new TypeFace(GuideSlideActivity.this);
-		//social=new SocialConstants(this);
-
+		social=new SocialConstants(this);
+		social.parent_TutorialAnalyticsLog("Info");
 		sharepref = new SharePreferenceClass(GuideSlideActivity.this);
 		hideKeyBoard();
 		guideSlideTemplate = (TemplateViewPager) findViewById(R.id.postcard_templates);
@@ -89,11 +89,11 @@ public class GuideSlideActivity extends FragmentActivity
 			public void onClick(View v) {
 				/*if (guideSlideTemplate.getCurrentItem() == ChildPostcardTemplateAdapter.NUM_PAGES-1) {
 					guideSlideTemplate.setCurrentItem(0,true);
-			    }else*/ 
+			    }else*/
 				if(guideSlideTemplate.getCurrentItem() < (GuideSlideTemplateAdapter.NUM_PAGES))
 				{
 					guideSlideTemplate.setCurrentItem(guideSlideTemplate.getCurrentItem()+1,true);
-				}	
+				}
 			}
 		});
 		text_why.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +109,12 @@ public class GuideSlideActivity extends FragmentActivity
 
 			@Override
 			public void onClick(View v) {
-				onBackPressed();
+				if(social!=null)
+				{
+					social.parent_TutorialAnalyticsLog("Completed");
+				}
+				finish();
+				GuideSlideActivity.this.overridePendingTransition(R.anim.shrink_from_topleft_to_bottomright, R.anim.shrink_from_topleft_to_bottomright);
 			}
 		});
 		text_next.setVisibility(View.GONE);
@@ -155,13 +160,13 @@ public class GuideSlideActivity extends FragmentActivity
 
 		@Override
 		public void onPageScrolled(int pageSelected, float positionOffset,
-				int positionOffsetPixel) {
+								   int positionOffsetPixel) {
 		}
 
 		@Override
 		public void onPageScrollStateChanged(int state) {
 			int currentPage = guideSlideTemplate.getCurrentItem();
-			if (currentPage == (GuideSlideTemplateAdapter.NUM_PAGES-1)/* || currentPage == 0*/) 
+			if (currentPage == (GuideSlideTemplateAdapter.NUM_PAGES-1)/* || currentPage == 0*/)
 			{
 				layout_slide_bottomlayer.setWeightSum(4f);
 				text_previous.setVisibility(View.GONE);
@@ -176,7 +181,7 @@ public class GuideSlideActivity extends FragmentActivity
 			    	//postcard_templates.setCurrentItem(currentPage == 0 ?  (ChildPostcardTemplateAdapter.NUM_PAGES-1) : 0,true);
 			    }*/
 			}
-			else if (currentPage == 0) 
+			else if (currentPage == 0)
 			{
 				layout_slide_bottomlayer.setWeightSum(2f);
 				text_previous.setVisibility(View.GONE);
@@ -203,7 +208,7 @@ public class GuideSlideActivity extends FragmentActivity
 	};
 
 
-	private void hideKeyBoard() 
+	private void hideKeyBoard()
 	{
 		try {
 			this.getWindow().setSoftInputMode(
@@ -221,9 +226,11 @@ public class GuideSlideActivity extends FragmentActivity
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
+		if(social!=null)
+		social.parent_TutorialAnalyticsLog("Skipped");
 		finish();
 		GuideSlideActivity.this.overridePendingTransition(R.anim.shrink_from_topleft_to_bottomright, R.anim.shrink_from_topleft_to_bottomright);
 		//super.onBackPressed();
-	} 
+	}
 
 }

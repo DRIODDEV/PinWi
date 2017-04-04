@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hatchtact.pinwi"
-    android:versionCode="39"
-    android:versionName="1.3" >
+    android:versionCode="51"
+    android:versionName="2.4" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -115,6 +115,14 @@
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name="com.hatchtact.pinwi.GetStartedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.ChildListFreeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.hatchtact.pinwi.WebContainerFreeAppActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
@@ -296,6 +304,10 @@
             android:name="com.hatchtact.pinwi.NotificationDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.CustomTranslucent" />
+        <activity
+            android:name="com.hatchtact.pinwi.InAppPurchaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name="com.hatchtact.pinwi.WhyAmIDoingThisActivity"
             android:screenOrientation="portrait"

@@ -66,8 +66,8 @@
     <!-- For Guide Slide -->
     <color name="greenslideBtn"> #729e47</color>
     <color name="blueslideBtn">#3988c0</color>
-    
-    
+
+
     <color name="steponebackground"> #db353a</color>
     <color name="steptwobackground">#729e47</color>
     <color name="stepthreebackground"> #603b89</color>
@@ -78,7 +78,20 @@
     <color name="steptitle"> #db353a</color>
     <color name="steptext">#444444</color>
     <color name="yellow">#FFD740</color>
-    
+    <color name="coloroneheading">#f48f3c</color>
+    <color name="colortwoheading">#95207a</color>
+    <color name="colorthreeheading">#5d8d44</color>
+    <color name="colorfourheading">#d51931</color>
+    <color name="colorfiveheading"> #4f2a72</color>
+    <color name="colorsixheading">#d51931</color>
 
-    
+    <array name="getstartedheadingcolors">
+        <item>@color/coloroneheading</item>
+        <item>@color/colortwoheading</item>
+        <item>@color/colorthreeheading</item>
+        <item>@color/colorfourheading</item>
+        <item>@color/colorfiveheading</item>
+        <item>@color/colorsixheading</item>
+    </array>
+
 </resources>

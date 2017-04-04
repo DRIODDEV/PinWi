@@ -76,6 +76,10 @@
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\notification_transparent.png"
     },
     {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\parent_navigation.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\parent_navigation.png"
+    },
+    {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\network_transparent.png",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\network_transparent.png"
     },
@@ -454,6 +458,10 @@
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\child_dashboard_rating4.png",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\child_dashboard_rating4.png"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\child_navigation.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\child_navigation.png"
     },
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_spinner_ab_pressed_holo_light.9.png",
@@ -858,6 +866,10 @@
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\playbtn_i.png",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\playbtn_i.png"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\tick_inapp.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\tick_inapp.png"
     },
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_spinner_ab_focused_holo_light.9.png",
@@ -1436,16 +1448,16 @@
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\child_smiley10.png"
     },
     {
-        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\parent_next.png",
-        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\parent_next.png"
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_ab_back_holo_dark.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\drawable-hdpi-v4\\abc_ic_ab_back_holo_dark.png"
     },
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_commit_search_api_holo_dark.png",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\drawable-hdpi-v4\\abc_ic_commit_search_api_holo_dark.png"
     },
     {
-        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_ab_back_holo_dark.png",
-        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\drawable-hdpi-v4\\abc_ic_ab_back_holo_dark.png"
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\parent_next.png",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\drawable-hdpi\\parent_next.png"
     },
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\male_unselected.png",
