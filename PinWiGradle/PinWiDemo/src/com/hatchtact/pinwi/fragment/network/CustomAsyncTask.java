@@ -131,18 +131,39 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 				{
 					if(actionflag.equalsIgnoreCase("3"))
 					{
+						try {
+							social.connectedRemovedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 					Toast.makeText(mContext, "Friend Removed", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
 						/*social.Network_Connection_AcceptedFacebookLog();
 						social.Network_Connection_AcceptedGoogleAnalyticsLog();*/
+						try {
+							social.connectedAcceptedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Friend Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
 						/*social.Network_Connection_AddedFacebookLog();
 						social.Network_Connection_AddedGoogleAnalyticsLog();*/
+						try {
+							social.connectedAddedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Friend Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -168,18 +189,39 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 				{
 					if(actionflag.equalsIgnoreCase("3"))
 					{
+						try {
+							social.connectedRemovedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 					Toast.makeText(mContext, "Friend Removed", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
 						/*social.Network_Connection_AcceptedFacebookLog();
 						social.Network_Connection_AcceptedGoogleAnalyticsLog();*/
+						try {
+							social.connectedAcceptedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Friend Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
 						/*social.Network_Connection_AddedFacebookLog();
 						social.Network_Connection_AddedGoogleAnalyticsLog();*/
+						try {
+							social.connectedAddedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Friend Request Sent", Toast.LENGTH_LONG).show();
 					}
 
@@ -205,16 +247,37 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 				{
 					if(actionflag.equalsIgnoreCase("3"))
 					{
+						try {
+							social.buddyRemovedClevertap(StaticVariables.currentChild.getFirstName());
+						}
+						catch (Exception e)
+						{
+
+						}
 					Toast.makeText(mContext, "Friend Removed", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
+						try {
+							social.buddyAcceptedClevertap(StaticVariables.currentChild.getFirstName());
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Friend Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
 						/*social.buddyRequestSentFacebookLog();
 						social.buddyRequestSentGoogleAnalyticsLog();*/
+						try {
+							social.buddyAddedClevertap(StaticVariables.currentChild.getFirstName());
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Yay! Your request is on its way.", Toast.LENGTH_LONG).show();
 					}
 
@@ -240,18 +303,39 @@ public class CustomAsyncTask extends AsyncTask<Void, Void, Integer>
 				{
 					if(actionflag.equalsIgnoreCase("3"))
 					{
+						try {
+							social.buddyRemovedClevertap(StaticVariables.currentChild.getFirstName());
+						}
+						catch (Exception e)
+						{
+
+						}
 					Toast.makeText(mContext, "Buddy Removed", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("1"))
 					{
 						/*social.addBuddyFacebookLog();
 						social.addBuddyGoogleAnalyticsLog();*/
+						try {
+							social.buddyAcceptedClevertap(StaticVariables.currentChild.getFirstName());
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Buddy Added", Toast.LENGTH_LONG).show();
 					}
 					else if(actionflag.equalsIgnoreCase("0"))
 					{
 						/*social.buddyRequestSentFacebookLog();
 						social.buddyRequestSentGoogleAnalyticsLog();*/
+						try {
+							social.buddyAddedClevertap(StaticVariables.currentChild.getFirstName());
+						}
+						catch (Exception e)
+						{
+
+						}
 						Toast.makeText(mContext, "Buddy Request Sent", Toast.LENGTH_LONG).show();
 					}
 

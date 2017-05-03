@@ -70,7 +70,7 @@ public class GCMNotificationIntentService  extends IntentService {
 				SharePreferenceClass sharePref=null;
 
 				try {
-					sharePref=new SharePreferenceClass(this); 
+					sharePref=new SharePreferenceClass(this);
 					//sharePref.setBadgeScore("0");
 					//int localCount=Integer.parseInt(sharePref.getBadgeScore());
 					int newCount=Integer.parseInt(extras.get(SCORE_KEY)+"");
@@ -93,7 +93,24 @@ public class GCMNotificationIntentService  extends IntentService {
 					//sharePref.setBadgeScore("0");
 				}
 
-				sendNotification(extras.get(MESSAGE_KEY)+"");
+
+				String msg=extras.get(MESSAGE_KEY)+"";
+				if(msg.equalsIgnoreCase("null"))
+				{
+					String title=extras.get("nm")+"";
+					if(title.equalsIgnoreCase("null"))
+					{
+
+					}
+					else
+					{
+						sendNotificationClevertap(extras.get("nm")+"",extras.get("nt")+"");
+					}
+				}
+				else
+				{
+					sendNotification(msg);
+				}
 			}
 		}
 		GcmBroadcastReceiver.completeWakefulIntent(intent);
@@ -166,4 +183,49 @@ public class GCMNotificationIntentService  extends IntentService {
 			return false;
 		}
 	}
+
+	private void sendNotificationClevertap(String msg,String title) {
+		mNotificationManager = (NotificationManager) this
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+				new Intent(this, SplashActivity.class), 0);
+
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+				this).setSmallIcon(R.drawable.launcher) .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+				R.drawable.launcher))
+				.setContentTitle(title)
+				.setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+				.setContentText(msg).setAutoCancel(true).setDefaults(Notification.DEFAULT_SOUND)
+				/*.setDefaults(Notification.DEFAULT_VIBRATE)*/;
+		/*Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+		mBuilder.setSound(uri);*/
+		boolean foregroud=true;
+		try {
+			foregroud = new ForegroundCheckTask().execute(this).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(!foregroud)
+			mBuilder.setContentIntent(contentIntent);
+		else
+		{
+			PendingIntent contentIntentExit = PendingIntent.getActivity(this, 0,
+					new Intent(this, ExitActivity.class), 0);
+			mBuilder.setContentIntent(contentIntentExit);
+
+		}
+
+		Notification notification = mBuilder.build();
+		//notification.flags |= Notification.FLAG_AUTO_CANCEL;
+		//notification.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL|Notification.FLAG_ONLY_ALERT_ONCE;
+
+		mNotificationManager.notify(NOTIFICATION_ID,notification);
+	}
+
 }

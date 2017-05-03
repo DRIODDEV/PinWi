@@ -20,12 +20,13 @@
         android:textSize="@dimen/textLarge" />
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/button_submitConfirm"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/headerActionBar"
+        android:layout_above="@+id/button_submitConfirm"
         android:layout_marginBottom="10dip"
-        android:layout_marginTop="20dip" >
+         >
 
         <RelativeLayout
             android:layout_width="match_parent"

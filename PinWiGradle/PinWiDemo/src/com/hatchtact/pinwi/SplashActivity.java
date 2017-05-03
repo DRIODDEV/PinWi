@@ -231,6 +231,7 @@ public class SplashActivity extends Activity
 	private void registerGCM(){
 		gcm = GoogleCloudMessaging.getInstance(this);
 		registrationId = sharePreferenceClass.getGCMDeviceId();
+		socialConstants.pushfire(registrationId);
 		new GetGcmDeviceID().execute();
 	}
 
@@ -265,6 +266,7 @@ public class SplashActivity extends Activity
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			//send registrationId to your Server
+			socialConstants.pushfire(registrationId);
 			new CheckDeviceIdExist(deviceId).execute();
 		}
 	}

@@ -17,6 +17,8 @@ public class UpdateParentProfile implements Serializable
 	private String Passcode="";
 	private String AutolockTime="";
 	private String DateOfBirth="";
+	private String EmailAddress="";//changed in version 2.5 for email editable
+
 	public String getWsid() {
 		return wsid;
 	}
@@ -88,5 +90,13 @@ public class UpdateParentProfile implements Serializable
 	}
 	public void setDateOfBirth(String dateOfBirth) {
 		DateOfBirth = dateOfBirth;
+	}
+
+	public String getEmailAddress() {
+		return EmailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		EmailAddress = emailAddress;
 	}
 }

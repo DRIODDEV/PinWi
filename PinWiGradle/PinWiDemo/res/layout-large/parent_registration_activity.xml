@@ -78,7 +78,7 @@
                     android:layout_weight="1"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:drawableRight="@drawable/asterisk"
-                    android:hint="First Name"
+                    android:hint="Your First Name"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
                     android:textSize="22sp" />
@@ -90,7 +90,7 @@
                     android:layout_weight="1"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:drawableRight="@drawable/asterisk"
-                    android:hint="Last Name"
+                    android:hint="Your Last Name"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
                     android:textSize="22sp" />
@@ -105,7 +105,7 @@
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="8dip"
                 android:drawableRight="@drawable/asterisk"
-                android:hint="Email"
+                android:hint="Your Email"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
                 android:textSize="22sp" />
@@ -330,7 +330,7 @@
                     android:digits="0123456789"
                     android:drawableRight="@drawable/asterisk"
                     android:gravity="center"
-                    android:hint="Phone"
+                    android:hint="Your Phone"
                     android:inputType="number"
                     android:maxLength="10"
                     android:singleLine="true"

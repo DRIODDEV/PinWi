@@ -648,6 +648,10 @@
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout-large\\buddies_detail_item.xml"
     },
     {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout-large-v4\\dialog_referral_enter.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout-large\\dialog_referral_enter.xml"
+    },
+    {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout-large-v4\\header_child_dashboard.xml",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout-large\\header_child_dashboard.xml"
     },

@@ -1266,7 +1266,7 @@ public class AddSchoolFragment extends ParentFragment
 							/*social.scheduleSchoolActivityFacebookLog();
 							social.scheduleSchoolActivityGoogleAnalyticsLog();*/
 						}
-
+						social.SchedulerSubjectAddedClevertap(StaticVariables.currentChild.getFirstName(),subjectName);
 						switchingFragments(new SubjectActivityByChildIDFragment());
 					}
 					else
@@ -1719,18 +1719,19 @@ public class AddSchoolFragment extends ParentFragment
 					//getError("SubjectActivityByChildID");
 
 					StaticVariables.fragmentIndexCurrentTabSchedular = 13;
-					if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+					/*if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
 					{
 						sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
-						/*social.scheduleFirstActivityFacebookLog();
-						social.scheduleFirstActivityGoogleAnalyticsLog();*/
+						*//*social.scheduleFirstActivityFacebookLog();
+						social.scheduleFirstActivityGoogleAnalyticsLog();*//*
 					}
 					else
 					{
-						/*social.scheduleSchoolActivityFacebookLog();
-						social.scheduleSchoolActivityGoogleAnalyticsLog();*/
+						*//*social.scheduleSchoolActivityFacebookLog();
+						social.scheduleSchoolActivityGoogleAnalyticsLog();*//*
 					}
-
+					social.SchedulerSubjectAddedClevertap(StaticVariables.currentChild.getFirstName(),subjectName);
+*/
 					switchingFragments(new SubjectActivityByChildIDFragment());
 				}
 			}
@@ -1854,18 +1855,19 @@ public class AddSchoolFragment extends ParentFragment
 
 					if(StaticVariables.fragmentIndexCurrentTabSchedular==26)
 					{
-						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+						/*if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
 						{
 							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
-							/*social.scheduleFirstActivityFacebookLog();
-							social.scheduleFirstActivityGoogleAnalyticsLog();*/
+							*//*social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();*//*
 						}
 						else
 						{
-							/*social.scheduleSchoolActivityFacebookLog();
-							social.scheduleSchoolActivityGoogleAnalyticsLog();*/
+							*//*social.scheduleSchoolActivityFacebookLog();
+							social.scheduleSchoolActivityGoogleAnalyticsLog();*//*
 						}
-
+						social.SchedulerSubjectAddedClevertap(StaticVariables.currentChild.getFirstName(),subjectName);
+*/
 						StaticVariables.fragmentIndexCurrentTabSchedular = 13;
 						switchingFragments(new SubjectActivityByChildIDFragment());
 					}

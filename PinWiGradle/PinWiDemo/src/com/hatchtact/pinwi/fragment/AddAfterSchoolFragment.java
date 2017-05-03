@@ -1753,6 +1753,7 @@ public class AddAfterSchoolFragment extends ParentFragment
 							/*social.scheduleAfterSchoolActivityFacebookLog();
 							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*/
 						}
+						social.SchedulerActivityAddedClevertap(StaticVariables.currentChild.getFirstName(),StaticVariables.subSubCategoryName);
 
 						switchingFragments(new AfterSchoolActivityByChildIdFragment());
 					}
@@ -2248,17 +2249,19 @@ public class AddAfterSchoolFragment extends ParentFragment
 				else
 				{
 					StaticVariables.fragmentIndexCurrentTabSchedular = 12;
-					if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+				/*	if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
 					{
 						sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
-						/*social.scheduleFirstActivityFacebookLog();
-						social.scheduleFirstActivityGoogleAnalyticsLog();*/
+						*//*social.scheduleFirstActivityFacebookLog();
+						social.scheduleFirstActivityGoogleAnalyticsLog();*//*
 					}
 					else
 					{
-						/*social.scheduleAfterSchoolActivityFacebookLog();
-						social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*/
+						*//*social.scheduleAfterSchoolActivityFacebookLog();
+						social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*//*
 					}
+					social.SchedulerActivityAddedClevertap(StaticVariables.currentChild.getFirstName(),activityName);
+*/
 					switchingFragments(new AfterSchoolActivityByChildIdFragment());
 				}
 			}
@@ -2396,17 +2399,19 @@ public class AddAfterSchoolFragment extends ParentFragment
 						resetStaticValues();
 						//getError();
 						StaticVariables.fragmentIndexCurrentTabSchedular = 12;
-						if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
+					/*	if(sharePref.isFirstTimeActivityScheduled(StaticVariables.currentChild.getChildID()+"")==0)
 						{
 							sharePref.setFirstTimeActivitySchedule(1, StaticVariables.currentChild.getChildID()+"");
-							/*social.scheduleFirstActivityFacebookLog();
-							social.scheduleFirstActivityGoogleAnalyticsLog();*/
+							*//*social.scheduleFirstActivityFacebookLog();
+							social.scheduleFirstActivityGoogleAnalyticsLog();*//*
 						}
 						else
 						{
-							/*social.scheduleAfterSchoolActivityFacebookLog();
-							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*/
+							*//*social.scheduleAfterSchoolActivityFacebookLog();
+							social.scheduleAfterSchoolActivityGoogleAnalyticsLog();*//*
 						}
+						social.SchedulerActivityAddedClevertap(StaticVariables.currentChild.getFirstName(),activityName);
+*/
 						switchingFragments(new AfterSchoolActivityByChildIdFragment());
 					}
 					else

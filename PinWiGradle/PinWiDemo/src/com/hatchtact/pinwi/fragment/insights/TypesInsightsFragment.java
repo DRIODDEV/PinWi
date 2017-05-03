@@ -120,6 +120,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		super.onActivityCreated(savedInstanceState);
 	}
 
+	private boolean isScreenOpenedFirstTime=false;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -127,6 +128,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		setHasOptionsMenu(true);
 		serviceMethod=new ServiceMethod();
 		showMessage=new ShowMessages(getActivity());
+		isScreenOpenedFirstTime=true;
 		//GoogleAnalytics.getInstance(getActivity()).getTracker("UA-XXXX-Y");
 		/*Bundle parameters = new Bundle();
 		parameters.putString(AppEventsConstants.EVENT_NAME_UNLOCKED_ACHIEVEMENT, "");
@@ -154,7 +156,10 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 
 		try {
-			new GetInsightsReportStatusByParentAndChildId(StaticVariables.currentParentId, StaticVariables.currentChild.getChildID()).execute();
+			if(isScreenOpenedFirstTime) {
+				getCurrentChildNumber();
+				new GetInsightsReportStatusByParentAndChildId(StaticVariables.currentParentId, StaticVariables.currentChild.getChildID()).execute();
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -534,6 +539,15 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			sharePref.setInsightsActivated(1,StaticVariables.currentChild.getChildID()+"");
 		}
 
+		try
+		{
+			social.insights_ViewedLog();
+			social.userProfileClevertap("Child"+currentChildNo+"_Quality_Badge",getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"", 1, null, null,0,0);
+		}
+		catch (Exception e)
+		{
+
+		}
 		/*social.Quality_Badge_LevelFacebookLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
 		social.Quality_Badge_LevelGoogleAnalyticsLog(getBadgeDetailsByChildIDOnInsightList.getGetBadgeDetailsByChildIDOnInsight().get(0).getQuality_Badge()+"");
 
@@ -589,6 +603,17 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 			try {
 				if (checkNetwork.checkNetworkConnection(getActivity())) {
 					getInterestTraitsByChildIDOnInsightList = serviceMethod.getInterestTraitsByChildIDOnInsight(StaticVariables.currentChild.getChildID());
+					for(int j=0;j<getInterestTraitsByChildIDOnInsightList.getGetInterestTraitsByChildIDOnInsight().size();j++)
+					{
+						GetInterestTraitsByChildIDOnInsight model=getInterestTraitsByChildIDOnInsightList.getGetInterestTraitsByChildIDOnInsight().get(j);
+
+						if(model.getBucketID()==4)
+						{
+							model.setBucketID(5);
+						}
+
+					}
+
 				} else {
 					ErrorCode = -1;
 				}
@@ -1249,7 +1274,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 		//earnedPts=2500;
 		//pendingpts=1100;
-		//lostpts=100;	
+		//lostpts=100;
 		yVals1.add(new Entry(earnedPts, 0));
 		yVals1.add(new Entry(pendingpts, 1));
 		yVals1.add(new Entry(lostpts, 2));
@@ -1311,6 +1336,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 	}
 
 
+	private int currentChildNo=1;
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -1324,34 +1350,41 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 		else if(item.getItemId()!=R.id.action_childName)
 		{
-			mainscroll.setAlpha(0f);
+			if(!isScreenOpenedFirstTime) {
 
-			StaticVariables.currentChild=StaticVariables.childInfo.get(item.getItemId());
-			getActivity().invalidateOptionsMenu();
-			interestDriversLayout.removeAllViews();
-			linearlayoutinsightinterestpattern.removeAllViews();
-			// TODO Auto-generated method stub
-			delightTrendsLayout.removeAllViews();
+				mainscroll.setAlpha(0f);
+
+				StaticVariables.currentChild = StaticVariables.childInfo.get(item.getItemId());
+				try {
+					currentChildNo = item.getItemId() + 1;
+				} catch (Exception e) {
+
+				}
+				getActivity().invalidateOptionsMenu();
+				interestDriversLayout.removeAllViews();
+				linearlayoutinsightinterestpattern.removeAllViews();
+				// TODO Auto-generated method stub
+				delightTrendsLayout.removeAllViews();
 
 
-			pointSummaryLayout.removeAllViews();
-			try {
-				imgBadge.setVisibility(View.INVISIBLE);
-				txtBadge.setText("Interest report is being generated");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				pointSummaryLayout.removeAllViews();
+				try {
+					imgBadge.setVisibility(View.INVISIBLE);
+					txtBadge.setText("Interest report is being generated");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				//refreshDataAccordingToChild();
+				try {
+					new GetInsightsReportStatusByParentAndChildId(StaticVariables.currentParentId, StaticVariables.currentChild.getChildID()).execute();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					reportStatus = 0;
+				}
 			}
-
-			//refreshDataAccordingToChild();
-			try {
-				new GetInsightsReportStatusByParentAndChildId(StaticVariables.currentParentId, StaticVariables.currentChild.getChildID()).execute();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				reportStatus=0;
-			}
-
 		}
 
 
@@ -1557,7 +1590,7 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 		protected void onPostExecute(Integer  result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-
+			isScreenOpenedFirstTime=false;
 			try {
 				/*if (progressDialog.isShowing())
 					progressDialog.cancel();*/
@@ -1971,7 +2004,21 @@ public class TypesInsightsFragment extends ParentFragment implements View.OnClic
 
 	}
 
-
-
+	private void getCurrentChildNumber()
+	{
+		try {
+			for (int i = 0; i < StaticVariables.childInfo.size(); i++) {
+				if (StaticVariables.currentChild.getChildID() == StaticVariables.childInfo.get(i).getChildID())
+				{
+					currentChildNo = i + 1;
+					break;
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			currentChildNo = 1;
+		}
+	}
 
 }

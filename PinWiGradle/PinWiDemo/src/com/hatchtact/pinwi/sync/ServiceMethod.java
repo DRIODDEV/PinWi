@@ -311,7 +311,7 @@ public class ServiceMethod
 		return userResult;
 	}
 
-	public int createParentProfile(ParentProfile parentProfie,String AppVersion)
+	public int createParentProfile(ParentProfile parentProfie, String AppVersion, String registrationId)
 	{
 		int parentId =0;
 
@@ -325,7 +325,8 @@ public class ServiceMethod
 		request.addProperty("DeviceType",DeviceType);*/
 		//request.addProperty("ParentID",parentProfie.getParentID());
 		request.addProperty("DeviceID",parentProfie.getDeviceID());
-		request.addProperty("DeviceToken",parentProfie.getDeviceToken());
+		//request.addProperty("DeviceToken",parentProfie.getDeviceToken());
+		request.addProperty("DeviceToken",registrationId);
 		request.addProperty("ProfileImage",parentProfie.getProfileImage());
 		request.addProperty("FirstName",parentProfie.getFirstName());
 		request.addProperty("LastName",parentProfie.getLastName());
@@ -4253,6 +4254,7 @@ public class ServiceMethod
 		request.addProperty(WSPWDKEY,WSPWD);
 		request.addProperty("ParentID",updateParentProfie.getParentID());
 		request.addProperty("ProfileImage",updateParentProfie.getProfileImage());
+		request.addProperty("EmailAddress",updateParentProfie.getEmailAddress());//changed in version 2.5 for email editable
 		request.addProperty("FirstName",updateParentProfie.getFirstName());
 		request.addProperty("LastName",updateParentProfie.getLastName());
 		request.addProperty("Password",updateParentProfie.getPassword());
@@ -4324,7 +4326,7 @@ public class ServiceMethod
 		Log.d("Response of Webservice: Method: "+METHOD_NAME, " " + returnString);
 
 		errorMessage  = returnString;
-		String userString = getValidJson.getValidJsonObject(returnString);
+		/*String userString = getValidJson.getValidJsonObject(returnString);
 		try {
 
 			JSONObject object = new JSONObject(userString);
@@ -4334,6 +4336,16 @@ public class ServiceMethod
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			//Errorcode = -1;
+		}*/
+		Error err = null ;
+		try {
+
+			err = getError();
+			Errorcode=Integer.parseInt(err.getErrorCode());
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return Errorcode;
 	}
@@ -10857,5 +10869,165 @@ public class ServiceMethod
 		}
 		return getAtCurrentSemester;
 	}
+	public String redeemReferralCode(int ParentId, String ReferalCode, String isOptForDontShowReferalCode)
+	{
+
+		String METHOD_NAME = "RedeemReferralCode";
+		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request.addProperty(WSIDKEY, WSID);
+		request.addProperty(WSPWDKEY,WSPWD);
+		request.addProperty("ParentID",ParentId);
+		request.addProperty("ReferralCode",ReferalCode);
+		request.addProperty("IsOptForDontShowReferalCode",isOptForDontShowReferalCode);
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+				SOAP_VERSION); // put
+
+		envelope.dotNet = true;
+
+		envelope.setAddAdornments(false);
+		envelope.implicitTypes = false;
+		envelope.setOutputSoapObject(request); // prepare request
+
+		HttpTransportSE httpTransport = new HttpTransportSE(URL, TIMEOUT);
+
+		httpTransport.debug = DEBUG; // this is optional, use it if you don't
+		// want to use a packet sniffer to check
+		// what the sent
+		// message was (httpTransport.requestDump)
+		httpTransport.setXmlVersionTag(HEADER);
+
+		try {
+
+			httpTransport.call(SOAP_ACTION, envelope);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} // send request
+		Log.d("RAM RAM3", "XML: " + httpTransport.requestDump);
+
+		SoapObject result = null;
+		String returnString = "";
+		try {
+			envelope.getResponse();
+			result = (SoapObject) envelope.bodyIn;
+			for (int i = 0; i < result.getPropertyCount(); i++) {
+				returnString = result.getProperty(i).toString();
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+
+		Log.d("Response of Webservice: Method: "+METHOD_NAME, " " + returnString);
+
+		errorMessage  = returnString;
+		//String userString = getValidJson.getValidJsonObject(returnString);
+		Error err = null ;
+		try {
+
+			err = getError();
+
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return err.getErrorCode();
+	}
+
+
+	public GetReferralStatus getReferralStatus(int ParentID)
+	{
+		GetReferralStatus getReferalStatus =null;
+
+		String METHOD_NAME = "GetReferralStatus";
+		String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request.addProperty(WSIDKEY, WSID);
+		request.addProperty(WSPWDKEY,WSPWD);
+		request.addProperty("ParentID",ParentID);
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+				SOAP_VERSION); // put
+
+		envelope.dotNet = true;
+
+		envelope.setAddAdornments(false);
+		envelope.implicitTypes = false;
+		envelope.setOutputSoapObject(request); // prepare request
+
+		HttpTransportSE httpTransport = new HttpTransportSE(URL, TIMEOUT);
+
+		httpTransport.debug = DEBUG; // this is optional, use it if you don't
+
+		// want to use a packet sniffer to check
+		// what the sent
+		// message was (httpTransport.requestDump)
+		httpTransport.setXmlVersionTag(HEADER);
+
+		try {
+
+			httpTransport.call(SOAP_ACTION, envelope);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		// send request
+		Log.d("RAM RAM3", "XML: " + httpTransport.requestDump);
+
+		SoapObject result = null;
+		String returnString = "";
+		try {
+			envelope.getResponse();
+			result = (SoapObject) envelope.bodyIn;
+			for (int i = 0; i < result.getPropertyCount(); i++) {
+				returnString = result.getProperty(i).toString();
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+
+		errorMessage  = returnString;
+
+		String getNewNotificationCountString = getValidJson.getValidJsonObject(returnString);
+		try {
+
+			JSONObject  onj = new JSONObject(getNewNotificationCountString);
+			getReferalStatus=new GetReferralStatus();
+			getReferalStatus.setReferStatus(onj.getInt("ReferStatus"));
+			getReferalStatus.setMessage(onj.getString("Message"));
+			getReferalStatus.setIsOptForDontShowReferalCode(onj.getString("IsOptForDontShowReferalCode"));
+
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return getReferalStatus;
+	}
+
 
 }

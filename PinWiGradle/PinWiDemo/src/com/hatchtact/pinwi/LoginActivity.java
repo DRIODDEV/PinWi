@@ -34,6 +34,7 @@ import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 import com.hatchtact.pinwi.utility.Validation;
@@ -72,7 +73,7 @@ public class LoginActivity extends Activity
 
 	ParentProfile parentCompleteInformation;
 	private CustomLoader customProgressLoader;
-
+	private SocialConstants social;
 
 	private void getDisplayWidth(Activity a)
 	{
@@ -98,6 +99,9 @@ public class LoginActivity extends Activity
 
 		setContentView(R.layout.login_activity);
 		customProgressLoader=new CustomLoader(this);
+		sharePref=new SharePreferenceClass(LoginActivity.this);
+
+		social=new SocialConstants(LoginActivity.this);
 		try
 		{
 			deleteData();//delete db data and images data from sd card
@@ -114,7 +118,6 @@ public class LoginActivity extends Activity
 		checkValidation = new Validation();
 		showMessage = new ShowMessages(LoginActivity.this);
 		typeFace=new TypeFace(LoginActivity.this);
-		sharePref=new SharePreferenceClass(LoginActivity.this);
 		gsonRegistration=new GsonBuilder().create();
 		serviceMethod=new ServiceMethod();
 		checkNetwork=new CheckNetwork();
@@ -238,6 +241,10 @@ public class LoginActivity extends Activity
 		datasource.deleteAll();
 		datasource.close();
 		sharePref.setNetworkTableCreated(false);
+		sharePref.setCurrentChildNo(0);
+		//sharePref.setPopUpReferalFlag(false);
+		sharePref.setDate(0);
+		sharePref.setDatePopUpTwo(0);
 	}
 
 	//private ProgressDialog progressDialog=null;
@@ -310,6 +317,15 @@ public class LoginActivity extends Activity
 					parentCompleteInformation.setFirstName(userres.getFirstName());
 					parentCompleteInformation.setLastName(userres.getLastName());
 					parentCompleteInformation.setEmailAddress(userName_editText.getText().toString());
+
+					try
+					{
+						social.loginLogClevertap();
+					}
+					catch (Exception e)
+					{
+
+					}
 
 					sharePref.setIsLogin(true);
 					sharePref.setIsLogout(false);

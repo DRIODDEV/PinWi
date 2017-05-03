@@ -475,6 +475,13 @@ public class ChildPostcardDetailingAudioActivity  extends Activity {
 										// TODO Auto-generated method stub
 										/*social.Create_Postcard_VOSentFacebookLog();
 										social.Create_Postcard_VOGoogleAnalyticsLog();*/
+										try {
+											social.postcardAddedClevertap(ChildPostcardActivity.templateArray.get(selectedIndex), "Recording");
+										}
+										catch (Exception e)
+										{
+
+										}
 										child_postcard_sent_layout.setVisibility(View.VISIBLE);
 										layout_bottomlayer_postcard_detail.setVisibility(View.GONE);
 										child_postcard_detail_mid_audio.setVisibility(View.INVISIBLE);

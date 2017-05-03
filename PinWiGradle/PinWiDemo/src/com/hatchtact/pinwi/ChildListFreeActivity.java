@@ -330,6 +330,13 @@ public class ChildListFreeActivity extends MainActionBarActivity implements Adap
 				startActivity(parentIntent);
 				break;
 			case 5:
+				try {
+					social.logoutClevertap();
+				}
+				catch (Exception e)
+				{
+
+				}
 				sharePreferenceclass.setIsLogin(false);
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");
@@ -484,6 +491,8 @@ public class ChildListFreeActivity extends MainActionBarActivity implements Adap
 		{
 			StaticVariables.freeAppWebUrl=StaticVariables.freeAppWebUrl+"?ChildID="+
 					accessProfileList.getAccessProfileList().get(position).getProfileID()+"&&ParentID="+parentId+"&&ParentName="+parentName;
+
+			social.demoReportRequestedClevertap(accessProfileList.getAccessProfileList().get(position).getFirstName());
 		}
 		Intent intent=new Intent(ChildListFreeActivity.this, WebContainerFreeAppActivity.class);
 		startActivity(intent);

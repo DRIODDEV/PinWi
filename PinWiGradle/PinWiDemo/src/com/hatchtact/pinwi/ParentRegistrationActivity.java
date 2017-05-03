@@ -166,7 +166,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 	private UpdateLocationByParentID updateLocationByParentID=null;
 	private boolean isPasscodeTouched=false;//need to use this flag
 	private TextView header_text,header_help;
-
+	private String registrationId="";
 
 
 	@Override
@@ -194,6 +194,8 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		localityList=new LocalityList();
 		parentProfile=new ParentProfile();
 		sharePreferneceClass=new SharePreferenceClass(ParentRegistrationActivity.this);
+		registrationId = sharePreferneceClass.getGCMDeviceId();
+
 		gsonRegistration = new GsonBuilder().create();
 		header_text=(TextView) findViewById(R.id.header_text);
 		header_help=(TextView) findViewById(R.id.header_help);
@@ -588,7 +590,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 		parentId=parentInformation.getParentID();
 
 		continue_button.setText("Submit");
-		email_editText.setEnabled(false);
+		email_editText.setEnabled(true);//changed in version 2.5 for email editable
 		//dob_editText.setEnabled(false);
 		dob_editText.setEnabled(true);
 		dob_button.setEnabled(false);
@@ -1630,6 +1632,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		parentProfile.setDeviceID(IMEI);
 		parentProfile.setDeviceToken(IMEI);
 		String textSelectedAutolockTime = autolocktime_autoCompleteTextView.getText().toString();
@@ -1706,6 +1709,10 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 			updateParentProfile.setPasscode(parentProfile.getPasscode());
 			updateParentProfile.setAutolockTime(parentProfile.getAutolockID()+ "");
 			updateParentProfile.setDateOfBirth(parentProfile.getDateOfBirth());
+			if(email_editText!=null)
+			{
+				updateParentProfile.setEmailAddress(email_editText.getText().toString());//changed in version 2.5 for email editable
+			}
 			updateLocationByParentID  = new UpdateLocationByParentID();
 
 			updateLocationByParentID.setParentID(parentId);
@@ -1796,12 +1803,30 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					parentProfile.setFirstName(updateParentProfile.getFirstName());
 					parentProfile.setLastName(updateParentProfile.getLastName());
 					parentProfile.setPassword(updateParentProfile.getPassword());
+					try {
+						parentProfile.setEmailAddress(updateParentProfile.getEmailAddress());//changed in version 2.5 for email editable
+					}
+					catch (Exception e)
+					{
+
+					}
+
 					parentProfile.setContact(updateParentProfile.getContact());
 					parentProfile.setPasscode(updateParentProfile.getPasscode());
 					parentProfile.setProfileImage(updateParentProfile.getProfileImage());
 					parentProfile.setStreetLocality(updateLocationByParentID.getStreetLocality());
+
 					parentProfile.setCity(updateLocationByParentID.getCity());
 					parentProfile.setCountry(updateLocationByParentID.getCountry());
+					try {
+						parentProfile.setRelation(updateParentProfile.getRelation());
+						parentProfile.setDateOfBirth(updateParentProfile.getDateOfBirth());
+					}
+					catch (Exception e)
+					{
+
+					}
+
 
 					if(autolocktime_autoCompleteTextView!=null && autolocktime_autoCompleteTextView.getText()!=null)
 					{
@@ -1861,9 +1886,11 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 						}
 
 					}
+					social.userProfileClevertap("","",2,parentProfile, null,0, 0);
 
 					String passcodeListString = gsonRegistration.toJson(passCodeList);
 					sharePreferneceClass.setPassCodeList(passcodeListString);
+
 
 					String parentInformation = gsonRegistration.toJson(parentProfile);
 					sharePreferneceClass.setParentProfile(parentInformation);
@@ -2332,7 +2359,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					e.printStackTrace();
 				}
 
-				parentId=serviceMethod.createParentProfile(parentProfile,versionName);
+				parentId=serviceMethod.createParentProfile(parentProfile,versionName,registrationId);
 
 				if(parentId!=0)
 				{
@@ -2376,6 +2403,7 @@ public class ParentRegistrationActivity extends MainActionBarActivity implements
 					social.parentRegistrationGoogleAnalyticsLog();*/
 					String parentInformation = gsonRegistration.toJson(parentProfile);
 					sharePreferneceClass.setParentProfile(parentInformation);
+					social.userProfileClevertap("","",2,parentProfile, null,0, 0);
 
 					Intent intent=new Intent(ParentRegistrationActivity.this, ConfirmationActivity.class);
 					// pass profile email id and profile id

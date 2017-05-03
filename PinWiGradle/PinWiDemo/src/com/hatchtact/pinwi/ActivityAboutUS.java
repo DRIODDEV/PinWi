@@ -27,7 +27,7 @@ public class ActivityAboutUS extends MainActionBarActivity
 	WebView webView;
 	private TextView txtVersionNo;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO Auto-generated method stub
 		if(StaticVariables.webUrl.contains("aboutus"))
@@ -58,6 +58,11 @@ public class ActivityAboutUS extends MainActionBarActivity
 		else if(StaticVariables.webUrl.contains("interst-driver.aspx"))
 		{
 			screenName="Instant Demo Report";
+		}
+		else if(StaticVariables.webUrl.equalsIgnoreCase("getstarted"))
+		{
+			screenName="Welcome to PiNWi";
+			StaticVariables.webUrl="http://www.pinwi.in/blog/";
 		}
 		else
 		{
@@ -158,7 +163,7 @@ public class ActivityAboutUS extends MainActionBarActivity
 
 		}
 		//StaticVariables.webUrl="http://www.pinwi.in/blog/";
-		webView.loadUrl(StaticVariables.webUrl); 
+		webView.loadUrl(StaticVariables.webUrl);
 	}
 	class myWebViewClient extends WebViewClient {
 		@Override

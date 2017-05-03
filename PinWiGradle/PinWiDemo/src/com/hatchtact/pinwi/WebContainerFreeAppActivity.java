@@ -403,6 +403,13 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 				startActivity(parentIntent);
 				break;
 			case 5:
+				try {
+					social.logoutClevertap();
+				}
+				catch (Exception e)
+				{
+
+				}
 				sharePreferenceclass.setIsLogin(false);
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");
@@ -459,9 +466,10 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 
 			error = true;
 			System.out.println("description error" + description);
-			view.setVisibility( View.GONE );
-			Toast.makeText(WebContainerFreeAppActivity.this, "This feature is unavailable at the moment, please try again later.", Toast.LENGTH_LONG).show();
-			finish();
+			//view.setVisibility( View.GONE );
+			showAlertTimeout();
+			//Toast.makeText(WebContainerFreeAppActivity.this, "This feature is unavailable at the moment, please try again later.", Toast.LENGTH_LONG).show();
+			//finish();
 		}
 
 	}
@@ -588,6 +596,28 @@ public class WebContainerFreeAppActivity extends MainActionBarActivity
 				WebContainerFreeAppActivity.this.finish();
 			}
 		});
+		alertBuilder.show();
+	}
+
+	public void showAlertTimeout()
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(WebContainerFreeAppActivity.this);
+
+		alertBuilder.setTitle("Alert");
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage("Looks like there was an issue. Please try again.");
+		alertBuilder.setPositiveButton(" Reload Page ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				webView.reload();
+			}
+		});
+
+
 		alertBuilder.show();
 	}
 }

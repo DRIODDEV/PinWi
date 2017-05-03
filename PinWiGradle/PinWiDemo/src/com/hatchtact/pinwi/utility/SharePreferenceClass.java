@@ -465,4 +465,48 @@ public class SharePreferenceClass
 	{
 		return sharedPreferences.getBoolean("childAdded",false);
 	}
+	public void setPopUpReferalFlag(boolean networkTableCreated,String key)
+	{
+		editor = sharedPreferences.edit();
+		editor.putBoolean(key+"referalFlag", networkTableCreated);
+		editor.commit();
+	}
+	public boolean getPopUpReferalFlag(String key)
+	{
+		return sharedPreferences.getBoolean(key+"referalFlag",false);
+	}
+
+
+	public void setDate(long date)
+	{
+		editor = sharedPreferences.edit();
+		editor.putLong("dateReferal", date);
+		editor.commit();
+	}
+	public long getDate()
+	{
+		return sharedPreferences.getLong("dateReferal",0);
+	}
+
+	public void setDatePopUpTwo(long date)
+	{
+		editor = sharedPreferences.edit();
+		editor.putLong("dateReferalpopuptwo", date);
+		editor.commit();
+	}
+	public long getDatePopUpTwo()
+	{
+		return sharedPreferences.getLong("dateReferalpopuptwo",0);
+	}
+
+	public int getCurrentChildNumber() {
+		return sharedPreferences.getInt("CurrentChildNo",0);
+	}
+
+	public void setCurrentChildNo(int currentScreen) {
+		editor = sharedPreferences.edit();
+		editor.putInt("CurrentChildNo", currentScreen);
+		editor.commit();
+	}
+
 }

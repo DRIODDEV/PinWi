@@ -212,6 +212,10 @@
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout\\fragment_screen_slide_page.xml"
     },
     {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_referral_enter.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout\\dialog_referral_enter.xml"
+    },
+    {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout\\item_ally_list.xml",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout\\item_ally_list.xml"
     },
@@ -244,12 +248,12 @@
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout\\item_alerts.xml"
     },
     {
-        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout\\getstarted_activity.xml",
-        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout\\getstarted_activity.xml"
-    },
-    {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout\\item_pending_points_left_back.xml",
         "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout\\item_pending_points_left_back.xml"
+    },
+    {
+        "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout\\getstarted_activity.xml",
+        "source": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\layout\\getstarted_activity.xml"
     },
     {
         "merged": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\res\\merged\\debug\\layout\\insights_pointssummary.xml",
