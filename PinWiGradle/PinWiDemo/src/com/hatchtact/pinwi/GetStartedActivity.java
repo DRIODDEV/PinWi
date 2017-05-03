@@ -1,5 +1,6 @@
 package com.hatchtact.pinwi;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -29,14 +30,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hatchtact.pinwi.R;
 import com.hatchtact.pinwi.adapter.GetStartedScreenSlidePagerAdapter;
 import com.hatchtact.pinwi.adapter.NavDrawerListAdapterMenu;
 import com.hatchtact.pinwi.classmodel.GetPaymentStatusCheck;
+import com.hatchtact.pinwi.classmodel.GetReferralStatus;
 import com.hatchtact.pinwi.classmodel.NavigationDrawerItem;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
 import com.hatchtact.pinwi.sync.ServiceMethod;
@@ -45,9 +45,11 @@ import com.hatchtact.pinwi.utility.CustomLoader;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
+import com.hatchtact.pinwi.utility.TimeIgnoringComparator;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -79,7 +81,8 @@ public class GetStartedActivity extends MainActionBarActivity
 
 	ViewPager viewpager;
 	private GetStartedScreenSlidePagerAdapter mPagerAdapter;
-	private ImageView dotone,dottwo,dotthree,dotfour,dotfive,dotsix;
+	private ImageView dotone,dottwo,dotthree,dotfour,dotfive,dotsix,dotseven;
+	private TextView tvBlog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -96,6 +99,17 @@ public class GetStartedActivity extends MainActionBarActivity
 		customProgressLoader=new CustomLoader(GetStartedActivity.this);
 		serviceMethod=new ServiceMethod();
 		gsonRegistration=new GsonBuilder().create();
+		tvBlog=(TextView) findViewById(R.id.tvBlog);
+		tvBlog.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				StaticVariables.webUrl="getstarted";
+				Intent intentAboutUs =new Intent(GetStartedActivity.this, ActivityAboutUS.class);
+				startActivity(intentAboutUs);
+			}
+		});
+
+
 
 
 		sharePreferenceclass=new SharePreferenceClass(GetStartedActivity.this);
@@ -104,6 +118,9 @@ public class GetStartedActivity extends MainActionBarActivity
 			parentId=parentCompleteInformation.getParentID();
 			parentEmailId=parentCompleteInformation.getEmailAddress();
 			StaticVariables.currentParentId=parentId;
+			StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
+			social.userProfileClevertap("Paid_Status","No",1,null,null,parentId, 0);
+			startService(new Intent(GetStartedActivity.this,GetDataService.class));
 		}
 		catch (Exception e)
 		{
@@ -179,6 +196,8 @@ public class GetStartedActivity extends MainActionBarActivity
 		dotfour=(ImageView)findViewById(R.id.imagedotfour);
 		dotfive=(ImageView)findViewById(R.id.imagedotfive);
 		dotsix=(ImageView)findViewById(R.id.imagedotsix);
+		dotseven=(ImageView)findViewById(R.id.imagedotseven);
+
 		viewpager=(ViewPager) findViewById(R.id.pager);
 		viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			@Override
@@ -195,8 +214,8 @@ public class GetStartedActivity extends MainActionBarActivity
 						dotfour.setImageResource(R.drawable.dot_gray);
 						dotfive.setImageResource(R.drawable.dot_gray);
 						dotsix.setImageResource(R.drawable.dot_gray);
+						dotseven.setImageResource(R.drawable.dot_gray);
 						break;
-
 					case 1:
 						pageSwitcher(5);
 						page=1;
@@ -206,6 +225,7 @@ public class GetStartedActivity extends MainActionBarActivity
 						dotfour.setImageResource(R.drawable.dot_gray);
 						dotfive.setImageResource(R.drawable.dot_gray);
 						dotsix.setImageResource(R.drawable.dot_gray);
+						dotseven.setImageResource(R.drawable.dot_gray);
 						break;
 
 					case 2:
@@ -217,6 +237,7 @@ public class GetStartedActivity extends MainActionBarActivity
 						dotfour.setImageResource(R.drawable.dot_gray);
 						dotfive.setImageResource(R.drawable.dot_gray);
 						dotsix.setImageResource(R.drawable.dot_gray);
+						dotseven.setImageResource(R.drawable.dot_gray);
 						break;
 
 					case 3:
@@ -228,6 +249,7 @@ public class GetStartedActivity extends MainActionBarActivity
 						dottwo.setImageResource(R.drawable.dot_gray);
 						dotfive.setImageResource(R.drawable.dot_gray);
 						dotsix.setImageResource(R.drawable.dot_gray);
+						dotseven.setImageResource(R.drawable.dot_gray);
 						break;
 					case 4:
 						pageSwitcher(5);
@@ -238,6 +260,7 @@ public class GetStartedActivity extends MainActionBarActivity
 						dottwo.setImageResource(R.drawable.dot_gray);
 						dotfive.setImageResource(R.drawable.dot_darkblue);
 						dotsix.setImageResource(R.drawable.dot_gray);
+						dotseven.setImageResource(R.drawable.dot_gray);
 						break;
 					case 5:
 						pageSwitcher(5);
@@ -248,6 +271,18 @@ public class GetStartedActivity extends MainActionBarActivity
 						dottwo.setImageResource(R.drawable.dot_gray);
 						dotfive.setImageResource(R.drawable.dot_gray);
 						dotsix.setImageResource(R.drawable.dot_darkblue);
+						dotseven.setImageResource(R.drawable.dot_gray);
+						break;
+					case 6:
+						pageSwitcher(5);
+						page=6;
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						dotseven.setImageResource(R.drawable.dot_darkblue);
 						break;
 					default:
 						break;
@@ -268,7 +303,9 @@ public class GetStartedActivity extends MainActionBarActivity
 		});
 
 
+		StaticVariables.sliderAdapter=2;
 
+		GetStartedScreenSlidePagerAdapter.NUM_PAGES=7;
 
 		mPagerAdapter = new GetStartedScreenSlidePagerAdapter(getSupportFragmentManager());
 		viewpager.setAdapter(mPagerAdapter);
@@ -481,6 +518,13 @@ public class GetStartedActivity extends MainActionBarActivity
 				startActivity(parentIntent);
 				break;
 			case 5:
+				try {
+					social.logoutClevertap();
+				}
+				catch (Exception e)
+				{
+
+				}
 				sharePreferenceclass.setIsLogin(false);
 				sharePreferenceclass.setIsLogout(true);
 				sharePreferenceclass.setParentProfile("");
@@ -618,6 +662,7 @@ public class GetStartedActivity extends MainActionBarActivity
 		}
 	}
 	private String versionName="";
+	private GetReferralStatus modelReferral;
 
 	private class UpdateAppVersionAsyncTask extends AsyncTask<Void, Void, Integer>
 	{
@@ -656,6 +701,8 @@ public class GetStartedActivity extends MainActionBarActivity
 			if(new CheckNetwork().checkNetworkConnection(GetStartedActivity.this))
 			{
 				ErrorCode =serviceMethod.updateAppVersion(sharePreferenceclass.getDeviceId(),parentId,versionName);
+			//	if(!sharePreferenceclass.getPopUpReferalFlag(parentId+""))
+				modelReferral=serviceMethod.getReferralStatus(parentId);
 			}
 			else
 			{
@@ -685,6 +732,40 @@ public class GetStartedActivity extends MainActionBarActivity
 			}
 			else
 			{
+			/*	modelReferral=new GetReferralStatus();
+				modelReferral.setReferStatus(0);
+				modelReferral.setMessage("");*/
+				if(modelReferral!=null)
+				{
+
+					if(modelReferral.getIsOptForDontShowReferalCode().equalsIgnoreCase("0"))
+					{
+						sharePreferenceclass.setPopUpReferalFlag(false,parentId+"");
+					}
+					else if(modelReferral.getIsOptForDontShowReferalCode().equalsIgnoreCase("1"))
+					{
+						sharePreferenceclass.setPopUpReferalFlag(true,parentId+"");
+					}
+					if(!sharePreferenceclass.getPopUpReferalFlag(parentId+""))
+					{
+						if (checkDate(GetStartedActivity.this, modelReferral.getReferStatus()))//3 days check for pop up
+						{
+							Intent tutorial = new Intent(GetStartedActivity.this, ReferalScreenActivity.class);
+							tutorial.putExtra("ReferStatus", modelReferral.getReferStatus());
+							tutorial.putExtra("Message", modelReferral.getMessage());
+							tutorial.putExtra("Email", parentEmailId);
+							startActivity(tutorial);
+						}
+					}
+				}
+				/*else
+				{
+					Intent tutorial=new Intent(GetStartedActivity.this, ReferalScreenActivity.class);
+					tutorial.putExtra("ReferStatus",0);
+					tutorial.putExtra("Message","");
+					tutorial.putExtra("Email",parentEmailId);
+					startActivity(tutorial);
+				}*/
 
 			}
 
@@ -727,7 +808,7 @@ public class GetStartedActivity extends MainActionBarActivity
 			// to call runOnUiThread to do work on UI thread.
 			runOnUiThread(new Runnable() {
 				public void run() {
-					if (page > 5) { // In my case the number of pages are 5
+					if (page > 6) { // In my case the number of pages are 7
 						//timer.cancel();
 						page=0;
 						viewpager.setCurrentItem(page++);
@@ -736,6 +817,42 @@ public class GetStartedActivity extends MainActionBarActivity
 					}
 				}
 			});
+		}
+	}
+
+	public boolean checkDate(Context context, int referStatus)
+	{
+		long lastModDate = sharePreferenceclass.getDate();
+		if(referStatus==1)
+		{
+			lastModDate=sharePreferenceclass.getDatePopUpTwo();
+		}
+		int comparison = 0;
+		Date currentDate = new Date(System.currentTimeMillis());
+
+		if(lastModDate!=0)
+		{
+			Date datefromDb = new Date(lastModDate);
+			TimeIgnoringComparator comparator = new TimeIgnoringComparator();
+			comparison = comparator.compare(currentDate, datefromDb);
+		}
+
+		if (comparison > 2 || lastModDate==0)
+		{
+			//open pop up
+			if(referStatus==1)
+			{
+				sharePreferenceclass.setDatePopUpTwo(currentDate.getTime());
+			}
+			else
+			{
+				sharePreferenceclass.setDate(currentDate.getTime());
+			}
+			return true;
+		}else
+		{
+			//no pop up
+			return  false;
 		}
 	}
 

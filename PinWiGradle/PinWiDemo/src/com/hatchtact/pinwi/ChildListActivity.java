@@ -1,6 +1,8 @@
 package com.hatchtact.pinwi;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import com.hatchtact.pinwi.classmodel.ChildModel;
 import com.hatchtact.pinwi.classmodel.ChildProfile;
 import com.hatchtact.pinwi.classmodel.GetListofChildsByParentIDList;
 import com.hatchtact.pinwi.classmodel.ParentProfile;
+import com.hatchtact.pinwi.fragment.AddSchoolFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.CustomLoader;
@@ -94,7 +97,13 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 				// TODO Auto-generated method stub
 				if(!isButtonTouched) {
 					isButtonTouched=true;
-					Intent childIntent = new Intent(ChildListActivity.this, ChildRegistrationActivity.class);
+					if(getListofChildsByParentIDList!=null && getListofChildsByParentIDList.getGetListofChildsByParentID().size()>0)
+					{
+						sharePreferenceClass.setCurrentChildNo(getListofChildsByParentIDList.getGetListofChildsByParentID().size());
+					}
+
+						Intent childIntent = new Intent(ChildListActivity.this, ChildRegistrationActivity.class);
+
 					Bundle bundleLocation = new Bundle();
 					bundleLocation.putBoolean("ToChildScreenFromAdd", true);
 					childIntent.putExtras(bundleLocation);
@@ -112,6 +121,11 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 				// TODO Auto-generated method stub
 				if(!isButtonTouched) {
 					isButtonTouched = true;
+					if(getListofChildsByParentIDList!=null && getListofChildsByParentIDList.getGetListofChildsByParentID().size()>0)
+					{
+						sharePreferenceClass.setCurrentChildNo(getListofChildsByParentIDList.getGetListofChildsByParentID().size());
+					}
+
 					Intent childIntent = new Intent(ChildListActivity.this, ChildRegistrationActivity.class);
 					Bundle bundleLocation = new Bundle();
 					bundleLocation.putBoolean("ToChildScreenFromAdd", true);
@@ -233,6 +247,15 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 		if(!isButtonTouched) {
 			isButtonTouched = true;
 			Intent childIntent = new Intent(ChildListActivity.this, ChildRegistrationActivity.class);
+			try
+			{
+				int currentChild=position+1;
+				sharePreferenceClass.setCurrentChildNo(currentChild);
+			}
+			catch (Exception e)
+			{
+
+			}
 			Bundle bundleLocation = new Bundle();
 			bundleLocation.putBoolean("ToChildScreen", true);
 			bundleLocation.putInt("childId", getListofChildsByParentIDList.getGetListofChildsByParentID().get(position).getChildID());
@@ -246,7 +269,9 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 
 	public void deleteChild(int ChildId, int position)
 	{
-		new DeleteChildAsync(ChildId,position).execute();
+		showAlertDelete("Confirmation","Delete this child profile? Are you sure? ", ChildId,  position);
+
+		//new DeleteChildAsync(ChildId,position).execute();
 	}
 
 
@@ -378,5 +403,34 @@ public class ChildListActivity extends MainActionBarActivity implements OnItemCl
 			}
 		}
 	}
+	public void showAlertDelete(String title, String message, final int ChildId, final int position)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ChildListActivity.this);
 
+		alertBuilder.setTitle(title);
+		alertBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+		alertBuilder.setMessage(message);
+		alertBuilder.setPositiveButton(" No ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+			}
+		});
+
+		alertBuilder.setNegativeButton(" Yes ", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				dialog.dismiss();
+				new DeleteChildAsync(ChildId,position).execute();
+
+			}
+		});
+		alertBuilder.show();
+	}
 }

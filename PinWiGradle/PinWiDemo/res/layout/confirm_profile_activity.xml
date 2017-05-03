@@ -20,13 +20,15 @@
         android:textSize="18sp" />
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/button_submitConfirm"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/headerActionBar"
-
-        android:layout_marginBottom="10dip"
-        android:layout_marginTop="20dip" >
+        android:layout_above="@+id/button_submitConfirm"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"

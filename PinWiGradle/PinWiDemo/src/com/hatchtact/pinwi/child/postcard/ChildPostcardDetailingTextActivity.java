@@ -111,7 +111,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 		//showKeyBoard();
 		msgEditText.requestFocus();
 
-		setEditTextMaxLength(msgEditText, 500);		
+		setEditTextMaxLength(msgEditText, 500);
 
 		setHeaderItems();
 		initSoundData();
@@ -142,7 +142,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 
 	private void initSoundData() {
 		//soundEffectTransition = new SoundEffect(ChildDashboardActivity.this, R.raw.pageflip);
-		soundEffectButtonClicks = new SoundEffect(ChildPostcardDetailingTextActivity.this, R.raw.two_tone_nav);		
+		soundEffectButtonClicks = new SoundEffect(ChildPostcardDetailingTextActivity.this, R.raw.two_tone_nav);
 	}
 
 	private void playSound(SoundEffect sound){
@@ -255,34 +255,34 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 	@SuppressLint("NewApi")
 	private void setVoiceOverIcon() {
 		if(isMusicStop){
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceovermute));
 			} else {
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceovermute));
-			}			
+			}
 		}else{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
 				child_header_voice_over.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_voiceover));
 			} else {
 				child_header_voice_over.setBackground(getResources().getDrawable(R.drawable.child_voiceover));
-			}	
+			}
 		}
 	}
 
 	@SuppressLint("NewApi")
 	private void setVolumeIcon() {
 		if(isMute){
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_mute));
 			} else {
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_mute));
-			}			
+			}
 		}else{
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
 				child_header_music.setBackgroundDrawable(getResources().getDrawable(R.drawable.child_volume));
 			} else {
 				child_header_music.setBackground(getResources().getDrawable(R.drawable.child_volume));
-			}	
+			}
 		}
 	}
 
@@ -332,7 +332,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				moveToDashboard();	
+				moveToDashboard();
 			}
 		});
 		initTextLayoutVariable();
@@ -370,9 +370,9 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 		msgEditText.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence cs, int start,
-					int before, int count) {
+									  int before, int count) {
 				try{
-					if(msgEditText.getVisibility() == View.VISIBLE 
+					if(msgEditText.getVisibility() == View.VISIBLE
 							&& cs.toString().length() <= 500){
 					}else{
 						msgEditText.setText(cs.toString().substring(0, 500));
@@ -385,7 +385,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start,
-					int count, int after) {
+										  int count, int after) {
 			}
 
 			@Override
@@ -406,15 +406,15 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 		msgEditText.setOnEditorActionListener(new OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
-					KeyEvent event) {
+										  KeyEvent event) {
 
 				if (actionId == EditorInfo.IME_ACTION_NEXT)
 				{
 					return true;
-				} else if (actionId == EditorInfo.IME_ACTION_DONE) 
+				} else if (actionId == EditorInfo.IME_ACTION_DONE)
 				{
 					return false;
-				} else 
+				} else
 				{
 					return false;
 				}
@@ -487,6 +487,13 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 										//if(!isEditingEnabled){
 										/*social.Create_Postcard_TextSentFacebookLog();
 										social.Create_Postcard_TextGoogleAnalyticsLog();*/
+										try {
+											social.postcardAddedClevertap(ChildPostcardActivity.templateArray.get(selectedIndex), "Text");
+										}
+										catch (Exception e)
+										{
+
+										}
 										child_postcard_sent_layout.setVisibility(View.VISIBLE);
 										layout_bottomlayer_postcard_detail.setVisibility(View.INVISIBLE);
 										child_postcard_detail_mid_text.setVisibility(View.INVISIBLE);
@@ -550,21 +557,21 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 				postcard_detail_word_count.setAlpha(0.6f);
 				postcard_detail_word_count.setVisibility(View.VISIBLE);
 			}else{
-				postcard_detail_word_count.setVisibility(View.INVISIBLE);	
+				postcard_detail_word_count.setVisibility(View.INVISIBLE);
 			}
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 				msgDoneBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.done_gray_i));
 			} else {
 				msgDoneBtn.setBackground(getResources().getDrawable(R.drawable.done_gray_i));
-			}			
+			}
 		}else if(setIndex == 1){
 			isWritingDone = true;
 			postcard_detail_word_count.setVisibility(View.INVISIBLE);
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 				msgDoneBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.done_text_i));
 			} else {
 				msgDoneBtn.setBackground(getResources().getDrawable(R.drawable.done_text_i));
-			}			
+			}
 		}else{
 
 			isWritingDone = false;
@@ -574,13 +581,13 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 				postcard_detail_word_count.setText("Word Limit Over");
 				postcard_detail_word_count.setVisibility(View.VISIBLE);
 			}else{
-				postcard_detail_word_count.setVisibility(View.INVISIBLE);	
+				postcard_detail_word_count.setVisibility(View.INVISIBLE);
 			}
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {	
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 				msgDoneBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.cancel_i));
 			} else {
 				msgDoneBtn.setBackground(getResources().getDrawable(R.drawable.cancel_i));
-			}			
+			}
 		}
 	}
 
@@ -589,7 +596,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 		runnable = new Runnable() {
 
 			@Override
-			public void run() { 
+			public void run() {
 				finishActivityHandler();
 			}
 		};
@@ -598,7 +605,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 
 	private void hideKeyBoard()
 	{
-		try  
+		try
 		{
 			getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -606,8 +613,8 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 			inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 			getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		} 
-		catch (Exception e) 
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -615,7 +622,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 
 	private void showKeyBoard()
 	{
-		try  
+		try
 		{
 			/*getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -626,8 +633,8 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);*/
 			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
-		} 
-		catch (Exception e) 
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -810,39 +817,39 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 			finish();*/
 			if(textData.trim().length()>0)
 			{
-			showMessage.showAlertChildInterfaceDiscard(ChildPostcardDetailingTextActivity.this, "Warning", "Finish posting before you go.", new OnEventListener<String>() {
+				showMessage.showAlertChildInterfaceDiscard(ChildPostcardDetailingTextActivity.this, "Warning", "Finish posting before you go.", new OnEventListener<String>() {
 
-				@Override
-				public void onSuccess(String object) {
-					// TODO Auto-generated method stub
-					isActivityFinished=false;
+					@Override
+					public void onSuccess(String object) {
+						// TODO Auto-generated method stub
+						isActivityFinished=false;
 
-				}
+					}
 
-				@Override
-				public void onFailure(String object) {
-					// TODO Auto-generated method stub
-					playSound(soundEffectButtonClicks);
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					@Override
+					public void onFailure(String object) {
+						// TODO Auto-generated method stub
+						playSound(soundEffectButtonClicks);
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						if(bitmap!=null){
+							bitmap.recycle();
+							bitmap = null;
+						}
+						if(handler != null){
+							handler.removeCallbacks(runnable);
+							handler = null;
+							runnable = null;
+						}
+						disposeSound();
+						Intent openTemplate = new Intent(ChildPostcardDetailingTextActivity.this, ChildMainDashboardActivity.class);
+						startActivity(openTemplate);
+						finish();
 					}
-					if(bitmap!=null){
-						bitmap.recycle();
-						bitmap = null;
-					}
-					if(handler != null){
-						handler.removeCallbacks(runnable);
-						handler = null;
-						runnable = null;
-					}
-					disposeSound();
-					Intent openTemplate = new Intent(ChildPostcardDetailingTextActivity.this, ChildMainDashboardActivity.class);
-					startActivity(openTemplate);
-					finish();
-				}
-			});
+				});
 
 			}
 			else
@@ -868,7 +875,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 				Intent openTemplate = new Intent(ChildPostcardDetailingTextActivity.this, ChildMainDashboardActivity.class);
 				startActivity(openTemplate);
 				finish();
-			
+
 			}
 		}
 	}
@@ -876,7 +883,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 	InputFilter restrictValue = new InputFilter() {
 		@Override
 		public CharSequence filter(CharSequence arg0, int arg1, int arg2,
-				Spanned arg3, int arg4, int arg5) {
+								   Spanned arg3, int arg4, int arg5) {
 			if (arg3.toString().length() <=500)
 				return null;
 			else
@@ -900,7 +907,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void hideWritingLayout() {
 		hideKeyBoard();
@@ -911,8 +918,8 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 		postcard_detail_message.setText(msgEditText.getText().toString());
 		//postcard_detail_message.setEnabled(false);
 	}
-	
-	
+
+
 	private void finishActivityHandler() {
 		if(!isActivityFinished)
 		{
@@ -940,7 +947,7 @@ public class ChildPostcardDetailingTextActivity  extends Activity {
 			startActivity(openTemplate);
 			finish();
 
-			
+
 
 		}
 	}

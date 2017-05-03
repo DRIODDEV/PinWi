@@ -31,6 +31,8 @@
         <item>Children who love quizzes and trivia are mostly driven by a hunger to seek knowledge, as are children who enjoy going to museums. Both reflect an interest that involves feeding a curious mind to learn more about the world, its people, their ideas, views and experiences.</item>
         <item>Children who enjoy playing strategy games like chess, checkers or monopoly are likely to enjoy subjects like Science, Computers, and Astronomy. Just like the subjects, strategy games are also driven by logical thinking and involve reasoning and problem solving.</item>
         <item>That interest in Fine Arts is just about the ability to express creatively. Our research says – children interested in activities such as painting, sketching and other art forms are driven by a stronger visual sense than a desire for creative expression.</item>
+        <item>Tap to Read Our Blog for Fun Facts,\n Information &amp; more.</item>
+
     </string-array>
     <string-array name="get_started_features_heading">
         <item>A Smart Parenting App</item>
@@ -39,7 +41,8 @@
         <item>Did you know?</item>
         <item>Truth be Told!</item>
         <item>Who Says!</item>
-     </string-array>
+        <item>Know More About Interests </item>
+    </string-array>
     <array name="getstartedheadingcolors">
         <item>@color/coloroneheading</item>
         <item>@color/colortwoheading</item>
@@ -47,6 +50,15 @@
         <item>@color/colorfourheading</item>
         <item>@color/colorfiveheading</item>
         <item>@color/colorsixheading</item>
+        <item>@color/font_blue_color</item>
+    </array>
+    <array name="getstartedheadingcolorsinsight">
+        <item>@color/colorthreeheading</item>
+        <item>@color/colorfourheading</item>
+        <item>@color/colorfiveheading</item>
+        <item>@color/colorsixheading</item>
+        <item>@color/font_blue_color</item>
+
     </array>
     <string-array name="guidestepdetails">
         <item>Hi! Start by adding all subjects your child \n does at school.</item>
@@ -56,6 +68,21 @@
         <item>Use the calendar to keep tab on all \n schedules</item>
         <item>Most importantly, make your children rate all these activities every evening using their login.</item>
         <item>You’re good to go! </item>
+    </string-array>
+    <string-array name="insights_features_heading">
+        <item>Ever Wonder?</item>
+        <item>Did you know?</item>
+        <item>Truth be Told!</item>
+        <item>Who Says!</item>
+        <item>Know More About Interests </item>
+
+    </string-array>
+    <string-array name="insights_slider_features">
+        <item>Why children get bored of activities so quickly; or why what they once loved doesn\'t excite them anymore? Psychologists say, unlike aptitude and inherent skills, interests are ever-evolving. For a more well rounded development its important for children balance both aptitude and interests.</item>
+        <item>Children who love quizzes and trivia are mostly driven by a hunger to seek knowledge, as are children who enjoy going to museums. Both reflect an interest that involves feeding a curious mind to learn more about the world, its people, their ideas, views and experiences.</item>
+        <item>Children who enjoy playing strategy games like chess, checkers or monopoly are likely to enjoy subjects like Science, Computers, and Astronomy. Just like the subjects, strategy games are also driven by logical thinking and involve reasoning and problem solving.</item>
+        <item>That interest in Fine Arts is just about the ability to express creatively. Our research says – children interested in activities such as painting, sketching and other art forms are driven by a stronger visual sense than a desire for creative expression.</item>
+        <item>Tap to Read Our Blog for Fun Facts,\n Information &amp; more.</item>
     </string-array>
     <array name="nav_drawer_icons">
        <!-- <item>@drawable/home_drawer</item>-->
@@ -517,7 +544,7 @@ content here\', making it look like readable English. </string>
     <string name="forgotpassword_text">Forgot password?</string>
     <string name="forgotpassword_text1">Forgot Password</string>
     <string name="forgotpassword_updateText">Update Password</string>
-    <string name="free_child_list_text">This will generate an Instant Interest Report for your child. Select a child to continue. </string>
+    <string name="free_child_list_text">This will generate an Instant Interest Report for your child. You need to do this together with your child.\n Select a child to continue. </string>
     <string name="free_text">Instant Interest Report</string>
     <string name="friday">FRI</string>
     <string name="friday_text">F</string>

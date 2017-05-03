@@ -1,15 +1,10 @@
 package com.hatchtact.pinwi.fragment.insights;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,9 +26,16 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.PercentFormatter;
 import com.hatchtact.pinwi.ActivityAboutUS;
 import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.adapter.GetStartedScreenSlidePagerAdapter;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.CheckNetwork;
 import com.hatchtact.pinwi.utility.StaticVariables;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class InsightsErrorFragment extends ParentFragment implements OnClickListener
 {
@@ -49,7 +51,9 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 	private LinearLayout layoutText;
 	private String textBadge="Gain Insights into your child's interests. Know how you can unlock this report faster.";
 	private ImageView imgArrow;
-
+	ViewPager viewpager;
+	private GetStartedScreenSlidePagerAdapter mPagerAdapter;
+	private ImageView dotone,dottwo,dotthree,dotfour,dotfive,dotsix;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +71,7 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 		headerText=(TextView) view.findViewById(R.id.headerBadge);
 		texttypesinsightbadge=(TextView) view.findViewById(R.id.texttypesinsightbadge);
 		imgArrow=(ImageView) view.findViewById(R.id.imgArrow);
+
 		layoutText.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -105,6 +110,99 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		dotone=(ImageView)view.findViewById(R.id.imagedot);
+		dottwo=(ImageView)view.findViewById(R.id.imagedottwo);
+		dotthree=(ImageView)view.findViewById(R.id.imagedotthree);
+		dotfour=(ImageView)view.findViewById(R.id.imagedotfour);
+		dotfive=(ImageView)view.findViewById(R.id.imagedotfive);
+		dotsix=(ImageView)view.findViewById(R.id.imagedotsix);
+		dotsix.setVisibility(View.GONE);
+		viewpager=(ViewPager)view.findViewById(R.id.pager);
+		viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageSelected(int position) {
+
+
+				switch (position) {
+					case 0:
+						pageSwitcher(5);
+						page=0;
+						dotone.setImageResource(R.drawable.dot_darkblue);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+
+					case 1:
+						pageSwitcher(5);
+						page=1;
+						dottwo.setImageResource(R.drawable.dot_darkblue);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+
+					case 2:
+						pageSwitcher(5);
+						page=2;
+						dotthree.setImageResource(R.drawable.dot_darkblue);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+
+					case 3:
+						pageSwitcher(5);
+						page=3;
+						dotfour.setImageResource(R.drawable.dot_darkblue);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_gray);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+					case 4:
+						pageSwitcher(5);
+						page=4;
+						dotfour.setImageResource(R.drawable.dot_gray);
+						dotthree.setImageResource(R.drawable.dot_gray);
+						dotone.setImageResource(R.drawable.dot_gray);
+						dottwo.setImageResource(R.drawable.dot_gray);
+						dotfive.setImageResource(R.drawable.dot_darkblue);
+						dotsix.setImageResource(R.drawable.dot_gray);
+						break;
+					default:
+						break;
+				}
+
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+
+			}
+		});
+
+
+
+		StaticVariables.sliderAdapter=1;
+		GetStartedScreenSlidePagerAdapter.NUM_PAGES=5;
+		mPagerAdapter = new GetStartedScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
+		viewpager.setAdapter(mPagerAdapter);
+		pageSwitcher(5);
+		page=0;
 
 		return view;
 	}
@@ -173,6 +271,15 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 	}
 
 
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		if(timer!=null)
+		{
+			timer.cancel();
+			timer=null;
+		}
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -183,6 +290,11 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 		}
 		else if(item.getItemId()!=R.id.action_childName)
 		{
+			if(timer!=null)
+			{
+				timer.cancel();
+				timer=null;
+			}
 			StaticVariables.currentChild=StaticVariables.childInfo.get(item.getItemId());
 			getActivity().invalidateOptionsMenu();
 			switchingFragments(new TypesInsightsFragment());
@@ -423,9 +535,52 @@ public class InsightsErrorFragment extends ParentFragment implements OnClickList
 			{
 				headerText.setText(modelPercentage.getGetPercentageCountOnCI()+" Unlocked");
 				texttypesinsightbadge.setText(textBadge);
-				initializePieChart();
+				try {
+					initializePieChart();
+				}
+				catch (Exception e)
+				{
+
+				}
 			}
 
+		}
+	}
+	Timer timer;
+	int page = 0;
+
+	public void pageSwitcher(int seconds) {
+		seconds=9;
+		if(timer!=null)
+		{
+			timer.cancel();
+			timer=null;
+		}
+		timer = new Timer(); // At this line a new Thread will be created
+		timer.scheduleAtFixedRate(new RemindTask(), 0, seconds * 1000); // delay
+		// in
+		// milliseconds
+	}
+
+	// this is an inner class...
+	class RemindTask extends TimerTask {
+
+		@Override
+		public void run() {
+
+			// As the TimerTask run on a seprate thread from UI thread we have
+			// to call runOnUiThread to do work on UI thread.
+			getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					if (page > 4) { // In my case the number of pages are 5
+						//timer.cancel();
+						page=0;
+						viewpager.setCurrentItem(page++);
+					} else {
+						viewpager.setCurrentItem(page++);
+					}
+				}
+			});
 		}
 	}
 

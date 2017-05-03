@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:2:1-328:12
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:2:1-358:12
 	package
 		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:3:5-34
 		INJECTED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml
@@ -269,7 +269,7 @@ ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo
 	android:required
 		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:69:9-32
 application
-ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:71:5-326:19
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:71:5-356:19
 MERGED from [PinWiGradle:android-support-v7-appcompat:unspecified] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\PinWiGradle\android-support-v7-appcompat\unspecified\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:23:5-19
 MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:18:5-20:19
@@ -848,7 +848,7 @@ ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo
 	android:name
 		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:316:13-71
 meta-data#CLEVERTAP_ACCOUNT_ID
-ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:320:9-322:44
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:320:8-322:44
 	android:value
 		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:322:13-41
 	android:name
@@ -859,6 +859,48 @@ ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo
 		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:325:13-36
 	android:name
 		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:324:13-43
+activity#com.hatchtact.pinwi.ReferalScreenActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:332:9-336:61
+	android:screenOrientation
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:334:13-49
+	android:windowSoftInputMode
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:335:13-84
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:336:13-59
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:333:13-69
+service#com.hatchtact.pinwi.GetDataService
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:337:9-339:44
+	android:stopWithTask
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:339:13-41
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:338:13-62
+receiver#com.clevertap.android.sdk.InstallReferrerBroadcastReceiver
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:340:9-346:20
+	android:exported
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:342:13-36
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:341:13-86
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:343:13-345:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:344:17-78
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:344:25-76
+activity#com.clevertap.android.sdk.InAppNotificationActivity
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:347:9-350:65
+	android:configChanges
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:350:13-63
+	android:theme
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:349:13-72
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:348:13-79
+meta-data#CLEVERTAP_NOTIFICATION_ICON
+ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:351:9-353:39
+	android:value
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:353:13-37
+	android:name
+		ADDED from D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\AndroidManifest.xml:352:13-55
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
 MERGED from [com.google.android.gms:play-services-base:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\AndroidManifest.xml:19:9-172
@@ -889,12 +931,6 @@ ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine Interative
 		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:27:105-161
 	android:name
 		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:27:17-104
-intent-filter#com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:28:11-30:27
-action#com.android.vending.INSTALL_REFERRER
-ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:29:15-76
-	android:name
-		ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:29:23-74
 service#com.google.android.gms.measurement.AppMeasurementService
 ADDED from [com.google.firebase:firebase-analytics:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\AndroidManifest.xml:32:7-137
 MERGED from [com.google.firebase:firebase-analytics-impl:10.0.1] D:\Imagine InterativeProjects\Pinwi\Code\Gradle\PinWiGradle\PinWiDemo\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\AndroidManifest.xml:27:7-137

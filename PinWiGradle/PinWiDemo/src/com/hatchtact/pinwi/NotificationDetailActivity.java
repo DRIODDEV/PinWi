@@ -29,12 +29,12 @@ public class NotificationDetailActivity extends FragmentActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		WindowManager.LayoutParams params = getWindow().getAttributes();  
+		WindowManager.LayoutParams params = getWindow().getAttributes();
 		params.x =0;  
 		params.height = (int) (SplashActivity.ScreenHeight*.35f);
-		params.width = (int)(SplashActivity.ScreenWidth* .9f) ;  
-		params.y = SplashActivity.ScreenHeight/15;  
-		this.getWindow().setAttributes(params); 
+		params.width = (int)(SplashActivity.ScreenWidth* .9f) ;
+		params.y = SplashActivity.ScreenHeight/15;
+		this.getWindow().setAttributes(params);
 
 		setContentView(R.layout.dialog_notificationdetail);
 		NotificationDetailActivity.this.overridePendingTransition(R.anim.popup_show, R.anim.activity_close_scale);
@@ -88,7 +88,7 @@ public class NotificationDetailActivity extends FragmentActivity
 				NotificationDetailActivity.this.overridePendingTransition(R.anim.activity_open_scale, R.anim.disappear);
 			}
 		});
-		
+
 		
 	}
 

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_background" >
+        android:background="@drawable/rounded_background_plawall" >
 
         <LinearLayout
             android:id="@+id/layout_playwall"

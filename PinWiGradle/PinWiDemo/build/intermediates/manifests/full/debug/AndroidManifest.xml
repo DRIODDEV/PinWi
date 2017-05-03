@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hatchtact.pinwi"
-    android:versionCode="51"
-    android:versionName="2.4" >
+    android:versionCode="54"
+    android:versionName="2.6" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -319,6 +319,41 @@
         <meta-data
             android:name="CLEVERTAP_TOKEN"
             android:value="aab-1a6" />
+        <!--
+        <meta-data
+            android:name="CLEVERTAP_ACCOUNT_ID"
+            android:value="TEST-77Z-877-Z84Z"/>
+        <meta-data
+            android:name="CLEVERTAP_TOKEN"
+            android:value="TEST-aab-1aa"/>
+        -->
+        <activity
+            android:name="com.hatchtact.pinwi.ReferalScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.CustomTranslucent"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize|adjustPan" />
+
+        <service
+            android:name="com.hatchtact.pinwi.GetDataService"
+            android:stopWithTask="false" />
+
+        <receiver
+            android:name="com.clevertap.android.sdk.InstallReferrerBroadcastReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.clevertap.android.sdk.InAppNotificationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="CLEVERTAP_NOTIFICATION_ICON"
+            android:value="launcher" />
+ <!-- name of your file in the drawable directory without the file extension. -->
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"

@@ -19,6 +19,7 @@ import com.hatchtact.pinwi.classmodel.GetListOfWishListsByChildIDList;
 import com.hatchtact.pinwi.fragment.network.CustomAsyncTask;
 import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.utility.ShowMessages;
+import com.hatchtact.pinwi.utility.SocialConstants;
 import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
@@ -128,6 +129,7 @@ public class ChildWishListAdapter extends ArrayAdapter<GetListOfWishListsByChild
 						public void onSuccess(String object) 
 						{
 							// TODO Auto-generated method stub
+							new SocialConstants(context).childActivityWishlistedClevertap(model.getActivityName(),StaticVariables.currentChild.getFirstName());
 							model.setIsWished("true");
 							listWishlists.getListOfWishListsByChildID().set(position, model);
 							notifyDataSetChanged();

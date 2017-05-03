@@ -97,6 +97,13 @@
 
                 android:src="@drawable/dot_gray"
                 />
+            <ImageView
+                android:id="@+id/imagedotseven"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/dot_gray"
+                />
         </LinearLayout>
 
 
@@ -125,13 +132,29 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
             android:layout_below="@id/layoutDots"
-            android:layout_above="@+id/layoutButtonGetStarted"
+            android:layout_above="@+id/tvBlog"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </android.support.v4.view.ViewPager>
 
+        <TextView
+            android:id="@+id/tvBlog"
+            android:layout_marginTop="5dp"
+            android:paddingTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:layout_above="@+id/layoutButtonGetStarted"
+            android:gravity="center"
+            android:paddingBottom="5dip"
+            android:text="Read our blog"
+            android:textColor="@color/font_blue_color"
+            android:textSize="16sp" />
         <ImageView
             android:id="@+id/image_headerBelow"
             android:layout_width="match_parent"

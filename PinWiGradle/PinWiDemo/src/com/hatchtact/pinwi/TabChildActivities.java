@@ -401,6 +401,13 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				break;
 			case 3:
 				setActionBarTitle("  WhatToDo");
+				try {
+					social.whattodoviewedClevertap(StaticVariables.currentChild.getFirstName());
+				}
+				catch(Exception e)
+				{
+
+				}
 				tab_notification.setSelected(false);
 				tab_scheduler.setSelected(false);
 				tab_insights.setSelected(false);
@@ -757,6 +764,13 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				startActivity(parentIntent);
 				break;
 			case 6:
+				try {
+					social.logoutClevertap();
+				}
+				catch (Exception e)
+				{
+
+				}
 				sharePref.setIsLogin(false);
 				sharePref.setIsLogout(true);
 				sharePref.setParentProfile("");
@@ -1023,8 +1037,8 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 				}
 				else if(StaticVariables.fragmentIndexFrequencyPage==addCustomSchoolActivity)
 				{
-						StaticVariables.fragmentIndexFrequencyPage=0;
-						switchingFragments(new AddSubjectFragment());
+					StaticVariables.fragmentIndexFrequencyPage=0;
+					switchingFragments(new AddSubjectFragment());
 				}
 				else if(StaticVariables.fragmentIndexCurrentTabSchedular==calenderFragmentScheduler)
 				{
@@ -2057,6 +2071,13 @@ public class TabChildActivities extends FragmentActivity implements OnFragmentAt
 			case R.id.tab_activity:
 				if(currentTab!=3) {
 					currentTab = 3;
+					try {
+						social.whattodoviewedClevertap(StaticVariables.currentChild.getFirstName());
+					}
+					catch(Exception e)
+					{
+
+					}
 					tab_notification.setSelected(false);
 					tab_scheduler.setSelected(false);
 					tab_insights.setSelected(false);

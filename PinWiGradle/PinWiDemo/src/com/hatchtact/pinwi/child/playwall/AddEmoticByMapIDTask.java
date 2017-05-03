@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.hatchtact.pinwi.child.postcard.ChildPostcardActivity;
 import com.hatchtact.pinwi.classmodel.GetFriendsTempleteMessageListByChildIDList;
 import com.hatchtact.pinwi.fragment.network.OnEventListener;
 import com.hatchtact.pinwi.sync.ServiceMethod;
@@ -138,6 +139,13 @@ public class AddEmoticByMapIDTask extends AsyncTask<Void, Void, Integer>
 				showToastMessage("Emoticon Added");
 				/*social.reactedToPostFacebookLog();
 				social.reactedToPostGoogleAnalyticsLog();*/
+				try {
+					social.playwllReactionAddedClevertap(StaticVariables.currentChild.getFirstName());
+				}
+				catch (Exception e)
+				{
+
+				}
 				callback.onSuccess(getFriendsTempleteMessageListByChildIDList.getFriendsTempleteMessageListByChildID().get(0));
 			}
 			else

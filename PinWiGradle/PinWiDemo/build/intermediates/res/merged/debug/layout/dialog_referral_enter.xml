@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:layout_gravity="center"
+    android:id="@+id/layoutMainReferal"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageCross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ally_cancel"
+            android:padding="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/referralHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Who referred you to Pinwi? "
+        android:paddingBottom="10dp"
+        android:textColor="@color/black_color"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/referalDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text=" If someone referred you to Pinwi, do enter their referral code. We will send a thank you note to them on your behalf"
+        android:paddingBottom="5dp"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+
+    <EditText
+        android:id="@+id/editReferralCode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/edit_code_background"
+        android:singleLine="true"
+        android:paddingBottom="10dp"
+        android:hint="Enter Referral Code"
+        android:textColorHint="@color/font_red_color"
+        android:textAllCaps="false"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/btnSubmit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:background="@drawable/rectangular_btn"
+        android:textColor="@color/font_white_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/btnNoThanks"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Don’t Have A Referral Code"
+        android:background="@drawable/rectangular_btn_bluecolornetwork"
+
+        android:textAllCaps="false"
+        android:textColor="@color/font_blue_color"
+        android:textSize="18sp" />
+
+</LinearLayout>

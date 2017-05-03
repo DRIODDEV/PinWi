@@ -15,8 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/child_dashboard_header"
-        android:layout_margin="15dp"
-        android:background="@drawable/rounded_background" >
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded_background_plawall" >
 
         <LinearLayout
             android:id="@+id/layoutHeaderDetail"
@@ -34,7 +35,7 @@
                     android:id="@+id/child_buddies"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="25dp"
                     android:src="@drawable/camera_icon"
                     android:visibility="invisible" />
 
@@ -108,12 +109,13 @@
                 android:id="@+id/playwall_image"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:scaleType="centerCrop"
                 android:visibility="gone" />
 
             <include
                 android:id="@+id/playwall_audio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 layout="@layout/audio_player_layout"
                 android:visibility="gone" />
         </RelativeLayout>
@@ -132,14 +134,6 @@
                 layout="@layout/emoji_layout" />
         </RelativeLayout>
     </RelativeLayout>
-
-    <com.hatchtact.pinwi.child.HexagonImageView
-        android:id="@+id/child_buddies_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/child_dashboard_header"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/camera_icon" />
 
     <LinearLayout
         android:id="@+id/layout_nodata"
@@ -168,5 +162,16 @@
             android:textColor="@color/font_color"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <com.hatchtact.pinwi.child.HexagonImageView
+        android:id="@+id/child_buddies_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:src="@drawable/camera_icon"
+        android:layout_below="@+id/child_dashboard_header"
+        android:layout_toRightOf="@+id/layout_nodata"
+        android:layout_toEndOf="@+id/layout_nodata"
+        android:layout_marginStart="19dp" />
 
 </RelativeLayout>

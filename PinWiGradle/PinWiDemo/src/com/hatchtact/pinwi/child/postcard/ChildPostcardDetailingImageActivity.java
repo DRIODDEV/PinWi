@@ -350,7 +350,13 @@ public class ChildPostcardDetailingImageActivity  extends Activity {
 									// TODO Auto-generated method stub
 									/*social.Create_Postcard_PhotoSentFacebookLog();
 									social.Create_Postcard_PhotoGoogleAnalyticsLog();*/
-									
+									try {
+										social.postcardAddedClevertap(ChildPostcardActivity.templateArray.get(selectedIndex), "Image");
+									}
+									catch (Exception e)
+									{
+
+									}
 									child_postcard_sent_layout.setVisibility(View.VISIBLE);
 									layout_bottomlayer_postcard_detail.setVisibility(View.INVISIBLE);
 									child_postcard_detail_mid_image.setVisibility(View.INVISIBLE);

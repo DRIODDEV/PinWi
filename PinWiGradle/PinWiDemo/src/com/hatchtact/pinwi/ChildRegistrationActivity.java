@@ -1117,6 +1117,24 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 				{
 					Toast.makeText(ChildRegistrationActivity.this, "Woohoo! You succesfully updated child profile", Toast.LENGTH_SHORT).show();
 
+					ChildProfile modelChild=new ChildProfile();
+					modelChild.setChildID(updateChildProfile.getChildID());
+					modelChild.setNickName(updateChildProfile.getNickName());
+					modelChild.setFirstName(updateChildProfile.getFirstName());
+					modelChild.setDateOfBirth(updateChildProfile.getDateOfBirth());
+					modelChild.setGender(updateChildProfile.getGender());
+					modelChild.setSchoolName(updateChildProfile.getSchoolName());
+
+					try {
+						int currentChild=sharePref.getCurrentChildNumber();
+						social.userProfileClevertap("","",3,null,modelChild,parentId,currentChild);
+
+					}
+					catch(Exception e)
+					{
+
+					}
+
 					if(StaticVariables.childArrayList.size()>0)
 					{
 						for(int i=0;i<StaticVariables.childArrayList.size();i++)
@@ -1681,7 +1699,17 @@ public class ChildRegistrationActivity extends MainActionBarActivity implements 
 					pcChild.setPassCodeType(2);
 					pcChild.setProfileId(result);
 					pcChild.setPassCode(childProfile.getPasscode());
+					try {
+						int currentChild=sharePref.getCurrentChildNumber();
+						currentChild++;
+						sharePref.setCurrentChildNo(currentChild);
+						social.userProfileClevertap("","",3,null,childProfile,parentId,currentChild);
 
+					}
+					catch(Exception e)
+					{
+
+					}
 					PassCodeList passCodeList = gsonRegistration.fromJson(sharePref.getPassCodeList(), PassCodeList.class);
 
 					if(passCodeList!=null)

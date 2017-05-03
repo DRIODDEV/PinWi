@@ -1,5 +1,6 @@
 package com.hatchtact.pinwi.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hatchtact.pinwi.ActivityAboutUS;
+import com.hatchtact.pinwi.GetStartedActivity;
 import com.hatchtact.pinwi.R;
+import com.hatchtact.pinwi.utility.StaticVariables;
 import com.hatchtact.pinwi.utility.TypeFace;
 
 
@@ -57,9 +61,50 @@ public class GetStartedScreenSlidePageFragment extends Fragment {
 		TextView textDesc=(TextView)rootView.findViewById(R.id.text_started);
 		typeface.setTypefaceLight(textDesc);
 		typeface.setTypefaceBold(heading);
-		heading.setTextColor(getActivity().getResources().getIntArray(R.array.getstartedheadingcolors)[mPageNumber]);
-		heading.setText(getActivity().getResources().getStringArray(R.array.get_started_features_heading)[mPageNumber]);
-		textDesc.setText(getActivity().getResources().getStringArray(R.array.get_started_features)[mPageNumber]);
+		if(StaticVariables.sliderAdapter==2)//for get started
+		{
+			heading.setTextColor(getActivity().getResources().getIntArray(R.array.getstartedheadingcolors)[mPageNumber]);
+			heading.setText(getActivity().getResources().getStringArray(R.array.get_started_features_heading)[mPageNumber]);
+			textDesc.setText(getActivity().getResources().getStringArray(R.array.get_started_features)[mPageNumber]);
+			textDesc.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if(mPageNumber==6)
+					{
+						StaticVariables.webUrl="getstarted";
+						Intent intentAboutUs =new Intent(getActivity(), ActivityAboutUS.class);
+						startActivity(intentAboutUs);
+					}
+				}
+			});
+		}
+		else if(StaticVariables.sliderAdapter==1)//for insight static page
+		{
+			heading.setTextColor(getActivity().getResources().getIntArray(R.array.getstartedheadingcolorsinsight)[mPageNumber]);
+			heading.setText(getActivity().getResources().getStringArray(R.array.insights_features_heading)[mPageNumber]);
+			textDesc.setText(getActivity().getResources().getStringArray(R.array.insights_slider_features)[mPageNumber]);
+			/*heading.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if(mPageNumber==4) {
+						StaticVariables.webUrl = "http://www.pinwi.in/blog/";
+						Intent intentAboutUs = new Intent(getActivity(), ActivityAboutUS.class);
+						startActivity(intentAboutUs);
+					}
+				}
+			});*/
+			textDesc.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if(mPageNumber==4)
+					{
+						StaticVariables.webUrl = "http://www.pinwi.in/blog/";
+						Intent intentAboutUs = new Intent(getActivity(), ActivityAboutUS.class);
+						startActivity(intentAboutUs);
+					}
+				}
+			});
+		}
 
 		return rootView;
 	}

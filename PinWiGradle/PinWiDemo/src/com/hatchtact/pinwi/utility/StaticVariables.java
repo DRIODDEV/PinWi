@@ -140,6 +140,6 @@ public class StaticVariables
 	public static String freeAppWebUrl="";
 	public static int  screenForPurchase=0;
 	public static AddSubjectActivity addSchoolActivities;
-
+	public static int sliderAdapter=0;
 
 }

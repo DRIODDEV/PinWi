@@ -16,10 +16,10 @@
                     "position": {
                         "startLine": 334,
                         "startColumn": 4,
-                        "startOffset": 18907,
+                        "startOffset": 19051,
                         "endLine": 343,
                         "endColumn": 19,
-                        "endOffset": 19413
+                        "endOffset": 19557
                     }
                 }
             },
@@ -37,10 +37,10 @@
                     "position": {
                         "startLine": 308,
                         "startColumn": 4,
-                        "startOffset": 17763,
+                        "startOffset": 17859,
                         "endLine": 321,
                         "endColumn": 19,
-                        "endOffset": 18186
+                        "endOffset": 18282
                     }
                 }
             },
@@ -49,114 +49,156 @@
                     "startLine": 26,
                     "startColumn": 4,
                     "startOffset": 994,
-                    "endLine": 33,
+                    "endLine": 35,
                     "endColumn": 19,
-                    "endOffset": 2788
+                    "endOffset": 2872
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 344,
                         "startColumn": 4,
-                        "startOffset": 19418,
-                        "endLine": 351,
+                        "startOffset": 19562,
+                        "endLine": 353,
                         "endColumn": 19,
-                        "endOffset": 21212
+                        "endOffset": 21440
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 34,
+                    "startLine": 36,
                     "startColumn": 4,
-                    "startOffset": 2793,
-                    "endLine": 41,
+                    "startOffset": 2877,
+                    "endLine": 44,
                     "endColumn": 19,
-                    "endOffset": 3086
+                    "endOffset": 3218
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
-                        "startLine": 353,
+                        "startLine": 355,
                         "startColumn": 4,
-                        "startOffset": 21218,
-                        "endLine": 360,
+                        "startOffset": 21446,
+                        "endLine": 363,
                         "endColumn": 19,
-                        "endOffset": 21511
+                        "endOffset": 21787
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 42,
+                    "startLine": 45,
                     "startColumn": 4,
-                    "startOffset": 3091,
-                    "endLine": 50,
+                    "startOffset": 3223,
+                    "endLine": 53,
                     "endColumn": 19,
-                    "endOffset": 3776
+                    "endOffset": 3908
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 289,
                         "startColumn": 4,
-                        "startOffset": 16224,
+                        "startOffset": 16320,
                         "endLine": 297,
                         "endColumn": 19,
-                        "endOffset": 16909
+                        "endOffset": 17005
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 51,
+                    "startLine": 54,
                     "startColumn": 4,
-                    "startOffset": 3781,
-                    "endLine": 67,
+                    "startOffset": 3913,
+                    "endLine": 61,
+                    "endColumn": 19,
+                    "endOffset": 4165
+                },
+                "from": {
+                    "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
+                    "position": {
+                        "startLine": 365,
+                        "startColumn": 4,
+                        "startOffset": 21793,
+                        "endLine": 372,
+                        "endColumn": 19,
+                        "endOffset": 22045
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 62,
+                    "startColumn": 4,
+                    "startOffset": 4170,
+                    "endLine": 68,
+                    "endColumn": 19,
+                    "endOffset": 5483
+                },
+                "from": {
+                    "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
+                    "position": {
+                        "startLine": 374,
+                        "startColumn": 4,
+                        "startOffset": 22051,
+                        "endLine": 380,
+                        "endColumn": 19,
+                        "endOffset": 23364
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 69,
+                    "startColumn": 4,
+                    "startOffset": 5488,
+                    "endLine": 85,
                     "endColumn": 12,
-                    "endOffset": 4323
+                    "endOffset": 6054
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 162,
                         "startColumn": 4,
-                        "startOffset": 7495,
+                        "startOffset": 7543,
                         "endLine": 178,
                         "endColumn": 12,
-                        "endOffset": 8037
+                        "endOffset": 8109
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 68,
+                    "startLine": 86,
                     "startColumn": 4,
-                    "startOffset": 4328,
-                    "endLine": 81,
+                    "startOffset": 6059,
+                    "endLine": 99,
                     "endColumn": 12,
-                    "endOffset": 4834
+                    "endOffset": 6589
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 179,
                         "startColumn": 4,
-                        "startOffset": 8042,
+                        "startOffset": 8114,
                         "endLine": 192,
                         "endColumn": 12,
-                        "endOffset": 8548
+                        "endOffset": 8644
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 82,
+                    "startLine": 100,
                     "startColumn": 4,
-                    "startOffset": 4839,
-                    "endLine": 96,
+                    "startOffset": 6594,
+                    "endLine": 114,
                     "endColumn": 19,
-                    "endOffset": 5276
+                    "endOffset": 7055
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -166,59 +208,59 @@
                         "startOffset": 6540,
                         "endLine": 143,
                         "endColumn": 19,
-                        "endOffset": 6977
+                        "endOffset": 7001
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 97,
+                    "startLine": 115,
                     "startColumn": 4,
-                    "startOffset": 5281,
-                    "endLine": 109,
+                    "startOffset": 7060,
+                    "endLine": 127,
                     "endColumn": 19,
-                    "endOffset": 5659
+                    "endOffset": 7462
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 145,
                         "startColumn": 4,
-                        "startOffset": 7017,
+                        "startOffset": 7041,
                         "endLine": 157,
                         "endColumn": 19,
-                        "endOffset": 7395
+                        "endOffset": 7443
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 110,
+                    "startLine": 128,
                     "startColumn": 4,
-                    "startOffset": 5664,
-                    "endLine": 116,
+                    "startOffset": 7467,
+                    "endLine": 134,
                     "endColumn": 19,
-                    "endOffset": 6117
+                    "endOffset": 7920
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 326,
                         "startColumn": 4,
-                        "startOffset": 18448,
+                        "startOffset": 18592,
                         "endLine": 332,
                         "endColumn": 19,
-                        "endOffset": 18901
+                        "endOffset": 19045
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 117,
+                    "startLine": 135,
                     "startColumn": 4,
-                    "startOffset": 6122,
+                    "startOffset": 7925,
                     "endColumn": 61,
-                    "endOffset": 6179
+                    "endOffset": 7982
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -233,11 +275,11 @@
             },
             {
                 "to": {
-                    "startLine": 118,
+                    "startLine": 136,
                     "startColumn": 4,
-                    "startOffset": 6184,
+                    "startOffset": 7987,
                     "endColumn": 67,
-                    "endOffset": 6247
+                    "endOffset": 8050
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -252,11 +294,11 @@
             },
             {
                 "to": {
-                    "startLine": 119,
+                    "startLine": 137,
                     "startColumn": 4,
-                    "startOffset": 6252,
+                    "startOffset": 8055,
                     "endColumn": 68,
-                    "endOffset": 6316
+                    "endOffset": 8119
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -271,11 +313,11 @@
             },
             {
                 "to": {
-                    "startLine": 120,
+                    "startLine": 138,
                     "startColumn": 4,
-                    "startOffset": 6321,
+                    "startOffset": 8124,
                     "endColumn": 64,
-                    "endOffset": 6381
+                    "endOffset": 8184
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -290,11 +332,11 @@
             },
             {
                 "to": {
-                    "startLine": 121,
+                    "startLine": 139,
                     "startColumn": 4,
-                    "startOffset": 6386,
+                    "startOffset": 8189,
                     "endColumn": 65,
-                    "endOffset": 6447
+                    "endOffset": 8250
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -309,11 +351,11 @@
             },
             {
                 "to": {
-                    "startLine": 122,
+                    "startLine": 140,
                     "startColumn": 4,
-                    "startOffset": 6452,
+                    "startOffset": 8255,
                     "endColumn": 61,
-                    "endOffset": 6509
+                    "endOffset": 8312
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -328,11 +370,11 @@
             },
             {
                 "to": {
-                    "startLine": 123,
+                    "startLine": 141,
                     "startColumn": 4,
-                    "startOffset": 6514,
+                    "startOffset": 8317,
                     "endColumn": 58,
-                    "endOffset": 6568
+                    "endOffset": 8371
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -347,11 +389,11 @@
             },
             {
                 "to": {
-                    "startLine": 124,
+                    "startLine": 142,
                     "startColumn": 4,
-                    "startOffset": 6573,
+                    "startOffset": 8376,
                     "endColumn": 47,
-                    "endOffset": 6616
+                    "endOffset": 8419
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -366,11 +408,11 @@
             },
             {
                 "to": {
-                    "startLine": 125,
+                    "startLine": 143,
                     "startColumn": 4,
-                    "startOffset": 6621,
+                    "startOffset": 8424,
                     "endColumn": 58,
-                    "endOffset": 6675
+                    "endOffset": 8478
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -385,11 +427,11 @@
             },
             {
                 "to": {
-                    "startLine": 126,
+                    "startLine": 144,
                     "startColumn": 4,
-                    "startOffset": 6680,
+                    "startOffset": 8483,
                     "endColumn": 41,
-                    "endOffset": 6717
+                    "endOffset": 8520
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -404,11 +446,11 @@
             },
             {
                 "to": {
-                    "startLine": 127,
+                    "startLine": 145,
                     "startColumn": 4,
-                    "startOffset": 6722,
+                    "startOffset": 8525,
                     "endColumn": 53,
-                    "endOffset": 6771
+                    "endOffset": 8574
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -423,11 +465,11 @@
             },
             {
                 "to": {
-                    "startLine": 128,
+                    "startLine": 146,
                     "startColumn": 4,
-                    "startOffset": 6776,
+                    "startOffset": 8579,
                     "endColumn": 47,
-                    "endOffset": 6819
+                    "endOffset": 8622
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -442,11 +484,11 @@
             },
             {
                 "to": {
-                    "startLine": 129,
+                    "startLine": 147,
                     "startColumn": 4,
-                    "startOffset": 6824,
+                    "startOffset": 8627,
                     "endColumn": 43,
-                    "endOffset": 6863
+                    "endOffset": 8666
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -461,11 +503,11 @@
             },
             {
                 "to": {
-                    "startLine": 130,
+                    "startLine": 148,
                     "startColumn": 4,
-                    "startOffset": 6868,
+                    "startOffset": 8671,
                     "endColumn": 60,
-                    "endOffset": 6924
+                    "endOffset": 8727
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -480,11 +522,11 @@
             },
             {
                 "to": {
-                    "startLine": 131,
+                    "startLine": 149,
                     "startColumn": 4,
-                    "startOffset": 6929,
+                    "startOffset": 8732,
                     "endColumn": 41,
-                    "endOffset": 6966
+                    "endOffset": 8769
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -499,11 +541,11 @@
             },
             {
                 "to": {
-                    "startLine": 132,
+                    "startLine": 150,
                     "startColumn": 4,
-                    "startOffset": 6971,
+                    "startOffset": 8774,
                     "endColumn": 59,
-                    "endOffset": 7026
+                    "endOffset": 8829
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -518,11 +560,11 @@
             },
             {
                 "to": {
-                    "startLine": 133,
+                    "startLine": 151,
                     "startColumn": 4,
-                    "startOffset": 7031,
+                    "startOffset": 8834,
                     "endColumn": 40,
-                    "endOffset": 7067
+                    "endOffset": 8870
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -537,11 +579,11 @@
             },
             {
                 "to": {
-                    "startLine": 134,
+                    "startLine": 152,
                     "startColumn": 4,
-                    "startOffset": 7072,
+                    "startOffset": 8875,
                     "endColumn": 46,
-                    "endOffset": 7114
+                    "endOffset": 8917
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -556,11 +598,11 @@
             },
             {
                 "to": {
-                    "startLine": 135,
+                    "startLine": 153,
                     "startColumn": 4,
-                    "startOffset": 7119,
+                    "startOffset": 8922,
                     "endColumn": 45,
-                    "endOffset": 7160
+                    "endOffset": 8963
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -575,11 +617,11 @@
             },
             {
                 "to": {
-                    "startLine": 136,
+                    "startLine": 154,
                     "startColumn": 4,
-                    "startOffset": 7165,
+                    "startOffset": 8968,
                     "endColumn": 46,
-                    "endOffset": 7207
+                    "endOffset": 9010
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -594,11 +636,11 @@
             },
             {
                 "to": {
-                    "startLine": 137,
+                    "startLine": 155,
                     "startColumn": 4,
-                    "startOffset": 7212,
+                    "startOffset": 9015,
                     "endColumn": 50,
-                    "endOffset": 7258
+                    "endOffset": 9061
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -613,11 +655,11 @@
             },
             {
                 "to": {
-                    "startLine": 138,
+                    "startLine": 156,
                     "startColumn": 4,
-                    "startOffset": 7263,
+                    "startOffset": 9066,
                     "endColumn": 43,
-                    "endOffset": 7302
+                    "endOffset": 9105
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -632,11 +674,11 @@
             },
             {
                 "to": {
-                    "startLine": 139,
+                    "startLine": 157,
                     "startColumn": 4,
-                    "startOffset": 7307,
+                    "startOffset": 9110,
                     "endColumn": 38,
-                    "endOffset": 7341
+                    "endOffset": 9144
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -651,11 +693,11 @@
             },
             {
                 "to": {
-                    "startLine": 140,
+                    "startLine": 158,
                     "startColumn": 4,
-                    "startOffset": 7346,
+                    "startOffset": 9149,
                     "endColumn": 40,
-                    "endOffset": 7382
+                    "endOffset": 9185
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -670,11 +712,11 @@
             },
             {
                 "to": {
-                    "startLine": 141,
+                    "startLine": 159,
                     "startColumn": 4,
-                    "startOffset": 7387,
+                    "startOffset": 9190,
                     "endColumn": 41,
-                    "endOffset": 7424
+                    "endOffset": 9227
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -689,11 +731,11 @@
             },
             {
                 "to": {
-                    "startLine": 142,
+                    "startLine": 160,
                     "startColumn": 4,
-                    "startOffset": 7429,
+                    "startOffset": 9232,
                     "endColumn": 57,
-                    "endOffset": 7482
+                    "endOffset": 9285
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -708,11 +750,11 @@
             },
             {
                 "to": {
-                    "startLine": 143,
+                    "startLine": 161,
                     "startColumn": 4,
-                    "startOffset": 7487,
+                    "startOffset": 9290,
                     "endColumn": 40,
-                    "endOffset": 7523
+                    "endOffset": 9326
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -727,11 +769,11 @@
             },
             {
                 "to": {
-                    "startLine": 144,
+                    "startLine": 162,
                     "startColumn": 4,
-                    "startOffset": 7528,
+                    "startOffset": 9331,
                     "endColumn": 43,
-                    "endOffset": 7567
+                    "endOffset": 9370
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -746,11 +788,11 @@
             },
             {
                 "to": {
-                    "startLine": 145,
+                    "startLine": 163,
                     "startColumn": 4,
-                    "startOffset": 7572,
+                    "startOffset": 9375,
                     "endColumn": 48,
-                    "endOffset": 7616
+                    "endOffset": 9419
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -765,11 +807,11 @@
             },
             {
                 "to": {
-                    "startLine": 146,
+                    "startLine": 164,
                     "startColumn": 4,
-                    "startOffset": 7621,
+                    "startOffset": 9424,
                     "endColumn": 41,
-                    "endOffset": 7658
+                    "endOffset": 9461
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -784,11 +826,11 @@
             },
             {
                 "to": {
-                    "startLine": 147,
+                    "startLine": 165,
                     "startColumn": 4,
-                    "startOffset": 7663,
+                    "startOffset": 9466,
                     "endColumn": 45,
-                    "endOffset": 7704
+                    "endOffset": 9507
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -803,11 +845,11 @@
             },
             {
                 "to": {
-                    "startLine": 148,
+                    "startLine": 166,
                     "startColumn": 4,
-                    "startOffset": 7709,
+                    "startOffset": 9512,
                     "endColumn": 44,
-                    "endOffset": 7749
+                    "endOffset": 9552
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\dimens.xml",
@@ -822,11 +864,11 @@
             },
             {
                 "to": {
-                    "startLine": 149,
+                    "startLine": 167,
                     "startColumn": 4,
-                    "startOffset": 7754,
+                    "startOffset": 9557,
                     "endColumn": 54,
-                    "endOffset": 7804
+                    "endOffset": 9607
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\build\\intermediates\\exploded-aar\\PinWiGradle\\android-support-v7-appcompat\\unspecified\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
@@ -841,72 +883,72 @@
             },
             {
                 "to": {
-                    "startLine": 150,
+                    "startLine": 168,
                     "startColumn": 4,
-                    "startOffset": 7809,
+                    "startOffset": 9612,
                     "endColumn": 352,
-                    "endOffset": 8157
+                    "endOffset": 9960
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 216,
                         "startColumn": 4,
-                        "startOffset": 9516,
+                        "startOffset": 9612,
                         "endColumn": 352,
-                        "endOffset": 9864
+                        "endOffset": 9960
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 151,
+                    "startLine": 169,
                     "startColumn": 4,
-                    "startOffset": 8162,
-                    "endLine": 152,
+                    "startOffset": 9965,
+                    "endLine": 170,
                     "endColumn": 42,
-                    "endOffset": 8493
+                    "endOffset": 10296
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 258,
                         "startColumn": 4,
-                        "startOffset": 12275,
+                        "startOffset": 12371,
                         "endLine": 259,
                         "endColumn": 42,
-                        "endOffset": 12606
+                        "endOffset": 12702
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 153,
+                    "startLine": 171,
                     "startColumn": 4,
-                    "startOffset": 8498,
-                    "endLine": 155,
+                    "startOffset": 10301,
+                    "endLine": 173,
                     "endColumn": 63,
-                    "endOffset": 8851
+                    "endOffset": 10654
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 260,
                         "startColumn": 4,
-                        "startOffset": 12611,
+                        "startOffset": 12707,
                         "endLine": 262,
                         "endColumn": 63,
-                        "endOffset": 12964
+                        "endOffset": 13060
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 156,
+                    "startLine": 174,
                     "startColumn": 4,
-                    "startOffset": 8856,
+                    "startOffset": 10659,
                     "endColumn": 47,
-                    "endOffset": 8899
+                    "endOffset": 10702
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -921,11 +963,11 @@
             },
             {
                 "to": {
-                    "startLine": 157,
+                    "startLine": 175,
                     "startColumn": 4,
-                    "startOffset": 8904,
+                    "startOffset": 10707,
                     "endColumn": 66,
-                    "endOffset": 8966
+                    "endOffset": 10769
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -940,11 +982,11 @@
             },
             {
                 "to": {
-                    "startLine": 158,
+                    "startLine": 176,
                     "startColumn": 4,
-                    "startOffset": 8971,
+                    "startOffset": 10774,
                     "endColumn": 52,
-                    "endOffset": 9019
+                    "endOffset": 10822
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -959,30 +1001,30 @@
             },
             {
                 "to": {
-                    "startLine": 159,
+                    "startLine": 177,
                     "startColumn": 4,
-                    "startOffset": 9024,
+                    "startOffset": 10827,
                     "endColumn": 58,
-                    "endOffset": 9078
+                    "endOffset": 10881
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 220,
                         "startColumn": 4,
-                        "startOffset": 10074,
+                        "startOffset": 10170,
                         "endColumn": 58,
-                        "endOffset": 10128
+                        "endOffset": 10224
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 160,
+                    "startLine": 178,
                     "startColumn": 4,
-                    "startOffset": 9083,
+                    "startOffset": 10886,
                     "endColumn": 57,
-                    "endOffset": 9136
+                    "endOffset": 10939
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -997,11 +1039,11 @@
             },
             {
                 "to": {
-                    "startLine": 161,
+                    "startLine": 179,
                     "startColumn": 4,
-                    "startOffset": 9141,
+                    "startOffset": 10944,
                     "endColumn": 60,
-                    "endOffset": 9197
+                    "endOffset": 11000
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1016,11 +1058,11 @@
             },
             {
                 "to": {
-                    "startLine": 162,
+                    "startLine": 180,
                     "startColumn": 4,
-                    "startOffset": 9202,
+                    "startOffset": 11005,
                     "endColumn": 78,
-                    "endOffset": 9276
+                    "endOffset": 11079
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1035,49 +1077,49 @@
             },
             {
                 "to": {
-                    "startLine": 163,
+                    "startLine": 181,
                     "startColumn": 4,
-                    "startOffset": 9281,
+                    "startOffset": 11084,
                     "endColumn": 74,
-                    "endOffset": 9351
+                    "endOffset": 11154
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 198,
                         "startColumn": 4,
-                        "startOffset": 8745,
+                        "startOffset": 8841,
                         "endColumn": 74,
-                        "endOffset": 8815
+                        "endOffset": 8911
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 164,
+                    "startLine": 182,
                     "startColumn": 4,
-                    "startOffset": 9356,
+                    "startOffset": 11159,
                     "endColumn": 72,
-                    "endOffset": 9424
+                    "endOffset": 11227
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 238,
                         "startColumn": 4,
-                        "startOffset": 11171,
+                        "startOffset": 11267,
                         "endColumn": 72,
-                        "endOffset": 11239
+                        "endOffset": 11335
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 165,
+                    "startLine": 183,
                     "startColumn": 4,
-                    "startOffset": 9429,
+                    "startOffset": 11232,
                     "endColumn": 66,
-                    "endOffset": 9491
+                    "endOffset": 11294
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1092,30 +1134,30 @@
             },
             {
                 "to": {
-                    "startLine": 166,
+                    "startLine": 184,
                     "startColumn": 4,
-                    "startOffset": 9496,
+                    "startOffset": 11299,
                     "endColumn": 57,
-                    "endOffset": 9549
+                    "endOffset": 11352
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 307,
                         "startColumn": 4,
-                        "startOffset": 17705,
+                        "startOffset": 17801,
                         "endColumn": 57,
-                        "endOffset": 17758
+                        "endOffset": 17854
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 167,
+                    "startLine": 185,
                     "startColumn": 4,
-                    "startOffset": 9554,
+                    "startOffset": 11357,
                     "endColumn": 57,
-                    "endOffset": 9607
+                    "endOffset": 11410
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1130,11 +1172,11 @@
             },
             {
                 "to": {
-                    "startLine": 168,
+                    "startLine": 186,
                     "startColumn": 4,
-                    "startOffset": 9612,
+                    "startOffset": 11415,
                     "endColumn": 51,
-                    "endOffset": 9659
+                    "endOffset": 11462
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1149,30 +1191,30 @@
             },
             {
                 "to": {
-                    "startLine": 169,
+                    "startLine": 187,
                     "startColumn": 4,
-                    "startOffset": 9664,
+                    "startOffset": 11467,
                     "endColumn": 48,
-                    "endOffset": 9708
+                    "endOffset": 11511
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 255,
                         "startColumn": 4,
-                        "startOffset": 12122,
+                        "startOffset": 12218,
                         "endColumn": 48,
-                        "endOffset": 12166
+                        "endOffset": 12262
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 170,
+                    "startLine": 188,
                     "startColumn": 4,
-                    "startOffset": 9713,
+                    "startOffset": 11516,
                     "endColumn": 53,
-                    "endOffset": 9762
+                    "endOffset": 11565
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1187,49 +1229,49 @@
             },
             {
                 "to": {
-                    "startLine": 171,
+                    "startLine": 189,
                     "startColumn": 4,
-                    "startOffset": 9767,
+                    "startOffset": 11570,
                     "endColumn": 49,
-                    "endOffset": 9812
+                    "endOffset": 11615
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 199,
                         "startColumn": 4,
-                        "startOffset": 8820,
+                        "startOffset": 8916,
                         "endColumn": 49,
-                        "endOffset": 8865
+                        "endOffset": 8961
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 172,
+                    "startLine": 190,
                     "startColumn": 4,
-                    "startOffset": 9817,
+                    "startOffset": 11620,
                     "endColumn": 50,
-                    "endOffset": 9863
+                    "endOffset": 11666
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 264,
                         "startColumn": 4,
-                        "startOffset": 13030,
+                        "startOffset": 13126,
                         "endColumn": 50,
-                        "endOffset": 13076
+                        "endOffset": 13172
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 173,
+                    "startLine": 191,
                     "startColumn": 4,
-                    "startOffset": 9868,
+                    "startOffset": 11671,
                     "endColumn": 42,
-                    "endOffset": 9906
+                    "endOffset": 11709
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1244,49 +1286,49 @@
             },
             {
                 "to": {
-                    "startLine": 174,
+                    "startLine": 192,
                     "startColumn": 4,
-                    "startOffset": 9911,
+                    "startOffset": 11714,
                     "endColumn": 51,
-                    "endOffset": 9958
+                    "endOffset": 11761
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 250,
                         "startColumn": 4,
-                        "startOffset": 11865,
+                        "startOffset": 11961,
                         "endColumn": 51,
-                        "endOffset": 11912
+                        "endOffset": 12008
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 175,
+                    "startLine": 193,
                     "startColumn": 4,
-                    "startOffset": 9963,
+                    "startOffset": 11766,
                     "endColumn": 58,
-                    "endOffset": 10017
+                    "endOffset": 11820
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 252,
                         "startColumn": 4,
-                        "startOffset": 11964,
+                        "startOffset": 12060,
                         "endColumn": 58,
-                        "endOffset": 12018
+                        "endOffset": 12114
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 176,
+                    "startLine": 194,
                     "startColumn": 4,
-                    "startOffset": 10022,
+                    "startOffset": 11825,
                     "endColumn": 40,
-                    "endOffset": 10058
+                    "endOffset": 11861
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1301,30 +1343,30 @@
             },
             {
                 "to": {
-                    "startLine": 177,
+                    "startLine": 195,
                     "startColumn": 4,
-                    "startOffset": 10063,
+                    "startOffset": 11866,
                     "endColumn": 62,
-                    "endOffset": 10121
+                    "endOffset": 11924
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 305,
                         "startColumn": 4,
-                        "startOffset": 17525,
+                        "startOffset": 17621,
                         "endColumn": 62,
-                        "endOffset": 17583
+                        "endOffset": 17679
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 178,
+                    "startLine": 196,
                     "startColumn": 4,
-                    "startOffset": 10126,
+                    "startOffset": 11929,
                     "endColumn": 50,
-                    "endOffset": 10172
+                    "endOffset": 11975
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1339,11 +1381,11 @@
             },
             {
                 "to": {
-                    "startLine": 179,
+                    "startLine": 197,
                     "startColumn": 4,
-                    "startOffset": 10177,
+                    "startOffset": 11980,
                     "endColumn": 55,
-                    "endOffset": 10228
+                    "endOffset": 12031
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1358,11 +1400,11 @@
             },
             {
                 "to": {
-                    "startLine": 180,
+                    "startLine": 198,
                     "startColumn": 4,
-                    "startOffset": 10233,
+                    "startOffset": 12036,
                     "endColumn": 46,
-                    "endOffset": 10275
+                    "endOffset": 12078
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1377,30 +1419,30 @@
             },
             {
                 "to": {
-                    "startLine": 181,
+                    "startLine": 199,
                     "startColumn": 4,
-                    "startOffset": 10280,
+                    "startOffset": 12083,
                     "endColumn": 74,
-                    "endOffset": 10350
+                    "endOffset": 12153
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 224,
                         "startColumn": 4,
-                        "startOffset": 10156,
+                        "startOffset": 10252,
                         "endColumn": 74,
-                        "endOffset": 10226
+                        "endOffset": 10322
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 182,
+                    "startLine": 200,
                     "startColumn": 4,
-                    "startOffset": 10355,
+                    "startOffset": 12158,
                     "endColumn": 64,
-                    "endOffset": 10415
+                    "endOffset": 12218
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1415,11 +1457,11 @@
             },
             {
                 "to": {
-                    "startLine": 183,
+                    "startLine": 201,
                     "startColumn": 4,
-                    "startOffset": 10420,
+                    "startOffset": 12223,
                     "endColumn": 65,
-                    "endOffset": 10481
+                    "endOffset": 12284
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1434,125 +1476,125 @@
             },
             {
                 "to": {
-                    "startLine": 184,
+                    "startLine": 202,
                     "startColumn": 4,
-                    "startOffset": 10486,
+                    "startOffset": 12289,
                     "endColumn": 59,
-                    "endOffset": 10541
+                    "endOffset": 12344
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 197,
                         "startColumn": 4,
-                        "startOffset": 8685,
+                        "startOffset": 8781,
                         "endColumn": 59,
-                        "endOffset": 8740
+                        "endOffset": 8836
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 185,
+                    "startLine": 203,
                     "startColumn": 4,
-                    "startOffset": 10546,
+                    "startOffset": 12349,
                     "endColumn": 54,
-                    "endOffset": 10596
+                    "endOffset": 12399
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 215,
                         "startColumn": 4,
-                        "startOffset": 9461,
+                        "startOffset": 9557,
                         "endColumn": 54,
-                        "endOffset": 9511
+                        "endOffset": 9607
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 186,
+                    "startLine": 204,
                     "startColumn": 4,
-                    "startOffset": 10601,
+                    "startOffset": 12404,
                     "endColumn": 123,
-                    "endOffset": 10720
+                    "endOffset": 12523
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 226,
                         "startColumn": 4,
-                        "startOffset": 10300,
+                        "startOffset": 10396,
                         "endColumn": 123,
-                        "endOffset": 10419
+                        "endOffset": 10515
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 187,
+                    "startLine": 205,
                     "startColumn": 4,
-                    "startOffset": 10725,
+                    "startOffset": 12528,
                     "endColumn": 65,
-                    "endOffset": 10786
+                    "endOffset": 12589
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 227,
                         "startColumn": 4,
-                        "startOffset": 10424,
+                        "startOffset": 10520,
                         "endColumn": 65,
-                        "endOffset": 10485
+                        "endOffset": 10581
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 188,
+                    "startLine": 206,
                     "startColumn": 4,
-                    "startOffset": 10791,
+                    "startOffset": 12594,
                     "endColumn": 179,
-                    "endOffset": 10966
+                    "endOffset": 12769
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 228,
                         "startColumn": 4,
-                        "startOffset": 10490,
+                        "startOffset": 10586,
                         "endColumn": 179,
-                        "endOffset": 10665
+                        "endOffset": 10761
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 189,
+                    "startLine": 207,
                     "startColumn": 4,
-                    "startOffset": 10971,
+                    "startOffset": 12774,
                     "endColumn": 72,
-                    "endOffset": 11039
+                    "endOffset": 12842
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 229,
                         "startColumn": 4,
-                        "startOffset": 10670,
+                        "startOffset": 10766,
                         "endColumn": 72,
-                        "endOffset": 10738
+                        "endOffset": 10834
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 190,
+                    "startLine": 208,
                     "startColumn": 4,
-                    "startOffset": 11044,
+                    "startOffset": 12847,
                     "endColumn": 65,
-                    "endOffset": 11105
+                    "endOffset": 12908
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1567,11 +1609,11 @@
             },
             {
                 "to": {
-                    "startLine": 191,
+                    "startLine": 209,
                     "startColumn": 4,
-                    "startOffset": 11110,
+                    "startOffset": 12913,
                     "endColumn": 68,
-                    "endOffset": 11174
+                    "endOffset": 12977
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1586,11 +1628,11 @@
             },
             {
                 "to": {
-                    "startLine": 192,
+                    "startLine": 210,
                     "startColumn": 4,
-                    "startOffset": 11179,
+                    "startOffset": 12982,
                     "endColumn": 208,
-                    "endOffset": 11383
+                    "endOffset": 13186
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1605,11 +1647,11 @@
             },
             {
                 "to": {
-                    "startLine": 193,
+                    "startLine": 211,
                     "startColumn": 4,
-                    "startOffset": 11388,
+                    "startOffset": 13191,
                     "endColumn": 59,
-                    "endOffset": 11443
+                    "endOffset": 13246
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1624,30 +1666,30 @@
             },
             {
                 "to": {
-                    "startLine": 194,
+                    "startLine": 212,
                     "startColumn": 4,
-                    "startOffset": 11448,
+                    "startOffset": 13251,
                     "endColumn": 60,
-                    "endOffset": 11504
+                    "endOffset": 13307
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 277,
                         "startColumn": 4,
-                        "startOffset": 15555,
+                        "startOffset": 15651,
                         "endColumn": 60,
-                        "endOffset": 15611
+                        "endOffset": 15707
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 195,
+                    "startLine": 213,
                     "startColumn": 4,
-                    "startOffset": 11509,
+                    "startOffset": 13312,
                     "endColumn": 50,
-                    "endOffset": 11555
+                    "endOffset": 13358
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1662,184 +1704,184 @@
             },
             {
                 "to": {
-                    "startLine": 196,
+                    "startLine": 214,
                     "startColumn": 4,
-                    "startOffset": 11560,
+                    "startOffset": 13363,
                     "endColumn": 75,
-                    "endOffset": 11631
+                    "endOffset": 13434
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 219,
                         "startColumn": 4,
-                        "startOffset": 9998,
+                        "startOffset": 10094,
                         "endColumn": 75,
-                        "endOffset": 10069
+                        "endOffset": 10165
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 197,
+                    "startLine": 215,
                     "startColumn": 4,
-                    "startOffset": 11636,
+                    "startOffset": 13439,
                     "endColumn": 68,
-                    "endOffset": 11700
+                    "endOffset": 13503
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 225,
                         "startColumn": 4,
-                        "startOffset": 10231,
+                        "startOffset": 10327,
                         "endColumn": 68,
-                        "endOffset": 10295
+                        "endOffset": 10391
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 198,
+                    "startLine": 216,
                     "startColumn": 4,
-                    "startOffset": 11705,
+                    "startOffset": 13508,
                     "endColumn": 46,
-                    "endOffset": 11747
+                    "endOffset": 13550
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 247,
                         "startColumn": 4,
-                        "startOffset": 11687,
+                        "startOffset": 11783,
                         "endColumn": 46,
-                        "endOffset": 11729
+                        "endOffset": 11825
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 199,
+                    "startLine": 217,
                     "startColumn": 4,
-                    "startOffset": 11752,
+                    "startOffset": 13555,
                     "endColumn": 52,
-                    "endOffset": 11800
+                    "endOffset": 13603
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 234,
                         "startColumn": 4,
-                        "startOffset": 10951,
+                        "startOffset": 11047,
                         "endColumn": 52,
-                        "endOffset": 10999
+                        "endOffset": 11095
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 200,
+                    "startLine": 218,
                     "startColumn": 4,
-                    "startOffset": 11805,
+                    "startOffset": 13608,
                     "endColumn": 164,
-                    "endOffset": 11965
+                    "endOffset": 13768
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 286,
                         "startColumn": 4,
-                        "startOffset": 16015,
+                        "startOffset": 16111,
                         "endColumn": 164,
-                        "endOffset": 16175
+                        "endOffset": 16271
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 201,
+                    "startLine": 219,
                     "startColumn": 4,
-                    "startOffset": 11970,
+                    "startOffset": 13773,
                     "endColumn": 46,
-                    "endOffset": 12012
+                    "endOffset": 13815
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 251,
                         "startColumn": 4,
-                        "startOffset": 11917,
+                        "startOffset": 12013,
                         "endColumn": 46,
-                        "endOffset": 11959
+                        "endOffset": 12055
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 202,
+                    "startLine": 220,
                     "startColumn": 4,
-                    "startOffset": 12017,
+                    "startOffset": 13820,
                     "endColumn": 57,
-                    "endOffset": 12070
+                    "endOffset": 13873
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 194,
                         "startColumn": 4,
-                        "startOffset": 8586,
+                        "startOffset": 8682,
                         "endColumn": 57,
-                        "endOffset": 8639
+                        "endOffset": 8735
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 203,
+                    "startLine": 221,
                     "startColumn": 4,
-                    "startOffset": 12075,
-                    "endLine": 206,
+                    "startOffset": 13878,
+                    "endLine": 224,
                     "endColumn": 129,
-                    "endOffset": 12513
+                    "endOffset": 14316
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 301,
                         "startColumn": 4,
-                        "startOffset": 17082,
+                        "startOffset": 17178,
                         "endLine": 304,
                         "endColumn": 129,
-                        "endOffset": 17520
+                        "endOffset": 17616
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 207,
+                    "startLine": 225,
                     "startColumn": 4,
-                    "startOffset": 12518,
+                    "startOffset": 14321,
                     "endColumn": 55,
-                    "endOffset": 12569
+                    "endOffset": 14372
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 279,
                         "startColumn": 4,
-                        "startOffset": 15670,
+                        "startOffset": 15766,
                         "endColumn": 55,
-                        "endOffset": 15721
+                        "endOffset": 15817
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 208,
+                    "startLine": 226,
                     "startColumn": 4,
-                    "startOffset": 12574,
+                    "startOffset": 14377,
                     "endColumn": 42,
-                    "endOffset": 12612
+                    "endOffset": 14415
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1854,11 +1896,11 @@
             },
             {
                 "to": {
-                    "startLine": 209,
+                    "startLine": 227,
                     "startColumn": 4,
-                    "startOffset": 12617,
+                    "startOffset": 14420,
                     "endColumn": 45,
-                    "endOffset": 12658
+                    "endOffset": 14461
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1873,87 +1915,87 @@
             },
             {
                 "to": {
-                    "startLine": 210,
+                    "startLine": 228,
                     "startColumn": 4,
-                    "startOffset": 12663,
+                    "startOffset": 14466,
                     "endColumn": 49,
-                    "endOffset": 12708
+                    "endOffset": 14511
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 232,
                         "startColumn": 4,
-                        "startOffset": 10851,
+                        "startOffset": 10947,
                         "endColumn": 49,
-                        "endOffset": 10896
+                        "endOffset": 10992
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 211,
+                    "startLine": 229,
                     "startColumn": 4,
-                    "startOffset": 12713,
+                    "startOffset": 14516,
                     "endColumn": 49,
-                    "endOffset": 12758
+                    "endOffset": 14561
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 233,
                         "startColumn": 4,
-                        "startOffset": 10901,
+                        "startOffset": 10997,
                         "endColumn": 49,
-                        "endOffset": 10946
+                        "endOffset": 11042
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 212,
+                    "startLine": 230,
                     "startColumn": 4,
-                    "startOffset": 12763,
+                    "startOffset": 14566,
                     "endColumn": 51,
-                    "endOffset": 12810
+                    "endOffset": 14613
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 211,
                         "startColumn": 4,
-                        "startOffset": 9246,
+                        "startOffset": 9342,
                         "endColumn": 51,
-                        "endOffset": 9293
+                        "endOffset": 9389
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 213,
+                    "startLine": 231,
                     "startColumn": 4,
-                    "startOffset": 12815,
+                    "startOffset": 14618,
                     "endColumn": 53,
-                    "endOffset": 12864
+                    "endOffset": 14667
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 285,
                         "startColumn": 4,
-                        "startOffset": 15961,
+                        "startOffset": 16057,
                         "endColumn": 53,
-                        "endOffset": 16010
+                        "endOffset": 16106
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 214,
+                    "startLine": 232,
                     "startColumn": 4,
-                    "startOffset": 12869,
+                    "startOffset": 14672,
                     "endColumn": 50,
-                    "endOffset": 12915
+                    "endOffset": 14718
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1968,11 +2010,11 @@
             },
             {
                 "to": {
-                    "startLine": 215,
+                    "startLine": 233,
                     "startColumn": 4,
-                    "startOffset": 12920,
+                    "startOffset": 14723,
                     "endColumn": 46,
-                    "endOffset": 12962
+                    "endOffset": 14765
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -1987,11 +2029,11 @@
             },
             {
                 "to": {
-                    "startLine": 216,
+                    "startLine": 234,
                     "startColumn": 4,
-                    "startOffset": 12967,
+                    "startOffset": 14770,
                     "endColumn": 46,
-                    "endOffset": 13009
+                    "endOffset": 14812
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2006,11 +2048,11 @@
             },
             {
                 "to": {
-                    "startLine": 217,
+                    "startLine": 235,
                     "startColumn": 4,
-                    "startOffset": 13014,
+                    "startOffset": 14817,
                     "endColumn": 61,
-                    "endOffset": 13071
+                    "endOffset": 14874
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2025,11 +2067,11 @@
             },
             {
                 "to": {
-                    "startLine": 218,
+                    "startLine": 236,
                     "startColumn": 4,
-                    "startOffset": 13076,
+                    "startOffset": 14879,
                     "endColumn": 70,
-                    "endOffset": 13142
+                    "endOffset": 14945
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2044,11 +2086,11 @@
             },
             {
                 "to": {
-                    "startLine": 219,
+                    "startLine": 237,
                     "startColumn": 4,
-                    "startOffset": 13147,
+                    "startOffset": 14950,
                     "endColumn": 117,
-                    "endOffset": 13260
+                    "endOffset": 15063
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2063,11 +2105,11 @@
             },
             {
                 "to": {
-                    "startLine": 220,
+                    "startLine": 238,
                     "startColumn": 4,
-                    "startOffset": 13265,
+                    "startOffset": 15068,
                     "endColumn": 105,
-                    "endOffset": 13366
+                    "endOffset": 15169
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2082,11 +2124,11 @@
             },
             {
                 "to": {
-                    "startLine": 221,
+                    "startLine": 239,
                     "startColumn": 4,
-                    "startOffset": 13371,
+                    "startOffset": 15174,
                     "endColumn": 64,
-                    "endOffset": 13431
+                    "endOffset": 15234
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2101,11 +2143,11 @@
             },
             {
                 "to": {
-                    "startLine": 222,
+                    "startLine": 240,
                     "startColumn": 4,
-                    "startOffset": 13436,
+                    "startOffset": 15239,
                     "endColumn": 64,
-                    "endOffset": 13496
+                    "endOffset": 15299
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2120,11 +2162,11 @@
             },
             {
                 "to": {
-                    "startLine": 223,
+                    "startLine": 241,
                     "startColumn": 4,
-                    "startOffset": 13501,
+                    "startOffset": 15304,
                     "endColumn": 69,
-                    "endOffset": 13566
+                    "endOffset": 15369
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2139,49 +2181,49 @@
             },
             {
                 "to": {
-                    "startLine": 224,
+                    "startLine": 242,
                     "startColumn": 4,
-                    "startOffset": 13571,
-                    "endColumn": 139,
-                    "endOffset": 13706
+                    "startOffset": 15374,
+                    "endColumn": 187,
+                    "endOffset": 15557
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 325,
                         "startColumn": 4,
-                        "startOffset": 18308,
-                        "endColumn": 139,
-                        "endOffset": 18443
+                        "startOffset": 18404,
+                        "endColumn": 187,
+                        "endOffset": 18587
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 225,
+                    "startLine": 243,
                     "startColumn": 4,
-                    "startOffset": 13711,
+                    "startOffset": 15562,
                     "endColumn": 61,
-                    "endOffset": 13768
+                    "endOffset": 15619
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 322,
                         "startColumn": 4,
-                        "startOffset": 18191,
+                        "startOffset": 18287,
                         "endColumn": 61,
-                        "endOffset": 18248
+                        "endOffset": 18344
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 226,
+                    "startLine": 244,
                     "startColumn": 4,
-                    "startOffset": 13773,
+                    "startOffset": 15624,
                     "endColumn": 38,
-                    "endOffset": 13807
+                    "endOffset": 15658
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2196,49 +2238,49 @@
             },
             {
                 "to": {
-                    "startLine": 227,
+                    "startLine": 245,
                     "startColumn": 4,
-                    "startOffset": 13812,
+                    "startOffset": 15663,
                     "endColumn": 41,
-                    "endOffset": 13849
+                    "endOffset": 15700
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 209,
                         "startColumn": 4,
-                        "startOffset": 9160,
+                        "startOffset": 9256,
                         "endColumn": 41,
-                        "endOffset": 9197
+                        "endOffset": 9293
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 228,
+                    "startLine": 246,
                     "startColumn": 4,
-                    "startOffset": 13854,
+                    "startOffset": 15705,
                     "endColumn": 53,
-                    "endOffset": 13903
+                    "endOffset": 15754
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 323,
                         "startColumn": 4,
-                        "startOffset": 18253,
+                        "startOffset": 18349,
                         "endColumn": 53,
-                        "endOffset": 18302
+                        "endOffset": 18398
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 229,
+                    "startLine": 247,
                     "startColumn": 4,
-                    "startOffset": 13908,
+                    "startOffset": 15759,
                     "endColumn": 57,
-                    "endOffset": 13961
+                    "endOffset": 15812
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2253,11 +2295,11 @@
             },
             {
                 "to": {
-                    "startLine": 230,
+                    "startLine": 248,
                     "startColumn": 4,
-                    "startOffset": 13966,
+                    "startOffset": 15817,
                     "endColumn": 42,
-                    "endOffset": 14004
+                    "endOffset": 15855
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2272,11 +2314,11 @@
             },
             {
                 "to": {
-                    "startLine": 231,
+                    "startLine": 249,
                     "startColumn": 4,
-                    "startOffset": 14009,
+                    "startOffset": 15860,
                     "endColumn": 52,
-                    "endOffset": 14057
+                    "endOffset": 15908
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2291,11 +2333,11 @@
             },
             {
                 "to": {
-                    "startLine": 232,
+                    "startLine": 250,
                     "startColumn": 4,
-                    "startOffset": 14062,
+                    "startOffset": 15913,
                     "endColumn": 50,
-                    "endOffset": 14108
+                    "endOffset": 15959
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2310,68 +2352,68 @@
             },
             {
                 "to": {
-                    "startLine": 233,
+                    "startLine": 251,
                     "startColumn": 4,
-                    "startOffset": 14113,
+                    "startOffset": 15964,
                     "endColumn": 51,
-                    "endOffset": 14160
+                    "endOffset": 16011
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 256,
                         "startColumn": 4,
-                        "startOffset": 12171,
+                        "startOffset": 12267,
                         "endColumn": 51,
-                        "endOffset": 12218
+                        "endOffset": 12314
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 234,
+                    "startLine": 252,
                     "startColumn": 4,
-                    "startOffset": 14165,
+                    "startOffset": 16016,
                     "endColumn": 51,
-                    "endOffset": 14212
+                    "endOffset": 16063
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 257,
                         "startColumn": 4,
-                        "startOffset": 12223,
+                        "startOffset": 12319,
                         "endColumn": 51,
-                        "endOffset": 12270
+                        "endOffset": 12366
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 235,
+                    "startLine": 253,
                     "startColumn": 4,
-                    "startOffset": 14217,
+                    "startOffset": 16068,
                     "endColumn": 93,
-                    "endOffset": 14306
+                    "endOffset": 16157
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 300,
                         "startColumn": 4,
-                        "startOffset": 16988,
+                        "startOffset": 17084,
                         "endColumn": 93,
-                        "endOffset": 17077
+                        "endOffset": 17173
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 236,
+                    "startLine": 254,
                     "startColumn": 4,
-                    "startOffset": 14311,
+                    "startOffset": 16162,
                     "endColumn": 52,
-                    "endOffset": 14359
+                    "endOffset": 16210
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2386,11 +2428,11 @@
             },
             {
                 "to": {
-                    "startLine": 237,
+                    "startLine": 255,
                     "startColumn": 4,
-                    "startOffset": 14364,
+                    "startOffset": 16215,
                     "endColumn": 42,
-                    "endOffset": 14402
+                    "endOffset": 16253
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2405,87 +2447,87 @@
             },
             {
                 "to": {
-                    "startLine": 238,
+                    "startLine": 256,
                     "startColumn": 4,
-                    "startOffset": 14407,
+                    "startOffset": 16258,
                     "endColumn": 42,
-                    "endOffset": 14445
+                    "endOffset": 16296
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 287,
                         "startColumn": 4,
-                        "startOffset": 16180,
+                        "startOffset": 16276,
                         "endColumn": 42,
-                        "endOffset": 16218
+                        "endOffset": 16314
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 239,
+                    "startLine": 257,
                     "startColumn": 4,
-                    "startOffset": 14450,
+                    "startOffset": 16301,
                     "endColumn": 56,
-                    "endOffset": 14502
+                    "endOffset": 16353
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 239,
                         "startColumn": 4,
-                        "startOffset": 11244,
+                        "startOffset": 11340,
                         "endColumn": 56,
-                        "endOffset": 11296
+                        "endOffset": 11392
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 240,
+                    "startLine": 258,
                     "startColumn": 4,
-                    "startOffset": 14507,
+                    "startOffset": 16358,
                     "endColumn": 57,
-                    "endOffset": 14560
+                    "endOffset": 16411
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 240,
                         "startColumn": 4,
-                        "startOffset": 11301,
+                        "startOffset": 11397,
                         "endColumn": 57,
-                        "endOffset": 11354
+                        "endOffset": 11450
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 241,
+                    "startLine": 259,
                     "startColumn": 4,
-                    "startOffset": 14565,
+                    "startOffset": 16416,
                     "endColumn": 55,
-                    "endOffset": 14616
+                    "endOffset": 16467
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 248,
                         "startColumn": 4,
-                        "startOffset": 11734,
+                        "startOffset": 11830,
                         "endColumn": 55,
-                        "endOffset": 11785
+                        "endOffset": 11881
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 242,
+                    "startLine": 260,
                     "startColumn": 4,
-                    "startOffset": 14621,
+                    "startOffset": 16472,
                     "endColumn": 49,
-                    "endOffset": 14666
+                    "endOffset": 16517
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2500,11 +2542,11 @@
             },
             {
                 "to": {
-                    "startLine": 243,
+                    "startLine": 261,
                     "startColumn": 4,
-                    "startOffset": 14671,
+                    "startOffset": 16522,
                     "endColumn": 61,
-                    "endOffset": 14728
+                    "endOffset": 16579
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2519,11 +2561,11 @@
             },
             {
                 "to": {
-                    "startLine": 244,
+                    "startLine": 262,
                     "startColumn": 4,
-                    "startOffset": 14733,
+                    "startOffset": 16584,
                     "endColumn": 58,
-                    "endOffset": 14787
+                    "endOffset": 16638
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2538,11 +2580,11 @@
             },
             {
                 "to": {
-                    "startLine": 245,
+                    "startLine": 263,
                     "startColumn": 4,
-                    "startOffset": 14792,
+                    "startOffset": 16643,
                     "endColumn": 63,
-                    "endOffset": 14851
+                    "endOffset": 16702
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2557,11 +2599,11 @@
             },
             {
                 "to": {
-                    "startLine": 246,
+                    "startLine": 264,
                     "startColumn": 4,
-                    "startOffset": 14856,
+                    "startOffset": 16707,
                     "endColumn": 55,
-                    "endOffset": 14907
+                    "endOffset": 16758
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2576,11 +2618,11 @@
             },
             {
                 "to": {
-                    "startLine": 247,
+                    "startLine": 265,
                     "startColumn": 4,
-                    "startOffset": 14912,
+                    "startOffset": 16763,
                     "endColumn": 44,
-                    "endOffset": 14952
+                    "endOffset": 16803
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2595,11 +2637,11 @@
             },
             {
                 "to": {
-                    "startLine": 248,
+                    "startLine": 266,
                     "startColumn": 4,
-                    "startOffset": 14957,
+                    "startOffset": 16808,
                     "endColumn": 42,
-                    "endOffset": 14995
+                    "endOffset": 16846
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2614,11 +2656,11 @@
             },
             {
                 "to": {
-                    "startLine": 249,
+                    "startLine": 267,
                     "startColumn": 4,
-                    "startOffset": 15000,
+                    "startOffset": 16851,
                     "endColumn": 95,
-                    "endOffset": 15091
+                    "endOffset": 16942
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2633,49 +2675,49 @@
             },
             {
                 "to": {
-                    "startLine": 250,
+                    "startLine": 268,
                     "startColumn": 4,
-                    "startOffset": 15096,
+                    "startOffset": 16947,
                     "endColumn": 57,
-                    "endOffset": 15149
+                    "endOffset": 17000
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 236,
                         "startColumn": 4,
-                        "startOffset": 11055,
+                        "startOffset": 11151,
                         "endColumn": 57,
-                        "endOffset": 11108
+                        "endOffset": 11204
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 251,
+                    "startLine": 269,
                     "startColumn": 4,
-                    "startOffset": 15154,
+                    "startOffset": 17005,
                     "endColumn": 57,
-                    "endOffset": 15207
+                    "endOffset": 17058
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 237,
                         "startColumn": 4,
-                        "startOffset": 11113,
+                        "startOffset": 11209,
                         "endColumn": 57,
-                        "endOffset": 11166
+                        "endOffset": 11262
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 252,
+                    "startLine": 270,
                     "startColumn": 4,
-                    "startOffset": 15212,
+                    "startOffset": 17063,
                     "endColumn": 38,
-                    "endOffset": 15246
+                    "endOffset": 17097
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2690,30 +2732,30 @@
             },
             {
                 "to": {
-                    "startLine": 253,
+                    "startLine": 271,
                     "startColumn": 4,
-                    "startOffset": 15251,
+                    "startOffset": 17102,
                     "endColumn": 41,
-                    "endOffset": 15288
+                    "endOffset": 17139
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 205,
                         "startColumn": 4,
-                        "startOffset": 8986,
+                        "startOffset": 9082,
                         "endColumn": 41,
-                        "endOffset": 9023
+                        "endOffset": 9119
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 254,
+                    "startLine": 272,
                     "startColumn": 4,
-                    "startOffset": 15293,
+                    "startOffset": 17144,
                     "endColumn": 46,
-                    "endOffset": 15335
+                    "endOffset": 17186
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2728,108 +2770,108 @@
             },
             {
                 "to": {
-                    "startLine": 255,
+                    "startLine": 273,
                     "startColumn": 4,
-                    "startOffset": 15340,
+                    "startOffset": 17191,
                     "endColumn": 561,
-                    "endOffset": 15897
+                    "endOffset": 17748
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 265,
                         "startColumn": 4,
-                        "startOffset": 13081,
+                        "startOffset": 13177,
                         "endColumn": 533,
-                        "endOffset": 13610
+                        "endOffset": 13706
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 256,
+                    "startLine": 274,
                     "startColumn": 4,
-                    "startOffset": 15902,
+                    "startOffset": 17753,
                     "endColumn": 278,
-                    "endOffset": 16176
+                    "endOffset": 18027
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 267,
                         "startColumn": 4,
-                        "startOffset": 14165,
+                        "startOffset": 14261,
                         "endColumn": 270,
-                        "endOffset": 14431
+                        "endOffset": 14527
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 257,
+                    "startLine": 275,
                     "startColumn": 4,
-                    "startOffset": 16181,
+                    "startOffset": 18032,
                     "endColumn": 577,
-                    "endOffset": 16754
+                    "endOffset": 18605
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 266,
                         "startColumn": 4,
-                        "startOffset": 13615,
+                        "startOffset": 13711,
                         "endColumn": 549,
-                        "endOffset": 14160
+                        "endOffset": 14256
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 258,
+                    "startLine": 276,
                     "startColumn": 4,
-                    "startOffset": 16759,
-                    "endLine": 262,
+                    "startOffset": 18610,
+                    "endLine": 280,
                     "endColumn": 13,
-                    "endOffset": 17259
+                    "endOffset": 19110
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 270,
                         "startColumn": 4,
-                        "startOffset": 15046,
+                        "startOffset": 15142,
                         "endLine": 274,
                         "endColumn": 13,
-                        "endOffset": 15528
+                        "endOffset": 15624
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 263,
+                    "startLine": 281,
                     "startColumn": 4,
-                    "startOffset": 17264,
+                    "startOffset": 19115,
                     "endColumn": 595,
-                    "endOffset": 17855
+                    "endOffset": 19706
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 268,
                         "startColumn": 4,
-                        "startOffset": 14436,
+                        "startOffset": 14532,
                         "endColumn": 547,
-                        "endOffset": 14979
+                        "endOffset": 15075
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 264,
+                    "startLine": 282,
                     "startColumn": 4,
-                    "startOffset": 17860,
+                    "startOffset": 19711,
                     "endColumn": 67,
-                    "endOffset": 17923
+                    "endOffset": 19774
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2844,11 +2886,11 @@
             },
             {
                 "to": {
-                    "startLine": 265,
+                    "startLine": 283,
                     "startColumn": 4,
-                    "startOffset": 17928,
+                    "startOffset": 19779,
                     "endColumn": 48,
-                    "endOffset": 17972
+                    "endOffset": 19823
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2863,30 +2905,30 @@
             },
             {
                 "to": {
-                    "startLine": 266,
+                    "startLine": 284,
                     "startColumn": 4,
-                    "startOffset": 17977,
+                    "startOffset": 19828,
                     "endColumn": 53,
-                    "endOffset": 18026
+                    "endOffset": 19877
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 284,
                         "startColumn": 4,
-                        "startOffset": 15907,
+                        "startOffset": 16003,
                         "endColumn": 53,
-                        "endOffset": 15956
+                        "endOffset": 16052
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 267,
+                    "startLine": 285,
                     "startColumn": 4,
-                    "startOffset": 18031,
+                    "startOffset": 19882,
                     "endColumn": 60,
-                    "endOffset": 18087
+                    "endOffset": 19938
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2901,49 +2943,49 @@
             },
             {
                 "to": {
-                    "startLine": 268,
+                    "startLine": 286,
                     "startColumn": 4,
-                    "startOffset": 18092,
+                    "startOffset": 19943,
                     "endColumn": 93,
-                    "endOffset": 18181
+                    "endOffset": 20032
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 280,
                         "startColumn": 4,
-                        "startOffset": 15726,
+                        "startOffset": 15822,
                         "endColumn": 93,
-                        "endOffset": 15815
+                        "endOffset": 15911
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 269,
+                    "startLine": 287,
                     "startColumn": 4,
-                    "startOffset": 18186,
+                    "startOffset": 20037,
                     "endColumn": 42,
-                    "endOffset": 18224
+                    "endOffset": 20075
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 212,
                         "startColumn": 4,
-                        "startOffset": 9298,
+                        "startOffset": 9394,
                         "endColumn": 42,
-                        "endOffset": 9336
+                        "endOffset": 9432
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 270,
+                    "startLine": 288,
                     "startColumn": 4,
-                    "startOffset": 18229,
+                    "startOffset": 20080,
                     "endColumn": 59,
-                    "endOffset": 18284
+                    "endOffset": 20135
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2958,11 +3000,11 @@
             },
             {
                 "to": {
-                    "startLine": 271,
+                    "startLine": 289,
                     "startColumn": 4,
-                    "startOffset": 18289,
+                    "startOffset": 20140,
                     "endColumn": 67,
-                    "endOffset": 18352
+                    "endOffset": 20203
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2977,11 +3019,11 @@
             },
             {
                 "to": {
-                    "startLine": 272,
+                    "startLine": 290,
                     "startColumn": 4,
-                    "startOffset": 18357,
+                    "startOffset": 20208,
                     "endColumn": 66,
-                    "endOffset": 18419
+                    "endOffset": 20270
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -2996,11 +3038,11 @@
             },
             {
                 "to": {
-                    "startLine": 273,
+                    "startLine": 291,
                     "startColumn": 4,
-                    "startOffset": 18424,
+                    "startOffset": 20275,
                     "endColumn": 72,
-                    "endOffset": 18492
+                    "endOffset": 20343
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3015,11 +3057,11 @@
             },
             {
                 "to": {
-                    "startLine": 274,
+                    "startLine": 292,
                     "startColumn": 4,
-                    "startOffset": 18497,
+                    "startOffset": 20348,
                     "endColumn": 66,
-                    "endOffset": 18559
+                    "endOffset": 20410
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3034,11 +3076,11 @@
             },
             {
                 "to": {
-                    "startLine": 275,
+                    "startLine": 293,
                     "startColumn": 4,
-                    "startOffset": 18564,
+                    "startOffset": 20415,
                     "endColumn": 56,
-                    "endOffset": 18616
+                    "endOffset": 20467
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3053,49 +3095,49 @@
             },
             {
                 "to": {
-                    "startLine": 276,
+                    "startLine": 294,
                     "startColumn": 4,
-                    "startOffset": 18621,
+                    "startOffset": 20472,
                     "endColumn": 51,
-                    "endOffset": 18668
+                    "endOffset": 20519
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 213,
                         "startColumn": 4,
-                        "startOffset": 9341,
+                        "startOffset": 9437,
                         "endColumn": 51,
-                        "endOffset": 9388
+                        "endOffset": 9484
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 277,
+                    "startLine": 295,
                     "startColumn": 4,
-                    "startOffset": 18673,
+                    "startOffset": 20524,
                     "endColumn": 116,
-                    "endOffset": 18785
+                    "endOffset": 20636
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 306,
                         "startColumn": 4,
-                        "startOffset": 17588,
+                        "startOffset": 17684,
                         "endColumn": 116,
-                        "endOffset": 17700
+                        "endOffset": 17796
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 278,
+                    "startLine": 296,
                     "startColumn": 4,
-                    "startOffset": 18790,
+                    "startOffset": 20641,
                     "endColumn": 83,
-                    "endOffset": 18869
+                    "endOffset": 20720
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3110,87 +3152,87 @@
             },
             {
                 "to": {
-                    "startLine": 279,
+                    "startLine": 297,
                     "startColumn": 4,
-                    "startOffset": 18874,
+                    "startOffset": 20725,
                     "endColumn": 61,
-                    "endOffset": 18931
+                    "endOffset": 20782
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 283,
                         "startColumn": 4,
-                        "startOffset": 15845,
+                        "startOffset": 15941,
                         "endColumn": 61,
-                        "endOffset": 15902
+                        "endOffset": 15998
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 280,
+                    "startLine": 298,
                     "startColumn": 4,
-                    "startOffset": 18936,
+                    "startOffset": 20787,
                     "endColumn": 50,
-                    "endOffset": 18982
+                    "endOffset": 20833
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 235,
                         "startColumn": 4,
-                        "startOffset": 11004,
+                        "startOffset": 11100,
                         "endColumn": 50,
-                        "endOffset": 11050
+                        "endOffset": 11146
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 281,
+                    "startLine": 299,
                     "startColumn": 4,
-                    "startOffset": 18987,
+                    "startOffset": 20838,
                     "endColumn": 53,
-                    "endOffset": 19036
+                    "endOffset": 20887
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 278,
                         "startColumn": 4,
-                        "startOffset": 15616,
+                        "startOffset": 15712,
                         "endColumn": 53,
-                        "endOffset": 15665
+                        "endOffset": 15761
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 282,
+                    "startLine": 300,
                     "startColumn": 4,
-                    "startOffset": 19041,
+                    "startOffset": 20892,
                     "endColumn": 67,
-                    "endOffset": 19104
+                    "endOffset": 20955
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 214,
                         "startColumn": 4,
-                        "startOffset": 9393,
+                        "startOffset": 9489,
                         "endColumn": 67,
-                        "endOffset": 9456
+                        "endOffset": 9552
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 283,
+                    "startLine": 301,
                     "startColumn": 4,
-                    "startOffset": 19109,
+                    "startOffset": 20960,
                     "endColumn": 40,
-                    "endOffset": 19145
+                    "endOffset": 20996
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3205,68 +3247,68 @@
             },
             {
                 "to": {
-                    "startLine": 284,
+                    "startLine": 302,
                     "startColumn": 4,
-                    "startOffset": 19150,
+                    "startOffset": 21001,
                     "endColumn": 43,
-                    "endOffset": 19189
+                    "endOffset": 21040
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 210,
                         "startColumn": 4,
-                        "startOffset": 9202,
+                        "startOffset": 9298,
                         "endColumn": 43,
-                        "endOffset": 9241
+                        "endOffset": 9337
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 285,
+                    "startLine": 303,
                     "startColumn": 4,
-                    "startOffset": 19194,
+                    "startOffset": 21045,
                     "endColumn": 46,
-                    "endOffset": 19236
+                    "endOffset": 21087
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 200,
                         "startColumn": 4,
-                        "startOffset": 8870,
+                        "startOffset": 8966,
                         "endColumn": 46,
-                        "endOffset": 8912
+                        "endOffset": 9008
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 286,
+                    "startLine": 304,
                     "startColumn": 4,
-                    "startOffset": 19241,
+                    "startOffset": 21092,
                     "endColumn": 61,
-                    "endOffset": 19298
+                    "endOffset": 21149
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 269,
                         "startColumn": 4,
-                        "startOffset": 14984,
+                        "startOffset": 15080,
                         "endColumn": 61,
-                        "endOffset": 15041
+                        "endOffset": 15137
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 287,
+                    "startLine": 305,
                     "startColumn": 4,
-                    "startOffset": 19303,
+                    "startOffset": 21154,
                     "endColumn": 66,
-                    "endOffset": 19365
+                    "endOffset": 21216
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3281,11 +3323,11 @@
             },
             {
                 "to": {
-                    "startLine": 288,
+                    "startLine": 306,
                     "startColumn": 4,
-                    "startOffset": 19370,
+                    "startOffset": 21221,
                     "endColumn": 42,
-                    "endOffset": 19408
+                    "endOffset": 21259
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3300,11 +3342,11 @@
             },
             {
                 "to": {
-                    "startLine": 289,
+                    "startLine": 307,
                     "startColumn": 4,
-                    "startOffset": 19413,
+                    "startOffset": 21264,
                     "endColumn": 51,
-                    "endOffset": 19460
+                    "endOffset": 21311
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3319,30 +3361,30 @@
             },
             {
                 "to": {
-                    "startLine": 290,
+                    "startLine": 308,
                     "startColumn": 4,
-                    "startOffset": 19465,
+                    "startOffset": 21316,
                     "endColumn": 74,
-                    "endOffset": 19535
+                    "endOffset": 21386
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 249,
                         "startColumn": 4,
-                        "startOffset": 11790,
+                        "startOffset": 11886,
                         "endColumn": 74,
-                        "endOffset": 11860
+                        "endOffset": 11956
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 291,
+                    "startLine": 309,
                     "startColumn": 4,
-                    "startOffset": 19540,
+                    "startOffset": 21391,
                     "endColumn": 66,
-                    "endOffset": 19602
+                    "endOffset": 21453
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3357,11 +3399,11 @@
             },
             {
                 "to": {
-                    "startLine": 292,
+                    "startLine": 310,
                     "startColumn": 4,
-                    "startOffset": 19607,
+                    "startOffset": 21458,
                     "endColumn": 49,
-                    "endOffset": 19652
+                    "endOffset": 21503
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3376,11 +3418,11 @@
             },
             {
                 "to": {
-                    "startLine": 293,
+                    "startLine": 311,
                     "startColumn": 4,
-                    "startOffset": 19657,
+                    "startOffset": 21508,
                     "endColumn": 42,
-                    "endOffset": 19695
+                    "endOffset": 21546
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3395,87 +3437,87 @@
             },
             {
                 "to": {
-                    "startLine": 294,
+                    "startLine": 312,
                     "startColumn": 4,
-                    "startOffset": 19700,
+                    "startOffset": 21551,
                     "endColumn": 50,
-                    "endOffset": 19746
+                    "endOffset": 21597
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 242,
                         "startColumn": 4,
-                        "startOffset": 11418,
+                        "startOffset": 11514,
                         "endColumn": 50,
-                        "endOffset": 11464
+                        "endOffset": 11560
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 295,
+                    "startLine": 313,
                     "startColumn": 4,
-                    "startOffset": 19751,
+                    "startOffset": 21602,
                     "endColumn": 46,
-                    "endOffset": 19793
+                    "endOffset": 21644
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 245,
                         "startColumn": 4,
-                        "startOffset": 11567,
+                        "startOffset": 11663,
                         "endColumn": 46,
-                        "endOffset": 11609
+                        "endOffset": 11705
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 296,
+                    "startLine": 314,
                     "startColumn": 4,
-                    "startOffset": 19798,
+                    "startOffset": 21649,
                     "endColumn": 46,
-                    "endOffset": 19840
+                    "endOffset": 21691
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 244,
                         "startColumn": 4,
-                        "startOffset": 11520,
+                        "startOffset": 11616,
                         "endColumn": 46,
-                        "endOffset": 11562
+                        "endOffset": 11658
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 297,
+                    "startLine": 315,
                     "startColumn": 4,
-                    "startOffset": 19845,
+                    "startOffset": 21696,
                     "endColumn": 50,
-                    "endOffset": 19891
+                    "endOffset": 21742
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 243,
                         "startColumn": 4,
-                        "startOffset": 11469,
+                        "startOffset": 11565,
                         "endColumn": 50,
-                        "endOffset": 11515
+                        "endOffset": 11611
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 298,
+                    "startLine": 316,
                     "startColumn": 4,
-                    "startOffset": 19896,
+                    "startOffset": 21747,
                     "endColumn": 52,
-                    "endOffset": 19944
+                    "endOffset": 21795
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3490,11 +3532,11 @@
             },
             {
                 "to": {
-                    "startLine": 299,
+                    "startLine": 317,
                     "startColumn": 4,
-                    "startOffset": 19949,
+                    "startOffset": 21800,
                     "endColumn": 56,
-                    "endOffset": 20001
+                    "endOffset": 21852
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3509,11 +3551,11 @@
             },
             {
                 "to": {
-                    "startLine": 300,
+                    "startLine": 318,
                     "startColumn": 4,
-                    "startOffset": 20006,
+                    "startOffset": 21857,
                     "endColumn": 54,
-                    "endOffset": 20056
+                    "endOffset": 21907
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3528,11 +3570,11 @@
             },
             {
                 "to": {
-                    "startLine": 301,
+                    "startLine": 319,
                     "startColumn": 4,
-                    "startOffset": 20061,
+                    "startOffset": 21912,
                     "endColumn": 40,
-                    "endOffset": 20097
+                    "endOffset": 21948
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3547,87 +3589,87 @@
             },
             {
                 "to": {
-                    "startLine": 302,
+                    "startLine": 320,
                     "startColumn": 4,
-                    "startOffset": 20102,
+                    "startOffset": 21953,
                     "endColumn": 72,
-                    "endOffset": 20170
+                    "endOffset": 22021
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 246,
                         "startColumn": 4,
-                        "startOffset": 11614,
+                        "startOffset": 11710,
                         "endColumn": 72,
-                        "endOffset": 11682
+                        "endOffset": 11778
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 303,
+                    "startLine": 321,
                     "startColumn": 4,
-                    "startOffset": 20175,
+                    "startOffset": 22026,
                     "endColumn": 58,
-                    "endOffset": 20229
+                    "endOffset": 22080
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 241,
                         "startColumn": 4,
-                        "startOffset": 11359,
+                        "startOffset": 11455,
                         "endColumn": 58,
-                        "endOffset": 11413
+                        "endOffset": 11509
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 304,
+                    "startLine": 322,
                     "startColumn": 4,
-                    "startOffset": 20234,
+                    "startOffset": 22085,
                     "endColumn": 53,
-                    "endOffset": 20283
+                    "endOffset": 22134
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 230,
                         "startColumn": 4,
-                        "startOffset": 10743,
+                        "startOffset": 10839,
                         "endColumn": 53,
-                        "endOffset": 10792
+                        "endOffset": 10888
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 305,
+                    "startLine": 323,
                     "startColumn": 4,
-                    "startOffset": 20288,
+                    "startOffset": 22139,
                     "endColumn": 53,
-                    "endOffset": 20337
+                    "endOffset": 22188
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 231,
                         "startColumn": 4,
-                        "startOffset": 10797,
+                        "startOffset": 10893,
                         "endColumn": 53,
-                        "endOffset": 10846
+                        "endOffset": 10942
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 306,
+                    "startLine": 324,
                     "startColumn": 4,
-                    "startOffset": 20342,
+                    "startOffset": 22193,
                     "endColumn": 359,
-                    "endOffset": 20697
+                    "endOffset": 22548
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3642,11 +3684,11 @@
             },
             {
                 "to": {
-                    "startLine": 307,
+                    "startLine": 325,
                     "startColumn": 4,
-                    "startOffset": 20702,
+                    "startOffset": 22553,
                     "endColumn": 66,
-                    "endOffset": 20764
+                    "endOffset": 22615
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3661,11 +3703,11 @@
             },
             {
                 "to": {
-                    "startLine": 308,
+                    "startLine": 326,
                     "startColumn": 4,
-                    "startOffset": 20769,
+                    "startOffset": 22620,
                     "endColumn": 46,
-                    "endOffset": 20811
+                    "endOffset": 22662
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3680,11 +3722,11 @@
             },
             {
                 "to": {
-                    "startLine": 309,
+                    "startLine": 327,
                     "startColumn": 4,
-                    "startOffset": 20816,
+                    "startOffset": 22667,
                     "endColumn": 112,
-                    "endOffset": 20924
+                    "endOffset": 22775
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3699,11 +3741,11 @@
             },
             {
                 "to": {
-                    "startLine": 310,
+                    "startLine": 328,
                     "startColumn": 4,
-                    "startOffset": 20929,
+                    "startOffset": 22780,
                     "endColumn": 127,
-                    "endOffset": 21052
+                    "endOffset": 22903
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3718,11 +3760,11 @@
             },
             {
                 "to": {
-                    "startLine": 311,
+                    "startLine": 329,
                     "startColumn": 4,
-                    "startOffset": 21057,
+                    "startOffset": 22908,
                     "endColumn": 38,
-                    "endOffset": 21091
+                    "endOffset": 22942
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3737,49 +3779,49 @@
             },
             {
                 "to": {
-                    "startLine": 312,
+                    "startLine": 330,
                     "startColumn": 4,
-                    "startOffset": 21096,
+                    "startOffset": 22947,
                     "endColumn": 41,
-                    "endOffset": 21133
+                    "endOffset": 22984
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 204,
                         "startColumn": 4,
-                        "startOffset": 8944,
+                        "startOffset": 9040,
                         "endColumn": 41,
-                        "endOffset": 8981
+                        "endOffset": 9077
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 313,
+                    "startLine": 331,
                     "startColumn": 4,
-                    "startOffset": 21138,
+                    "startOffset": 22989,
                     "endColumn": 75,
-                    "endOffset": 21209
+                    "endOffset": 23060
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 217,
                         "startColumn": 4,
-                        "startOffset": 9869,
+                        "startOffset": 9965,
                         "endColumn": 75,
-                        "endOffset": 9940
+                        "endOffset": 10036
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 314,
+                    "startLine": 332,
                     "startColumn": 4,
-                    "startOffset": 21214,
+                    "startOffset": 23065,
                     "endColumn": 40,
-                    "endOffset": 21250
+                    "endOffset": 23101
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3794,30 +3836,30 @@
             },
             {
                 "to": {
-                    "startLine": 315,
+                    "startLine": 333,
                     "startColumn": 4,
-                    "startOffset": 21255,
+                    "startOffset": 23106,
                     "endColumn": 43,
-                    "endOffset": 21294
+                    "endOffset": 23145
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 208,
                         "startColumn": 4,
-                        "startOffset": 9116,
+                        "startOffset": 9212,
                         "endColumn": 43,
-                        "endOffset": 9155
+                        "endOffset": 9251
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 316,
+                    "startLine": 334,
                     "startColumn": 4,
-                    "startOffset": 21299,
+                    "startOffset": 23150,
                     "endColumn": 39,
-                    "endOffset": 21334
+                    "endOffset": 23185
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3832,68 +3874,68 @@
             },
             {
                 "to": {
-                    "startLine": 317,
+                    "startLine": 335,
                     "startColumn": 4,
-                    "startOffset": 21339,
+                    "startOffset": 23190,
                     "endColumn": 42,
-                    "endOffset": 21377
+                    "endOffset": 23228
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 206,
                         "startColumn": 4,
-                        "startOffset": 9028,
+                        "startOffset": 9124,
                         "endColumn": 42,
-                        "endOffset": 9066
+                        "endOffset": 9162
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 318,
+                    "startLine": 336,
                     "startColumn": 4,
-                    "startOffset": 21382,
+                    "startOffset": 23233,
                     "endColumn": 72,
-                    "endOffset": 21450
+                    "endOffset": 23301
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 299,
                         "startColumn": 4,
-                        "startOffset": 16915,
+                        "startOffset": 17011,
                         "endColumn": 72,
-                        "endOffset": 16983
+                        "endOffset": 17079
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 319,
+                    "startLine": 337,
                     "startColumn": 4,
-                    "startOffset": 21455,
+                    "startOffset": 23306,
                     "endColumn": 52,
-                    "endOffset": 21503
+                    "endOffset": 23354
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 218,
                         "startColumn": 4,
-                        "startOffset": 9945,
+                        "startOffset": 10041,
                         "endColumn": 52,
-                        "endOffset": 9993
+                        "endOffset": 10089
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 320,
+                    "startLine": 338,
                     "startColumn": 4,
-                    "startOffset": 21508,
+                    "startOffset": 23359,
                     "endColumn": 41,
-                    "endOffset": 21545
+                    "endOffset": 23396
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3908,68 +3950,68 @@
             },
             {
                 "to": {
-                    "startLine": 321,
+                    "startLine": 339,
                     "startColumn": 4,
-                    "startOffset": 21550,
+                    "startOffset": 23401,
                     "endColumn": 44,
-                    "endOffset": 21590
+                    "endOffset": 23441
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 207,
                         "startColumn": 4,
-                        "startOffset": 9071,
+                        "startOffset": 9167,
                         "endColumn": 44,
-                        "endOffset": 9111
+                        "endOffset": 9207
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 322,
+                    "startLine": 340,
                     "startColumn": 4,
-                    "startOffset": 21595,
+                    "startOffset": 23446,
                     "endColumn": 49,
-                    "endOffset": 21640
+                    "endOffset": 23491
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 253,
                         "startColumn": 4,
-                        "startOffset": 12023,
+                        "startOffset": 12119,
                         "endColumn": 49,
-                        "endOffset": 12068
+                        "endOffset": 12164
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 323,
+                    "startLine": 341,
                     "startColumn": 4,
-                    "startOffset": 21645,
+                    "startOffset": 23496,
                     "endColumn": 48,
-                    "endOffset": 21689
+                    "endOffset": 23540
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
                     "position": {
                         "startLine": 254,
                         "startColumn": 4,
-                        "startOffset": 12073,
+                        "startOffset": 12169,
                         "endColumn": 48,
-                        "endOffset": 12117
+                        "endOffset": 12213
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 324,
+                    "startLine": 342,
                     "startColumn": 4,
-                    "startOffset": 21694,
+                    "startOffset": 23545,
                     "endColumn": 48,
-                    "endOffset": 21738
+                    "endOffset": 23589
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -3984,11 +4026,11 @@
             },
             {
                 "to": {
-                    "startLine": 325,
+                    "startLine": 343,
                     "startColumn": 4,
-                    "startOffset": 21743,
+                    "startOffset": 23594,
                     "endColumn": 75,
-                    "endOffset": 21814
+                    "endOffset": 23665
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",
@@ -4003,11 +4045,11 @@
             },
             {
                 "to": {
-                    "startLine": 326,
+                    "startLine": 344,
                     "startColumn": 4,
-                    "startOffset": 21819,
+                    "startOffset": 23670,
                     "endColumn": 52,
-                    "endOffset": 21867
+                    "endOffset": 23718
                 },
                 "from": {
                     "file": "D:\\Imagine InterativeProjects\\Pinwi\\Code\\Gradle\\PinWiGradle\\PinWiDemo\\res\\values-sw600dp\\strings.xml",

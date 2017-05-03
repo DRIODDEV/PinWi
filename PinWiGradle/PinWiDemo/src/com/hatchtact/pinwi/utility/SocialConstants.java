@@ -11,6 +11,8 @@ import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.hatchtact.pinwi.classmodel.ChildProfile;
+import com.hatchtact.pinwi.classmodel.ParentProfile;
 
 import java.util.HashMap;
 
@@ -82,9 +84,9 @@ public class SocialConstants {
 		parameters.putString(SocialConstants.Device_Type, "Android");
 		logger.logEvent(SocialConstants.Download_Status, parameters);
 		//Clevertap Log
-		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+		/*HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
 		prodViewedAction.put(SocialConstants.Device_Type, "Android");
-		cleverTap.event.push(SocialConstants.Download_Status, prodViewedAction);
+		cleverTap.event.push(SocialConstants.Download_Status, prodViewedAction);*/
 		//Firebase Log
 		String labelFirebase=SocialConstants.Download_Status + "_Android";
 		mFirebaseAnalytics.logEvent(labelFirebase, null);
@@ -100,11 +102,13 @@ public class SocialConstants {
 		);
 	}
 
-	public void parent_ProfileAnalyticsLog() {
+	public void parent_ProfileAnalyticsLog() //New clevertap log added
+	{
 		//Facebook Log
 		logger.logEvent(SocialConstants.Parent_Profile);
 		//Clevertap Log
-		cleverTap.event.push(SocialConstants.Parent_Profile);
+		//cleverTap.event.push(SocialConstants.Parent_Profile);
+		cleverTap.event.push("Registered");
 		String label = SocialConstants.Parent_Profile + ":Complete";
 		String labelFirebase = SocialConstants.Parent_Profile + "_Complete";
 
@@ -124,7 +128,7 @@ public class SocialConstants {
 		//Facebook Log
 		logger.logEvent(SocialConstants.Child_Profile);
 		//Clevertap Log
-		cleverTap.event.push(SocialConstants.Child_Profile);
+		//cleverTap.event.push(SocialConstants.Child_Profile);
 		String label = SocialConstants.Child_Profile + ":Complete";
 		String labelFirebase = SocialConstants.Child_Profile + "_Complete";
 
@@ -147,9 +151,9 @@ public class SocialConstants {
 		parameters.putString(SocialConstants.Button_Type, parameterValue);
 		logger.logEvent(SocialConstants.Instant_Demo, parameters);
 		//Clevertap Log
-		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+		/*HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
 		prodViewedAction.put(SocialConstants.Button_Type, parameterValue);
-		cleverTap.event.push(SocialConstants.Instant_Demo, prodViewedAction);
+		cleverTap.event.push(SocialConstants.Instant_Demo, prodViewedAction);*/
 
 		String label = SocialConstants.Instant_Demo + "_" + parameterValue;
 		String labelGA = SocialConstants.Button_Type + ":" + parameterValue;
@@ -173,9 +177,9 @@ public class SocialConstants {
 		parameters.putString(SocialConstants.Button_Type, parameterValue);
 		logger.logEvent(SocialConstants.Full_Version, parameters);
 		//Clevertap Log
-		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+		/*HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
 		prodViewedAction.put(SocialConstants.Button_Type, parameterValue);
-		cleverTap.event.push(SocialConstants.Full_Version, prodViewedAction);
+		cleverTap.event.push(SocialConstants.Full_Version, prodViewedAction);*/
 
 		String label = SocialConstants.Full_Version + "_" + parameterValue;
 		String labelGA = SocialConstants.Button_Type + ":" + parameterValue;
@@ -254,6 +258,8 @@ public class SocialConstants {
 		//Clevertap Log
 		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
 		prodViewedAction.put(SocialConstants.Tutorial_Status, parameterValue);
+		prodViewedAction.put("NameofParent", StaticVariables.currentParentName);
+
 		cleverTap.event.push(SocialConstants.Parent_Tutorial, prodViewedAction);
 
 		String label = SocialConstants.Parent_Tutorial + ":" + parameterValue;
@@ -272,12 +278,18 @@ public class SocialConstants {
 
 	}
 
-	public void insights_ActivatedAnalyticsLog() {
+	public void insights_ActivatedAnalyticsLog() //new clevertap log
+	{
 
 		//Facebook Log
 		logger.logEvent(SocialConstants.Insights_Activated);
 		//Clevertap Log
-		cleverTap.event.push(SocialConstants.Insights_Activated);
+		//cleverTap.event.push(SocialConstants.Insights_Activated);
+		/*HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameOfChild",StaticVariables.currentChild.getFirstName());
+		cleverTap.event.push("Insights_Viewed",prodViewedAction);*/
+
 		String label = SocialConstants.Insights_Activated + ":Yes";
 		String labelFirebase = SocialConstants.Insights_Activated + "_Yes";
 
@@ -292,7 +304,13 @@ public class SocialConstants {
 				.build()
 		);
 	}
+	public void insights_ViewedLog() //new clevertap log
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+		prodViewedAction.put("NameOfChild",StaticVariables.currentChild.getFirstName());
+		cleverTap.event.push("Insights_Viewed",prodViewedAction);
 
+	}
 	public void access_InviteFriendAnalyticsLog(String parameterValue) {
 
 		//Facebook Log
@@ -328,6 +346,8 @@ public class SocialConstants {
 		//Clevertap Log
 		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
 		prodViewedAction.put(SocialConstants.Tutorial_Status, parameterValue);
+		prodViewedAction.put("NameOfChild", StaticVariables.currentChild.getFirstName());
+
 		cleverTap.event.push(SocialConstants.Child_Tutorial, prodViewedAction);
 
 		String label = SocialConstants.Child_Tutorial + ":" + parameterValue;
@@ -354,7 +374,9 @@ public class SocialConstants {
 		//Clevertap Log
 		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
 		prodViewedAction.put(SocialConstants.Points_Earned, parameterValue);
-		cleverTap.event.push(SocialConstants.Rating_Done, prodViewedAction);
+		prodViewedAction.put("Nameofchild", StaticVariables.currentChild.getFirstName());
+
+		cleverTap.event.push("Child_Ratings_Provided", prodViewedAction);
 
 		String label = SocialConstants.Rating_Done + "_" + parameterValue;
 		String labelGA = SocialConstants.Points_Earned + ":" + parameterValue;
@@ -364,12 +386,249 @@ public class SocialConstants {
 		//GA Log
 		tracker.send(MapBuilder
 				.createEvent(SocialConstants.CATEGORY_MOBILE,// Event category (required)
-						SocialConstants.Access_InviteFriend,  // Event action (required)
+						SocialConstants.Rating_Done,  // Event action (required)
 						labelGA,
 						null)            // Event value
 				.build()
 		);
 	}
 	/***************************************************New Events*************************************************/
+
+	public void userProfileClevertap(String key, String parameterValue, int type, ParentProfile parentProfile, ChildProfile childProfile, int parentId, int currentChild) {
+
+
+		//Clevertap UserProfile
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+
+		switch (type)
+		{
+			case 1://for single value
+				prodViewedAction.put("Identity",StaticVariables.currentParentId);  // String or number
+				prodViewedAction.put("Name",StaticVariables.currentParentName);
+				prodViewedAction.put(key, parameterValue);
+				break;
+			case 2://for parent updation
+				prodViewedAction.put("Name",parentProfile.getFirstName());
+				prodViewedAction.put("Email",parentProfile.getEmailAddress());
+				prodViewedAction.put("Identity", parentProfile.getParentID());  // String or number
+
+				if(parentProfile.getContact()!=null)
+				{
+					if(parentProfile.getContact().trim().length()==0)
+					{
+						parentProfile.setContact("");
+					}
+				}
+				if(parentProfile.getContact().trim().startsWith("91"))
+				{
+					prodViewedAction.put("Phone","+"+parentProfile.getContact());
+				}
+				else if(parentProfile.getContact().trim().startsWith("+91"))
+				{
+					prodViewedAction.put("Phone",parentProfile.getContact());
+				}
+				else
+				{
+					prodViewedAction.put("Phone","+91"+parentProfile.getContact());
+				}
+
+				prodViewedAction.put("Type", parentProfile.getRelation());
+				if(parentProfile.getDateOfBirth()!=null)
+				{
+					if(parentProfile.getDateOfBirth().trim().length()==0)
+					{
+						parentProfile.setDateOfBirth("01/01/1900");
+					}
+				}
+				prodViewedAction.put("Parent_DOB", parentProfile.getDateOfBirth());
+				break;
+			case 3://for child updation
+				String baseKey="Child"+currentChild;
+				prodViewedAction.put(baseKey+"_Name",childProfile.getFirstName());
+				prodViewedAction.put("Identity",parentId);  // String or number//need to check this
+				prodViewedAction.put(baseKey+"_Nickname",childProfile.getNickName());
+				if(childProfile.getDateOfBirth()!=null)
+				{
+					if(childProfile.getDateOfBirth().trim().length()==0)
+					{
+						childProfile.setDateOfBirth("01/01/1900");
+					}
+				}
+				prodViewedAction.put(baseKey+"_DOB",childProfile.getDateOfBirth());
+				prodViewedAction.put(baseKey+"_Gender",childProfile.getGender());
+				prodViewedAction.put(baseKey+"_School",childProfile.getSchoolName());
+
+				break;
+		}
+		 cleverTap.onUserLogin(prodViewedAction);
+	    // cleverTap.profile.push(prodViewedAction);
+
+
+	}
+
+	public void loginLogClevertap()//New clevertap log added
+	{
+		cleverTap.event.push("Login");
+	}
+
+	public void demoReportRequestedClevertap(String value)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+		prodViewedAction.put("Child_Chosen",value);//FIRST NAME IS SENT
+		cleverTap.event.push("Demo_Report_Requested", prodViewedAction);
+	}
+
+
+	public void SchedulerSubjectAddedClevertap(String nickname,String subjectname)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameOfChild",nickname);
+		prodViewedAction.put("Subject_Name",subjectname);
+
+		cleverTap.event.push("Scheduler_Subject_Added", prodViewedAction);
+	}
+
+	public void SchedulerActivityAddedClevertap(String nickname,String activitytname/*,String category*/)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		//prodViewedAction.put("Category",category);
+		prodViewedAction.put("Activity",activitytname);
+		prodViewedAction.put("NameOfChild",nickname);
+
+		cleverTap.event.push("Scheduler_Activity_Added", prodViewedAction);
+	}
+
+	public void WhattoDoActivityAddedClevertap(String nickname,String activitytname)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		//prodViewedAction.put("Category",category);
+		prodViewedAction.put("Activity",activitytname);
+		prodViewedAction.put("NameOfChild",nickname);
+
+		cleverTap.event.push("WhatToDo_Activity_Scheduled", prodViewedAction);
+	}
+
+	public void childProfileViewedClevertap(String childName,String parentName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofChild",childName);
+		prodViewedAction.put("NameofParent",parentName);
+
+		cleverTap.event.push("Child_Profile_Viewed", prodViewedAction);
+	}
+	public void parentProfileViewedClevertap(String parentName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofParent",parentName);
+
+		cleverTap.event.push("Parent_Profile_Viewed", prodViewedAction);
+	}
+	public void connectedRemovedClevertap(String parentName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofParent",parentName);
+
+		cleverTap.event.push("Connection_Removed", prodViewedAction);
+	}
+	public void connectedAcceptedClevertap(String parentName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofParent",parentName);
+
+		cleverTap.event.push("Connection_Accepted", prodViewedAction);
+	}
+	public void connectedAddedClevertap(String parentName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofParent",parentName);
+
+		cleverTap.event.push("Connection_Added", prodViewedAction);
+	}
+
+	public void childActivityWishlistedClevertap(String Activity,String childName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("Activity",Activity);
+		prodViewedAction.put("NameofChild",childName);
+
+		cleverTap.event.push("Child_Activity_Wishlisted", prodViewedAction);
+	}
+
+	public void buddyRemovedClevertap(String childName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofChild",childName);
+
+		cleverTap.event.push("Buddy_Removed", prodViewedAction);
+	}
+	public void buddyAcceptedClevertap(String childName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofChild",childName);
+
+		cleverTap.event.push("Buddy_Accepted", prodViewedAction);
+	}
+	public void buddyAddedClevertap(String childName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofChild",childName);
+
+		cleverTap.event.push("Buddy_Added", prodViewedAction);
+	}
+
+	public void postcardAddedClevertap(String postcardName,String type)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameOfPostcard",postcardName);
+		prodViewedAction.put("Type",type);
+
+		cleverTap.event.push("Postcard_Added", prodViewedAction);
+	}
+
+	public void playwllReactionAddedClevertap(String childName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofChild",childName);
+
+		cleverTap.event.push("Playwall_Reaction_Added", prodViewedAction);
+	}
+	public void logoutClevertap()//New clevertap log added
+	{
+
+
+		cleverTap.event.push("Logout");
+	}
+
+	public void whattodoviewedClevertap(String childName)//New clevertap log added
+	{
+		HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+
+		prodViewedAction.put("NameofChild",childName);
+
+		cleverTap.event.push("WhattodoViewed", prodViewedAction);
+	}
+
+
+	public void pushfire(String regid)//New clevertap log added
+	{
+		cleverTap.data.pushGcmRegistrationId(regid, true);
+
+	}
+
 
 }

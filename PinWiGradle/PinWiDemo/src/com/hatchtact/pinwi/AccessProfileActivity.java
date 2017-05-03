@@ -203,6 +203,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		{
 			StaticVariables.currentParentName=parentCompleteInformation.getFirstName();
 			StaticVariables.currentParentId=parentCompleteInformation.getParentID();
+			startService(new Intent(AccessProfileActivity.this,GetDataService.class));
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -217,6 +219,15 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		{
 			StaticVariables.forPasscode=true;
 		}
+		try
+		{
+			social.userProfileClevertap("Paid_Status", "Yes", 1, null, null,parentId, 0);
+		}
+		catch (Exception e)
+		{
+
+		}
+
 	}
 	/**
 	 *
@@ -440,7 +451,8 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 		childAccessheading.setVisibility(View.GONE);
 		layoutaccessprofile.setVisibility(View.GONE);
 		layoutimgLock.setVisibility(View.GONE);
-	}
+
+		}
 
 
 
@@ -1030,7 +1042,14 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 								{
 									/*social.Access_Child_ProfileFacebookLog();
 									social.Access_Child_ProfileGoogleAnalyticsLog();*/
-									Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivityChild.class);
+									try {
+										social.childProfileViewedClevertap(StaticVariables.currentChild.getFirstName(), StaticVariables.currentParentName);
+									}
+									catch (Exception e)
+									{
+
+									}
+										Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivityChild.class);
 									Bundle bundle = new Bundle();
 									bundle.putInt("ProfileId", StaticVariables.childPasscodeList.getPasscodeList().get(i).getProfileId());
 									bundle.putBoolean("ToLoadNextScreen", true);
@@ -1042,6 +1061,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 								{
 								/*	social.Access_Child_ProfileFacebookLog();
 									social.Access_Child_ProfileGoogleAnalyticsLog();*/
+									try {
+										social.childProfileViewedClevertap(StaticVariables.currentChild.getFirstName(), StaticVariables.currentParentName);
+									}
+									catch (Exception e)
+									{
+
+									}
 									Intent intent = new Intent(AccessProfileActivity.this, ChildTutorialActivity.class);
 									startActivity(intent);
 									AccessProfileActivity.this.finish();
@@ -1058,6 +1084,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 
 						/*social.Access_Child_ProfileFacebookLog();
 						social.Access_Child_ProfileGoogleAnalyticsLog();*/
+						try {
+							social.childProfileViewedClevertap(StaticVariables.currentChild.getFirstName(), StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 						Intent intent = new Intent(AccessProfileActivity.this, ChildTutorialActivity.class);
 						startActivity(intent);
 						AccessProfileActivity.this.finish();
@@ -1183,6 +1216,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 			new RequestAddOnVersionTask(parentId).execute();
 			break;*/
 			case 6:
+				try {
+					social.logoutClevertap();
+				}
+				catch (Exception e)
+				{
+
+				}
 				sharePreferenceClass.setIsLogin(false);
 				sharePreferenceClass.setIsLogout(true);
 				sharePreferenceClass.setParentProfile("");
@@ -1486,7 +1526,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 					startActivity(intent);*/
 						/*social.Access_Parent_ProfileFacebookLog();
 						social.Access_Parent_ProfileGoogleAnalyticsLog();*/
+						try {
+							social.parentProfileViewedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
 
+						}
 						Intent intent = new Intent(AccessProfileActivity.this, TabChildActivities.class);
 						StaticVariables.currentChild = StaticVariables.childInfo.get(0);
 						intent.putExtra("Type", 1);
@@ -1499,6 +1545,13 @@ public class AccessProfileActivity extends Activity implements OnItemClickListen
 						AccessProfileActivity.this.finish();
 					} else {
 						StaticVariables.currentChild = StaticVariables.childInfo.get(0);
+						try {
+							social.parentProfileViewedClevertap(StaticVariables.currentParentName);
+						}
+						catch (Exception e)
+						{
+
+						}
 						/*social.Access_Parent_ProfileFacebookLog();
 						social.Access_Parent_ProfileGoogleAnalyticsLog();*/
 						Intent intent = new Intent(AccessProfileActivity.this, PasswordUnLockActivity.class);

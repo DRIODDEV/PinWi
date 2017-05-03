@@ -92,6 +92,14 @@
         <item>@color/colorfourheading</item>
         <item>@color/colorfiveheading</item>
         <item>@color/colorsixheading</item>
+        <item>@color/font_blue_color</item>
     </array>
+    <array name="getstartedheadingcolorsinsight">
+        <item>@color/colorthreeheading</item>
+        <item>@color/colorfourheading</item>
+        <item>@color/colorfiveheading</item>
+        <item>@color/colorsixheading</item>
+        <item>@color/font_blue_color</item>
 
+    </array>
 </resources>
