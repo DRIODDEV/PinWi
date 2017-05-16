@@ -26,8 +26,8 @@ android {
         applicationId "com.hatchtact.pinwi"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 54
-        versionName "2.6"
+        versionCode 55
+        versionName "2.8"
     }
 
     sourceSets {

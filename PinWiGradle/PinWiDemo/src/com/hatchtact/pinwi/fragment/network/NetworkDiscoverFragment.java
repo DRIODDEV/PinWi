@@ -1,7 +1,6 @@
 package com.hatchtact.pinwi.fragment.network;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -33,11 +32,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.hatchtact.pinwi.R;
-import com.hatchtact.pinwi.adapter.NetworkConnectionsListAdapter;
 import com.hatchtact.pinwi.adapter.NetworkDiscoverListAdapter;
 import com.hatchtact.pinwi.adapter.NetworkSearchListAdapter;
-import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedID;
-import com.hatchtact.pinwi.classmodel.GetFriendsListByLoggedIDList;
 import com.hatchtact.pinwi.classmodel.GetPeopleYouMayKnowListByLoggedID;
 import com.hatchtact.pinwi.classmodel.GetPeopleYouMayKnowListByLoggedIDList;
 import com.hatchtact.pinwi.classmodel.SearchFriendListGloballyList;
@@ -46,7 +42,6 @@ import com.hatchtact.pinwi.fragment.insights.ParentFragment;
 import com.hatchtact.pinwi.sync.ServiceMethod;
 import com.hatchtact.pinwi.utility.AppUtils;
 import com.hatchtact.pinwi.utility.CheckNetwork;
-import com.hatchtact.pinwi.utility.PopupHelper;
 import com.hatchtact.pinwi.utility.SharePreferenceClass;
 import com.hatchtact.pinwi.utility.ShowMessages;
 import com.hatchtact.pinwi.utility.StaticVariables;
@@ -795,31 +790,6 @@ public  class NetworkDiscoverFragment extends ParentFragment
 
 
 
-	private void showQuickActionMenu(int pos, View v){
-		LayoutInflater inflater =
-				(LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-		//This is just a view with buttons that act as a menu.
-		View popupView = inflater.inflate(R.layout.dialog_menu, null);
-		popupView.findViewById(R.id.item_dropbox).setTag(pos);
-		popupView.findViewById(R.id.item_save).setTag(pos);
-	   /* popupView.findViewById(R.id.menu_add_note).setTag(pos);
-	    popupView.findViewById(R.id.menu_add_attachment).setTag(pos);*/
-
-		window = PopupHelper.newBasicPopupWindow(getActivity());
-		window.setContentView(popupView);
-		int totalHeight = getActivity().getWindowManager().getDefaultDisplay().getHeight();
-		int[] location = new int[2];
-		v.getLocationOnScreen(location);
-
-		if (location[1] < (totalHeight / 2.0)) {
-			PopupHelper.showLikeQuickAction(window, popupView, v
-					, getActivity().getWindowManager(),0,0,PopupHelper.UPPER_HALF);
-		} else {
-			PopupHelper.showLikeQuickAction(window, popupView, v
-					,getActivity(). getWindowManager(),0, 0,PopupHelper.LOWER_HALF);
-		}
-	}
 
 	private void hideKeyBoard() {
 
