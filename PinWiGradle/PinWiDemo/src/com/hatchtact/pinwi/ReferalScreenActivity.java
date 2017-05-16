@@ -338,7 +338,14 @@ public class ReferalScreenActivity extends FragmentActivity
 				{
 					try
 					{
-						social.userProfileClevertap("Refered","Yes", 1, null, null,0, 0);
+						if(IsOptForDontShowReferalCode.trim().equalsIgnoreCase("0"))
+						{
+							social.userProfileClevertap("Refered", "Yes", 1, null, null, 0, 0);
+						}
+						else
+						{
+							social.userProfileClevertap("Refered", "No", 1, null, null, 0, 0);
+						}
 					}
 					catch (Exception e)
 					{
